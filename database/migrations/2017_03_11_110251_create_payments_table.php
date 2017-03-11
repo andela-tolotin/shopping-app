@@ -24,7 +24,7 @@ class CreatePaymentsTable extends Migration
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
             $table->integer('status')->default(0);
-            $table->timestamp();
+            $table->timestamps();
         });
     }
 

@@ -15,8 +15,7 @@ class AddForeignKeysToPayments extends Migration
     {
         Schema::table('payments', function (Blueprint $table) {
             $table->integer('product_id')
-                ->unsigned()
-                ->default(1);
+                ->unsigned();
 
             $table->foreign('product_id')
                 ->references('id')
@@ -24,9 +23,7 @@ class AddForeignKeysToPayments extends Migration
                 ->onDelete('cascade');
 
             $table->integer('user_id')
-                ->unsigned()
-                ->default(1)
-                ->nullable();
+                ->unsigned();
 
             $table->foreign('user_id')
                 ->references('id')
@@ -34,9 +31,7 @@ class AddForeignKeysToPayments extends Migration
                 ->onDelete('cascade');
 
            $table->integer('payment_gateway_id')
-                ->unsigned()
-                ->default(1)
-                ->nullable();
+                ->unsigned();
 
             $table->foreign('payment_gateway_id')
                 ->references('id')
