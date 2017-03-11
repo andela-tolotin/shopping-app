@@ -12,6 +12,15 @@
 */
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
+
+$factory->define(App\Role::class, function (Faker\Generator $faker) {
+
+    return [
+        'name' => $faker->name,
+        'description' => $faker->text,
+    ];
+});
+
 $factory->define(App\User::class, function (Faker\Generator $faker) {
     static $password;
 
@@ -20,5 +29,56 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'email' => $faker->unique()->safeEmail,
         'password' => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),
+        'gender' => $faker->gender,
+        'phone' => $faker->phone,
+        'address' => $faker->address,
+        'role_id' => 1,
+    ];
+});
+
+$factory->define(App\Category::class, function (Faker\Generator $faker) {
+
+    return [
+        'name' => $faker->name,
+        'description' => $faker->text,
+    ];
+});
+
+$factory->define(App\Product::class, function (Faker\Generator $faker) {
+
+    return [
+        'name' => $faker->name,
+        'price' => str_random(2),
+        'description' => $faker->text,
+        'discount' => str_random(2),
+        'tax' => str_random(2),
+        'category_id' => 1,
+    ];
+});
+
+$factory->define(App\PaymentGateway::class, function (Faker\Generator $faker) {
+
+    return [
+        'name' => 'paypal',
+        'logo' => $faker->url,
+        'client_id' => 'sk_aaa8425d3e852ea99c34f98cf3bba',
+        'client_secret' => 'da39a3ee5e6b4b0d3255bfef95601890afd80709',
+        'callback_url' => $faker->url,
+    ];
+});
+
+$factory->define(App\Transaction::class, function (Faker\Generator $faker) {
+
+    return [
+        'currency' => 'KWR',
+        'item_name' => $faker->name,
+        'item_quantity' => str_random(2),
+        'item_price' => str_random(3),
+        'email' => $faker->email,
+        'phone' => $faker->phone,
+        'status' => 0,
+        'product_id' => 1,
+        'payment_gateway_id' => 1,
+        'user_id' => 1,
     ];
 });

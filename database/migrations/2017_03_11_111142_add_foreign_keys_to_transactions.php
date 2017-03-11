@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddForeignKeysToPayments extends Migration
+class AddForeignKeysToTransactions extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class AddForeignKeysToPayments extends Migration
      */
     public function up()
     {
-        Schema::table('payments', function (Blueprint $table) {
+        Schema::table('transactions', function (Blueprint $table) {
             $table->integer('product_id')
                 ->unsigned();
 
@@ -48,6 +48,6 @@ class AddForeignKeysToPayments extends Migration
      */
     public function down()
     {
-       Schema::dropIfExists('payments');
+       Schema::dropIfExists('transactions');
     }
 }
