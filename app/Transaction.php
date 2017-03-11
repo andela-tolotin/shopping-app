@@ -13,4 +13,14 @@ class Transaction extends Model
         'item_price', 'email', 'phone', 'status',
         'payment_gateway_id', 'product_id', 'user_id',
     ];
+
+    public function paymentGateway()
+    {
+    	return $this->belongsTo('App\PaymentGateway');
+    }
+
+    public function product()
+    {
+    	return $this->belongsTo('App/Product');
+    }
 }

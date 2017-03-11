@@ -36,6 +36,6 @@ class User extends Authenticatable
 
     public function transactions() 
     {
-        return $this->belongsTo('App\Payment');
+        return $this->belongsTo('App\Transaction');
     }
 }
