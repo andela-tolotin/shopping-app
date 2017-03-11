@@ -31,11 +31,11 @@ class User extends Authenticatable
 
     public function role()
     {
-        return $this->belongsTo('App\Role');
+        return $this->hasOne('App\Role');
     }
 
     public function transactions() 
     {
-        return $this->belongsTo('App\Transaction');
+        return $this->hasMany('App\Transaction');
     }
 }
