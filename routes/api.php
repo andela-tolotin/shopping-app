@@ -33,10 +33,10 @@ Route::group(['middleware' => ['auth.api']], function() {
 	Route::get('/categories/{id}/products', 'Api\CategoryController@getProducts');
 	Route::put('/categories', 'Api\CategoryController@updateCategory');
 
-	// Route::post('/products', 'Api\ProductController@createProduct');
-	// Route::get('/products', 'Api\ProductController@getproducts');
-	// Route::get('/products/{id}', 'Api\ProductController@getproduct');
-	// Route::put('/products', 'Api\ProductController@updateProduct');
+	Route::post('/products', 'Api\ProductController@createProduct');
+	Route::get('/products', 'Api\ProductController@getproducts');
+	Route::get('/products/{id}', 'Api\ProductController@getproduct');
+	Route::put('/products/{id}', 'Api\ProductController@updateProduct');
 
 	// Route::post('/payment_gateways', 'Api\PaymentGatewayController@createPaymentGateway');
 	// Route::get('/payment_gateways', 'Api\PaymentGatewayController@getPaymentGateways');
