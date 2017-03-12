@@ -47,7 +47,7 @@ class UserController extends Controller
     	    return response()->json($user->toArray(), 200);
     	}
 
-    	return response()->json(['message' => 'Error creating user'], 200);
+    	return response()->json(['message' => 'Error creating user'], 400);
     }
 
     public function updateUser(Request $request, $id)
@@ -58,6 +58,18 @@ class UserController extends Controller
     		return response()->json(['message' => 'User not found'], 404);
     	}
 
+    	$email = User::findOneByEmail($request->get('email'));
+
+    	if ($email instanceof User) {
+    		return response()->json(['message' => 'Email already exists'], 404);
+    	}
+
+    	$phone = User::findOneByPhone($request->get('phone'));
+
+    	if ($phone instanceof User) {
+    		return response()->json(['message' => 'Phone already exists'], 404);
+    	}
+
     	if (
     		$request->get('name') != '' &&
 	    	$request->get('email') != '' &&
@@ -65,25 +77,23 @@ class UserController extends Controller
 	    	$request->get('phone') != '' && 
 	    	$request->get('address') != ''
     	) {
-    		if (! $user instanceof User) {
-    	    	return response()->json(['message' => 'email already exist'], 200);
-    	    }
-
     	    $role = Role::findOneById($request->get('role_id'));
 
     	    if (! $role instanceof Role) {
     	    	return response()->json(['message' => 'Role ID not found'], 404);
     	    }
 
-	    	$user->name = $request->get('name');
-	    	$user->email = $request->get('email');
-	    	$user->gender = $request->get('gender');
-	    	$user->phone = $request->get('phone');
-	    	$user->address = $request->get('address');
-	    	$user->save();
+	    	$user->update([
+	    		'name' => $request->get('name'),
+    	    	'email' => $request->get('email'),
+    	    	'gender' => $request->get('gender'),
+    	    	'phone' => $request->get('phone'),
+    	    	'address' => $request->get('address'),
+	    	]);
 
     	    return response()->json($user->toArray(), 200);
     	}
+    	return response()->json(['message' => 'Error updating user'], 400);
     }
 
     public function getUsers()

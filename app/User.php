@@ -46,6 +46,13 @@ class User extends Authenticatable
             ->first();
     }
 
+    public function scopeFindOneByPhone($query, $phone)
+    {
+        return $query
+            ->where('phone', $phone)
+            ->first();
+    }
+
     public function scopeFindOneById($query, $id)
     {
         return $query
