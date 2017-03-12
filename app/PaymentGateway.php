@@ -12,8 +12,8 @@ class PaymentGateway extends Model
        'client_secret', 'callback_url',
     ];
 
-    public function payments()
+    public function transactions()
     {
-    	return $this->hasMany('App/Payment');
+    	return $this->hasMany('App/Transaction');
     }
 }
