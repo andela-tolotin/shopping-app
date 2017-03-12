@@ -15,7 +15,7 @@ use Illuminate\Http\Request;
 
 Route::get('/token', 'Api\TokenGenerator@issueToken');
 
-Route::group(['middleware' => ['api']], function() {
+Route::group(['middleware' => ['auth.api']], function() {
 	// Route::post('/roles', 'Api\RoleController@createRole');
 	// Route::get('/roles', 'Api\RoleController@getRoles');
 	// Route::get('/roles/{id}', 'Api\RoleController@getRole');
@@ -25,7 +25,7 @@ Route::group(['middleware' => ['api']], function() {
 	Route::get('/users', 'Api\UserController@getUsers');
 	Route::get('/users/{id}', 'Api\UserController@getUser');
 	Route::get('/users/{id}/transactions', 'Api\UserController@getUserTransactions');
-	Route::put('/users', 'Api\UserController@updateUser');
+	Route::put('/users/{id}', 'Api\UserController@updateUser');
 
 	// Route::post('/categories', 'Api\CategoryController@createCategory');
 	// Route::get('/categories', 'Api\CategoryController@getCategories');

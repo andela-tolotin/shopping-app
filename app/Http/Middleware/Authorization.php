@@ -4,6 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 use \Firebase\JWT\JWT;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class Authorization
 {
@@ -18,7 +20,7 @@ class Authorization
     {
         $token = null;
 
-        $authorization = $request->getHeader('Authorization');
+        $authorization = $request->header('Authorization');
 
         if (! empty($authorization)) {
             $token = explode(' ', $authorization);
@@ -26,16 +28,15 @@ class Authorization
         }
 
         try {
-            if (! empty($authorization) {
+            if (! empty($authorization)) {
                 $secretKey = env('SECRET_KEY');
-                $jwt = json_decode($authorization, true);
                 //decode the JWT using the key from config
-                $decodedToken = JWT::decode($jwt['token'], $secretKey, ['HS512']);
+                JWT::decode($authorization, $secretKey, ['HS512']);
                 return $next($request);
             }
         } catch (Exception $e) {
-            return $response->withJson(['message' => $e->getMessage()], 401);
+            return response()->json(['message' => $e->getMessage()], 401);
         }
-        return $response->withJson(['message' => 'User unauthorized due to invalid token'], 401);
+        return response()->json(['message' => 'User unauthorized due to invalid token'], 401);
     }
 }

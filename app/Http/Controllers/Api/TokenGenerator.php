@@ -25,7 +25,7 @@ class TokenGenerator extends Controller
             'nbf'  => $notBefore,  // Not before
         ];
 
-        $secretKey = env('secret');
+        $secretKey = env('SECRET_KEY');
         $jwt = JWT::encode(
         $data,      //Data to be encoded in the JWT
         $secretKey, // The signing key
@@ -34,6 +34,6 @@ class TokenGenerator extends Controller
 
         $unencodedArray = ['jwt' => $jwt];
 
-        return json_encode($unencodedArray);
+        return response()->json($unencodedArray);
     }
 }
