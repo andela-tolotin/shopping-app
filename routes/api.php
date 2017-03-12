@@ -27,11 +27,11 @@ Route::group(['middleware' => ['auth.api']], function() {
 	Route::get('/users/{id}/transactions', 'Api\UserController@getUserTransactions');
 	Route::put('/users/{id}', 'Api\UserController@updateUser');
 
-	// Route::post('/categories', 'Api\CategoryController@createCategory');
-	// Route::get('/categories', 'Api\CategoryController@getCategories');
-	// Route::get('/categories/{id}', 'Api\CategoryController@getCategories');
-	// Route::get('/categories/{id}/products', 'Api\CategoryController@getProducts');
-	// Route::put('/categories', 'Api\CategoryController@updateCategories');
+	Route::post('/categories', 'Api\CategoryController@createCategory');
+	Route::get('/categories', 'Api\CategoryController@getCategories');
+	Route::get('/categories/{id}', 'Api\CategoryController@getCategory');
+	Route::get('/categories/{id}/products', 'Api\CategoryController@getProducts');
+	Route::put('/categories', 'Api\CategoryController@updateCategory');
 
 	// Route::post('/products', 'Api\ProductController@createProduct');
 	// Route::get('/products', 'Api\ProductController@getproducts');
