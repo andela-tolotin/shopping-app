@@ -100,7 +100,7 @@ class UserController extends Controller
     {
     	$users = User::findAll();
 
-    	if (! $users instanceof User) {
+    	if ($users->count() > 0) {
     		return response()->json($users->toArray(), 200);
     	}
 

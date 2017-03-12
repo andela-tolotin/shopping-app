@@ -22,4 +22,11 @@ class Role extends Model
     	    ->where('id', $roleId)
     	    ->first();
     }
+
+    public function scopeFindAll($query)
+    {
+        return $query
+            ->orderBy('name', 'ASC')
+            ->get();
+    }
 }

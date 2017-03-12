@@ -16,10 +16,10 @@ use Illuminate\Http\Request;
 Route::get('/token', 'Api\TokenGenerator@issueToken');
 
 Route::group(['middleware' => ['auth.api']], function() {
-	// Route::post('/roles', 'Api\RoleController@createRole');
-	// Route::get('/roles', 'Api\RoleController@getRoles');
-	// Route::get('/roles/{id}', 'Api\RoleController@getRole');
-	// Route::put('/roles', 'Api\RoleController@updateRole');
+	Route::post('/roles', 'Api\RoleController@createRole');
+	Route::get('/roles', 'Api\RoleController@getRoles');
+	Route::get('/roles/{id}', 'Api\RoleController@getRole');
+	Route::put('/roles/{id}', 'Api\RoleController@updateRole');
 
 	Route::post('/users', 'Api\UserController@createUser');
 	Route::get('/users', 'Api\UserController@getUsers');
