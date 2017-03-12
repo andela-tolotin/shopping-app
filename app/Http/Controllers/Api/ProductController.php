@@ -44,8 +44,7 @@ class ProductController extends Controller
     	if ($request->get('name') != '' &&
     		$request->get('price') != '' &&
     		$request->get('description') != '' &&
-    		$request->get('category_id') != '' &&
-            $request->get('product_img_url') != ''
+    		$request->get('category_id') != ''
     	) {
     		$product = Product::findOneById($id);
 
