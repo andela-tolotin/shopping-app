@@ -52,6 +52,7 @@ $factory->define(App\Product::class, function (Faker\Generator $faker) {
         'discount' => 2,
         'tax' => 5,
         'category_id' => 1,
+        'product_img_url' => $faker->imageUrl($width = 640, $height = 480),
     ];
 });
 

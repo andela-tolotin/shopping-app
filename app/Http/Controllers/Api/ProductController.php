@@ -14,7 +14,8 @@ class ProductController extends Controller
     	if ($request->get('name') != '' &&
     		$request->get('price') != '' &&
     		$request->get('description') != '' &&
-    		$request->get('category_id')
+    		$request->get('category_id') != '' &&
+            $request->get('product_img_url') != '' 
     	) {
     	
     	$category = Category::findOneById($request->get('category_id'));
@@ -43,7 +44,8 @@ class ProductController extends Controller
     	if ($request->get('name') != '' &&
     		$request->get('price') != '' &&
     		$request->get('description') != '' &&
-    		$request->get('category_id')
+    		$request->get('category_id') != '' &&
+            $request->get('product_img_url') != ''
     	) {
     		$product = Product::findOneById($id);
 
