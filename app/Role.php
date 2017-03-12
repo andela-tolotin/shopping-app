@@ -15,4 +15,11 @@ class Role extends Model
     {
     	return $this->hasOne('App/User');
     }
+
+    public function scopeFindOneById($query, $roleId)
+    {
+    	return $query
+    	    ->where('id', $roleId)
+    	    ->first();
+    }
 }

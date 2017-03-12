@@ -38,4 +38,25 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Transaction');
     }
+
+    public function scopeFindOneByEmail($query, $email)
+    {
+        return $query
+            ->where('email', $email)
+            ->first();
+    }
+
+    public function scopeFindOneById($query, $id)
+    {
+        return $query
+            ->where('id', $id)
+            ->first();
+    }
+
+    public function scopeFindAll($query)
+    {
+        return $query
+            ->orderBy('name', 'ASC')
+            ->get();
+    }
 }

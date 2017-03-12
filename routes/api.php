@@ -13,39 +13,39 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/token', 'TokenGenerator@issueToken');
+Route::get('/token', 'Api\TokenGenerator@issueToken');
 
 Route::group(['middleware' => ['api']], function() {
-	Route::post('/roles', 'Role@createRole');
-	Route::get('/roles', 'Role@getRoles');
-	Route::get('/roles/{id}', 'Role@getRole');
-	Route::put('/roles', 'Role@updateRole');
+	// Route::post('/roles', 'Api\RoleController@createRole');
+	// Route::get('/roles', 'Api\RoleController@getRoles');
+	// Route::get('/roles/{id}', 'Api\RoleController@getRole');
+	// Route::put('/roles', 'Api\RoleController@updateRole');
 
-	Route::post('/users', 'User@createUser');
-	Route::get('/users', 'User@getUsers');
-	Route::get('/users/{id}', 'User@getUser');
-	Route::get('/users/{id}/transactions', 'User@getUserTransactions');
-	Route::put('/users', 'User@updateUser');
+	Route::post('/users', 'Api\UserController@createUser');
+	Route::get('/users', 'Api\UserController@getUsers');
+	Route::get('/users/{id}', 'Api\UserController@getUser');
+	Route::get('/users/{id}/transactions', 'Api\UserController@getUserTransactions');
+	Route::put('/users', 'Api\UserController@updateUser');
 
-	Route::post('/categories', 'Category@createCategory');
-	Route::get('/categories', 'Category@getCategories');
-	Route::get('/categories/{id}', 'Category@getCategories');
-	Route::get('/categories/{id}/products', 'Category@getProducts');
-	Route::put('/categories', 'Category@updateCategories');
+	// Route::post('/categories', 'Api\CategoryController@createCategory');
+	// Route::get('/categories', 'Api\CategoryController@getCategories');
+	// Route::get('/categories/{id}', 'Api\CategoryController@getCategories');
+	// Route::get('/categories/{id}/products', 'Api\CategoryController@getProducts');
+	// Route::put('/categories', 'Api\CategoryController@updateCategories');
 
-	Route::post('/products', 'Product@createProduct');
-	Route::get('/products', 'Product@getproducts');
-	Route::get('/products/{id}', 'Product@getproduct');
-	Route::put('/products', 'Product@updateProduct');
+	// Route::post('/products', 'Api\ProductController@createProduct');
+	// Route::get('/products', 'Api\ProductController@getproducts');
+	// Route::get('/products/{id}', 'Api\ProductController@getproduct');
+	// Route::put('/products', 'Api\ProductController@updateProduct');
 
-	Route::post('/payment_gateways', 'PaymentGateway@createPaymentGateway');
-	Route::get('/payment_gateways', 'PaymentGateway@getPaymentGateways');
-	Route::get('/payment_gateways/{id}', 'PaymentGateway@getPaymentGateway');
-	Route::get('/payment_gateways/{id}/transactions', 'PaymentGateway@getTransactions');
-	Route::put('/payment_gateways', 'PaymentGateway@updatePaymentGateway');
+	// Route::post('/payment_gateways', 'Api\PaymentGatewayController@createPaymentGateway');
+	// Route::get('/payment_gateways', 'Api\PaymentGatewayController@getPaymentGateways');
+	// Route::get('/payment_gateways/{id}', 'Api\PaymentGatewayController@getPaymentGateway');
+	// Route::get('/payment_gateways/{id}/transactions', 'Api\PaymentGatewayController@getTransactions');
+	// Route::put('/payment_gateways', 'Api\PaymentGatewayController@updatePaymentGateway');
 
-	Route::post('/transactions', 'Transaction@createTransaction');
-	Route::get('/transactions', 'Transaction@getTransactions');
-	Route::get('/transactions/{id}', 'Transaction@getTransaction');
-	Route::put('/transactions', 'Transaction@updateTransaction');
+	// Route::post('/transactions', 'Api\TransactionController@createTransaction');
+	// Route::get('/transactions', 'Api\TransactionController@getTransactions');
+	// Route::get('/transactions/{id}', 'Api\TransactionController@getTransaction');
+	// Route::put('/transactions', 'Api\TransactionController@updateTransaction');
 });
