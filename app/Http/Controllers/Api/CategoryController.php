@@ -62,4 +62,15 @@ class CategoryController extends Controller
 
     	return response()->json(['message' => 'Category not found'], 404);
     }
+
+    public function getProducts(Request $request, $id)
+    {
+    	$category = Category::findOneById($id);
+
+    	if ($category instanceof Category) {
+    		return response()->json([$category, $category->products], 200);
+    	}
+
+    	return response()->json(['message' => 'Category not found'], 404);
+    }
 }
