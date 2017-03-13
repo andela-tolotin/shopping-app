@@ -27,4 +27,18 @@ class Transaction extends Model
     {
     	return $this->belongsTo('App/User');
     }
+
+    public function scopeFindOneById($query, $id)
+    {
+        return $query
+            ->where('id', $id)
+            ->first();
+    }
+
+    public function scopeFindAll($query)
+    {
+        return $query
+            ->orderBy('id', 'DESC')
+            ->get();
+    }
 }

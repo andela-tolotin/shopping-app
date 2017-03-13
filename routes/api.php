@@ -44,8 +44,8 @@ Route::group(['middleware' => ['auth.api']], function() {
 	Route::get('/payment_gateways/{id}/transactions', 'Api\PaymentGatewayController@getTransactions');
 	Route::put('/payment_gateways/{id}', 'Api\PaymentGatewayController@updatePaymentGateway');
 
-	// Route::post('/transactions', 'Api\TransactionController@createTransaction');
-	// Route::get('/transactions', 'Api\TransactionController@getTransactions');
-	// Route::get('/transactions/{id}', 'Api\TransactionController@getTransaction');
-	// Route::put('/transactions', 'Api\TransactionController@updateTransaction');
+	Route::post('/transactions', 'Api\TransactionController@createTransaction');
+	Route::get('/transactions', 'Api\TransactionController@getTransactions');
+	Route::get('/transactions/{id}', 'Api\TransactionController@getTransaction');
+	Route::put('/transactions/{id}', 'Api\TransactionController@updateTransaction');
 });
