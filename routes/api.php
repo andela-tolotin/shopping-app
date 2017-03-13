@@ -38,11 +38,11 @@ Route::group(['middleware' => ['auth.api']], function() {
 	Route::get('/products/{id}', 'Api\ProductController@getproduct');
 	Route::put('/products/{id}', 'Api\ProductController@updateProduct');
 
-	// Route::post('/payment_gateways', 'Api\PaymentGatewayController@createPaymentGateway');
-	// Route::get('/payment_gateways', 'Api\PaymentGatewayController@getPaymentGateways');
-	// Route::get('/payment_gateways/{id}', 'Api\PaymentGatewayController@getPaymentGateway');
-	// Route::get('/payment_gateways/{id}/transactions', 'Api\PaymentGatewayController@getTransactions');
-	// Route::put('/payment_gateways', 'Api\PaymentGatewayController@updatePaymentGateway');
+	Route::post('/payment_gateways', 'Api\PaymentGatewayController@createPaymentGateway');
+	Route::get('/payment_gateways', 'Api\PaymentGatewayController@getPaymentGateways');
+	Route::get('/payment_gateways/{id}', 'Api\PaymentGatewayController@getPaymentGateway');
+	Route::get('/payment_gateways/{id}/transactions', 'Api\PaymentGatewayController@getTransactions');
+	Route::put('/payment_gateways/{id}', 'Api\PaymentGatewayController@updatePaymentGateway');
 
 	// Route::post('/transactions', 'Api\TransactionController@createTransaction');
 	// Route::get('/transactions', 'Api\TransactionController@getTransactions');

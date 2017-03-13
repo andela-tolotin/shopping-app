@@ -68,7 +68,10 @@ class CategoryController extends Controller
     	$category = Category::findOneById($id);
 
     	if ($category instanceof Category) {
-    		return response()->json([$category, $category->products], 200);
+    		return response()->json([
+                'categories' => $category->toArray(),
+                'products' => $category->products
+            ], 200);
     	}
 
     	return response()->json(['message' => 'Category not found'], 404);
