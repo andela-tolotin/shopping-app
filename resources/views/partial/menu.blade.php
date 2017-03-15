@@ -296,6 +296,7 @@
                         </li>
                         <!-- /DROPDOWN ITEM -->
                     </ul>
+                    @endif
                     <!-- /DROPDOWN NOTIFICATIONS -->
                 </div>
             </div>
@@ -311,8 +312,6 @@
                 <a href="/logout" class="button primary">Logout</a>
               @endif
             </div>
-            
-        @endif
             <!-- /ACCOUNT ACTIONS -->
         </div>
         <!-- /USER BOARD -->

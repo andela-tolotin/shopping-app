@@ -29,7 +29,7 @@
         </div>
         @endif
         <form id="register-form4" method="post" action="/register">
-            <input type="hidden" name="_token" class="form-control" value="{{ csrf_token() }}">
+            {{ csrf_field() }}
             <label for="name" class="rl-label required">Name</label>
             <input type="text" id="name" name="name" placeholder="Enter your name here..." required="required">
             <label for="gender" class="rl-label required">Gender</label>

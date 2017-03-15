@@ -17,7 +17,17 @@
         <p>Enter now to your account and start buying and selling!</p>
     </div>
     <div class="form-popup-content">
-        <form id="login-form2">
+    @if (count($errors) > 0)
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
+        <form id="login-form" method="post" action="{{ route('login') }}">
+        {{ csrf_field() }}
             <label for="email" class="rl-label">Username</label>
             <input type="email" id="email" name="email" placeholder="Enter your email here...">
             <label for="password" class="rl-label">Password</label>
