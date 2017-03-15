@@ -97,7 +97,7 @@
             <!-- HEADLINE -->
             <div class="headline buttons primary">
                 <h4>Account Settings</h4>
-                <button form="profile-info-form" class="button mid-short primary">Save Changes</button>
+                
             </div>
             <!-- /HEADLINE -->
             <!-- FORM BOX ITEMS -->
@@ -121,26 +121,26 @@
                     <form id="profile-info-form">
                         <!-- INPUT CONTAINER -->
                         <div class="input-container">
-                            <label for="acc_name" class="rl-label required">Account Name</label>
-                            <input type="text" id="acc_name" name="acc_name" value="Johnny Fisher" placeholder="Enter your account name here...">
+                            <label for="name" class="rl-label required">Account Name</label>
+                            <input type="text" id="name" name="name" value="{{ Auth::user()->name }}" placeholder="Enter your account name here...">
                         </div>
                         <!-- /INPUT CONTAINER -->
                         <!-- INPUT CONTAINER -->
                         <div class="input-container half">
-                            <label for="new_pwd" class="rl-label">New Password</label>
-                            <input type="password" id="new_pwd" name="new_pwd" placeholder="Enter your password here...">
+                            <label for="password" class="rl-label">New Password</label>
+                            <input type="password" id="password" name="password" placeholder="Enter your password here...">
                         </div>
                         <!-- /INPUT CONTAINER -->
                         <!-- INPUT CONTAINER -->
                         <div class="input-container half">
-                            <label for="new_pwd2" class="rl-label">Repeat Password</label>
-                            <input type="password" id="new_pwd2" name="new_pwd2" placeholder="Repeat your password here...">
+                            <label for="confirm_password" class="rl-label">Repeat Password</label>
+                            <input type="password" id="confirm_password" name="confirm_password" placeholder="Repeat your password here...">
                         </div>
                         <!-- /INPUT CONTAINER -->
                         <!-- INPUT CONTAINER -->
                         <div class="input-container">
-                            <label for="new_email" class="rl-label">Email</label>
-                            <input type="email" id="new_email" name="new_email" placeholder="Enter your email address here...">
+                            <label for="email" class="rl-label">Email</label>
+                            <input type="email" id="email" name="email" placeholder="Enter your email address here..." value="{{ Auth::user()->email }}" readonly="readonly">
                         </div>
                         <div class="input-container half">
                             <label for="country1" class="rl-label required">Gender</label>
@@ -164,6 +164,9 @@
                             <input type="text" id="about" name="about" placeholder="This will appear bellow your avatar... (max 140 char)"> --}}
                         </div>
                         <!-- /INPUT CONTAINER -->
+                        <div class="clearfix"></div>
+                        <hr class="line-separator">
+                        <button class="button big dark">Save <span class="primary">Changes</span></button>
                     </form>
                 </div>
                 <!-- /FORM BOX ITEM -->
