@@ -199,7 +199,7 @@
 <!-- Tweet -->
 <script src="{{ asset('js/vendor/twitter/jquery.tweet.min.js') }}"></script>
 <!-- xmAlerts -->
-<script src="{{ asset('js/vendor/jquery.xmalert.min.js') }}"></script>
+{{-- <script src="{{ asset('js/vendor/jquery.xmalert.min.js') }}"></script> --}}
 <!-- Side Menu -->
 <script src="{{ asset('js/side-menu.js') }}"></script>
 <!-- Home -->
@@ -209,6 +209,6 @@
 <!-- User Quickview Dropdown -->
 <script src="{{ asset('js/user-board.js') }}"></script>
 <!-- Home Alerts -->
-<script src="{{ asset('js/home-alerts.js') }}"></script>
+{{-- <script src="{{ asset('js/home-alerts.js') }}"></script> --}}
 <!-- Footer -->
 <script src="{{ asset('js/footer.js') }}"></script>
