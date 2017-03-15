@@ -11,6 +11,7 @@
 <!-- /SECTION HEADLINE -->
 @endsection
 @section('body')
+<div class="fix-align" style="width: 50%; margin:auto;">
 <div class="form-popup">
     <div class="form-popup-headline secondary">
         <h2>Login to your Account</h2>
@@ -42,5 +43,6 @@
             <button class="button mid dark">Login <span class="primary">Now!</span></button>
         </form>
     </div>
+</div>
 </div>
 @endsection
