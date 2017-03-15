@@ -39,6 +39,7 @@
                 </a>
                 <!-- /USER AVATAR -->
                 <!-- USER INFORMATION -->
+                @if(Auth::check())
                 <p class="user-name">Johnny Fisher</p>
                 <!-- SVG ARROW -->
                 <svg class="svg-arrow">
@@ -298,12 +299,20 @@
                     <!-- /DROPDOWN NOTIFICATIONS -->
                 </div>
             </div>
+            
             <!-- /ACCOUNT INFORMATION -->
             <!-- ACCOUNT ACTIONS -->
+            
             <div class="account-actions">
+               @if(!Auth::check())
                 <a href="/register" class="button primary">Regsiter</a>
                 <a href="/login" class="button secondary">Login</a>
+                @else
+                <a href="/logout" class="button primary">Logout</a>
+              @endif
             </div>
+            
+        @endif
             <!-- /ACCOUNT ACTIONS -->
         </div>
         <!-- /USER BOARD -->
@@ -679,7 +688,6 @@
     </ul>
     <!-- /DROPDOWN -->
     <a href="/logout" class="button medium secondary">Logout</a>
-    <a href="#" class="button medium primary">Become a Seller</a>
 </div>
 <!-- /SIDE MENU -->
 <!-- MAIN MENU -->

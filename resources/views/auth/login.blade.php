@@ -18,10 +18,10 @@
     </div>
     <div class="form-popup-content">
         <form id="login-form2">
-            <label for="username5" class="rl-label">Username</label>
-            <input type="text" id="username5" name="username5" placeholder="Enter your username here...">
-            <label for="password5" class="rl-label">Password</label>
-            <input type="password" id="password5" name="password5" placeholder="Enter your password here...">
+            <label for="email" class="rl-label">Username</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email here...">
+            <label for="password" class="rl-label">Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password here...">
             <!-- CHECKBOX -->
             <input type="checkbox" id="remember2" name="remember2" checked>
             <label for="remember2" class="label-check">
