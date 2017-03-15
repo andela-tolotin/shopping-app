@@ -1,4 +1,3 @@
-@yield('title')
 @include('partial.header')
 <body>
     @include('partial.menu')

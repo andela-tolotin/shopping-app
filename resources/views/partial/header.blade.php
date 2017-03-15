@@ -9,5 +9,5 @@
 	<link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <!-- favicon -->
     <link rel="icon" href="{{ asset('favicon.ico') }}">
-    <title> Online Market place </title>
+    <title> @yield('title') </title>
 </head>
