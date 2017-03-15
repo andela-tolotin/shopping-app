@@ -172,6 +172,6 @@
         <!-- /DROPDOWN ITEM -->
     </ul>
     <!-- /DROPDOWN -->
-    <a href="#" class="button medium secondary">Logout</a>
+    <a href="{{ route('logout') }}" class="button medium secondary">Logout</a>
 </div>
 <!-- /SIDE MENU -->
