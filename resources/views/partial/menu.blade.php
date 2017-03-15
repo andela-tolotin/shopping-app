@@ -301,8 +301,8 @@
             <!-- /ACCOUNT INFORMATION -->
             <!-- ACCOUNT ACTIONS -->
             <div class="account-actions">
-                <a href="#" class="button primary">Regsiter</a>
-                <a href="#" class="button secondary">Login</a>
+                <a href="/register" class="button primary">Regsiter</a>
+                <a href="/login" class="button secondary">Login</a>
             </div>
             <!-- /ACCOUNT ACTIONS -->
         </div>
@@ -678,7 +678,7 @@
         <!-- /DROPDOWN ITEM -->
     </ul>
     <!-- /DROPDOWN -->
-    <a href="#" class="button medium secondary">Logout</a>
+    <a href="/logout" class="button medium secondary">Logout</a>
     <a href="#" class="button medium primary">Become a Seller</a>
 </div>
 <!-- /SIDE MENU -->
@@ -689,7 +689,7 @@
             <ul class="main-menu">
                 <!-- MENU ITEM -->
                 <li class="menu-item">
-                    <a href="index.html">Home</a>
+                    <a href="/">Home</a>
                 </li>
                 <!-- /MENU ITEM -->
                 <!-- MENU ITEM -->
