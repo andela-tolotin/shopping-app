@@ -16,16 +16,29 @@
     <!-- FORM POPUP HEADLINE -->
     <div class="form-popup-headline primary">
         <h2>Register Account</h2>
-        <p>Register now and start making money from home!</p>
     </div>
-    <!-- /FORM POPUP HEADLINE -->
     <!-- FORM POPUP CONTENT -->
     <div class="form-popup-content">
         <form id="register-form4">
+            <label for="name" class="rl-label required">Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name here...">
+            <label for="gender" class="rl-label required">Gender</label>
+            <label for="gender" class="select-block">
+                <select name="gender" id="gender" required="required">
+                    <option value="">Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+                <!-- SVG ARROW -->
+                <svg class="svg-arrow">
+                    <use xlink:href="#svg-arrow"></use>
+                </svg>
+                <!-- /SVG ARROW -->
+            </label>
+            <label for="phone" class="rl-label required">Phone</label>
+            <input type="text" id="phone" name="phone" placeholder="Enter your phone here...">
             <label for="email_address6" class="rl-label required">Email Address</label>
-            <input type="email" id="email_address6" name="email_address6" placeholder="Enter your email address here...">
-            <label for="username6" class="rl-label">Username</label>
-            <input type="text" id="username6" name="username6" placeholder="Enter your username here...">
+            <input type="email" id="email" name="email" placeholder="Enter your email address here...">
             <label for="password6" class="rl-label required">Password</label>
             <input type="password" id="password6" name="password6" placeholder="Enter your password here...">
             <label for="repeat_password6" class="rl-label required">Repeat Password</label>
@@ -34,4 +47,4 @@
         </form>
     </div>
     <!-- /FORM POPUP CONTENT -->
-@endsection
+    @endsection
