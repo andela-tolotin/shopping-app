@@ -159,14 +159,10 @@
                         </div>
                         <!-- /INPUT CONTAINER -->
                         <!-- INPUT CONTAINER -->
-                        <div class="input-container">
-                            {{-- <label for="about" class="rl-label">About</label>
-                            <input type="text" id="about" name="about" placeholder="This will appear bellow your avatar... (max 140 char)"> --}}
-                        </div>
-                        <!-- /INPUT CONTAINER -->
                         <div class="clearfix"></div>
                         <hr class="line-separator">
                         <button class="button big dark">Save <span class="primary">Changes</span></button>
+                        <!-- /INPUT CONTAINER -->
                     </form>
                 </div>
                 <!-- /FORM BOX ITEM -->
