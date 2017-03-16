@@ -97,7 +97,6 @@
             <!-- HEADLINE -->
             <div class="headline buttons primary">
                 <h4>Account Settings</h4>
-                
             </div>
             <!-- /HEADLINE -->
             <!-- FORM BOX ITEMS -->
@@ -115,7 +114,9 @@
                             <p class="text-header">Profile Photo</p>
                             <p class="upload-details">Minimum size 70x70px</p>
                         </div>
-                        <a href="#" class="button mid-short dark-light">Upload Image...</a>
+                        
+                        <input type="file" id="file" class="button mid-short">
+                        {{-- <a href="#" class="button mid-short dark-light">Upload Image...</a> --}}
                     </div>
                     <!-- PROFILE IMAGE UPLOAD -->
                     <form id="profile-info-form">
@@ -147,8 +148,16 @@
                             <label for="country1" class="select-block">
                                 <select name="country1" id="country1">
                                     <option value="">Select your Gender...</option>
+                                    @if (Auth::user()->gender == 'Male')
+                                    <option value="Male" selected="selected">Male</option>
+                                    @else
                                     <option value="Male">Male</option>
+                                    @endif
+                                    @if (Auth::user()->gender == 'Female')
+                                    <option value="Female" selected="selected">Female</option>
+                                    @else
                                     <option value="Female">Female</option>
+                                    @endif
                                 </select>
                                 <!-- SVG ARROW -->
                                 <svg class="svg-arrow">
@@ -169,8 +178,6 @@
             </div>
             <!-- /FORM BOX -->
         </div>
-        <!-- DASHBOARD CONTENT -->
-        <!-- DASHBOARD CONTENT -->
     </div>
     <!-- /DASHBOARD BODY -->
     @include('partial.dashboard.footer')
