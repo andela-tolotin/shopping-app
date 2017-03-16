@@ -115,7 +115,7 @@
                             <p class="upload-details">Minimum size 70x70px</p>
                         </div>
                         
-                        <input type="file" id="file" class="button mid-short">
+                            <input type="file" id="file" class="button mid-short">
                         {{-- <a href="#" class="button mid-short dark-light">Upload Image...</a> --}}
                     </div>
                     <!-- PROFILE IMAGE UPLOAD -->
@@ -167,6 +167,10 @@
                             </label>
                         </div>
                         <!-- /INPUT CONTAINER -->
+                        <div class="input-container half">
+                            <label for="phone" class="rl-label">Phone</label>
+                            <input type="text" id="phone" name="phone" placeholder="Enter your phone here..." value="{{ Auth::user()->phone }}">
+                        </div>
                         <!-- INPUT CONTAINER -->
                         <div class="clearfix"></div>
                         <hr class="line-separator">
