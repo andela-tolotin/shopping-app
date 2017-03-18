@@ -10,7 +10,7 @@ class TokenGenerator extends Controller
 {
     public function issueToken(Request $request)
     {
-        $tokenId = base64_encode(mcrypt_create_iv(32));
+        $tokenId = base64_encode(random_bytes(32));
         $issuedAt = time();
         $notBefore = $issuedAt;
         $serverName = env('TOKEN_ISSUER');
