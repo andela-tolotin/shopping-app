@@ -55,55 +55,6 @@
             <span class="pin soft-edged big primary">49</span>
             <!-- /PIN -->
         </li>
-        <!-- /DROPDOWN ITEM -->
-        <!-- DROPDOWN ITEM -->
-        <li class="dropdown-item interactive">
-            <a href="#">
-                <span class="sl-icon icon-envelope"></span>
-                Messages
-                <!-- SVG ARROW -->
-                <svg class="svg-arrow">
-                    <use xlink:href="#svg-arrow"></use>
-                </svg>
-                <!-- /SVG ARROW -->
-            </a>
-            <!-- INNER DROPDOWN -->
-            <ul class="inner-dropdown">
-                <!-- INNER DROPDOWN ITEM -->
-                <li class="inner-dropdown-item">
-                    <a href="dashboard-inbox.html">Your Inbox (36)</a>
-                    <!-- PIN -->
-                    <span class="pin soft-edged secondary">2</span>
-                    <!-- /PIN -->
-                </li>
-                <!-- /INNER DROPDOWN ITEM -->
-                <!-- INNER DROPDOWN ITEM -->
-                <li class="inner-dropdown-item">
-                    <a href="dashboard-inbox-v2.html">Your Inbox (36) V2</a>
-                </li>
-                <!-- /INNER DROPDOWN ITEM -->
-                <!-- INNER DROPDOWN ITEM -->
-                <li class="inner-dropdown-item">
-                    <a href="dashboard-openmessage.html">Open Message</a>
-                </li>
-                <!-- /INNER DROPDOWN ITEM -->
-                <!-- INNER DROPDOWN ITEM -->
-                <li class="inner-dropdown-item">
-                    <a href="dashboard-inbox.html">Starred Message</a>
-                </li>
-                <!-- /INNER DROPDOWN ITEM -->
-                <!-- INNER DROPDOWN ITEM -->
-                <li class="inner-dropdown-item">
-                    <a href="dashboard-inbox.html">Deleted Messages</a>
-                </li>
-                <!-- /INNER DROPDOWN ITEM -->
-            </ul>
-            <!-- INNER DROPDOWN -->
-            <!-- PIN -->
-            <span class="pin soft-edged big secondary">!</span>
-            <!-- /PIN -->
-        </li>
-        <!-- /DROPDOWN ITEM -->
         <!-- DROPDOWN ITEM -->
         <li class="dropdown-item">
             <a href="dashboard-purchases.html">
@@ -111,15 +62,6 @@
                 Your Purchases
             </a>
         </li>
-        <!-- /DROPDOWN ITEM -->
-        <!-- DROPDOWN ITEM -->
-        <li class="dropdown-item">
-            <a href="dashboard-buycredits.html">
-                <span class="sl-icon icon-credit-card"></span>
-                Buy Credits
-            </a>
-        </li>
-        <!-- /DROPDOWN ITEM -->
     </ul>
     <!-- /DROPDOWN -->
     <!-- SIDE MENU TITLE -->
@@ -145,8 +87,7 @@
         <!-- /DROPDOWN ITEM -->
     </ul>
     <!-- /DROPDOWN -->
-    <!-- SIDE MENU TITLE -->
-    <p class="side-menu-title">Author Tools</p>
+    <p class="side-menu-title">Category</p>
     <!-- /SIDE MENU TITLE -->
     <!-- DROPDOWN -->
     <ul class="dropdown dark hover-effect">
@@ -154,7 +95,7 @@
         <li class="dropdown-item">
             <a href="dashboard-uploaditem.html">
                 <span class="sl-icon icon-arrow-up-circle"></span>
-                Upload Item
+                Add Category
             </a>
         </li>
         <!-- /DROPDOWN ITEM -->
@@ -162,18 +103,31 @@
         <li class="dropdown-item">
             <a href="dashboard-manageitems.html">
                 <span class="sl-icon icon-folder-alt"></span>
-                Manage Items
+                Manage Category
+            </a>
+        </li>
+    </ul>
+    <!-- /DROPDOWN -->
+    <!-- SIDE MENU TITLE -->
+    <p class="side-menu-title">Product</p>
+    <!-- /SIDE MENU TITLE -->
+    <!-- DROPDOWN -->
+    <ul class="dropdown dark hover-effect">
+        <!-- DROPDOWN ITEM -->
+        <li class="dropdown-item">
+            <a href="dashboard-uploaditem.html">
+                <span class="sl-icon icon-arrow-up-circle"></span>
+                Add Product
             </a>
         </li>
         <!-- /DROPDOWN ITEM -->
         <!-- DROPDOWN ITEM -->
         <li class="dropdown-item">
-            <a href="dashboard-withdrawals.html">
-                <span class="sl-icon icon-wallet"></span>
-                Withdrawals
+            <a href="dashboard-manageitems.html">
+                <span class="sl-icon icon-folder-alt"></span>
+                Manage Product
             </a>
         </li>
-        <!-- /DROPDOWN ITEM -->
     </ul>
     <!-- /DROPDOWN -->
     <a href="{{ route('logout') }}" class="button medium secondary">Logout</a>
