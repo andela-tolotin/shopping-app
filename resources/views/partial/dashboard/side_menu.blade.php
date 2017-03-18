@@ -15,14 +15,18 @@
                 <div class="outer-ring">
                     <div class="inner-ring"></div>
                     <figure class="user-avatar">
-                        <img src="images/avatars/avatar_01.jpg" alt="avatar">
+                        @if (Auth::user()->profile_picture == '')
+                        <img src="images/dashboard/profile-default-image.png" alt="profile-default-image">
+                        @else
+                        <img src="{{ Auth::user()->profile_picture }}">
+                    @endif
                     </figure>
                 </div>
             </a>
             <!-- /USER AVATAR -->
             <!-- USER INFORMATION -->
-            <p class="user-name">Johnny Fisher</p>
-            <p class="user-money">$745.00</p>
+            <p class="user-name">{{ Auth::user()->name }}</p>
+            <p class="user-money">{{ Auth::user()->role->name }}</p>
             <!-- /USER INFORMATION -->
         </div>
         <!-- /USER QUICKVIEW -->
