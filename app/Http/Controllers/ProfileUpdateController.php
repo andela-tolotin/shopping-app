@@ -9,7 +9,7 @@ use App\Http\Requests\ProfileUpdateRequest;
 
 class ProfileUpdateController extends Controller
 {
-    public function updateProfile(ProfileUpdateRequest $request)
+    public function updateProfile(Request $request)
     {
     	$email = $request->email;
     	$oldPassword = $request->password;
@@ -22,7 +22,7 @@ class ProfileUpdateController extends Controller
     		$user->gender = $request->gender;
     		$user->name = $request->name;
 
-    		if ($request->photo != '') {
+    		if ($request->file('photo') != '') {
     			$user->profile_picture = $this->handleCloudinaryFileUpload($request);
     		}
 
@@ -52,7 +52,7 @@ class ProfileUpdateController extends Controller
      */
     public function handleCloudinaryFileUpload($request)
     {
-        $avatar = $request->photo;
+        $avatar = $request->file('photo');
         $avatar = Cloudder::upload($avatar, null, [
             'format' => 'jpg',
             'crop'   => 'fill',

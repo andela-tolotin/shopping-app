@@ -15,7 +15,7 @@
             </ul>
         </div>
         @endif
-        <form id="profile-info-form" method="post" action="{{ route('profile_update') }}">
+        <form id="profile-info-form" method="post" action="{{ route('profile_update') }}" enctype="multipart/form-data">
             <div class="profile-image">
                 <div class="profile-image-data">
                     <figure class="user-avatar medium">
