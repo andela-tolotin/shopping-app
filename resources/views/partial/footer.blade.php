@@ -208,7 +208,5 @@
 <script src="{{ asset('js/tooltip.js') }}"></script>
 <!-- User Quickview Dropdown -->
 <script src="{{ asset('js/user-board.js') }}"></script>
-<!-- Home Alerts -->
-{{-- <script src="{{ asset('js/home-alerts.js') }}"></script> --}}
 <!-- Footer -->
 <script src="{{ asset('js/footer.js') }}"></script>

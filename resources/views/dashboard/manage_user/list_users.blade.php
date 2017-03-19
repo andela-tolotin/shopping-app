@@ -26,7 +26,7 @@
 			<td>{{ $user->phone }}</td>
 			<td>{{ $user->gender }}</td>
 			<td><a href="{{ route('edit_user', ['id' => $user->id ]) }}" title="Edit {{ $user->name }}"> <i class="glyphicon glyphicon-pencil"></i> Edit </a></td>
-			<td><a href="" title="Delete {{ $user->name }}"> <i class="glyphicon glyphicon-trash Delete"></i> Delete</a></td>
+			<td><a class="delete-user" href="{{ route('delete_user', ['id' => $user->id ]) }}" title="Delete {{ $user->name }}"> <i class="glyphicon glyphicon-trash Delete"></i> Delete</a></td>
 		</tr>
 		@endforeach
 		@endif

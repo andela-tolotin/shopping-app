@@ -30,3 +30,20 @@
     <script src="{{ asset('js/side-menu.js') }}"></script>
     <!-- Dashboard Header -->
     <script src="{{ asset('js/dashboard-header.js') }}"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="{{ asset('js/bootbox.min.js') }}"></script>
+    <script>
+    $(document).on("click", ".delete-user", function(e) {
+        bootbox.confirm("Are you sure you want to delete this user!", function(result) {
+            if (result) {
+                return true;
+            }
+        });
+        return false;
+    });
+</script>
+<style type="text/css">
+    .modal-open .modal {
+        z-index: 9999;
+    }
+</style>
