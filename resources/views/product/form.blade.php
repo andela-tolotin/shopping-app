@@ -40,7 +40,7 @@
 
                             <label for="category" class = "rl-label require">Product Category</label>
 
-                            <select name="category">
+                            <select name="category" required="required">
                                 <option value="" >Product Category</option>
                                 @foreach($categories as $category)
 

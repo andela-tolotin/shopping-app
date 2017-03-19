@@ -56,7 +56,7 @@ class ProductController extends Controller
     public function uploadProductImage($request)
     {
         $productImage = $request->file('photo');
-        
+
         Cloudder::upload($productImage, null, [
             'format' => 'jpg',
             'crop'   => 'fill',
