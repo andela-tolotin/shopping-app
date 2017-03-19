@@ -25,3 +25,9 @@ Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('l
 Route::post('/profile/update', 'ProfileUpdateController@updateProfile')->name('profile_update');
 
 Auth::routes();
+
+Route::get('/product', 'ProductController@showProductForm')->name('load_product');
+Route::post('/product', 'ProductController@postProduct')->name('post_product');
+
+Route::get('/category', 'CategoryController@showCategoryForm')->name('load_category');
+Route::post('/category', 'CategoryController@postCategory')->name('post_category');
