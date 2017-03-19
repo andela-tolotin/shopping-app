@@ -6,6 +6,7 @@ use Auth;
 use App\User;
 use App\Role;
 use Exception;
+use App\Http\Requests\UpdateUserRequest;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -26,14 +27,42 @@ class UserController extends Controller
     	$user = User::findOneById($id);
     	$userRoles = Role::findAll();
 
-    	if ($authenticatedUser == self::ISADMIN) {
-    		if ($user instanceof User) {
-    			return view('dashboard.manage_user.edit_user', compact('user', 'userRoles'));
-    		} else {
-    			throw new Exception('User with this id not found');
-    		}
+		if ($user instanceof User) {
+			return view('dashboard.manage_user.edit_user', compact('user', 'userRoles'));
+		}
+		
+		throw new Exception('User with this id not found');
+    }
+
+    public function updateUser(UpdateUserRequest $request, $id)
+    {
+    	$user = User::findOneById($id);
+
+    	if ($user instanceof User) {
+    		$user->phone = $request->phone;
+    		$user->gender = $request->gender;
+    		$user->name = $request->name;
+    		$user->role_id = $request->role;
+    		$user->status = $request->status;
+
+    		$user->save();
+
+    		return redirect()->route('manage_user');
     	}
 
-    	abort(401);
+    	throw new Exception('User with this id not found');
+    }
+
+    public function deleteUser(Request $request, $id)
+    {
+    	$user = User::findOneById($id);
+
+    	if ($user instanceof User) {
+    		$user->forceDelete();
+
+    		return redirect()->route('manage_user');
+    	}
+
+    	throw new Exception('User with this id not found');
     }
 }

@@ -19,19 +19,19 @@
             </ul>
         </div>
         @endif
-        <form id="profile-info-form" method="post" action="" enctype="multipart/form-data">
+        <form id="profile-info-form" method="post" action="{{ route('update_user', ['id' => $user->id ])}}" enctype="multipart/form-data">
             {{ csrf_field() }}
             <!-- INPUT CONTAINER -->
             <div class="input-container">
                 <label for="name" class="rl-label required">Account Name</label>
-                <input type="text" id="name" name="name" value="{{ Auth::user()->name }}" placeholder="Enter your account name here...">
+                <input type="text" id="name" name="name" value="{{ $user->name }}" placeholder="Enter your account name here..." required="required">
             </div>
             <!-- /INPUT CONTAINER -->
             <!-- INPUT CONTAINER -->
             <div class="input-container half">
-                <label for="gender" class="rl-label required">Role</label>
-                <label for="gender" class="select-block">
-                    <select name="gender" id="gender">
+                <label for="role" class="rl-label required">Role</label>
+                <label for="role" class="select-block">
+                    <select name="role" id="role" required="required">
                         <option value="">Select user Role...</option>
                         @if ($userRoles->count() > 0)
                         @foreach($userRoles as $role)
@@ -55,7 +55,7 @@
             <div class="input-container half">
                 <label for="status" class="rl-label required">Status</label>
                 <label for="status" class="select-block">
-                    <select name="status" id="status">
+                    <select name="status" id="status" required="required">
                         <option value="">Select user status...</option>
                         @if ($user->status == 0)
                         <option value="0" selected="selected">De-Activate</option>
@@ -79,19 +79,19 @@
             <!-- INPUT CONTAINER -->
             <div class="input-container">
                 <label for="email" class="rl-label">Email</label>
-                <input type="email" id="email" name="email" placeholder="Enter your email address here..." value="{{ Auth::user()->email }}" readonly="readonly">
+                <input type="email" id="email" name="email" placeholder="Enter your email address here..." value="{{ $user->email }}" readonly="readonly">
             </div>
             <div class="input-container half">
                 <label for="gender" class="rl-label required">Gender</label>
                 <label for="gender" class="select-block">
-                    <select name="gender" id="gender">
+                    <select name="gender" id="gender" required="required">
                         <option value="">Select your Gender...</option>
-                        @if (Auth::user()->gender == 'Male')
+                        @if ($user->gender == 'Male')
                         <option value="Male" selected="selected">Male</option>
                         @else
                         <option value="Male">Male</option>
                         @endif
-                        @if (Auth::user()->gender == 'Female')
+                        @if ($user->gender == 'Female')
                         <option value="Female" selected="selected">Female</option>
                         @else
                         <option value="Female">Female</option>
@@ -107,7 +107,7 @@
             <!-- /INPUT CONTAINER -->
             <div class="input-container half">
                 <label for="phone" class="rl-label">Phone</label>
-                <input type="text" id="phone" name="phone" placeholder="Enter your phone here..." value="{{ Auth::user()->phone }}">
+                <input type="text" id="phone" name="phone" placeholder="Enter your phone here..." value="{{ $user->phone }}" required="required">
             </div>
             <!-- INPUT CONTAINER -->
             <div class="clearfix"></div>
