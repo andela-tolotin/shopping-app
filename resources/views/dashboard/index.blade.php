@@ -33,58 +33,6 @@
                     <input type="image" src="images/dashboard/search-icon.png" alt="search-icon">
                 </form>
             </div>
-            <!-- /DASHBOARD HEADER ITEM -->
-            <!-- DASHBOARD HEADER ITEM -->
-            <div class="dashboard-header-item stats">
-                <!-- STATS META -->
-                <div class="stats-meta">
-                    <div class="pie-chart pie-chart1">
-                        <!-- SVG PLUS -->
-                        <svg class="svg-plus primary">
-                            <use xlink:href="#svg-plus"></use>
-                        </svg>
-                        <!-- /SVG PLUS -->
-                    </div>
-                    <h6>64.579</h6>
-                    <p>New Original Visits</p>
-                </div>
-                <!-- /STATS META -->
-            </div>
-            <!-- /DASHBOARD HEADER ITEM -->
-            <!-- DASHBOARD HEADER ITEM -->
-            <div class="dashboard-header-item stats">
-                <!-- STATS META -->
-                <div class="stats-meta">
-                    <div class="pie-chart pie-chart2">
-                        <!-- SVG PLUS -->
-                        <svg class="svg-minus tertiary">
-                            <use xlink:href="#svg-minus"></use>
-                        </svg>
-                        <!-- /SVG PLUS -->
-                    </div>
-                    <h6>20.8</h6>
-                    <p>Less Sales Than Last Month</p>
-                </div>
-                <!-- /STATS META -->
-            </div>
-            <!-- /DASHBOARD HEADER ITEM -->
-            <!-- DASHBOARD HEADER ITEM -->
-            <div class="dashboard-header-item stats">
-                <!-- STATS META -->
-                <div class="stats-meta">
-                    <div class="pie-chart pie-chart3">
-                        <!-- SVG PLUS -->
-                        <svg class="svg-plus primary">
-                            <use xlink:href="#svg-plus"></use>
-                        </svg>
-                        <!-- /SVG PLUS -->
-                    </div>
-                    <h6>322k</h6>
-                    <p>Total Visits This Month</p>
-                </div>
-                <!-- /STATS META -->
-            </div>
-            <!-- /DASHBOARD HEADER ITEM -->
             <!-- DASHBOARD HEADER ITEM -->
             <div class="dashboard-header-item back-button">
                 <a href="index.html" class="button mid dark-light">Back to Homepage</a>
