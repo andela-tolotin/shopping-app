@@ -19,7 +19,7 @@
             </ul>
         </div>
         @endif
-        <form id="profile-info-form" method="post" action="" enctype="multipart/form-data">
+        <form id="profile-info-form" method="post" action="{{ route('update_user', ['id' => $user->id ])}}" enctype="multipart/form-data">
             {{ csrf_field() }}
             <!-- INPUT CONTAINER -->
             <div class="input-container">
@@ -29,9 +29,9 @@
             <!-- /INPUT CONTAINER -->
             <!-- INPUT CONTAINER -->
             <div class="input-container half">
-                <label for="gender" class="rl-label required">Role</label>
-                <label for="gender" class="select-block">
-                    <select name="gender" id="gender">
+                <label for="role" class="rl-label required">Role</label>
+                <label for="role" class="select-block">
+                    <select name="role" id="role">
                         <option value="">Select user Role...</option>
                         @if ($userRoles->count() > 0)
                         @foreach($userRoles as $role)

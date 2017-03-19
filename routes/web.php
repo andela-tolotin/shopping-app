@@ -26,11 +26,14 @@ Route::post('/profile/update', 'ProfileUpdateController@updateProfile')->name('p
 
 Auth::routes();
 
-Route::get('/product', 'ProductController@showProductForm')->name('load_product');
-Route::post('/product', 'ProductController@postProduct')->name('post_product');
+Route::group(['prefix' => 'admin', 'middleware' => ['auth.isAdmin']], function() {
+	Route::get('/product', 'ProductController@showProductForm')->name('load_product');
+	Route::post('/product', 'ProductController@postProduct')->name('post_product');
 
-Route::get('/category', 'CategoryController@showCategoryForm')->name('load_category');
-Route::post('/category', 'CategoryController@postCategory')->name('post_category');
+	Route::get('/category', 'CategoryController@showCategoryForm')->name('load_category');
+	Route::post('/category', 'CategoryController@postCategory')->name('post_category');
 
-Route::get('/manage/users', 'UserController@listUsers')->name('manage_user');
-Route::get('/users/{id}/edit', 'UserController@editUser')->name('edit_user');
+	Route::get('/manage/users', 'UserController@listUsers')->name('manage_user');
+	Route::get('/users/{id}/edit', 'UserController@editUser')->name('edit_user');
+	Route::get('/users/{id}/update', 'UserController@updateUser')->name('update_user');
+});
