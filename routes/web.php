@@ -31,3 +31,5 @@ Route::post('/product', 'ProductController@postProduct')->name('post_product');
 
 Route::get('/category', 'CategoryController@showCategoryForm')->name('load_category');
 Route::post('/category', 'CategoryController@postCategory')->name('post_category');
+
+Route::get('/manage_users', 'UserController@listUsers')->name('manage_user');

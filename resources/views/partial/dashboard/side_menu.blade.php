@@ -39,7 +39,7 @@
     <ul class="dropdown dark hover-effect interactive">
         <!-- DROPDOWN ITEM -->
         <li class="dropdown-item active">
-            <a href="dashboard-settings.html">
+            <a href="{{ route('home') }}">
                 <span class="sl-icon icon-settings"></span>
                 Account Settings
             </a>
@@ -73,7 +73,7 @@
     <ul class="dropdown dark hover-effect interactive">
         <!-- DROPDOWN ITEM -->
         <li class="dropdown-item active">
-            <a href="dashboard-settings.html">
+            <a href="{{ route('manage_user') }}">
                 <span class="sl-icon icon-settings"></span>
                 Manage User
             </a>

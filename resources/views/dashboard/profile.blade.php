@@ -25,12 +25,9 @@
                         <img src="{{ Auth::user()->profile_picture }}">
                         @endif
                     </figure>
-                    <p class="text-header">Profile Photo</p>
-                    <p class="upload-details">Minimum size 70x70px</p>
+                    <p class="text-header">Profile Photo</p><br>
+                    <p class="upload-details"><input type="file" class="" name="photo"></p>
                 </div>
-                
-                <input type="file" class="" name="photo">
-                {{-- <a href="#" class="button mid-short dark-light">Upload Image...</a> --}}
             </div>
             
             {{ csrf_field() }}
