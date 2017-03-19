@@ -3,7 +3,7 @@
     @include('partial.dashboard.side_menu')
     <!-- DASHBOARD BODY -->
     <div class="dashboard-body">
-       @include('partial.dashboard.upper_part')
+        @include('partial.dashboard.upper_part')
         <!-- DASHBOARD HEADER -->
         <!-- DASHBOARD CONTENT -->
         <div class="dashboard-content">
@@ -13,9 +13,8 @@
             </div>
             <!-- /HEADLINE -->
             @include('dashboard.profile')
-            </div>
-            <!-- /FORM BOX -->
         </div>
+        <!-- /FORM BOX -->
     </div>
     <!-- /DASHBOARD BODY -->
     @include('partial.dashboard.footer')

@@ -1,14 +1,19 @@
 @include('partial.dashboard.header')
 <body>
     @include('partial.dashboard.side_menu')
-    <!-- SECTION -->
-    <div class="section-wrap">
-        <div class="section demo">
-        @yield('body')
+    <!-- DASHBOARD BODY -->
+    <div class="dashboard-body">
+        @include('partial.dashboard.upper_part')
+        <!-- DASHBOARD CONTENT -->
+        <div class="dashboard-content">
+            <div class="headline buttons primary">
+                <h4>@yield('page')</h4>
+            </div>
+            @yield('body')
         </div>
     </div>
-    <div class="clearfix"></div>
+    <!-- /DASHBOARD BODY -->
     <!-- FOOTER -->
-    @include('partial.footer')
+    @include('partial.dashboard.footer')
 </body>
 </html>
