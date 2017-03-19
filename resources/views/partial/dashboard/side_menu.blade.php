@@ -64,6 +64,23 @@
         </li>
     </ul>
     <!-- /DROPDOWN -->
+
+    <!-- /SIDE MENU HEADER -->
+    <!-- SIDE MENU TITLE -->
+    <p class="side-menu-title">User Management</p>
+    <!-- /SIDE MENU TITLE -->
+    <!-- DROPDOWN -->
+    <ul class="dropdown dark hover-effect interactive">
+        <!-- DROPDOWN ITEM -->
+        <li class="dropdown-item active">
+            <a href="dashboard-settings.html">
+                <span class="sl-icon icon-settings"></span>
+                Manage User
+            </a>
+        </li>
+        <!-- /DROPDOWN ITEM -->
+    </ul>
+    <!-- /DROPDOWN -->
     <!-- SIDE MENU TITLE -->
     <p class="side-menu-title">Info &amp; Statistics</p>
     <!-- /SIDE MENU TITLE -->
