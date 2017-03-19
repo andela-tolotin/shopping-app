@@ -93,7 +93,7 @@
     <ul class="dropdown dark hover-effect">
         <!-- DROPDOWN ITEM -->
         <li class="dropdown-item">
-            <a href="dashboard-uploaditem.html">
+            <a href="{{ route('load_category')  }}">
                 <span class="sl-icon icon-arrow-up-circle"></span>
                 Add Category
             </a>
@@ -115,7 +115,7 @@
     <ul class="dropdown dark hover-effect">
         <!-- DROPDOWN ITEM -->
         <li class="dropdown-item">
-            <a href="dashboard-uploaditem.html">
+            <a href="{{ route('load_product') }}">
                 <span class="sl-icon icon-arrow-up-circle"></span>
                 Add Product
             </a>

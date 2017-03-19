@@ -71,7 +71,6 @@
                         </div>
 
                         <input type="file" class="" name="photo">
-                        {{-- <a href="#" class="button mid-short dark-light">Upload Image...</a> --}}
                     </div>
 
 
