@@ -1,7 +1,6 @@
 @include('partial.dashboard.header')
 <body>
-    @include('partial.menu')
-    @yield('breadcrumb')
+    @include('partial.dashboard.side_menu')
     <!-- SECTION -->
     <div class="section-wrap">
         <div class="section demo">
