@@ -35,6 +35,13 @@ class UserController extends Controller
 
     public function updateUser(UpdateUserRequest $request, $id)
     {
+    	$user = User::findOneById($id);
+    	$role = Role::findOneById($request->role);
 
+    	if (!$role instanceof Role) {
+    		return redirect('home')
+                ->withErrors(['Bo'])
+                ->withInput();
+    	}
     }
 }
