@@ -19,11 +19,11 @@
             <div class="profile-image">
                 <div class="profile-image-data">
                     <figure class="user-avatar medium">
-                    @if (Auth::user()->profile_picture == '')
+                        @if (Auth::user()->profile_picture == '')
                         <img src="images/dashboard/profile-default-image.png" alt="profile-default-image">
                         @else
                         <img src="{{ Auth::user()->profile_picture }}">
-                    @endif
+                        @endif
                     </figure>
                     <p class="text-header">Profile Photo</p>
                     <p class="upload-details">Minimum size 70x70px</p>

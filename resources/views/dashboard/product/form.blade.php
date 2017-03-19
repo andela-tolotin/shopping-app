@@ -28,19 +28,19 @@
             <div class="input-container">
                 <label for="category" class = "rl-label require">Product Category</label>
                 <label for="gender" class="select-block">
-                <select name="category" required="required">
-                    <option value="" >Product Category</option>
-                    @foreach($categories as $category)
-                    <option value="{{ $category->id }}">
-                        {{ $category->name }}
-                    </option>
-                    @endforeach
-                </select>
-                <!-- SVG ARROW -->
-                <svg class="svg-arrow">
-                    <use xlink:href="#svg-arrow"></use>
-                </svg>
-                <!-- /SVG ARROW -->
+                    <select name="category" required="required">
+                        <option value="" >Product Category</option>
+                        @foreach($categories as $category)
+                        <option value="{{ $category->id }}">
+                            {{ $category->name }}
+                        </option>
+                        @endforeach
+                    </select>
+                    <!-- SVG ARROW -->
+                    <svg class="svg-arrow">
+                        <use xlink:href="#svg-arrow"></use>
+                    </svg>
+                    <!-- /SVG ARROW -->
                 </label>
             </div>
             <div class="input-container">
