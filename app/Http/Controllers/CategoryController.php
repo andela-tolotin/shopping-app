@@ -18,7 +18,7 @@ class CategoryController extends Controller
      */
     public function showCategoryForm()
     {
-        return view('category.form');
+        return view('dashboard.category.form');
     }
 
     /**

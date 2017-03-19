@@ -19,7 +19,7 @@ class ProductController extends Controller
     public function showProductForm()
     {
         $categories = Category::all();
-        return view('product.form', compact('categories'));
+        return view('dashboard.product.form', compact('categories'));
     }
 
     /**
