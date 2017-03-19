@@ -2,7 +2,8 @@
 
 namespace App\Http\Middleware;
 
-use User;
+use Auth;
+use App\User;
 use Closure;
 
 class IsAdminMiddleware
@@ -17,7 +18,7 @@ class IsAdminMiddleware
      */
     public function handle($request, Closure $next)
     {
-        $user = User::findOneById($request->get('id'));
+        $user = Auth::user();
 
         if ($user->role->name == self::ISADMIN) {
             return $next($request);
