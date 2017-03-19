@@ -35,5 +35,5 @@ Route::group(['middleware' => ['auth.isAdmin']], function() {
 
 	Route::get('/manage/users', 'UserController@listUsers')->name('manage_user');
 	Route::get('/users/{id}/edit', 'UserController@editUser')->name('edit_user');
-	Route::get('/users/{id}/update', 'UserController@updateUser')->name('update_user');
+	Route::post('/users/{id}/update', 'UserController@updateUser')->name('update_user');
 });

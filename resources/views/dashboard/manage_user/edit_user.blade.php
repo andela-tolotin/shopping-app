@@ -24,7 +24,7 @@
             <!-- INPUT CONTAINER -->
             <div class="input-container">
                 <label for="name" class="rl-label required">Account Name</label>
-                <input type="text" id="name" name="name" value="{{ Auth::user()->name }}" placeholder="Enter your account name here..." required="required">
+                <input type="text" id="name" name="name" value="{{ $user->name }}" placeholder="Enter your account name here..." required="required">
             </div>
             <!-- /INPUT CONTAINER -->
             <!-- INPUT CONTAINER -->
@@ -79,19 +79,19 @@
             <!-- INPUT CONTAINER -->
             <div class="input-container">
                 <label for="email" class="rl-label">Email</label>
-                <input type="email" id="email" name="email" placeholder="Enter your email address here..." value="{{ Auth::user()->email }}" readonly="readonly">
+                <input type="email" id="email" name="email" placeholder="Enter your email address here..." value="{{ $user->email }}" readonly="readonly">
             </div>
             <div class="input-container half">
                 <label for="gender" class="rl-label required">Gender</label>
                 <label for="gender" class="select-block">
                     <select name="gender" id="gender" required="required">
                         <option value="">Select your Gender...</option>
-                        @if (Auth::user()->gender == 'Male')
+                        @if ($user->gender == 'Male')
                         <option value="Male" selected="selected">Male</option>
                         @else
                         <option value="Male">Male</option>
                         @endif
-                        @if (Auth::user()->gender == 'Female')
+                        @if ($user->gender == 'Female')
                         <option value="Female" selected="selected">Female</option>
                         @else
                         <option value="Female">Female</option>
@@ -107,7 +107,7 @@
             <!-- /INPUT CONTAINER -->
             <div class="input-container half">
                 <label for="phone" class="rl-label">Phone</label>
-                <input type="text" id="phone" name="phone" placeholder="Enter your phone here..." value="{{ Auth::user()->phone }}" required="required">
+                <input type="text" id="phone" name="phone" placeholder="Enter your phone here..." value="{{ $user->phone }}" required="required">
             </div>
             <!-- INPUT CONTAINER -->
             <div class="clearfix"></div>
