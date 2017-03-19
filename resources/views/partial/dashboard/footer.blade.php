@@ -34,9 +34,10 @@
     <script src="{{ asset('js/bootbox.min.js') }}"></script>
     <script>
     $(document).on("click", ".delete-user", function(e) {
+        var href = $(this).attr('href');
         bootbox.confirm("Are you sure you want to delete this user!", function(result) {
             if (result) {
-                return true;
+                return window.location.href = href;
             }
         });
         return false;

@@ -52,4 +52,17 @@ class UserController extends Controller
 
     	throw new Exception('User with this id not found');
     }
+
+    public function deleteUser(Request $request, $id)
+    {
+    	$user = User::findOneById($id);
+
+    	if ($user instanceof User) {
+    		$user->forceDelete();
+
+    		return redirect()->route('manage_user');
+    	}
+
+    	throw new Exception('User with this id not found');
+    }
 }

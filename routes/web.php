@@ -36,5 +36,5 @@ Route::group(['middleware' => ['auth.isAdmin']], function() {
 	Route::get('/manage/users', 'UserController@listUsers')->name('manage_user');
 	Route::get('/users/{id}/edit', 'UserController@editUser')->name('edit_user');
 	Route::post('/users/{id}/update', 'UserController@updateUser')->name('update_user');
-	Route::delete('/users/{id}/delete', 'UserController@editUser')->name('delete_user');
+	Route::get('/users/{id}/delete', 'UserController@deleteUser')->name('delete_user');
 });
