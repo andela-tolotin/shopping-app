@@ -33,3 +33,4 @@ Route::get('/category', 'CategoryController@showCategoryForm')->name('load_categ
 Route::post('/category', 'CategoryController@postCategory')->name('post_category');
 
 Route::get('/manage_users', 'UserController@listUsers')->name('manage_user');
+Route::get('/users/{id}/edit', 'UserController@editUser')->name('edit_user');
