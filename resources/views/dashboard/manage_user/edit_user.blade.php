@@ -35,7 +35,11 @@
                         <option value="">Select user Role...</option>
                         @if ($userRoles->count() > 0)
                         @foreach($userRoles as $role)
-                        <option value="{{ $role->id }}">{{ $role->name }}</option>
+                        @if ($user->role_id == $role->id)
+                        <option value="{{ $role->id }}" selected="selected">{{ $role->name }}</option>
+                        @else
+                        <option value="{{ $role->id }}" >{{ $role->name }}</option>
+                        @endif
                         @endforeach
                         @endif
                     </select>
@@ -53,8 +57,16 @@
                 <label for="status" class="select-block">
                     <select name="status" id="status">
                         <option value="">Select user status...</option>
+                        @if ($user->status == 0)
+                        <option value="0" selected="selected">De-Activate</option>
+                        @else
                         <option value="0">De-Activate</option>
+                        @endif
+                        @if ($user->status == 1)
+                        <option value="1" selected="selected">Activate</option>
+                        @else
                         <option value="1">Activate</option>
+                        @endif
                     </select>
                     <!-- SVG ARROW -->
                     <svg class="svg-arrow">
