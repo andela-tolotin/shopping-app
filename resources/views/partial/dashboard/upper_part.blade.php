@@ -2,20 +2,20 @@
 <div class="dashboard-header retracted">
     <!-- DB CLOSE BUTTON -->
     <a href="/" class="db-close-button">
-        <img src="images/dashboard/back-icon.png" alt="back-icon">
+        <img src="{{ asset('images/dashboard/back-icon.png') }}" alt="back-icon">
     </a>
     <!-- DB CLOSE BUTTON -->
     <!-- DB OPTIONS BUTTON -->
     <div class="db-options-button">
-        <img src="images/dashboard/db-list-right.png" alt="db-list-right">
-        <img src="images/dashboard/close-icon.png" alt="close-icon">
+        <img src="{{ asset('images/dashboard/db-list-right.png') }}" alt="db-list-right">
+        <img src="{{ asset('images/dashboard/close-icon.png') }}" alt="close-icon">
     </div>
     <!-- DB OPTIONS BUTTON -->
     <!-- DASHBOARD HEADER ITEM -->
     <div class="dashboard-header-item title">
         <!-- DB SIDE MENU HANDLER -->
         <div class="db-side-menu-handler">
-            <img src="images/dashboard/db-list-left.png" alt="db-list-left">
+            <img src="{{ asset('images/dashboard/db-list-left.png') }}" alt="db-list-left">
         </div>
         <!-- /DB SIDE MENU HANDLER -->
         <h6>Your Dashboard</h6>
@@ -25,7 +25,7 @@
     <div class="dashboard-header-item form">
         <form class="dashboard-search">
             <input type="text" name="search" id="search_dashboard" placeholder="Search on dashboard...">
-            <input type="image" src="images/dashboard/search-icon.png" alt="search-icon">
+            <input type="image" src="{{ asset('images/dashboard/search-icon.png') }}" alt="search-icon">
         </form>
     </div>
     <!-- DASHBOARD HEADER ITEM -->

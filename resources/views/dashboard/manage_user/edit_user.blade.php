@@ -1,8 +1,12 @@
+@extends('dashboard.base')
+@section('title', 'Edit user')
+@section('page', 'Edit '.$user->name)
+@section('body')
 <!-- FORM BOX ITEMS -->
 <div class="form-box-items">
     <!-- FORM BOX ITEM -->
     <div class="form-box-item">
-        <h4>Profile Information</h4>
+        <h4>Edit User</h4>
         <hr class="line-separator">
         <!-- PROFILE IMAGE UPLOAD -->
         <!-- PROFILE IMAGE UPLOAD -->
@@ -15,21 +19,7 @@
             </ul>
         </div>
         @endif
-        <form id="profile-info-form" method="post" action="{{ route('profile_update') }}" enctype="multipart/form-data">
-            <div class="profile-image">
-                <div class="profile-image-data">
-                    <figure class="user-avatar medium">
-                        @if (Auth::user()->profile_picture == '')
-                        <img src="images/dashboard/profile-default-image.png" alt="profile-default-image">
-                        @else
-                        <img src="{{ Auth::user()->profile_picture }}">
-                        @endif
-                    </figure>
-                    <p class="text-header">Profile Photo</p><br>
-                    <p class="upload-details"><input type="file" class="" name="photo"></p>
-                </div>
-            </div>
-            
+        <form id="profile-info-form" method="post" action="" enctype="multipart/form-data">
             {{ csrf_field() }}
             <!-- INPUT CONTAINER -->
             <div class="input-container">
@@ -39,14 +29,51 @@
             <!-- /INPUT CONTAINER -->
             <!-- INPUT CONTAINER -->
             <div class="input-container half">
-                <label for="password" class="rl-label">New Password</label>
-                <input type="password" id="password" name="password" placeholder="Enter your password here...">
+                <label for="gender" class="rl-label required">Role</label>
+                <label for="gender" class="select-block">
+                    <select name="gender" id="gender">
+                        <option value="">Select user Role...</option>
+                        @if ($userRoles->count() > 0)
+                        @foreach($userRoles as $role)
+                        @if ($user->role_id == $role->id)
+                        <option value="{{ $role->id }}" selected="selected">{{ $role->name }}</option>
+                        @else
+                        <option value="{{ $role->id }}" >{{ $role->name }}</option>
+                        @endif
+                        @endforeach
+                        @endif
+                    </select>
+                    <!-- SVG ARROW -->
+                    <svg class="svg-arrow">
+                        <use xlink:href="#svg-arrow"></use>
+                    </svg>
+                    <!-- /SVG ARROW -->
+                </label>
             </div>
             <!-- /INPUT CONTAINER -->
             <!-- INPUT CONTAINER -->
             <div class="input-container half">
-                <label for="confirm_password" class="rl-label">Repeat Password</label>
-                <input type="password" id="confirm_password" name="confirm_password" placeholder="Repeat your password here...">
+                <label for="status" class="rl-label required">Status</label>
+                <label for="status" class="select-block">
+                    <select name="status" id="status">
+                        <option value="">Select user status...</option>
+                        @if ($user->status == 0)
+                        <option value="0" selected="selected">De-Activate</option>
+                        @else
+                        <option value="0">De-Activate</option>
+                        @endif
+                        @if ($user->status == 1)
+                        <option value="1" selected="selected">Activate</option>
+                        @else
+                        <option value="1">Activate</option>
+                        @endif
+                    </select>
+                    <!-- SVG ARROW -->
+                    <svg class="svg-arrow">
+                        <use xlink:href="#svg-arrow"></use>
+                    </svg>
+                    <!-- /SVG ARROW -->
+                </label>
             </div>
             <!-- /INPUT CONTAINER -->
             <!-- INPUT CONTAINER -->
@@ -90,3 +117,4 @@
         </form>
     </div>
     <!-- /FORM BOX ITEM -->
+    @endsection

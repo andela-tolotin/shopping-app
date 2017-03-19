@@ -11,12 +11,12 @@
         <!-- USER QUICKVIEW -->
         <div class="user-quickview">
             <!-- USER AVATAR -->
-            <a href="author-profile.html">
+            <a href="#">
                 <div class="outer-ring">
                     <div class="inner-ring"></div>
                     <figure class="user-avatar">
                         @if (Auth::user()->profile_picture == '')
-                        <img src="images/dashboard/profile-default-image.png" alt="profile-default-image">
+                        <img src="{{ asset('images/dashboard/profile-default-image.png') }}" alt="profile-default-image">
                         @else
                         <img src="{{ Auth::user()->profile_picture }}">
                     @endif
@@ -39,7 +39,7 @@
     <ul class="dropdown dark hover-effect interactive">
         <!-- DROPDOWN ITEM -->
         <li class="dropdown-item active">
-            <a href="dashboard-settings.html">
+            <a href="{{ route('home') }}">
                 <span class="sl-icon icon-settings"></span>
                 Account Settings
             </a>
@@ -73,7 +73,7 @@
     <ul class="dropdown dark hover-effect interactive">
         <!-- DROPDOWN ITEM -->
         <li class="dropdown-item active">
-            <a href="dashboard-settings.html">
+            <a href="{{ route('manage_user') }}">
                 <span class="sl-icon icon-settings"></span>
                 Manage User
             </a>
