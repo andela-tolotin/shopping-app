@@ -11,12 +11,12 @@
         <!-- USER QUICKVIEW -->
         <div class="user-quickview">
             <!-- USER AVATAR -->
-            <a href="author-profile.html">
+            <a href="#">
                 <div class="outer-ring">
                     <div class="inner-ring"></div>
                     <figure class="user-avatar">
                         @if (Auth::user()->profile_picture == '')
-                        <img src="images/dashboard/profile-default-image.png" alt="profile-default-image">
+                        <img src="{{ asset('images/dashboard/profile-default-image.png') }}" alt="profile-default-image">
                         @else
                         <img src="{{ Auth::user()->profile_picture }}">
                     @endif

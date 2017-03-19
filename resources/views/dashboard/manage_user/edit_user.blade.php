@@ -1,3 +1,7 @@
+@extends('dashboard.base')
+@section('title', 'Edit user')
+@section('page', 'Edit '.$user->name)
+@section('body')
 <!-- FORM BOX ITEMS -->
 <div class="form-box-items">
     <!-- FORM BOX ITEM -->
@@ -15,7 +19,7 @@
             </ul>
         </div>
         @endif
-        <form id="profile-info-form" method="post" action="{{ route('update_user') }}" enctype="multipart/form-data">
+        <form id="profile-info-form" method="post" action="" enctype="multipart/form-data">
             {{ csrf_field() }}
             <!-- INPUT CONTAINER -->
             <div class="input-container">
@@ -76,3 +80,4 @@
         </form>
     </div>
     <!-- /FORM BOX ITEM -->
+@endsection
