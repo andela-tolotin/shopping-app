@@ -29,14 +29,39 @@
             <!-- /INPUT CONTAINER -->
             <!-- INPUT CONTAINER -->
             <div class="input-container half">
-                <label for="password" class="rl-label">New Password</label>
-                <input type="password" id="password" name="password" placeholder="Enter your password here...">
+                <label for="gender" class="rl-label required">Role</label>
+                <label for="gender" class="select-block">
+                    <select name="gender" id="gender">
+                        <option value="">Select user Role...</option>
+                        @if ($userRoles->count() > 0)
+                        @foreach($userRoles as $role)
+                        <option value="{{ $role->id }}">{{ $role->name }}</option>
+                        @endforeach
+                        @endif
+                    </select>
+                    <!-- SVG ARROW -->
+                    <svg class="svg-arrow">
+                        <use xlink:href="#svg-arrow"></use>
+                    </svg>
+                    <!-- /SVG ARROW -->
+                </label>
             </div>
             <!-- /INPUT CONTAINER -->
             <!-- INPUT CONTAINER -->
             <div class="input-container half">
-                <label for="confirm_password" class="rl-label">Repeat Password</label>
-                <input type="password" id="confirm_password" name="confirm_password" placeholder="Repeat your password here...">
+                <label for="status" class="rl-label required">Status</label>
+                <label for="status" class="select-block">
+                    <select name="status" id="status">
+                        <option value="">Select user status...</option>
+                        <option value="0">De-Activate</option>
+                        <option value="1">Activate</option>
+                    </select>
+                    <!-- SVG ARROW -->
+                    <svg class="svg-arrow">
+                        <use xlink:href="#svg-arrow"></use>
+                    </svg>
+                    <!-- /SVG ARROW -->
+                </label>
             </div>
             <!-- /INPUT CONTAINER -->
             <!-- INPUT CONTAINER -->

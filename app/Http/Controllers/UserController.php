@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 use App\User;
+use App\Role;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -23,10 +24,11 @@ class UserController extends Controller
     	$authenticatedUser = Auth::user()->role->name;
 
     	$user = User::findOneById($id);
+    	$userRoles = Role::findAll();
 
     	if ($authenticatedUser == self::ISADMIN) {
     		if ($user instanceof User) {
-    			return view('dashboard.manage_user.edit_user', compact('user'));
+    			return view('dashboard.manage_user.edit_user', compact('user', 'userRoles'));
     		} else {
     			throw new Exception('User with this id not found');
     		}
