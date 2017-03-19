@@ -306,7 +306,7 @@
             
             <div class="account-actions">
                @if(!Auth::check())
-                <a href="/register" class="button primary">Regsiter</a>
+                <a href="/register" class="button primary">Register</a>
                 <a href="/login" class="button secondary">Login</a>
                 @else
                 <a href="/logout" class="button primary">Logout</a>
