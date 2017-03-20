@@ -39,6 +39,16 @@ class User extends Authenticatable
         return $this->hasMany('App\Transaction');
     }
 
+    public function products()
+    {
+        return $this->hasMany('App\product');
+    }
+
+    public function categories()
+    {
+        return $this->hasMany('App\category');
+    }
+
     public function scopeFindOneByEmail($query, $email)
     {
         return $query

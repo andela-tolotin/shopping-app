@@ -40,6 +40,7 @@ $factory->define(App\Category::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
         'description' => $faker->text,
+        'user_id' => 1,
     ];
 });
 
@@ -53,6 +54,7 @@ $factory->define(App\Product::class, function (Faker\Generator $faker) {
         'tax' => 5,
         'category_id' => 1,
         'product_img_url' => $faker->imageUrl($width = 640, $height = 480),
+        'user_id' => 1,
     ];
 });
 
