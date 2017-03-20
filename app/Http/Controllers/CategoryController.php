@@ -43,6 +43,8 @@ class CategoryController extends Controller
     }
 
     /**
+     * List all categories created by the user
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function listCategories()
@@ -53,6 +55,8 @@ class CategoryController extends Controller
     }
 
     /**
+     * display category edit form created by the user
+     *
      * @param $id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
@@ -68,6 +72,8 @@ class CategoryController extends Controller
     }
 
     /**
+     * Update category created by the user
+     *
      * @param $id
      * @param Request $request
      * @return mixed
@@ -90,6 +96,12 @@ class CategoryController extends Controller
         return redirect()->back();
     }
 
+    /**
+     * Delete category created by the user
+     *
+     * @param $id
+     * @return mixed
+     */
     public function deleteCategory($id)
     {
         $category = Auth::user()->categories->find($id);

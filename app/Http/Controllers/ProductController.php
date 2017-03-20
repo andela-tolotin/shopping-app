@@ -70,6 +70,8 @@ class ProductController extends Controller
     }
 
     /**
+     * List all products created by the user
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function listProducts()
@@ -80,6 +82,8 @@ class ProductController extends Controller
     }
 
     /**
+     * display product edit form created by the user
+     *
      * @param $id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
@@ -96,6 +100,8 @@ class ProductController extends Controller
     }
 
     /**
+     * Update product created by the user
+     *
      * @param $id
      * @param ProductRequest $request
      * @return mixed
@@ -126,6 +132,12 @@ class ProductController extends Controller
         return redirect()->back();
     }
 
+    /**
+     * Delete product created by the user
+     *
+     * @param $id
+     * @return mixed
+     */
     public function deleteProduct($id)
     {
         $product = Auth::user()->products->find($id);
