@@ -27,11 +27,19 @@ Route::post('/profile/update', 'ProfileUpdateController@updateProfile')->name('p
 Auth::routes();
 
 Route::group(['middleware' => ['auth.isAdmin']], function() {
-	Route::get('/product', 'ProductController@showProductForm')->name('load_product');
-	Route::post('/product', 'ProductController@postProduct')->name('post_product');
+    Route::get('/product', 'ProductController@showProductForm')->name('load_product');
+    Route::post('/product', 'ProductController@postProduct')->name('post_product');
+    Route::get('/products', 'ProductController@listProducts')->name('list_products');
+    Route::get('/product/{id}/edit', 'ProductController@editProductForm')->name('edit_product');
+    Route::post('/product/{id}/update', 'ProductController@updateProduct')->name('update_product');
+    Route::get('/product/{id}/delete', 'ProductController@deleteProduct')->name('delete_product');
 
-	Route::get('/category', 'CategoryController@showCategoryForm')->name('load_category');
-	Route::post('/category', 'CategoryController@postCategory')->name('post_category');
+    Route::get('/category', 'CategoryController@showCategoryForm')->name('load_category');
+    Route::post('/category', 'CategoryController@postCategory')->name('post_category');
+    Route::get('/categories', 'CategoryController@listCategories')->name('list_categories');
+    Route::get('/category/{id}/edit', 'CategoryController@editCategoryForm')->name('edit_category');
+    Route::post('/category/{id}/update', 'CategoryController@updateCategory')->name('update_category');
+    Route::get('/category/{id}/delete', 'CategoryController@deleteCategory')->name('delete_category');
 
 	Route::get('/manage/users', 'UserController@listUsers')->name('manage_user');
 	Route::get('/users/{id}/edit', 'UserController@editUser')->name('edit_user');

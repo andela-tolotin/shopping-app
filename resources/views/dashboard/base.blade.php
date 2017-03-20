@@ -15,5 +15,6 @@
     <!-- /DASHBOARD BODY -->
     <!-- FOOTER -->
     @include('partial.dashboard.footer')
+    @yield('pageScripts')
 </body>
 </html>

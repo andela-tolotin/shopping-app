@@ -7,12 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     protected $fillable = [
-       'name', 'description'
+       'name', 'description', 'user_id',
     ];
 
     public function products()
     {
     	return $this->hasMany('App\Product');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App/user');
     }
 
     public function scopeFindOneById($query, $categoryId)
