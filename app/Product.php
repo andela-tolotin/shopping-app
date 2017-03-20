@@ -15,12 +15,12 @@ class Product extends Model
 
     public function category()
     {
-    	return $this->belongsTo('App/Category');
+    	return $this->belongsTo('App\Category');
     }
 
     public function user()
     {
-        return $this->belongsTo('App/user');
+        return $this->belongsTo('App\User');
     }
 
     public function scopeFindOneById($query, $productId)

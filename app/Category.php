@@ -17,7 +17,7 @@ class Category extends Model
 
     public function user()
     {
-        return $this->belongsTo('App/user');
+        return $this->belongsTo('App\User');
     }
 
     public function scopeFindOneById($query, $categoryId)

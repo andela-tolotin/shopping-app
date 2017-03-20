@@ -46,7 +46,7 @@ class User extends Authenticatable
 
     public function categories()
     {
-        return $this->hasMany('App\category');
+        return $this->hasMany('App\Category');
     }
 
     public function scopeFindOneByEmail($query, $email)
