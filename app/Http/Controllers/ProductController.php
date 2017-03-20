@@ -76,7 +76,7 @@ class ProductController extends Controller
      */
     public function listProducts()
     {
-        $products = Auth::user()->products()->paginate(10);
+        $products = Product::orderBy('name', 'DESC')->paginate(10);
 
         return view('dashboard.product.show_products', compact('products'));
     }

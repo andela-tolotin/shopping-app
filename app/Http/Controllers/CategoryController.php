@@ -49,7 +49,7 @@ class CategoryController extends Controller
      */
     public function listCategories()
     {
-        $categories = Auth::user()->categories()->paginate(10);
+        $categories = Category::orderBy('name', 'ASC')->paginate(10);
 
         return view('dashboard.category.show_categories', compact('categories'));
     }
