@@ -59,22 +59,11 @@
         <div class="post-content">
             <!-- POST PARAGRAPH -->
             <div class="post-paragraph">
-                <h3 class="post-title">Discover the New Funtendo!</h3>
+                <h3 class="post-title">Product Description</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in henderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
             </div>
             <!-- /POST PARAGRAPH -->
-            <!-- POST PARAGRAPH -->
-            <div class="post-paragraph">
-                <h3 class="post-title small">Colors Available:</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in henderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p>
-            </div>
-            <!-- /POST PARAGRAPH -->
-            <a href="#">
-                <figure class="post-banner liquid">
-                    <img src="{{ asset('images/items/shop_ad.jpg') }}" alt="">
-                </figure>
-            </a>
         </div>
         <!-- /POST CONTENT -->
         <hr class="line-separator">
