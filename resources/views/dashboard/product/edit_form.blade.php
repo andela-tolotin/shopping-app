@@ -26,7 +26,7 @@
                                 <img src="{{ $product->product_img_url }}">
                             @endif
                         </figure>
-                        <p class="text-header">Product Photo</p>
+                        <p class="text-header">Product Photo</p><br>
                         <p class="upload-details"><input type="file" class="" name="photo"></p>
                     </div>
                 </div>
@@ -34,9 +34,8 @@
                     <label for="name" class="rl-label required">Name</label>
                     <input type="text" id="name" name="name" value="{{ $product->name }}" required="required">
                 </div>
-                <div>
+                <div class="input-container">
                     <label for="category">Product Category</label>
-
                     <select class = "form-control" name="category">
                         <option value="" > Product category</option>
                         @foreach($categories as $category)
@@ -62,9 +61,9 @@
                     <input type="number" id="tax" name="tax" value="{{ $product->tax }}">
                 </div>
 
-                 <div class="input-container">
+                <div class="input-container">
                     <label for="description" class="rl-label required">Description</label>
-                    <textares  name="description"  required="required">{{ $product->description }}</textares>
+                    <textarea name="description" required="required">{{ $product->description }}</textarea>
                 </div>
                 <button type="submit" class="button mid dark">Update Product</button>
             </form>
