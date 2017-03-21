@@ -118,7 +118,7 @@
         <!-- /DROPDOWN ITEM -->
         <!-- DROPDOWN ITEM -->
         <li class="dropdown-item">
-            <a href="dashboard-manageitems.html">
+            <a href="{{ route('list_categories') }} ">
                 <span class="sl-icon icon-folder-alt"></span>
                 Manage Category
             </a>
@@ -140,7 +140,7 @@
         <!-- /DROPDOWN ITEM -->
         <!-- DROPDOWN ITEM -->
         <li class="dropdown-item">
-            <a href="dashboard-manageitems.html">
+            <a href="{{ route('list_products') }}">
                 <span class="sl-icon icon-folder-alt"></span>
                 Manage Product
             </a>
