@@ -29,7 +29,8 @@
             <!-- USER QUICKVIEW -->
             <div class="user-quickview">
                 <!-- USER AVATAR -->
-                <a href="author-profile.html">
+                 @if(Auth::check())
+                <a href="{{ route('home') }}">
                     <div class="outer-ring">
                         <div class="inner-ring"></div>
                         <figure class="user-avatar">
@@ -39,7 +40,7 @@
                 </a>
                 <!-- /USER AVATAR -->
                 <!-- USER INFORMATION -->
-                @if(Auth::check())
+               {{--  @if(Auth::check()) --}}
                 <p class="user-name">Johnny Fisher</p>
                 <!-- SVG ARROW -->
                 <svg class="svg-arrow">

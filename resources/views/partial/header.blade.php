@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
     <link rel="stylesheet" href="{{ asset('css/vendor/simple-line-icons.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/vendor/tooltipster.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/vendor/magnific-popup.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/vendor/owl.carousel.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <!-- favicon -->

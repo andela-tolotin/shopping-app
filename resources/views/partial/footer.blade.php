@@ -196,8 +196,8 @@
 <script src="{{ asset('js/vendor/jquery.tooltipster.min.js') }}"></script>
 <!-- Owl Carousel -->
 <script src="{{ asset('js/vendor/owl.carousel.min.js') }}"></script>
-<!-- Tweet -->
-<script src="{{ asset('js/vendor/twitter/jquery.tweet.min.js') }}"></script>
+<!-- Magnific Popup -->
+<script src="{{ asset('js/vendor/jquery.magnific-popup.min.js') }}"></script>
 <!-- xmAlerts -->
 {{-- <script src="{{ asset('js/vendor/jquery.xmalert.min.js') }}"></script> --}}
 <!-- Side Menu -->
@@ -208,5 +208,3 @@
 <script src="{{ asset('js/tooltip.js') }}"></script>
 <!-- User Quickview Dropdown -->
 <script src="{{ asset('js/user-board.js') }}"></script>
-<!-- Footer -->
-<script src="{{ asset('js/footer.js') }}"></script>

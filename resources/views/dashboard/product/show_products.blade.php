@@ -9,7 +9,6 @@
         <tr>
             <th>Sn</th>
             <th>Name</th>
-            <th>Description</th>
             <th>Price</th>
             <th>Discount</th>
             <th>Tax</th>
@@ -23,7 +22,6 @@
                 <tr>
                     <td>{{ $loop->index + 1 }}</td>
                     <td>{{ $product->name }}</td>
-                    <td>{{ $product->description }}</td>
                     <td>{{ $product->price }}</td>
                     <td>{{ $product->discount }}</td>
                     <td>{{ $product->tax }}</td>
