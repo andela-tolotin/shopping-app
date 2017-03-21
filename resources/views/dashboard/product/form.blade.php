@@ -48,11 +48,11 @@
                     <!-- /SVG ARROW -->
                 </label>
             </div>
-            <div class="input-container">
+            <div class="input-container half">
                 <label for="price" class="rl-label required">Price</label>
                 <input type="number" id="price" name="price" placeholder="Enter price of product here..." required="required">
             </div>
-            <div class="input-container">
+            <div class="input-container half">
                 <label for="discount" class="rl-label required">Discount</label>
                 <input type="number" id="discount" name="discount" placeholder="Enter discount here...">
             </div>
