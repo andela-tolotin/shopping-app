@@ -17,13 +17,18 @@
         @endif
         <form id="register-form4" method="post" action={{ route('post_product') }} enctype="multipart/form-data">
             {{ csrf_field() }}
+             <div class="profile-image">
+                <div class="profile-image-data">
+                    <figure class="user-avatar medium">
+                        <img src="images/dashboard/profile-default-image.png" alt="profile-default-image">
+                    </figure>
+                    <p class="text-header">Product Photo</p><br>
+                    <p class="upload-details"><input type="file" class="" name="photo"></p>
+                </div>
+            </div>
             <div class="input-container">
                 <label for="name" class="rl-label required">Name</label>
                 <input type="text" id="name" name="name" placeholder="Enter name of product here..." required="required">
-            </div>
-            <div class="input-container">
-                <label for="description" class="rl-label required">Description</label>
-                <input type="text" id="description" name="description" placeholder="Enter description of product here..." required="required">
             </div>
             <div class="input-container">
                 <label for="category" class = "rl-label require">Product Category</label>
@@ -55,15 +60,9 @@
                 <label for="tax" class="rl-label required">Tax</label>
                 <input type="number" id="tax" name="tax" placeholder="Enter tax here...">
             </div>
-            <div class="profile-image">
-                <div class="profile-image-data">
-                    <figure class="user-avatar medium">
-                        <img src="images/dashboard/profile-default-image.png" alt="profile-default-image">
-                    </figure>
-                    <p class="text-header">Product Photo</p>
-                    <p class="upload-details">Minimum size 70x70px</p>
-                </div>
-                <input type="file" class="" name="photo">
+            <div class="input-container">
+                <label for="description" class="rl-label required">Description</label>
+                <textarea  name="description" placeholder="Enter description of product here..." required="required"></textarea>
             </div>
             <button type="submit" class="button mid dark">Add Product</button>
         </form>
