@@ -5,7 +5,7 @@
                 <!-- COMPANY INFO -->
                 <div class="company-info">
                     <figure class="logo small">
-                        <img src="images/logo_small.png" alt="logo-small">
+                        <img src="{{ asset('images/logo_small.png') }}" alt="logo-small">
                     </figure>
                     <p>Lorem ipsum dolor sit amet, consectetur isicing elit, sed do eiusmod tempor incididunt ut labo dolore magna ua.</p>
                     <ul class="company-info-list">

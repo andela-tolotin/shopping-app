@@ -31,7 +31,6 @@ Route::group(['middleware' => ['auth.isAdmin']], function() {
     Route::get('/product/{id}/edit', 'ProductController@editProductForm')->name('edit_product');
     Route::post('/product/{id}/update', 'ProductController@updateProduct')->name('update_product');
     Route::get('/product/{id}/delete', 'ProductController@deleteProduct')->name('delete_product');
-    Route::get('/product/{id}/view', 'ProductController@viewProduct')->name('product-details');
 
     Route::get('/category', 'CategoryController@showCategoryForm')->name('load_category');
     Route::post('/category', 'CategoryController@postCategory')->name('post_category');
@@ -45,3 +44,5 @@ Route::group(['middleware' => ['auth.isAdmin']], function() {
 	Route::post('/users/{id}/update', 'UserController@updateUser')->name('update_user');
 	Route::get('/users/{id}/delete', 'UserController@deleteUser')->name('delete_user');
 });
+
+Route::get('/product/{id}/view', 'ProductController@viewProduct')->name('product-details');

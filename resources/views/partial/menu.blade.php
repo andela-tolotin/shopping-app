@@ -3,19 +3,19 @@
         <!-- LOGO -->
         <a href="index.html">
             <figure class="logo">
-                <img src="images/logo.png" alt="logo">
+                <img src="{{ asset('images/logo.png') }}" alt="logo">
             </figure>
         </a>
         <!-- /LOGO -->
         <!-- MOBILE MENU HANDLER -->
         <div class="mobile-menu-handler left primary">
-            <img src="images/pull-icon.png" alt="pull-icon">
+            <img src="{{ asset('images/pull-icon.png') }}" alt="pull-icon">
         </div>
         <!-- /MOBILE MENU HANDLER -->
         <!-- LOGO MOBILE -->
         <a href="index.html">
             <figure class="logo-mobile">
-                <img src="images/logo_mobile.png" alt="logo-mobile">
+                <img src="{{ asset('images/logo_mobile.png') }}" alt="logo-mobile">
             </figure>
         </a>
         <!-- /LOGO MOBILE -->
@@ -33,7 +33,7 @@
                     <div class="outer-ring">
                         <div class="inner-ring"></div>
                         <figure class="user-avatar">
-                            <img src="images/avatars/avatar_01.jpg" alt="avatar">
+                            <img src="{{ asset('images/avatars/avatar_01.jpg') }}" alt="avatar">
                         </figure>
                     </div>
                 </a>
@@ -104,7 +104,7 @@
                             <!-- /SVG PLUS -->
                             <div class="dropdown-triangle"></div>
                             <figure class="product-preview-image tiny">
-                                <img src="images/items/pixel_s.jpg" alt="">
+                                <img src="{{ asset('images/items/pixel_s.jpg') }}" alt="">
                             </figure>
                             <p class="text-header tiny">Pixel Diamond Gaming Shop</p>
                             <p class="category tiny primary">Shopify</p>
@@ -120,7 +120,7 @@
                             </svg>
                             <!-- /SVG PLUS -->
                             <figure class="product-preview-image tiny">
-                                <img src="images/items/monsters_s.jpg" alt="">
+                                <img src="{{ asset('images/items/monsters_s.jpg') }}" alt="">
                             </figure>
                             <p class="text-header tiny">Little Monsters - 40 Pack Button Badge Maker</p>
                             <p class="category tiny primary">Graphics</p>
@@ -136,7 +136,7 @@
                             </svg>
                             <!-- /SVG PLUS -->
                             <figure class="product-preview-image tiny">
-                                <img src="images/items/flat_s.jpg" alt="">
+                                <img src="{{ asset('images/items/flat_s.jpg') }}" alt="">
                             </figure>
                             <p class="text-header tiny">Flatland - Hero Image Composer</p>
                             <p class="category tiny primary">Shopify</p>
@@ -172,7 +172,7 @@
                             <div class="dropdown-triangle"></div>
                             <a href="dashboard-openmessage.html" class="link-to"></a>
                             <figure class="user-avatar">
-                                <img src="images/avatars/avatar_06.jpg" alt="">
+                                <img src="{{ asset('images/avatars/avatar_06.jpg') }}" alt="">
                             </figure>
                             <p class="text-header tiny"><span>Sarah-Imaginarium</span></p>
                             <p class="subject">Product Question</p>
@@ -184,7 +184,7 @@
                         <li class="dropdown-item">
                             <a href="dashboard-openmessage.html" class="link-to"></a>
                             <figure class="user-avatar">
-                                <img src="images/avatars/avatar_04.jpg" alt="">
+                                <img src="{{ asset('images/avatars/avatar_04.jpg') }}" alt="">
                             </figure>
                             <p class="text-header tiny"><span>Red Thunder Graphics</span></p>
                             <p class="subject">Support Inquiry</p>
@@ -196,7 +196,7 @@
                         <li class="dropdown-item">
                             <a href="dashboard-openmessage.html" class="link-to"></a>
                             <figure class="user-avatar">
-                                <img src="images/avatars/avatar_07.jpg" alt="">
+                                <img src="{{ asset('images/avatars/avatar_07.jpg') }}" alt="">
                             </figure>
                             <p class="text-header tiny"><span>Twisted Themes</span></p>
                             <p class="subject">Collaboration</p>
@@ -208,7 +208,7 @@
                         <li class="dropdown-item">
                             <a href="dashboard-openmessage.html" class="link-to"></a>
                             <figure class="user-avatar">
-                                <img src="images/avatars/avatar_08.jpg" alt="">
+                                <img src="{{ asset('images/avatars/avatar_08.jpg') }}" alt="">
                             </figure>
                             <p class="text-header tiny"><span>GregSpiegel1820</span></p>
                             <p class="subject">How to Install the Theme...</p>
@@ -253,7 +253,7 @@
                         <li class="dropdown-item">
                             <a href="author-profile.html">
                                 <figure class="user-avatar">
-                                    <img src="images/avatars/avatar_03.jpg" alt="">
+                                    <img src="{{ asset('images/avatars/avatar_03.jpg') }}" alt="">
                                 </figure>
                             </a>
                             <p class="title">
@@ -268,7 +268,7 @@
                         <li class="dropdown-item">
                             <a href="author-profile.html">
                                 <figure class="user-avatar">
-                                    <img src="images/avatars/avatar_04.jpg" alt="">
+                                    <img src="{{ asset('images/avatars/avatar_04.jpg') }}" alt="">
                                 </figure>
                             </a>
                             <p class="title">
@@ -283,7 +283,7 @@
                         <li class="dropdown-item">
                             <a href="author-profile.html">
                                 <figure class="user-avatar">
-                                    <img src="images/avatars/avatar_05.jpg" alt="">
+                                    <img src="{{ asset('images/avatars/avatar_05.jpg') }}" alt="">
                                 </figure>
                             </a>
                             <p class="title">
@@ -328,7 +328,7 @@
     <!-- SIDE MENU HEADER -->
     <div class="side-menu-header">
         <figure class="logo small">
-            <img src="images/logo.png" alt="logo">
+            <img src="{{ asset('images/logo.png') }}" alt="logo">
         </figure>
     </div>
     <!-- /SIDE MENU HEADER -->
@@ -339,7 +339,7 @@
     <ul class="dropdown dark hover-effect interactive">
         <!-- DROPDOWN ITEM -->
         <li class="dropdown-item">
-            <a href="index.html">Home</a>
+            <a href="/">Home</a>
         </li>
         <!-- /DROPDOWN ITEM -->
         <!-- DROPDOWN ITEM -->
@@ -599,7 +599,7 @@
                 <div class="outer-ring">
                     <div class="inner-ring"></div>
                     <figure class="user-avatar">
-                        <img src="images/avatars/avatar_01.jpg" alt="avatar">
+                        <img src="{{ asset('images/avatars/avatar_01.jpg') }}" alt="avatar">
                     </figure>
                 </div>
             </a>
@@ -724,7 +724,7 @@
         </nav>
         <form class="search-form">
             <input type="text" class="rounded" name="search" id="search_products" placeholder="Search products here...">
-            <input type="image" src="images/search-icon.png" alt="search-icon">
+            <input type="image" src="{{ asset('images/search-icon.png') }}" alt="search-icon">
         </form>
     </div>
 </div>

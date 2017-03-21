@@ -8,7 +8,7 @@
 			<h5>Welcome to</h5>
 			<h1>The Biggest <span>Marketplace</span></h1>
 			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
-			<img src="images/top_items.png" alt="banner-img">
+			<img src="{{ asset('images/top_items.png') }}" alt="banner-img">
 			
 		</section>
 	</div>
@@ -52,7 +52,7 @@
 						<div class="product-preview-actions">
 							<!-- PRODUCT PREVIEW IMAGE -->
 							<figure class="product-preview-image">
-								<img src="images/items/westeros_m.jpg" alt="product-image">
+								<img src="{{ asset('images/items/westeros_m.jpg') }}" alt="product-image">
 							</figure>
 							<!-- /PRODUCT PREVIEW IMAGE -->
 						</div>

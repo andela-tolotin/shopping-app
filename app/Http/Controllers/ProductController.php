@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Auth;
 use Cloudder;
 use App\User;
+use Exception;
 use App\Product;
 use App\Category;
 use Illuminate\Http\Request;
@@ -89,7 +90,7 @@ class ProductController extends Controller
      */
     public function editProductForm($id)
     {
-        $product      = Auth::user()->products->find($id);
+        $product = Auth::user()->products->find($id);
         $categories = Category::all();
 
         if (is_null($product)) {
@@ -156,5 +157,16 @@ class ProductController extends Controller
 
             return redirect()->route('home');
         }
+    }
+
+    public function viewProduct(Request $request, $id)
+    {
+        $product = Product::findOneById($id);
+
+        if ($product instanceof Product) {
+            return view('dashboard.product.product_detail', compact('product'));
+        }
+
+        throw new Exception('User with this id not found');
     }
 }
