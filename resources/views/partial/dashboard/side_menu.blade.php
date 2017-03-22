@@ -162,7 +162,7 @@
         <!-- /DROPDOWN ITEM -->
         <!-- DROPDOWN ITEM -->
         <li class="dropdown-item">
-            <a href="{{ route('list_products') }}">
+            <a href="{{ route('list_payments') }}">
                 <span class="sl-icon icon-folder-alt"></span>
                 Manage Payment
             </a>
