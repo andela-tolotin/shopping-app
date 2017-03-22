@@ -195,15 +195,19 @@
 <!-- Tooltipster -->
 <script src="{{ asset('js/vendor/jquery.tooltipster.min.js') }}"></script>
 <!-- Owl Carousel -->
-<script src="{{ asset('js/vendor/owl.carousel.min.js') }}"></script>
+<script src="{{ asset('js/vendor/imgLiquid-min.js') }}"></script>
+<script src="{{ asset('js/liquid.js') }}"></script>
 <!-- Magnific Popup -->
 <script src="{{ asset('js/vendor/jquery.magnific-popup.min.js') }}"></script>
 <!-- xmAlerts -->
 {{-- <script src="{{ asset('js/vendor/jquery.xmalert.min.js') }}"></script> --}}
 <!-- Side Menu -->
 <script src="{{ asset('js/side-menu.js') }}"></script>
-<!-- Home -->
-<script src="{{ asset('js/home.js') }}"></script>
+<script src="{{ asset('js/vendor/jquery.xmaccordion.min.js') }}"></script>
+<!-- XM Pie Chart -->
+<script src="{{ asset('js/vendor/jquery.xmpiechart.min.js') }}"></script>
+<!-- Product Page -->
+<script src="{{ asset('js/product-page.js') }}"></script>
 <!-- Tooltip -->
 <script src="{{ asset('js/tooltip.js') }}"></script>
 <!-- User Quickview Dropdown -->
