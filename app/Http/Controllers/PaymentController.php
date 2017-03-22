@@ -9,11 +9,11 @@ use App\Http\Requests\ConfigPaymentRequest;
 
 class PaymentController extends Controller
 {
-	public function listpaymentGateway(Request $request, $id)
+	public function listpaymentGateway()
 	{
-		$paymentGateways = Payment::findOneById($id);
+		$paymentGateways = PaymentGateway::findAll();
 
-		if ($paymentGateways->count()) {
+		if ($paymentGateways->count() > 0) {
 			return view('dashboard.payment.list_payments', compact('paymentGateways'));
 		}
 
