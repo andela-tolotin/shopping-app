@@ -25,7 +25,7 @@ class ConfigPaymentRequest extends FormRequest
     {
         return [
             'name' => 'required', 
-            'photo' => 'required | mimes:jpeg,jpg,png | max:1000', 
+            //'photo' => 'required | mimes:jpeg,jpg,png | max:1000', 
             'client_id' => 'required',
             'client_secret' => 'required', 
             'callback_url' => 'required',
