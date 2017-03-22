@@ -605,7 +605,9 @@
             </a>
             <!-- /USER AVATAR -->
             <!-- USER INFORMATION -->
+            @if (Auth::check())
             <p class="user-name">{{ Auth::user()->name }}</p>
+            @endif
             <!-- /USER INFORMATION -->
         </div>
         <!-- /USER QUICKVIEW -->
