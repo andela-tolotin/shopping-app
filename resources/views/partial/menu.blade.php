@@ -41,14 +41,12 @@
                 <!-- /USER AVATAR -->
                 <!-- USER INFORMATION -->
                {{--  @if(Auth::check()) --}}
-                <p class="user-name">Johnny Fisher</p>
+                <p class="user-name">{{ Auth::user()->name }}</p>
                 <!-- SVG ARROW -->
                 <svg class="svg-arrow">
                     <use xlink:href="#svg-arrow"></use>
                 </svg>
-                <!-- /SVG ARROW -->
-                <p class="user-money">$745.00</p>
-                <!-- /USER INFORMATION -->
+                
                 <!-- DROPDOWN -->
                 <ul class="dropdown small hover-effect closed">
                     <li class="dropdown-item">
@@ -311,6 +309,7 @@
                 <a href="/login" class="button secondary">Login</a>
                 @else
                 <a href="/logout" class="button primary">Logout</a>
+                <a href="/home" class="button secondary">Dashboard</a>
               @endif
             </div>
             <!-- /ACCOUNT ACTIONS -->
@@ -606,8 +605,7 @@
             </a>
             <!-- /USER AVATAR -->
             <!-- USER INFORMATION -->
-            <p class="user-name">Johnny Fisher</p>
-            <p class="user-money">$745.00</p>
+            <p class="user-name">{{ Auth::user()->name }}</p>
             <!-- /USER INFORMATION -->
         </div>
         <!-- /USER QUICKVIEW -->
@@ -688,6 +686,7 @@
     </ul>
     <!-- /DROPDOWN -->
     <a href="/logout" class="button medium secondary">Logout</a>
+    <a href="/home" class="button medium secondary">Dashboard</a>
 </div>
 <!-- /SIDE MENU -->
 <!-- MAIN MENU -->
@@ -699,27 +698,6 @@
                 <li class="menu-item">
                     <a href="/">Home</a>
                 </li>
-                <!-- /MENU ITEM -->
-                <!-- MENU ITEM -->
-                <li class="menu-item">
-                    <a href="how-to-shop.html">How to shop</a>
-                </li>
-                <!-- /MENU ITEM -->
-                <!-- MENU ITEM -->
-                <li class="menu-item">
-                    <a href="products.html">Products</a>
-                </li>
-                <!-- /MENU ITEM -->
-                <!-- MENU ITEM -->
-                <li class="menu-item">
-                    <a href="services.html">Services</a>
-                </li>
-                <!-- /MENU ITEM -->
-                <!-- MENU ITEM -->
-                <li class="menu-item">
-                    <a href="shop-gridview-v1.html">Online goods</a>
-                </li>
-                <!-- /MENU ITEM -->
                 <!-- /MENU ITEM -->
             </ul>
         </nav>
