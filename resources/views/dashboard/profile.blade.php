@@ -20,7 +20,7 @@
                 <div class="profile-image-data">
                     <figure class="user-avatar medium">
                         @if (Auth::user()->profile_picture == '')
-                        <img src="images/dashboard/profile-default-image.png" alt="profile-default-image">
+                        <img src="{{ asset('images/dashboard/profile-default-image.png') }}" alt="profile-default-image">
                         @else
                         <img src="{{ Auth::user()->profile_picture }}">
                         @endif

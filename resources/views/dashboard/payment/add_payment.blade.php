@@ -21,10 +21,19 @@
         @endif
         <form id="profile-info-form" method="post" action="" enctype="multipart/form-data">
             {{ csrf_field() }}
+            <div class="profile-image">
+                <div class="profile-image-data">
+                    <figure class="user-avatar medium">
+                        <img src="{{ asset('images/dashboard/profile-default-image.png') }}" alt="profile-default-image">
+                    </figure>
+                    <p class="text-header">Profile Photo</p><br>
+                    <p class="upload-details"><input type="file" class="" name="photo"></p>
+                </div>
+            </div>
             <!-- INPUT CONTAINER -->
             <div class="input-container">
                 <label for="name" class="rl-label required">Name</label>
-                <input type="text" id="name" name="name" value="" placeholder="Enter your account name here..." required="required">
+                <input type="text" id="name" name="name" value="" placeholder="Enter your payment name here..." required="required">
             </div>
             <!-- /INPUT CONTAINER -->
             <!-- /INPUT CONTAINER -->
