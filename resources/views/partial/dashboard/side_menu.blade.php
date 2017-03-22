@@ -147,6 +147,28 @@
         </li>
     </ul>
     <!-- /DROPDOWN -->
+    <!-- SIDE MENU TITLE -->
+    <p class="side-menu-title">Payment Configuration</p>
+    <!-- /SIDE MENU TITLE -->
+    <!-- DROPDOWN -->
+    <ul class="dropdown dark hover-effect">
+        <!-- DROPDOWN ITEM -->
+        <li class="dropdown-item">
+            <a href="{{ route('load_product') }}">
+                <span class="sl-icon icon-arrow-up-circle"></span>
+                Configure Payment
+            </a>
+        </li>
+        <!-- /DROPDOWN ITEM -->
+        <!-- DROPDOWN ITEM -->
+        <li class="dropdown-item">
+            <a href="{{ route('list_products') }}">
+                <span class="sl-icon icon-folder-alt"></span>
+                Manage Payment
+            </a>
+        </li>
+    </ul>
+    <!-- /DROPDOWN -->
     <a href="{{ route('logout') }}" class="button medium secondary">Logout</a>
 </div>
 <!-- /SIDE MENU -->
