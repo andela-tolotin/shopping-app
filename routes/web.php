@@ -45,8 +45,7 @@ Route::group(['middleware' => ['auth.isAdmin']], function() {
 	Route::get('/users/{id}/delete', 'UserController@deleteUser')->name('delete_user');
 
     Route::get('/config/payment', 'PaymentController@loadPaymentConfigForm')->name('config_payment');
-
-    //loadPaymentConfigForm
+    Route::post('/create/payment', 'PaymentController@addPaymentConfig')->name('create_payment');
 });
 
 Route::get('/product/{id}/view', 'ProductController@viewProduct')->name('product-details');

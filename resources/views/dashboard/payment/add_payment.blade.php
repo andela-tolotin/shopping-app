@@ -19,7 +19,7 @@
             </ul>
         </div>
         @endif
-        <form id="profile-info-form" method="post" action="" enctype="multipart/form-data">
+        <form id="profile-info-form" method="post" action="{{ route('create_payment') }}" enctype="multipart/form-data">
             {{ csrf_field() }}
             <div class="profile-image">
                 <div class="profile-image-data">

@@ -24,6 +24,7 @@ class ProfileUpdateRequest extends FormRequest
     public function rules()
     {
         return [
+            'photo' => 'required | mimes:jpeg,jpg,png | max:1000',
             'name' => 'required',
             'email' => 'required',
             'phone' => 'required',
