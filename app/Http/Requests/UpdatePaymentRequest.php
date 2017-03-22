@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ConfigPaymentRequest extends FormRequest
+class UpdatePaymentRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +25,6 @@ class ConfigPaymentRequest extends FormRequest
     {
         return [
             'name' => 'required', 
-            'photo' => 'required | mimes:jpeg,jpg,png | max:1000', 
             'client_id' => 'required',
             'client_secret' => 'required', 
             'callback_url' => 'required',

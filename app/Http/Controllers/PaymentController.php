@@ -6,10 +6,24 @@ use Cloudder;
 use App\PaymentGateway;
 use Illuminate\Http\Request;
 use App\Http\Requests\ConfigPaymentRequest;
+use App\Http\Requests\UpdatePaymentRequest;
 
 class PaymentController extends Controller
 {
-	public function updatePayment(ConfigPaymentRequest $request, $id)
+	public function deletePayment(Request $request, $id)
+    {
+    	$paymentGateway = PaymentGateway::findOneById($id);
+
+    	if ($paymentGateway instanceof PaymentGateway) {
+    		$paymentGateway->forceDelete();
+
+    		return redirect()->route('list_payments');
+    	}
+
+    	abort(404);
+    }
+
+	public function updatePayment(UpdatePaymentRequest $request, $id)
 	{
 		$paymentGateway = PaymentGateway::findOneById($id);
 
@@ -32,11 +46,7 @@ class PaymentController extends Controller
 	    	$paymentGateway->save();
 
 	    	if ($paymentGateway instanceof PaymentGateway) {
-	    		$paymentGateways = PaymentGateway::findAll();
-
-	    		if ($paymentGateways->count() > 0) {
-	    			return view('dashboard.payment.list_payments', compact('paymentGateways'));
-	    		}
+	    		return redirect()->route('list_payments');
 	    	}
 		}
 

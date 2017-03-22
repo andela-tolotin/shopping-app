@@ -49,6 +49,7 @@ Route::group(['middleware' => ['auth.isAdmin']], function() {
     Route::get('/payment/gateways', 'PaymentController@listpaymentGateway')->name('list_payments');
     Route::get('/payment/{id}/edit', 'PaymentController@editPayment')->name('edit_payment');
     Route::post('/payment/{id}/update', 'PaymentController@updatePayment')->name('update_payment');
+    Route::get('/payment/{id}/delete', 'PaymentController@deletePayment')->name('delete_payment');
 
 });
 
