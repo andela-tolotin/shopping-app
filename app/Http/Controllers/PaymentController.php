@@ -93,7 +93,7 @@ class PaymentController extends Controller
     		]);
 
     		if ($paymentGateway instanceof PaymentGateway) {
-    			return redirect()->route('config_payment')->with('status', 'Payment Gateway Configured Successful!');
+    			return redirect()->route('list_payments');
     		}
 
     		abort(503);
