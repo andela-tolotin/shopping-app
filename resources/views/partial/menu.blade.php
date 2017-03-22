@@ -1,7 +1,7 @@
 <div class="header-wrap">
     <header>
         <!-- LOGO -->
-        <a href="index.html">
+        <a href="/">
             <figure class="logo">
                 <img src="{{ asset('images/logo.png') }}" alt="logo">
             </figure>
