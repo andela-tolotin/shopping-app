@@ -154,7 +154,7 @@
     <ul class="dropdown dark hover-effect">
         <!-- DROPDOWN ITEM -->
         <li class="dropdown-item">
-            <a href="{{ route('load_product') }}">
+            <a href="{{ route('config_payment') }}">
                 <span class="sl-icon icon-arrow-up-circle"></span>
                 Configure Payment
             </a>

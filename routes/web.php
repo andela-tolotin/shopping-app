@@ -43,6 +43,10 @@ Route::group(['middleware' => ['auth.isAdmin']], function() {
 	Route::get('/users/{id}/edit', 'UserController@editUser')->name('edit_user');
 	Route::post('/users/{id}/update', 'UserController@updateUser')->name('update_user');
 	Route::get('/users/{id}/delete', 'UserController@deleteUser')->name('delete_user');
+
+    Route::get('/config/payment', 'PaymentController@loadPaymentConfigForm')->name('config_payment');
+
+    //loadPaymentConfigForm
 });
 
 Route::get('/product/{id}/view', 'ProductController@viewProduct')->name('product-details');

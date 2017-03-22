@@ -21,6 +21,19 @@
         @endif
         <form id="profile-info-form" method="post" action="{{ route('update_user', ['id' => $user->id ])}}" enctype="multipart/form-data">
             {{ csrf_field() }}
+            <div class="profile-image">
+                <div class="profile-image-data">
+                    <figure class="user-avatar medium">
+                        @if (Auth::user()->profile_picture == '')
+                        <img src="images/dashboard/profile-default-image.png" alt="profile-default-image">
+                        @else
+                        <img src="{{ Auth::user()->profile_picture }}">
+                        @endif
+                    </figure>
+                    <p class="text-header">Profile Photo</p><br>
+                    <p class="upload-details"><input type="file" class="" name="photo"></p>
+                </div>
+            </div>
             <!-- INPUT CONTAINER -->
             <div class="input-container">
                 <label for="name" class="rl-label required">Account Name</label>
