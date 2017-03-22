@@ -9,6 +9,17 @@ use App\Http\Requests\ConfigPaymentRequest;
 
 class PaymentController extends Controller
 {
+	public function editPayment(Request $request, $id)
+	{
+		$paymentGateway = PaymentGateway::findOneById($id);
+
+		if ($paymentGateway instanceof PaymentGateway) {
+			return view('dashboard.payment.edit_payment', compact('paymentGateway'));
+		}
+
+		abort(401);
+	}
+
 	public function listpaymentGateway()
 	{
 		$paymentGateways = PaymentGateway::findAll();

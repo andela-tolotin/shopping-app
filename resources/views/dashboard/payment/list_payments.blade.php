@@ -25,7 +25,7 @@
 			<td>{{ $paymentGateway->client_id }}</td>
 			<td>{{ $paymentGateway->client_secret }}</td>
 			<td>{{ $paymentGateway->callback_url }}</td>
-			<td><a href="{{ route('edit_user', ['id' => $paymentGateway->id ]) }}" title="Edit {{ $paymentGateway->name }}"> <i class="glyphicon glyphicon-pencil"></i> Edit </a></td>
+			<td><a href="{{ route('edit_payment', ['id' => $paymentGateway->id ]) }}" title="Edit {{ $paymentGateway->name }}"> <i class="glyphicon glyphicon-pencil"></i> Edit </a></td>
 			<td><a class="delete-user" href="{{ route('delete_user', ['id' => $paymentGateway->id ]) }}" title="Delete {{ $paymentGateway->name }}"> <i class="glyphicon glyphicon-trash Delete"></i> Delete</a></td>
 		</tr>
 		@endforeach

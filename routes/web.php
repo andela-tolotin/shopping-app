@@ -47,6 +47,8 @@ Route::group(['middleware' => ['auth.isAdmin']], function() {
     Route::get('/config/payment', 'PaymentController@loadPaymentConfigForm')->name('config_payment');
     Route::post('/create/payment', 'PaymentController@addPaymentConfig')->name('create_payment');
     Route::get('/payment/gateways', 'PaymentController@listpaymentGateway')->name('list_payments');
+    Route::get('/payment/{id}/edit', 'PaymentController@editPayment')->name('edit_payment');
+
 });
 
 Route::get('/product/{id}/view', 'ProductController@viewProduct')->name('product-details');
