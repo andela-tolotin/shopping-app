@@ -65,8 +65,8 @@ class ProductController extends Controller
             $result = Cloudder::upload($image, null, [
                 'format' => 'jpg',
                 'crop'   => 'fill',
-                'width'  => 250,
-                'height' => 250,
+                'width'  => 1280,
+                'height' => 768,
             ]);
 
             array_push($cloudinaryWrapper, $result);
