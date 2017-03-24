@@ -34,9 +34,16 @@
     <article class="post">
         <!-- POST IMAGE -->
         <div class="post-image">
+            <?php $productImages = json_decode($product->product_img_url); ?>
+            @if (count($productImages) > 0)
+            <figure class="product-preview-image large liquid">
+                <img src="{{ $productImages[0] }}" alt="">
+            </figure>
+            @else
             <figure class="product-preview-image large liquid">
                 <img src="{{ asset('images/items/funtendo_b01.jpg') }}" alt="">
             </figure>
+            @endif
             <!-- IMAGE OVERLAY -->
             <div class="image-overlay img-gallery">
                 <div class="clickable-icon tertiary">
@@ -47,14 +54,20 @@
                     <!-- /SVG PLUS -->
                 </div>
                 <!-- GALLERY ITEMS -->
+                <?php $productImages = json_decode($product->product_img_url); ?>
+                @if (count($productImages) > 0)
+                @foreach($productImages as $productImage)
                 <div class="gallery-items">
-                    <span data-mfp-src="{{ asset('images/items/funtendo_b01.jpg') }}"></span>
+                    <span data-mfp-src="{{ $productImage }}"></span>
                 </div>
+                @endforeach
+                @else
                 <!-- GALLERY ITEMS -->
                 <div class="gallery-items">
                     <span data-mfp-src="{{ asset('images/items/funtendo_b01.jpg') }}"></span>
                 </div>
                 <!-- /GALLERY ITEMS -->
+                @endif
             </div>
             <!-- /IMAGE OVERLAY -->
         </div>
