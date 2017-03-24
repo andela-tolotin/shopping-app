@@ -52,7 +52,12 @@
 						<div class="product-preview-actions">
 							<!-- PRODUCT PREVIEW IMAGE -->
 							<figure class="product-preview-image">
-								<img src="{{ asset('images/items/westeros_m.jpg') }}" alt="product-image">
+							<?php $productImages = json_decode($product->product_img_url); ?>
+							@if (count($productImages) > 0)
+							<img src="{{ $productImages[0] }}" alt="product-image" style="width: 258px; height: 150px;">
+							@else
+							<img src="{{ asset('images/items/westeros_m.jpg') }}" alt="product-image">
+							@endif
 							</figure>
 							<!-- /PRODUCT PREVIEW IMAGE -->
 						</div>
