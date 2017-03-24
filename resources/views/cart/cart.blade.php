@@ -1,5 +1,5 @@
 @extends('app')
-@section('title', $product->name)
+@section('title', 'Shopping Cart')
 @section('breadcrumb')
 <!-- SECTION HEADLINE -->
 <div class="section-headline-wrap v2">

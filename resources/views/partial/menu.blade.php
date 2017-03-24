@@ -27,9 +27,9 @@
         <!-- USER BOARD -->
         <div class="user-board">
             <!-- USER QUICKVIEW -->
+            @if(Auth::check())
             <div class="user-quickview">
                 <!-- USER AVATAR -->
-                 @if(Auth::check())
                 <a href="{{ route('home') }}">
                     <div class="outer-ring">
                         <div class="inner-ring"></div>
@@ -40,7 +40,7 @@
                 </a>
                 <!-- /USER AVATAR -->
                 <!-- USER INFORMATION -->
-               {{--  @if(Auth::check()) --}}
+                {{--  @if(Auth::check()) --}}
                 <p class="user-name">{{ Auth::user()->name }}</p>
                 <!-- SVG ARROW -->
                 <svg class="svg-arrow">
@@ -77,6 +77,7 @@
                 </ul>
                 <!-- /DROPDOWN -->
             </div>
+            @endif
             <!-- /USER QUICKVIEW -->
             <!-- ACCOUNT INFORMATION -->
             <div class="account-information">
@@ -146,80 +147,15 @@
                         <li class="dropdown-item">
                             <p class="text-header tiny">Total</p>
                             <p class="price"><span>$</span>108.00</p>
-                            <a href="cart.html" class="button primary half">Go to Cart</a>
+                            <a href="{{ route('view_carts') }}" class="button primary half">Go to Cart</a>
                             <a href="checkout.html" class="button secondary half">Go to Checkout</a>
                         </li>
                         <!-- /DROPDOWN ITEM -->
                     </ul>
                     <!-- /DROPDOWN CART -->
                 </div>
-                <div class="account-email-quickview">
-                    <span class="icon-envelope">
-                        <!-- SVG ARROW -->
-                        <svg class="svg-arrow">
-                            <use xlink:href="#svg-arrow"></use>
-                        </svg>
-                        <!-- /SVG ARROW -->
-                    </span>
-                    <!-- PIN -->
-                    <span class="pin soft-edged secondary">!</span>
-                    <!-- /PIN -->
-                    <!-- DROPDOWN NOTIFICATIONS -->
-                    <ul class="dropdown notifications closed">
-                        <!-- DROPDOWN ITEM -->
-                        <li class="dropdown-item">
-                            <div class="dropdown-triangle"></div>
-                            <a href="dashboard-openmessage.html" class="link-to"></a>
-                            <figure class="user-avatar">
-                                <img src="{{ asset('images/avatars/avatar_06.jpg') }}" alt="">
-                            </figure>
-                            <p class="text-header tiny"><span>Sarah-Imaginarium</span></p>
-                            <p class="subject">Product Question</p>
-                            <p class="timestamp">May 18th, 2014</p>
-                            <span class="notification-type secondary-new icon-envelope"></span>
-                        </li>
-                        <!-- /DROPDOWN ITEM -->
-                        <!-- DROPDOWN ITEM -->
-                        <li class="dropdown-item">
-                            <a href="dashboard-openmessage.html" class="link-to"></a>
-                            <figure class="user-avatar">
-                                <img src="{{ asset('images/avatars/avatar_04.jpg') }}" alt="">
-                            </figure>
-                            <p class="text-header tiny"><span>Red Thunder Graphics</span></p>
-                            <p class="subject">Support Inquiry</p>
-                            <p class="timestamp">May 5th, 2014</p>
-                            <span class="notification-type icon-envelope-open"></span>
-                        </li>
-                        <!-- /DROPDOWN ITEM -->
-                        <!-- DROPDOWN ITEM -->
-                        <li class="dropdown-item">
-                            <a href="dashboard-openmessage.html" class="link-to"></a>
-                            <figure class="user-avatar">
-                                <img src="{{ asset('images/avatars/avatar_07.jpg') }}" alt="">
-                            </figure>
-                            <p class="text-header tiny"><span>Twisted Themes</span></p>
-                            <p class="subject">Collaboration</p>
-                            <p class="timestamp">Feb 24th, 2014</p>
-                            <span class="notification-type secondary-new icon-envelope"></span>
-                        </li>
-                        <!-- /DROPDOWN ITEM -->
-                        <!-- DROPDOWN ITEM -->
-                        <li class="dropdown-item">
-                            <a href="dashboard-openmessage.html" class="link-to"></a>
-                            <figure class="user-avatar">
-                                <img src="{{ asset('images/avatars/avatar_08.jpg') }}" alt="">
-                            </figure>
-                            <p class="text-header tiny"><span>GregSpiegel1820</span></p>
-                            <p class="subject">How to Install the Theme...</p>
-                            <p class="timestamp">Jan 3rd, 2014</p>
-                            <span class="notification-type icon-action-undo"></span>
-                            <a href="dashboard-inbox.html" class="button secondary">View all Messages</a>
-                        </li>
-                        <!-- /DROPDOWN ITEM -->
-                    </ul>
-                    <!-- /DROPDOWN NOTIFICATIONS -->
-                </div>
-                <div class="account-settings-quickview">
+                @if (Auth::check())
+                <div class="account-settings-quickview">  
                     <span class="icon-settings">
                         <!-- SVG ARROW -->
                         <svg class="svg-arrow">
@@ -295,22 +231,23 @@
                         </li>
                         <!-- /DROPDOWN ITEM -->
                     </ul>
-                    @endif
+                    
                     <!-- /DROPDOWN NOTIFICATIONS -->
                 </div>
+                @endif
             </div>
             
             <!-- /ACCOUNT INFORMATION -->
             <!-- ACCOUNT ACTIONS -->
             
             <div class="account-actions">
-               @if(!Auth::check())
+                @if(!Auth::check())
                 <a href="/register" class="button primary">Register</a>
                 <a href="/login" class="button secondary">Login</a>
                 @else
                 <a href="/logout" class="button primary">Logout</a>
                 <a href="/home" class="button secondary">Dashboard</a>
-              @endif
+                @endif
             </div>
             <!-- /ACCOUNT ACTIONS -->
         </div>
@@ -630,12 +567,7 @@
         <!-- /DROPDOWN ITEM -->
         <!-- DROPDOWN ITEM -->
         <li class="dropdown-item">
-            <a href="cart.html">Your Cart</a>
-        </li>
-        <!-- /DROPDOWN ITEM -->
-        <!-- DROPDOWN ITEM -->
-        <li class="dropdown-item">
-            <a href="favourites.html">Favourites</a>
+            <a href="{{ route('view_carts') }}">Your Cart</a>
         </li>
         <!-- /DROPDOWN ITEM -->
     </ul>
@@ -664,17 +596,7 @@
         <li class="dropdown-item">
             <a href="dashboard-statement.html">Sales Statement</a>
         </li>
-        <!-- /DROPDOWN ITEM -->
-        <!-- DROPDOWN ITEM -->
-        <li class="dropdown-item">
-            <a href="dashboard-buycredits.html">Buy Credits</a>
-        </li>
-        <!-- /DROPDOWN ITEM -->
-        <!-- DROPDOWN ITEM -->
-        <li class="dropdown-item">
-            <a href="dashboard-withdrawals.html">Withdrawals</a>
-        </li>
-        <!-- /DROPDOWN ITEM -->
+        <!-- /DROPDOWN ITEM -->x
         <!-- DROPDOWN ITEM -->
         <li class="dropdown-item">
             <a href="dashboard-uploaditem.html">Upload Item</a>
