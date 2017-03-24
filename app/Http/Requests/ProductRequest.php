@@ -23,12 +23,23 @@ class ProductRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'photo' => 'required | mimes:jpeg,jpg,png | max:1000',
+        $rules = [
             'name'        => 'required',
             'price'       => 'required',
             'description' => 'required',
             'category'    => 'required',
         ];
+
+        $images = $this->file( 'images' );
+
+        if ( !empty( $images ) )
+        {
+            foreach ( $images as $key => $image ) // add individual rules to each image
+            {
+                $rules[ sprintf( 'images.%d', $key ) ] = 'image';
+            }
+        }
+
+        return $rules;
     }
 }
