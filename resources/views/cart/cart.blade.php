@@ -175,7 +175,7 @@
 				<!-- CART ACTIONS -->
 				<div class="cart-actions">
 					<a href="checkout.html" class="button mid primary">Proceed to Checkout</a>
-					<a href="shop-gridview-v1.html" class="button mid dark-light spaced">Continue Browsing</a>
+					<a href="/" class="button mid dark-light spaced">Continue Browsing</a>
 				</div>
 				<!-- /CART ACTIONS -->
 			</div>
