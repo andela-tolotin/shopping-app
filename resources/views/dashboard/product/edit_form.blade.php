@@ -18,18 +18,15 @@
             <form id="register-form4" method="post" action="/product/{{ $product->id }}/update" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="profile-image">
-                    <div class="profile-image-data">
-                        <figure class="user-avatar medium">
-                            @if ($product->product_img_url == '')
-                                <img src="{{ asset('images/dashboard/profile-default-image.png') }}" alt="profile-default-image">
-                            @else
-                                <img src="{{ $product->product_img_url }}">
-                            @endif
-                        </figure>
-                        <p class="text-header">Product Photo</p><br>
-                        <p class="upload-details"><input type="file" class="" name="photo"></p>
-                    </div>
-                </div>
+                    @if ($product->product_img_url == '')
+                        <img src="{{ asset('images/dashboard/profile-default-image.png') }}" alt="profile-default-image">
+                    @else
+                        @foreach($productImage as $image)
+                            <img src="{{ $image }}">
+                        @endforeach
+                    @endif
+                    <p class="text-header">Product Photo</p><br>
+                            <p class="upload-details"><input type="file" name="images[]" multiple="multiple" accept="image/*"></p>
                 <div class="input-container">
                     <label for="name" class="rl-label required">Name</label>
                     <input type="text" id="name" name="name" value="{{ $product->name }}" required="required">
