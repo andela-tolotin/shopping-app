@@ -13,6 +13,7 @@
 @section('body')
 <!-- SECTION -->
 <!-- SIDEBAR -->
+<?php $productImages = json_decode($product->product_img_url); ?>
 <div class="sidebar right">
     <!-- SIDEBAR ITEM -->
     <div class="sidebar-item void buttons">
@@ -20,7 +21,7 @@
             <span class="currency">{{ (int) $product->price }}</span>
             <span>Purchase Now!</span>
         </a>
-        <a href="#" class="button big tertiary wcart" data-item-name="{{ $product->name }}" data-item-price="{{ $product->price }}" data-item-category="{{ $product->category->name }}" data-item-id="{{ $product->id }}">
+        <a href="#" class="button big tertiary wcart" data-item-name="{{ $product->name }}" data-item-price="{{ $product->price }}" data-item-category="{{ $product->category->name }}" data-item-id="{{ $product->id }}" data-item-image="{{ @$productImages[0] }}">
             <span class="icon-present"></span>
             Add to the Cart
         </a>
@@ -34,7 +35,6 @@
     <article class="post">
         <!-- POST IMAGE -->
         <div class="post-image">
-            <?php $productImages = json_decode($product->product_img_url); ?>
             @if (count($productImages) > 0)
             <figure class="product-preview-image large liquid">
                 <img src="{{ $productImages[0] }}" alt="">
