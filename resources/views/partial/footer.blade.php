@@ -191,10 +191,12 @@
 <!-- /SVG PLUS -->
 
 <!-- jQuery -->
+@yield('javascript')
 <script src="{{ asset('js/vendor/jquery-3.1.0.min.js') }}"></script>
 <!-- Tooltipster -->
 <script src="{{ asset('js/vendor/jquery.tooltipster.min.js') }}"></script>
 <!-- Owl Carousel -->
+<script src="{{ asset('js/vendor/owl.carousel.min.js') }}"></script>
 <script src="{{ asset('js/vendor/imgLiquid-min.js') }}"></script>
 <script src="{{ asset('js/liquid.js') }}"></script>
 <!-- Magnific Popup -->
@@ -203,6 +205,7 @@
 {{-- <script src="{{ asset('js/vendor/jquery.xmalert.min.js') }}"></script> --}}
 <!-- Side Menu -->
 <script src="{{ asset('js/side-menu.js') }}"></script>
+<script src="{{ asset('js/home.js') }}"></script>
 <script src="{{ asset('js/vendor/jquery.xmaccordion.min.js') }}"></script>
 <!-- XM Pie Chart -->
 <script src="{{ asset('js/vendor/jquery.xmpiechart.min.js') }}"></script>
