@@ -20,7 +20,7 @@
             <span class="currency">{{ (int) $product->price }}</span>
             <span>Purchase Now!</span>
         </a>
-        <a href="#" class="button big tertiary wcart">
+        <a href="#" class="button big tertiary wcart" data-item-name="{{ $product->name }}" data-item-price="{{ $product->price }}" data-item-category="{{ $product->category->name }}" data-item-id="{{ $product->id }}">
             <span class="icon-present"></span>
             Add to the Cart
         </a>
