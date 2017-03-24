@@ -40,7 +40,7 @@ class ProductController extends Controller
             'price'           => $request['price'],
             'discount'        => $request['discount'],
             'tax'             => $request['tax'],
-            'product_img_url' => $request['photo'] == '' ? '': $this->uploadProductImage($request),
+            'product_img_url' => $this->uploadProductImage($request),
         ]);
 
         if ($product) {
@@ -58,16 +58,25 @@ class ProductController extends Controller
      */
     public function uploadProductImage($request)
     {
-        $productImage = $request->file('photo');
+        $cloudinaryWrapper = [];
+        $urls = [];
 
-        Cloudder::upload($productImage, null, [
-            'format' => 'jpg',
-            'crop'   => 'fill',
-            'width'  => 250,
-            'height' => 250,
-        ]);
+        foreach ($request['images'] as $key => $image) {
+            $result = Cloudder::upload($image, null, [
+                'format' => 'jpg',
+                'crop'   => 'fill',
+                'width'  => 250,
+                'height' => 250,
+            ]);
 
-        return  Cloudder::getResult()['url'];
+            array_push($cloudinaryWrapper, $result);
+        }
+
+        foreach ($cloudinaryWrapper as $key => $value) {
+            array_push($urls, $value->getResult()['url']);
+        }
+
+        return json_encode($urls);
     }
 
     /**
@@ -90,14 +99,15 @@ class ProductController extends Controller
      */
     public function editProductForm($id)
     {
-        $product = Auth::user()->products->find($id);
-        $categories = Category::all();
+        $product      = Auth::user()->products->find($id);
+        $productImage = json_decode($product->product_img_url);
+        $categories   = Category::all();
 
         if (is_null($product)) {
             return redirect()->route('home');
         }
 
-        return view('dashboard.product.edit_form', compact('product', 'categories'));
+        return view('dashboard.product.edit_form', compact('product', 'categories', 'productImage'));
     }
 
     /**
@@ -118,7 +128,7 @@ class ProductController extends Controller
             'tax'             => $request->tax,
         ]);
 
-        if (!is_null($request->photo)) {
+        if (!is_null($request->images)) {
             $product_img_url = $this->uploadProductImage($request);
             $product = Product::find($id);
 

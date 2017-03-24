@@ -23,7 +23,7 @@
                         <img src="images/dashboard/profile-default-image.png" alt="profile-default-image">
                     </figure>
                     <p class="text-header">Product Photo</p><br>
-                    <p class="upload-details"><input type="file" class="" name="photo"></p>
+                    <p class="upload-details"><input type="file" name="images[]" multiple="multiple" accept="image/*" required="required"></p>
                 </div>
             </div>
             <div class="input-container">
