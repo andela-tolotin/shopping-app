@@ -27,6 +27,7 @@
                     @endif
                     <p class="text-header">Product Photo</p><br>
                             <p class="upload-details"><input type="file" name="images[]" multiple="multiple" accept="image/*"></p>
+                </div>
                 <div class="input-container">
                     <label for="name" class="rl-label required">Name</label>
                     <input type="text" id="name" name="name" value="{{ $product->name }}" required="required">
