@@ -23,7 +23,7 @@
         </a>
         <a href="#" class="button big tertiary wcart" data-item-name="{{ $product->name }}" data-item-price="{{ $product->price }}" data-item-category="{{ $product->category->name }}" data-item-id="{{ $product->id }}" data-item-image="{{ @$productImages[0] }}">
             <span class="icon-present"></span>
-            Add to the Cart
+            Checkout
         </a>
     </div>
     <!-- /SIDEBAR ITEM -->
