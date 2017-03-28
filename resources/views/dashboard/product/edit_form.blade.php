@@ -22,7 +22,7 @@
                         <img src="{{ asset('images/dashboard/profile-default-image.png') }}" alt="profile-default-image">
                     @else
                         @foreach($productImage as $image)
-                            <img src="{{ $image }}">
+                            <img src="{{ $image }}" style="width: 20%; height: auto;">
                         @endforeach
                     @endif
                     <p class="text-header">Product Photo</p><br>
@@ -69,4 +69,7 @@
         <!-- /FORM POPUP CONTENT -->
     </div>
     </div>
+@endsection
+@section('pageScripts')
+@include('partial.dashboard.tinymce')
 @endsection

@@ -67,7 +67,7 @@
 							<a href="{{ route('product-details', ['id' => $product->id ])}}">
 								<p class="text-header">{{ $product->name }}</p>
 							</a>
-							<p class="product-description">{{ str_limit($product->description, 100) }}</p>
+							<p class="product-description">{!! str_limit($product->description, 100) !!}</p>
 							<a href="shop-gridview-v1.html">
 								<p class="category primary">{{ $product->category->name }}</p>
 							</a>
