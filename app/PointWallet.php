@@ -4,29 +4,28 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class PaymentGateway extends Model
+class PointWallet extends Model
 {
-    //
     protected $fillable = [
-       'name', 'logo', 'client_id',
-       'client_secret', 'callback_url',
+        'user_id', 'payment_gateway_id', 'point',
+        'balance',
     ];
 
-    public function transactions()
+    public function paymentGateways()
     {
-    	return $this->hasMany('App\Transaction');
+        return $this->hasMany('App\PaymentGateway');
     }
 
-    public function pointWallet()
+    public function users()
     {
-        return $this->belongsTo('App\pointWallet');
+        return $this->belongsTo('App\users');
     }
 
     public function scopeFindOneById($query, $id)
     {
-    	return $query
-    	    ->where('id', $id)
-    	    ->first();
+        return $query
+            ->where('id', $id)
+            ->first();
     }
 
     public function scopeFindOneByName($query, $name)

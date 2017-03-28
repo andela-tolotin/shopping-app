@@ -39,6 +39,11 @@ class User extends Authenticatable
         return $this->hasMany('App\Transaction');
     }
 
+    public function pointWallet()
+    {
+        return $this->hasOne('App\pointWallet');
+    }
+
     public function products()
     {
         return $this->hasMany('App\Product');
