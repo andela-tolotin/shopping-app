@@ -100,12 +100,14 @@ class ProductController extends Controller
     public function editProductForm($id)
     {
         $product      = Auth::user()->products->find($id);
-        $productImage = json_decode($product->product_img_url);
-        $categories   = Category::all();
 
         if (is_null($product)) {
-            return redirect()->route('home');
+
+            abort(404);
         }
+
+        $productImage = json_decode($product->product_img_url);
+        $categories   = Category::all();
 
         return view('dashboard.product.edit_form', compact('product', 'categories', 'productImage'));
     }
