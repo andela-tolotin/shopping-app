@@ -77,7 +77,7 @@
             <!-- POST PARAGRAPH -->
             <div class="post-paragraph">
                 <h3 class="post-title">Product Description</h3>
-                <p>{!! $product->description !!}.</p>
+                <p>{!! $product->description !!}</p>
             </div>
             <!-- /POST PARAGRAPH -->
         </div>
