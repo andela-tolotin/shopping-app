@@ -71,7 +71,7 @@
 							<a href="shop-gridview-v1.html">
 								<p class="category primary">{{ $product->category->name }}</p>
 							</a>
-							<p class="price"><span>KWR</span>{{ $product->price }}</p>
+							<p class="price"><span>P</span>{{ $product->price }}</p>
 						</div>
 					</div>
 					<!-- /PRODUCT ITEM -->
