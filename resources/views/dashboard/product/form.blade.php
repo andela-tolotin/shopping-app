@@ -62,7 +62,7 @@
             </div>
             <div class="input-container">
                 <label for="description" class="rl-label required">Description</label>
-                <textarea  name="description" placeholder="Enter description of product here..." required="required"></textarea>
+                <textarea id="description" name="description" placeholder="Enter description of product here..."></textarea>
             </div>
             <button type="submit" class="button mid dark">Add Product</button>
         </form>
@@ -70,4 +70,30 @@
     <!-- /FORM POPUP CONTENT -->
 </div>
 </div>
+@endsection
+@section('pageScripts')
+ <script src="http://cloud.tinymce.com/stable/tinymce.min.js?apiKey=x56nefqqnjuhvjizmuel2y9khia6xvl6uvzu9o3213yrxwkc"></script>
+  <script>
+      tinymce.init({
+      selector: 'textarea',
+      theme: 'modern',
+      plugins: [
+        'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+        'searchreplace wordcount visualblocks visualchars code fullscreen',
+        'insertdatetime media nonbreaking save table contextmenu directionality',
+        'emoticons template paste textcolor colorpicker textpattern imagetools codesample toc'
+    ],
+      toolbar1: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+      toolbar2: 'print preview media | forecolor backcolor emoticons | codesample',
+      image_advtab: true,
+      templates: [
+        { title: 'Test template 1', content: 'Test 1' },
+        { title: 'Test template 2', content: 'Test 2' }
+      ],
+      content_css: [
+        '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
+        '//www.tinymce.com/css/codepen.min.css'
+      ]
+ });
+  </script>
 @endsection
