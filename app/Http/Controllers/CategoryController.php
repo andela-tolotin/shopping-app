@@ -65,7 +65,7 @@ class CategoryController extends Controller
         $category = Auth::user()->categories->find($id);
 
         if (is_null($category)) {
-            return redirect()->route('home');
+            abort(400);
         }
 
         return view('dashboard.category.edit_form', compact('category'));
