@@ -57,6 +57,7 @@ Route::group(['middleware' => ['auth.isAdmin']], function() {
 
     //Advert
     Route::get('/advert', 'AdvertController@loadAdvertForm')->name('load_advert');
+    Route::post('/advert/upload', 'AdvertController@uploadAdvert')->name('upload_advert');
 });
 
 Route::get('/product/{id}/view', 'ProductController@viewProduct')->name('product-details');
