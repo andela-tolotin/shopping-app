@@ -1,6 +1,6 @@
 @extends('dashboard.base')
 @section('title', 'List all adverts')
-@section('page', 'List Users')
+@section('page', 'List Adverts')
 @section('body')
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <!-- TRANSACTION LIST -->
@@ -15,7 +15,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		@if ($users->count() > 0)
+		@if ($adverts->count() > 0)
 		@foreach($adverts as $advert)
 		<tr>
 			<td>{{ $loop->index + 1 }}</td>
