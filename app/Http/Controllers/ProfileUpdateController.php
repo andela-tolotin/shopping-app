@@ -9,6 +9,11 @@ use App\Http\Requests\ProfileUpdateRequest;
 
 class ProfileUpdateController extends Controller
 {
+    public function editProfile()
+    {
+        return view('dashboard.edit-profile');
+    }
+
     public function updateProfile(Request $request)
     {
     	$email = $request->email;

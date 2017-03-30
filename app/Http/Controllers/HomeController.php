@@ -13,4 +13,9 @@ class HomeController extends Controller
 
     	return view('index', compact('products'));
     }
+
+    public function index()
+    {
+    	return view('dashboard.index');
+    }
 }

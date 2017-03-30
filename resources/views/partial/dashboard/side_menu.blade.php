@@ -39,7 +39,7 @@
     <ul class="dropdown dark hover-effect interactive">
         <!-- DROPDOWN ITEM -->
         <li class="dropdown-item active">
-            <a href="{{ route('home') }}">
+            <a href="{{ route('profile') }}">
                 <span class="sl-icon icon-settings"></span>
                 Account Settings
             </a>
@@ -65,6 +65,7 @@
     </ul>
     <!-- /DROPDOWN -->
 
+    @can ( 'ADMIN', Auth::user()->role_id )
     <!-- /SIDE MENU HEADER -->
     <!-- SIDE MENU TITLE -->
     <p class="side-menu-title">User Management</p>
@@ -80,6 +81,7 @@
         </li>
         <!-- /DROPDOWN ITEM -->
     </ul>
+    @endcan
     <!-- /DROPDOWN -->
     <!-- SIDE MENU TITLE -->
     <p class="side-menu-title">Info &amp; Statistics</p>
@@ -96,13 +98,14 @@
         <!-- /DROPDOWN ITEM -->
         <!-- DROPDOWN ITEM -->
         <li class="dropdown-item">
-            <a href="dashboard-statistics.html">
+            <a href="{{ route('dashboard_index')  }}">
                 <span class="sl-icon icon-chart"></span>
                 Statistics
             </a>
         </li>
         <!-- /DROPDOWN ITEM -->
     </ul>
+    @can ( 'BUYER', Auth::user()->role_id )
     <!-- /DROPDOWN -->
     <p class="side-menu-title">Category</p>
     <!-- /SIDE MENU TITLE -->
@@ -146,6 +149,9 @@
             </a>
         </li>
     </ul>
+    @endcan
+
+    @can ( 'ADMIN', Auth::user()->role_id )
     <!-- /DROPDOWN -->
     <!-- SIDE MENU TITLE -->
     <p class="side-menu-title">Payment Configuration</p>
@@ -168,6 +174,7 @@
             </a>
         </li>
     </ul>
+    @endcan
     <!-- /DROPDOWN -->
     <a href="{{ route('logout') }}" class="button medium secondary">Logout</a>
 </div>

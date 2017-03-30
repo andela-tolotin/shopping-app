@@ -13,9 +13,12 @@
 
 Route::get('/', 'HomeController@listProducts');
 
-Route::get('/home', function () {
-    return view('dashboard.index');
-})->name('home');
+// Route::get('/home', function () {
+//     return view('dashboard.index');
+// })->name('home');
+
+Route::get('/profile', 'ProfileUpdateController@editprofile')->name('profile');
+Route::get('/home', 'HomeController@index')->name('dashboard_index');
 
 Route::get('/login', 'Auth\LoginController@showLoginForm')->name('load_login');
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');

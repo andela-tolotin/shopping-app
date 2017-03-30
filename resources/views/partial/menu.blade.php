@@ -30,7 +30,7 @@
             @if(Auth::check())
             <div class="user-quickview">
                 <!-- USER AVATAR -->
-                <a href="{{ route('home') }}">
+                <a href="{{ route('dashboard_index') }}">
                     <div class="outer-ring">
                         <div class="inner-ring"></div>
                         <figure class="user-avatar">
