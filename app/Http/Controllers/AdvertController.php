@@ -15,9 +15,9 @@ class AdvertController extends Controller
     	return view('dashboard.advert.add_advert');
     }
 
-    public function uploadAdvert(Request $request)
+    public function uploadAdvert(AdvertRequest $request)
     {
-    	if ($request->has('photo')) {
+    	if (count($request->file('images')) > 0) {
     		$advert = Advert::create([
     			'user_id' => Auth()->user()->id,
     			'advert_photos' => $this->uploadProductImage($request),
