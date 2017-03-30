@@ -9,11 +9,22 @@ use App\Http\Requests\ProfileUpdateRequest;
 
 class ProfileUpdateController extends Controller
 {
+    /**
+     * Displays form for editing profile
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function editProfile()
     {
         return view('dashboard.edit-profile');
     }
 
+    /**
+     * Update profile
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function updateProfile(Request $request)
     {
     	$email = $request->email;

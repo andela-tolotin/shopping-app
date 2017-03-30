@@ -13,10 +13,6 @@
 
 Route::get('/', 'HomeController@listProducts');
 
-// Route::get('/home', function () {
-//     return view('dashboard.index');
-// })->name('home');
-
 Route::get('/profile', 'ProfileUpdateController@editprofile')->name('profile');
 Route::get('/home', 'HomeController@index')->name('dashboard_index');
 
