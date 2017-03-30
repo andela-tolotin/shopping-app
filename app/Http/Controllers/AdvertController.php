@@ -10,6 +10,14 @@ use App\Http\Requests\AdvertRequest;
 
 class AdvertController extends Controller
 {
+	public function listAdverts()
+    {
+    	$adverts = Advert::orderBy('id', 'DESC')
+    	   ->paginate(10);
+
+    	return view('dashboard.advert.list_adverts', compact('adverts'));
+    }
+
     public function loadAdvertForm()
     {
     	return view('dashboard.advert.add_advert');
