@@ -17,10 +17,10 @@ class AdvertController extends Controller
 
     public function uploadAdvert(Request $request)
     {
-    	if (request->has('photo')) {
+    	if ($request->has('photo')) {
     		$advert = Advert::create([
     			'user_id' => Auth()->user()->id,
-    			'advert_photos' => $this->uploadProductImage($request);
+    			'advert_photos' => $this->uploadProductImage($request),
     		]);
 
     		if ($advert instanceof Advert) {

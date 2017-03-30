@@ -1,6 +1,6 @@
 @extends('dashboard.base')
-@section('title', 'Add a product')
-@section('page', 'Add a product')
+@section('title', 'Add a new advert')
+@section('page', 'Upload Advert')
 @section('body')
 <!-- FORM POPUP -->
 <div class="form-box-items">
