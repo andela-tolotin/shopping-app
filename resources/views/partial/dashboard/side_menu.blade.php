@@ -169,6 +169,28 @@
         </li>
     </ul>
     <!-- /DROPDOWN -->
+    <!-- SIDE MENU TITLE -->
+    <p class="side-menu-title">Advertisement</p>
+    <!-- /SIDE MENU TITLE -->
+    <!-- DROPDOWN -->
+    <ul class="dropdown dark hover-effect">
+        <!-- DROPDOWN ITEM -->
+        <li class="dropdown-item">
+            <a href="{{ route('load_advert') }}">
+                <span class="sl-icon icon-arrow-up-circle"></span>
+                Add Advert
+            </a>
+        </li>
+        <!-- /DROPDOWN ITEM -->
+        <!-- DROPDOWN ITEM -->
+        <li class="dropdown-item">
+            <a href="{{ route('list_payments') }}">
+                <span class="sl-icon icon-folder-alt"></span>
+                Manage Advert
+            </a>
+        </li>
+    </ul>
+    <!-- /DROPDOWN -->
     <a href="{{ route('logout') }}" class="button medium secondary">Logout</a>
 </div>
 <!-- /SIDE MENU -->
