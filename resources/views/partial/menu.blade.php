@@ -79,7 +79,7 @@
             </div>
             @endif
             <!-- /USER QUICKVIEW -->
-            <!-- ACCOUNT INFORMATION -->
+            {{-- <!-- ACCOUNT INFORMATION -->
             <div class="account-information">
                 <div class="account-cart-quickview">
                     <span class="icon-present">
@@ -235,7 +235,7 @@
                     <!-- /DROPDOWN NOTIFICATIONS -->
                 </div>
                 @endif
-            </div>
+            </div> --}}
             
             <!-- /ACCOUNT INFORMATION -->
             <!-- ACCOUNT ACTIONS -->
