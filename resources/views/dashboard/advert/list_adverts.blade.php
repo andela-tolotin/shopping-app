@@ -10,7 +10,6 @@
 			<th>Sn</th>
 			<th>Thumbnails</th>
 			<th>Uploaded By</th>
-			<th>Edit</th>
 			<th>Delete</th>
 		</tr>
 	</thead>
@@ -21,8 +20,7 @@
 			<td>{{ $loop->index + 1 }}</td>
 			<td>{{ $advert->user->name }}</td>
 			<td>{{ $advert->advert_photos }}</td>
-			<td><a href="{{ route('edit_user', ['id' => $advert->id ]) }}" title="Edit {{ $advert->name }}"> <i class="glyphicon glyphicon-pencil"></i> Edit </a></td>
-			<td><a class="delete-user" href="{{ route('delete_user', ['id' => $advert->id ]) }}" title="Delete {{ $advert->name }}"> <i class="glyphicon glyphicon-trash Delete"></i> Delete</a></td>
+			<td><a class="delete-user" href="{{ route('delete_advert', ['id' => $advert->id ]) }}" title="Delete {{ $advert->name }}"> <i class="glyphicon glyphicon-trash Delete"></i> Delete</a></td>
 		</tr>
 		@endforeach
 		@endif

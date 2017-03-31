@@ -10,6 +10,19 @@ use App\Http\Requests\AdvertRequest;
 
 class AdvertController extends Controller
 {
+    public function deleteAdvert(Request $request, $id)
+    {
+        $user = Advert::findOneById($id);
+
+        if ($user instanceof Advert) {
+            $user->forceDelete();
+
+            return redirect()->route('list_adverts');
+        }
+
+        throw new Exception('Advert with this id not found');
+    }
+
 	public function listAdverts()
     {
     	$adverts = Advert::orderBy('id', 'DESC')
