@@ -19,7 +19,11 @@
 		<tr>
 			<td>{{ $loop->index + 1 }}</td>
 			<td>{{ $advert->user->name }}</td>
-			<td>{{ $advert->advert_photos }}</td>
+			<td>
+			@foreach(json_decode($advert->advert_photos) as $photo)
+			<img src="{{ $photo }}" class="img-responsive" alt="{{ $advert->user->name }}" style="width: 52px; height: auto; float: left; padding: 2px;">
+			@endforeach
+			</td>
 			<td><a class="delete-user" href="{{ route('delete_advert', ['id' => $advert->id ]) }}" title="Delete {{ $advert->name }}"> <i class="glyphicon glyphicon-trash Delete"></i> Delete</a></td>
 		</tr>
 		@endforeach

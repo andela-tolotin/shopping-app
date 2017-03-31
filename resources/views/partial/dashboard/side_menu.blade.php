@@ -184,7 +184,7 @@
         <!-- /DROPDOWN ITEM -->
         <!-- DROPDOWN ITEM -->
         <li class="dropdown-item">
-            <a href="{{ route('list_payments') }}">
+            <a href="{{ route('list_adverts') }}">
                 <span class="sl-icon icon-folder-alt"></span>
                 Manage Advert
             </a>
