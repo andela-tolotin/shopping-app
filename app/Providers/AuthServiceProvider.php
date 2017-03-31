@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\User;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -21,10 +23,18 @@ class AuthServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(GateContract $gate)
     {
-        $this->registerPolicies();
+        parent::registerPolicies($gate);
 
-        //
+        // Admin can see any menu which this is apply
+        $gate->define('ADMIN', function ($user) {
+            return $user->role_id === 3;
+        });
+
+        // Buyer cannot see any menu where this is apply but only Admin and Buyer can see such menu
+        $gate->define('BUYER', function ($user) {
+            return $user->role_id !== 1;
+        });
     }
 }
