@@ -25,6 +25,7 @@ Route::post('/profile/update', 'ProfileUpdateController@updateProfile')->name('p
 Auth::routes();
 
 Route::group(['middleware' => ['auth.isAdmin']], function() {
+    //Product
     Route::get('/product', 'ProductController@showProductForm')->name('load_product');
     Route::post('/product', 'ProductController@postProduct')->name('post_product');
     Route::get('/products', 'ProductController@listProducts')->name('list_products');
@@ -32,6 +33,7 @@ Route::group(['middleware' => ['auth.isAdmin']], function() {
     Route::post('/product/{id}/update', 'ProductController@updateProduct')->name('update_product');
     Route::get('/product/{id}/delete', 'ProductController@deleteProduct')->name('delete_product');
 
+    //Category
     Route::get('/category', 'CategoryController@showCategoryForm')->name('load_category');
     Route::post('/category', 'CategoryController@postCategory')->name('post_category');
     Route::get('/categories', 'CategoryController@listCategories')->name('list_categories');
@@ -39,19 +41,28 @@ Route::group(['middleware' => ['auth.isAdmin']], function() {
     Route::post('/category/{id}/update', 'CategoryController@updateCategory')->name('update_category');
     Route::get('/category/{id}/delete', 'CategoryController@deleteCategory')->name('delete_category');
 
+    //User
 	Route::get('/manage/users', 'UserController@listUsers')->name('manage_user');
 	Route::get('/users/{id}/edit', 'UserController@editUser')->name('edit_user');
 	Route::post('/users/{id}/update', 'UserController@updateUser')->name('update_user');
 	Route::get('/users/{id}/delete', 'UserController@deleteUser')->name('delete_user');
 
+    //Payment
     Route::get('/config/payment', 'PaymentController@loadPaymentConfigForm')->name('config_payment');
     Route::post('/create/payment', 'PaymentController@addPaymentConfig')->name('create_payment');
     Route::get('/payment/gateways', 'PaymentController@listpaymentGateway')->name('list_payments');
     Route::get('/payment/{id}/edit', 'PaymentController@editPayment')->name('edit_payment');
     Route::post('/payment/{id}/update', 'PaymentController@updatePayment')->name('update_payment');
     Route::get('/payment/{id}/delete', 'PaymentController@deletePayment')->name('delete_payment');
+
+    //Advert
+    Route::get('/advert', 'AdvertController@loadAdvertForm')->name('load_advert');
+    Route::post('/advert/upload', 'AdvertController@uploadAdvert')->name('upload_advert');
+    Route::get('/adverts', 'AdvertController@listAdverts')->name('list_adverts');
+    Route::get('/adverts/{id}/delete', 'AdvertController@deleteAdvert')->name('delete_advert');
 });
 
 Route::get('/product/{id}/view', 'ProductController@viewProduct')->name('product-details');
 Route::get('/carts', 'CartController@viewCart')->name('view_carts');
+
 

@@ -33,7 +33,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="{{ asset('js/bootbox.min.js') }}"></script>
     <script>
-    $(document).on("click", ".delete-user, .delete-payment", function(e) {
+    $(document).on("click", ".delete-user, .delete-payment, .delete-advert", function(e) {
         var href = $(this).attr('href');
         bootbox.confirm("Are you sure you want to delete this user!", function(result) {
             if (result) {

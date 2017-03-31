@@ -41,7 +41,7 @@ class User extends Authenticatable
 
     public function pointWallet()
     {
-        return $this->hasOne('App\pointWallet');
+        return $this->hasOne('App\PointWallet');
     }
 
     public function products()
@@ -52,6 +52,11 @@ class User extends Authenticatable
     public function categories()
     {
         return $this->hasMany('App\Category');
+    }
+
+    public function advertUploads()
+    {
+        return $this->hasMany('App\Advert');
     }
 
     public function scopeFindOneByEmail($query, $email)

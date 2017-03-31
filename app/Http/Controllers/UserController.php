@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
 	const ISADMIN = 'ADMIN';
+
     public function listUsers()
     {
     	$users = User::orderBy('id', 'DESC')
