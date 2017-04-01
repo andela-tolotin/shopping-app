@@ -27,7 +27,7 @@
                         <img src="{{ asset('images/dashboard/profile-default-image.png') }}" alt="profile-default-image">
                     </figure>
                     <p class="text-header">Profile Photo</p><br>
-                    <p class="upload-details"><input type="file" class="" name="photo"></p>
+                    <p class="upload-details"><input type="file" class="" name="photo" required="required"></p>
                 </div>
             </div>
             <!-- INPUT CONTAINER -->

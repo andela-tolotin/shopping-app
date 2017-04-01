@@ -118,8 +118,8 @@ class PaymentController extends Controller
         $avatar = Cloudder::upload($avatar, null, [
             'format' => 'jpg',
             'crop'   => 'fill',
-            'width'  => 250,
-            'height' => 250,
+            'width'  => '',
+            'height' => '',
         ]);
         return  Cloudder::getResult()['url'];
     }
