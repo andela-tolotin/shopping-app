@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Cloudder;
+use Stripe\Stripe;
 use App\PaymentGateway;
 use Illuminate\Http\Request;
 use App\Http\Requests\ConfigPaymentRequest;
