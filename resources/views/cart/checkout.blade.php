@@ -1,14 +1,13 @@
 @extends('app')
 @section('title', 'Checkout')
 @section('page', 'Checkout')
-
 @section('breadcrumb')
 <!-- SECTION HEADLINE -->
 <div class="section-headline-wrap v2">
-    <div class="section-headline">
-        <h2>Checkout</h2>
-        <p>Home<span class="separator">/</span>Products<span class="separator">/</span><span class="current-section">Checkout</span></p>
-    </div>
+	<div class="section-headline">
+		<h2>Checkout</h2>
+		<p>Home<span class="separator">/</span>Products<span class="separator">/</span><span class="current-section">Checkout</span></p>
+	</div>
 </div>
 <!-- /SECTION HEADLINE -->
 @endsection
@@ -43,28 +42,21 @@
 		<input type="radio" form="checkout-form" id="credit_card" name="payment_method" value="cc">
 		<label for="credit_card" class="linked-radio">
 			<span class="radio primary"><span></span></span>
-			Credit Card
+			Point Wallet
 		</label>
 		<!-- /RADIO -->
-		<p class="pm-text credit_card">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor cididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-		<!-- RADIO -->
-		<input type="radio" form="checkout-form" id="ed_credits" name="payment_method" value="edc" checked>
-		<label for="ed_credits" class="linked-radio">
-			<span class="radio primary"><span></span></span>
-			Emerald Dragon Credits
-		</label>
-		<!-- /RADIO -->
-		<p class="pm-text ed_credits" style="display: block;">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor cididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-		<!-- RADIO -->
-		<input type="radio" form="checkout-form" id="paypal" name="payment_method" value="pp">
-		<label for="paypal" class="linked-radio">
-			<span class="radio primary"><span></span></span>
-			Paypal
-		</label>
-		<!-- /RADIO -->
-		<p class="pm-text paypal">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor cididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+		@if ($paymentGateways->count() > 0)
+		@foreach($paymentGateways as $paymentGateway)
+		@if ($paymentGateway->name == 'Stripe')
+		<form action="/stripe_payment" method="POST">
+			<script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="{{ $paymentGateway->client_id }}" data-amount="{{ $product->price }}" data-name="{{ $product->name }}" data-description="Payments" data-image="{{ $paymentGateway->logo }}" data-locale="auto">
+			</script>
+			<input type="hidden" name="amount" value="{{ $product->price }}" />
+		</form>
+		@endif
+		@endforeach
+		@endif
 		<hr class="line-separator top">
-		<button form="checkout-form" class="button big dark">Confirm Order <span class="primary">Now!</span></button>
 	</div>
 	<!-- /FORM BOX ITEM -->
 </div>
