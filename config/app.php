@@ -163,7 +163,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         JD\Cloudder\CloudderServiceProvider::class,
-        Laravel\Cashier\CashierServiceProvider,
+        Laravel\Cashier\CashierServiceProvider::class,
 
         /*
          * Package Service Providers...

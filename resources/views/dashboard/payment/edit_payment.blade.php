@@ -55,7 +55,7 @@
             <!-- INPUT CONTAINER -->
             <div class="input-container">
                 <label for="callback_url" class="rl-label required">Callback Url</label>
-                <input type="text" id="callback_url" name="callback_url" value="{{ $paymentGateway->callback_url }}" placeholder="Enter your callback_url here..." required="required">
+                <input type="text" id="callback_url" name="callback_url" value="{{ $paymentGateway->callback_url }}" placeholder="Enter your callback_url here..." >
             </div>
             <!-- /INPUT CONTAINER -->
             <div class="clearfix"></div>

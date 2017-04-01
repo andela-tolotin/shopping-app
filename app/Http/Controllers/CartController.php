@@ -20,6 +20,6 @@ class CartController extends Controller
             return view('cart.checkout', compact('product'));
         }
 
-        throw new Exception('Product with this id not found');
+        abort(404);
     }
 }
