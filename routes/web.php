@@ -65,4 +65,6 @@ Route::get('/product/{id}/view', 'ProductController@viewProduct')->name('product
 Route::get('/carts', 'CartController@viewCart')->name('view_carts');
 Route::get('/product/{id}/checkout', 'CartController@checkout')->name('purchase_product');
 
+Route::get('/payment/stripe', 'PaymentController@payWithStrip')->name('stripe_payment');
+
 

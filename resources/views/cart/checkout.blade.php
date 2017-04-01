@@ -48,10 +48,10 @@
 		@if ($paymentGateways->count() > 0)
 		@foreach($paymentGateways as $paymentGateway)
 		@if ($paymentGateway->name == 'Stripe')
-		<form action="/stripe_payment" method="POST">
-			<script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="{{ $paymentGateway->client_id }}" data-amount="{{ $product->price }}" data-name="{{ $product->name }}" data-description="Payments" data-image="{{ $paymentGateway->logo }}" data-locale="auto">
+		<form action="{{ route('stripe_payment') }}" method="POST">
+			<script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="{{ $paymentGateway->client_id }}" data-amount="{{ $product->price * 1000  * 100 }}" data-name="{{ $product->name }}" data-description="Payments" data-image="{{ $paymentGateway->logo }}" data-locale="auto" data-currency="kwr">
 			</script>
-			<input type="hidden" name="amount" value="{{ $product->price }}" />
+			<input type="hidden" name="amount" value="{{ $product->price * 1000 * 100 }}" />
 		</form>
 		@endif
 		@endforeach

@@ -11,6 +11,11 @@ use App\Http\Requests\UpdatePaymentRequest;
 
 class PaymentController extends Controller
 {
+    public function payWithStrip(Request $request)
+    {
+        dd($request->all());
+    }
+
 	public function deletePayment(Request $request, $id)
     {
     	$paymentGateway = PaymentGateway::findOneById($id);
