@@ -9,6 +9,7 @@
 		<tr>
 			<th>Sn</th>
 			<th>Name</th>
+			<th>Logo</th>
 			<th>Client ID</th>
 			<th>Client Secret</th>
 			<th>Callback URI</th>
@@ -22,6 +23,9 @@
 		<tr>
 			<td>{{ $loop->index + 1 }}</td>
 			<td>{{ $paymentGateway->name }}</td>
+			<td>
+			<img src="{{ $paymentGateway->logo }}" class="img-responsive" alt="{{ $paymentGateway->name }}" style="width: auto; height: auto; float: left; padding: 2px;">
+			</td>
 			<td>{{ $paymentGateway->client_id }}</td>
 			<td>{{ $paymentGateway->client_secret }}</td>
 			<td>{{ $paymentGateway->callback_url }}</td>

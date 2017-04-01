@@ -17,13 +17,9 @@
 <div class="sidebar right">
     <!-- SIDEBAR ITEM -->
     <div class="sidebar-item void buttons">
-        <a href="#" class="button big dark purchase" data-item-name="{{ $product->name }}" data-item-price="{{ $product->price }}" data-item-category="{{ $product->category->name }}" data-item-id="{{ $product->id }}" data-item-image="{{ @$productImages[0] }}">
+        <a href="{{ route('purchase_product', ['id' => $product->id ]) }}" class="button big dark purchase" data-item-name="{{ $product->name }}" data-item-price="{{ $product->price }}" data-item-category="{{ $product->category->name }}" data-item-id="{{ $product->id }}" data-item-image="{{ @$productImages[0] }}">
             <span class="currency">{{ (int) $product->price }}</span>
             <span>Purchase Now!</span>
-        </a>
-        <a href="#" class="button big tertiary wcart" data-item-name="{{ $product->name }}" data-item-price="{{ $product->price }}" data-item-category="{{ $product->category->name }}" data-item-id="{{ $product->id }}" data-item-image="{{ @$productImages[0] }}">
-            <span class="icon-present"></span>
-            Checkout
         </a>
     </div>
     <!-- /SIDEBAR ITEM -->

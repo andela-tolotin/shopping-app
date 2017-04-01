@@ -179,6 +179,6 @@ class ProductController extends Controller
             return view('dashboard.product.product_detail', compact('product'));
         }
 
-        throw new Exception('User with this id not found');
+        throw new Exception('Product with this id not found');
     }
 }

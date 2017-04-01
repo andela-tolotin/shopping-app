@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Cloudder;
+use Stripe\Stripe;
 use App\PaymentGateway;
 use Illuminate\Http\Request;
 use App\Http\Requests\ConfigPaymentRequest;
@@ -10,6 +11,11 @@ use App\Http\Requests\UpdatePaymentRequest;
 
 class PaymentController extends Controller
 {
+    public function payWithStrip(Request $request)
+    {
+        dd($request->all());
+    }
+
 	public function deletePayment(Request $request, $id)
     {
     	$paymentGateway = PaymentGateway::findOneById($id);
@@ -118,8 +124,8 @@ class PaymentController extends Controller
         $avatar = Cloudder::upload($avatar, null, [
             'format' => 'jpg',
             'crop'   => 'fill',
-            'width'  => 250,
-            'height' => 250,
+            'width'  => '',
+            'height' => '',
         ]);
         return  Cloudder::getResult()['url'];
     }
