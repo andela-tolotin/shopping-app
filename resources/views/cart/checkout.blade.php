@@ -22,43 +22,16 @@
 		<hr class="line-separator">
 		<!-- CART OVERVIEW ITEM -->
 		<div class="cart-overview-item">
-			<p class="text-header small">Westeros Custom Clothing <span class="primary">x1</span></p>
-			<p class="price"><span>$</span>14</p>
-			<p class="category primary">PSD Templates</p>
+			<p class="text-header small">{{ $product->name }} <span class="primary">x1</span></p>
+			<p class="price"><span>p</span> {{ $product->price }}</p>
+			<p class="category primary">{{ $product->category->name }}</p>
 		</div>
-		<!-- /CART OVERVIEW ITEM -->
-		<!-- CART OVERVIEW ITEM -->
-		<div class="cart-overview-item">
-			<p class="text-header small">Miniverse - Hero Image Composer <span class="primary">x1</span></p>
-			<p class="price"><span>$</span>12</p>
-			<p class="category primary">Hero Images</p>
-		</div>
-		<!-- /CART OVERVIEW ITEM -->
-		<!-- CART OVERVIEW ITEM -->
-		<div class="cart-overview-item bordered">
-			<p class="text-header small">Pixel Diamond Gaming Shop <span class="primary">x1</span></p>
-			<p class="price"><span>$</span>86</p>
-			<p class="category primary">Shopify</p>
-		</div>
-		<!-- /CART OVERVIEW ITEM -->
 		<!-- CART TOTAL -->
 		<div class="cart-total small">
-			<p class="price"><span>$</span>112</p>
+			<p class="price"><span>p</span>{{ $product->price }}</p>
 			<p class="text-header subtotal">Cart Subtotal</p>
 		</div>
-		<!-- /CART TOTAL -->
-		<!-- CART TOTAL -->
-		<div class="cart-total small">
-			<p class="price"><span>$</span>5</p>
-			<p class="text-header subtotal">Shipping</p>
-		</div>
-		<!-- /CART TOTAL -->
-		<!-- CART TOTAL -->
-		<div class="cart-total small">
-			<p class="price"><span>$</span>117</p>
-			<p class="text-header subtotal">Cart Total</p>
-		</div>
-		<!-- /CART TOTAL -->
+		
 	</div>
 	<!-- /FORM BOX ITEM -->
 	<!-- FORM BOX ITEM -->
