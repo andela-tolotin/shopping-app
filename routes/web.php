@@ -63,5 +63,6 @@ Route::group(['middleware' => ['auth.isAdmin']], function() {
 
 Route::get('/product/{id}/view', 'ProductController@viewProduct')->name('product-details');
 Route::get('/carts', 'CartController@viewCart')->name('view_carts');
+Route::get('/product/{id}/checkout', 'CartController@checkout')->name('purchase_product');
 
 
