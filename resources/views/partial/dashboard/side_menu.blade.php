@@ -176,6 +176,7 @@
     </ul>
     @endcan
     <!-- /DROPDOWN -->
+    @can ( 'ADMIN', Auth::user()->role_id )
     <!-- SIDE MENU TITLE -->
     <p class="side-menu-title">Advertisement</p>
     <!-- /SIDE MENU TITLE -->
@@ -198,6 +199,7 @@
         </li>
     </ul>
     <!-- /DROPDOWN -->
+    @endcan
     <a href="{{ route('logout') }}" class="button medium secondary">Logout</a>
 </div>
 <!-- /SIDE MENU -->
