@@ -56,7 +56,10 @@
 			@endif
 			>
 			</script>
+			{{ csrf_field() }}
 			<input type="hidden" name="amount" value="{{ $product->price * 1000 * 100 }}" />
+			<input type="hidden" name="product_id" value="{{ $product->id }}" />
+			<input type="hidden" name="payment_gateway_id" value="{{ $paymentGateway->id }}" />
 		</form>
 		@endif
 		@endforeach

@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Cloudder;
 use Stripe\Stripe;
+use Stripe\Customer;
+use Stripe\Charge;
+use App\Product;
+use App\Transaction;
 use App\PaymentGateway;
 use Illuminate\Http\Request;
 use App\Http\Requests\ConfigPaymentRequest;
@@ -13,7 +17,59 @@ class PaymentController extends Controller
 {
     public function payWithStrip(Request $request)
     {
-        dd($request->all());
+        $amount = $_POST['amount'];
+        $token  = $_POST['stripeToken'];
+        $email = $_POST["stripeEmail"];
+
+        //Set the Stripe Api Key
+        $stripe = [
+            "secret_key"      => env('STRIPE_SECRET'),
+            "publishable_key" => env('STRIPE_KEY')
+        ];
+
+        Stripe::setApiKey($stripe['secret_key']);
+        
+        // create the customer
+        $customer = Customer::create([
+            'email' => $email,
+            'source'  => $token
+        ]);
+        // charge the customer
+        $charge = Charge::create([
+            'customer' => $customer->id,
+            'amount'   => $amount,
+            'currency' => 'kwr'
+        ]);
+
+        dd($charge);
+        // interact with the point wallet
+        if (! is_null(Auth::user())) {
+            $pointWallet = PointWallet::findOneByUser(Auth::user()->id);
+
+            if ($pointWallet instanceof PointWallet) {
+
+            }
+        }
+        // find the product details
+        $productId = $_POST['product_id']; // product id
+        $product = Product::findOneById($productId);
+
+        if ($product instanceof Product) {
+            $paymentGatewayId = $_POST['payment_gateway_id'];
+            // add the transaction history
+            $transaction = Transaction::create([
+                'currency' => 'KWR', 
+                'item_name' => $product->name, 
+                'item_quantity' => 1, 
+                'item_price' => $product->price, 
+                'email' => $email, 
+                'phone' => null, 
+                'status' => 0, 
+                'payment_gateway_id' => $paymentGatewayId, 
+                'product_id' => $product->id, 
+                'user_id' => null,
+            ]);
+        }
     }
 
 	public function deletePayment(Request $request, $id)
