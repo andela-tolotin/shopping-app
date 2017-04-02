@@ -88,6 +88,8 @@ class PaymentController extends Controller
                 'user_id' => is_null(Auth::user()) ? null : Auth::user()->id,
                 'transaction_id' => $charge->balance_transaction
             ]);
+
+            // store the purchase in the order table
         }
     }
 
