@@ -52,11 +52,17 @@
 		</p>
 		<label class="rl-label">Choose your Payment Method</label>
 		<!-- RADIO -->
+		@if (Auth::check())
+		<?php
+		  $wallet = Auth::user()->pointWallet;
+		  $balance = (int) ($wallet->point - $wallet->balance)
+		?>
 		<input type="radio" form="checkout-form" id="credit_card" name="payment_method" value="cc">
 		<label for="credit_card" class="linked-radio">
 			<span class="radio primary"><span></span></span>
-			Point Wallet
+			Point Wallet : Balance {{ $balance }} point(s)
 		</label>
+		@endif
 		<!-- /RADIO -->
 		@if ($paymentGateways->count() > 0)
 		@foreach($paymentGateways as $paymentGateway)
