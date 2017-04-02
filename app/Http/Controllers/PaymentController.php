@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use Auth;
 use Cloudder;
+use App\Order;
+use App\Product;
+use Stripe\Charge;
 use Stripe\Stripe;
 use Stripe\Customer;
-use Stripe\Charge;
-use App\Product;
 use App\PointWallet;
 use App\Transaction;
 use App\PaymentGateway;
@@ -23,7 +24,6 @@ class PaymentController extends Controller
         $token  = $_POST['stripeToken'];
         $email = $_POST["stripeEmail"];
         $paymentGatewayId = $_POST['payment_gateway_id'];
-
         //Set the Stripe Api Key
         $stripe = [
             "secret_key"      => env('STRIPE_SECRET'),
@@ -42,19 +42,15 @@ class PaymentController extends Controller
             'amount'   => $amount,
             'currency' => 'krw'
         ]);
-
-        //dd($charge);
         //Transactions from the charge object
         $transactionId = $charge->balance_transaction;
         $transactionAmount = $charge->amount;
         $transactionCurrency = $charge->currency;
         $transactionStatus = $charge->paid;
         $multiplier = 100000; // 1 krw = 1 point and payment is made in 100's
-
         // interact with the point wallet
         if (! is_null(Auth::user())) {
             $pointWallet = PointWallet::findOneByUser(Auth::user()->id);
-    
             if ($pointWallet instanceof PointWallet) {
                 $pointWallet->update([
                     'user_id' => Auth::user()->id, 
@@ -90,6 +86,19 @@ class PaymentController extends Controller
             ]);
 
             // store the purchase in the order table
+            $order = Order::create([
+                'user_id' => is_null(Auth::user()) ? null : Auth::user()->id,
+                'product_id' => $product->id,
+                'transaction_id' => $transaction->id,
+                'status' => 0,
+            ]);
+
+            if ($transactionStatus) {
+                // return a flash message regarding the payment status
+                return redirect('purchase_product')->with('status', true);
+            }
+            // return a flash message regarding the status of the payment
+            return redirect('purchase_product')->with('status', false);
         }
     }
 

@@ -37,6 +37,19 @@
 	<div class="form-box-item">
 		<h4>Payment &amp; Confirmation</h4>
 		<hr class="line-separator">
+		<p>
+		@if (!empty(session('status')))
+			@if (session('status'))
+			<div class="alert alert-success">
+				Your Payment was successful!
+			</div>
+			@else
+			<div class="alert alert-danger">
+				Your Payment was not successful!
+			</div>
+			@endif
+		@endif
+		</p>
 		<label class="rl-label">Choose your Payment Method</label>
 		<!-- RADIO -->
 		<input type="radio" form="checkout-form" id="credit_card" name="payment_method" value="cc">
@@ -69,4 +82,22 @@
 	<!-- /FORM BOX ITEM -->
 </div>
 <!-- /FORM BOX ITEMS -->
+<style type="text/css">
+	.alert-success {
+		color: #3c763d;
+		background-color: #dff0d8;
+		border-color: #d6e9c6;
+	}
+	.alert {
+		padding: 15px;
+		margin-bottom: 20px;
+		border: 1px solid transparent;
+		border-radius: 4px;
+	}
+	.alert-danger {
+		color: #a94442;
+		background-color: #f2dede;
+		border-color: #ebccd1;
+	}
+</style>
 @endsection
