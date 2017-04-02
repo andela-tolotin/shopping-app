@@ -61,6 +61,11 @@ class User extends Authenticatable
         return $this->hasMany('App\Advert');
     }
 
+    public function orders()
+    {
+        return $this->hasMany('App\Order');
+    }
+
     public function scopeFindOneByEmail($query, $email)
     {
         return $query

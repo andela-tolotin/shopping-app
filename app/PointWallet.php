@@ -28,11 +28,10 @@ class PointWallet extends Model
             ->first();
     }
 
-    public function scopeFindOneByName($query, $name)
+    public function scopeFindOneByUser($query, $user)
     {
         return $query
-            ->where('name', ucwords($name))
-            ->orWhere('name', strtolower($name))
+            ->where('user_id', $user)
             ->first();
     }
 
