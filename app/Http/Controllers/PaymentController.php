@@ -47,7 +47,7 @@ class PaymentController extends Controller
         $transactionAmount = $charge->amount;
         $transactionCurrency = $charge->currency;
         $transactionStatus = $charge->paid;
-        $multiplier = 100000; // 1 krw = 1 point and payment is made in 100's
+        $multiplier = 1000; // 1 krw = 1 point and payment is made in 100's
         // interact with the point wallet
         if (! is_null(Auth::user())) {
             $pointWallet = PointWallet::findOneByUser(Auth::user()->id);
@@ -55,13 +55,13 @@ class PaymentController extends Controller
                 $pointWallet->update([
                     'user_id' => Auth::user()->id, 
                     'payment_gateway_id' => $paymentGatewayId, 
-                    'point' => $pointWallet->point + ($amount / $multiplier),
+                    'point' => $pointWallet->point + ($transactionAmount / $multiplier),
                 ]);
             } else {
                 PointWallet::create([
-                    'user_id' => Auth::user()->id, 
-                    'payment_gateway_id' => $paymentGatewayId, 
-                    'point' => (int) ($amount / $multiplier),
+                    'user_id' => Auth::user()->id,
+                    'payment_gateway_id' => $paymentGatewayId,
+                    'point' => ($transactionAmount / $multiplier),
                 ]);
             }
         }
@@ -87,7 +87,7 @@ class PaymentController extends Controller
 
             // store the purchase in the order table
             $order = Order::create([
-                'user_id' => is_null(Auth::user()) ? null : Auth::user()->id,
+                //'user_id' => is_null(Auth::user()) ? null : Auth::user()->id,
                 'product_id' => $product->id,
                 'transaction_id' => $transaction->id,
                 'status' => 0,
@@ -95,10 +95,14 @@ class PaymentController extends Controller
 
             if ($transactionStatus) {
                 // return a flash message regarding the payment status
-                return redirect('purchase_product')->with('status', true);
+                return redirect()
+                ->route('purchase_product', ['id' => $product->id])
+                ->with('status', true);
             }
             // return a flash message regarding the status of the payment
-            return redirect('purchase_product')->with('status', false);
+            return redirect()
+                ->route('purchase_product', ['id' => $product->id])
+                ->with('status', false);
         }
     }
 

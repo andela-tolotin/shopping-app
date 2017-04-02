@@ -23,12 +23,13 @@ class AddForeignKeysToTransactions extends Migration
                 ->onDelete('cascade');
 
             $table->integer('user_id')
-                ->unsigned();
+                ->nullable();
+                //->unsigned();
 
-            $table->foreign('user_id')
-                ->references('id')
-                ->on('users')
-                ->onDelete('cascade');
+            // $table->foreign('user_id')
+            //     ->references('id')
+            //     ->on('users')
+            //     ->onDelete('cascade');
 
            $table->integer('payment_gateway_id')
                 ->unsigned();
