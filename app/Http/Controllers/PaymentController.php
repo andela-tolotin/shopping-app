@@ -48,20 +48,18 @@ class PaymentController extends Controller
         $transactionCurrency = $charge->currency;
         $transactionStatus = $charge->paid;
         $multiplier = 1000; // 1 krw = 1 point and payment is made in 100's
+        $productAmount = ($transactionAmount / $multiplier);
         // interact with the point wallet
         if (! is_null(Auth::user())) {
             $pointWallet = PointWallet::findOneByUser(Auth::user()->id);
             if ($pointWallet instanceof PointWallet) {
-                $pointWallet->update([
-                    'user_id' => Auth::user()->id, 
-                    'payment_gateway_id' => $paymentGatewayId, 
-                    'point' => $pointWallet->point + ($transactionAmount / $multiplier),
-                ]);
+                $pointWallet->point = $pointWallet->point + $productAmount;
+                $pointWallet->save();
             } else {
                 PointWallet::create([
                     'user_id' => Auth::user()->id,
                     'payment_gateway_id' => $paymentGatewayId,
-                    'point' => ($transactionAmount / $multiplier),
+                    'point' => (int) $productAmount,
                 ]);
             }
         }
@@ -72,26 +70,35 @@ class PaymentController extends Controller
         if ($product instanceof Product) {
             // add the transaction history
             $transaction = Transaction::create([
-                'currency' => 'KRW', 
-                'item_name' => $product->name, 
-                'item_quantity' => 1, 
-                'item_price' => $product->price, 
-                'email' => $email, 
-                'phone' => null, 
-                'status' => $transactionStatus ? 1 : 0, 
-                'payment_gateway_id' => $paymentGatewayId, 
-                'product_id' => $product->id, 
+                'currency' => 'KRW',
+                'item_name' => $product->name,
+                'item_quantity' => 1,
+                'item_price' => $product->price,
+                'email' => $email,
+                'phone' => null,
+                'status' => $transactionStatus ? 1 : 0,
+                'payment_gateway_id' => $paymentGatewayId,
+                'product_id' => $product->id,
                 'user_id' => is_null(Auth::user()) ? null : Auth::user()->id,
                 'transaction_id' => $charge->balance_transaction
             ]);
 
             // store the purchase in the order table
-            $order = Order::create([
-                //'user_id' => is_null(Auth::user()) ? null : Auth::user()->id,
+            Order::create([
                 'product_id' => $product->id,
                 'transaction_id' => $transaction->id,
                 'status' => 0,
             ]);
+
+            if (! is_null(Auth::user())) {
+                // deduct money from point wallet
+                $transactions = array_pluck(Auth::user()->transactions, 'item_price');
+                $totalTransactions = (int) array_sum($transactions);
+                // find the point wallet and update the balance
+                $pWallet = PointWallet::findOneByUser(Auth::user()->id);
+                $pWallet->balance = $totalTransactions;
+                $pWallet->save();
+            }
 
             if ($transactionStatus) {
                 // return a flash message regarding the payment status
