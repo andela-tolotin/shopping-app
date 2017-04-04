@@ -38,7 +38,7 @@
 		<h4>Payment &amp; Confirmation</h4>
 		<hr class="line-separator">
 		<p>
-		@if (!empty(session('status')))
+			@if (!empty(session('status')))
 			@if (session('status'))
 			<div class="alert alert-success">
 				Your Payment was successful!
@@ -48,14 +48,14 @@
 				Your Payment was not successful!
 			</div>
 			@endif
-		@endif
+			@endif
 		</p>
 		<label class="rl-label">Choose your Payment Method</label>
 		<!-- RADIO -->
 		@if (Auth::check())
 		<?php
-		  $wallet = Auth::user()->pointWallet;
-		  $balance = (int) ($wallet->point - $wallet->balance)
+		$wallet = Auth::user()->pointWallet;
+		$balance = (int) ($wallet->point - $wallet->balance)
 		?>
 		<input type="radio" form="checkout-form" id="credit_card" name="payment_method" value="cc">
 		<label for="credit_card" class="linked-radio">
@@ -80,6 +80,41 @@
 			<input type="hidden" name="product_id" value="{{ $product->id }}" />
 			<input type="hidden" name="payment_gateway_id" value="{{ $paymentGateway->id }}" />
 		</form>
+		@endif
+		@if ($paymentGateway->name == 'PayPal')
+		<script src="https://www.paypalobjects.com/api/checkout.js"></script>
+		<div id="paypal-button-container"></div>
+		<script>
+		// Render the PayPal button
+		paypal.Button.render({
+			// Set your environment
+			env: 'sandbox', // sandbox | production
+			// PayPal Client IDs - replace with your own
+			// Create a PayPal app: https://developer.paypal.com/developer/applications/create
+			client: {
+			sandbox: '{{ $paymentGateway->client_id }}',
+			//production: 'Aco85QiB9jk8Q3GdsidqKVCXuPAAVbnqm0agscHCL2-K2Lu2L6MxDU2AwTZa-ALMn_N0z-s2MXKJBxqJ'
+			},
+			// Wait for the PayPal button to be clicked
+			payment: function() {
+			// Make a client-side call to the REST api to create the payment
+			return paypal.rest.payment.create(this.props.env, this.props.client, {
+			transactions: [
+			{
+			amount: { total: '0.01', currency: 'KRW' }
+			}
+			]
+		});
+		},
+		// Wait for the payment to be authorized by the customer
+		onAuthorize: function(data, actions) {
+			// Execute the payment
+			return actions.payment.execute().then(function() {
+			document.querySelector('#paypal-button-container').innerText = 'Payment Complete!';
+		});
+		}
+		}, '#paypal-button-container');
+		</script>
 		@endif
 		@endforeach
 		@endif
