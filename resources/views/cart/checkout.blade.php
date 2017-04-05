@@ -90,10 +90,10 @@
 <script src="https://www.paypalobjects.com/api/checkout.js"></script>
 <script>
     paypal.Button.render({
-        env: 'production', // Optional: specify 'sandbox' environment
+        env: 'sandbox', // Optional: specify 'sandbox' environment
         client: {
-            //sandbox:    'AFcWxV21C7fd0v3bYYYRCpSSRl31AbhPp6X-xX4lPXO3qfYiQJpyygbo',
-            production: 'AFcWxV21C7fd0v3bYYYRCpSSRl31AbhPp6X-xX4lPXO3qfYiQJpyygbo'
+            sandbox:    'AbYMXyhG_RyeMpjhz3G-nmRK3jAsRl3DIkXCv_uUCLY5vqtxbyi3Nx21XamrxtbbwiSzJ9JCOPdNcucX',
+           // production: 'AFcWxV21C7fd0v3bYYYRCpSSRl31AbhPp6X-xX4lPXO3qfYiQJpyygbo'
         },
         payment: function() {
             var env    = this.props.env;
@@ -101,7 +101,7 @@
             return paypal.rest.payment.create(env, client, {
                 transactions: [
                     {
-                        amount: { total: '1.00', currency: 'USD' }
+                        amount: { total: '{{ $product->price * 1000 }}', currency: 'KRW' }
                     }
                 ]
             });
