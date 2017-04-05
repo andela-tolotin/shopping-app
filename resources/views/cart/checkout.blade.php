@@ -56,9 +56,9 @@
 		<?php
 		$balance = 0;
 		if (!is_null(Auth::user()->pointWallet)) {
-			$wallet = Auth::user()->pointWallet
-			$balance = (int) ($wallet->point - $wallet->balance)
-		};
+			$wallet = Auth::user()->pointWallet;
+			$balance = (int) ($wallet->point - $wallet->balance);
+		}
 		?>
 		<input type="radio" form="checkout-form" id="credit_card" name="payment_method" value="cc">
 		<label for="credit_card" class="linked-radio">
