@@ -38,7 +38,7 @@
 		<h4>Payment &amp; Confirmation</h4>
 		<hr class="line-separator">
 		<p>
-		@if (!empty(session('status')))
+			@if (!empty(session('status')))
 			@if (session('status'))
 			<div class="alert alert-success">
 				Your Payment was successful!
@@ -48,14 +48,17 @@
 				Your Payment was not successful!
 			</div>
 			@endif
-		@endif
+			@endif
 		</p>
 		<label class="rl-label">Choose your Payment Method</label>
 		<!-- RADIO -->
 		@if (Auth::check())
 		<?php
-		  $wallet = Auth::user()->pointWallet;
-		  $balance = (int) ($wallet->point - $wallet->balance)
+		$balance = 0;
+		if (!is_null(Auth::user()->pointWallet)) {
+			$wallet = Auth::user()->pointWallet;
+			$balance = (int) ($wallet->point - $wallet->balance);
+		}
 		?>
 		<input type="radio" form="checkout-form" id="credit_card" name="payment_method" value="cc">
 		<label for="credit_card" class="linked-radio">
@@ -80,6 +83,39 @@
 			<input type="hidden" name="product_id" value="{{ $product->id }}" />
 			<input type="hidden" name="payment_gateway_id" value="{{ $paymentGateway->id }}" />
 		</form>
+		@endif
+		@if ($paymentGateway->name == 'PayPal')
+		  <div id="paypal-button"></div> 
+
+<script src="https://www.paypalobjects.com/api/checkout.js"></script>
+<script>
+    paypal.Button.render({
+        env: 'sandbox', // Optional: specify 'sandbox' environment
+        client: {
+            sandbox:    '{{ $paymentGateway->client_id }}',
+           // production: 'AFcWxV21C7fd0v3bYYYRCpSSRl31AbhPp6X-xX4lPXO3qfYiQJpyygbo'
+        },
+        payment: function() {
+            var env    = this.props.env;
+            var client = this.props.client;
+            return paypal.rest.payment.create(env, client, {
+                transactions: [
+                    {
+                        amount: { total: '{{ $product->price * 1000 }}', currency: 'KRW' }
+                    }
+                ]
+            });
+        },
+        commit: true, // Optional: show a 'Pay Now' button in the checkout flow
+        onAuthorize: function(data, actions) {
+            // Optional: display a confirmation page here
+            return actions.payment.execute().then(function() {
+                // Show a success page to the buyer
+            });
+        }
+
+    }, '#paypal-button');
+</script>
 		@endif
 		@endforeach
 		@endif
