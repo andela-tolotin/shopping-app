@@ -92,7 +92,7 @@
     paypal.Button.render({
         env: 'sandbox', // Optional: specify 'sandbox' environment
         client: {
-            sandbox:    'AbYMXyhG_RyeMpjhz3G-nmRK3jAsRl3DIkXCv_uUCLY5vqtxbyi3Nx21XamrxtbbwiSzJ9JCOPdNcucX',
+            sandbox:    '{{ $paymentGateway->client_id }}',
            // production: 'AFcWxV21C7fd0v3bYYYRCpSSRl31AbhPp6X-xX4lPXO3qfYiQJpyygbo'
         },
         payment: function() {
