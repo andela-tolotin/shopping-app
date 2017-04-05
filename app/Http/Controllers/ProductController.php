@@ -171,6 +171,14 @@ class ProductController extends Controller
         }
     }
 
+    /**
+     * View product created by the user
+     *
+     * @param $id
+     * @param $request
+     *
+     * @return mixed
+     */
     public function viewProduct(Request $request, $id)
     {
         $product = Product::findOneById($id);

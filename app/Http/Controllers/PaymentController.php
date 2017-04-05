@@ -88,6 +88,7 @@ class PaymentController extends Controller
                 'product_id' => $product->id,
                 'transaction_id' => $transaction->id,
                 'status' => 0,
+                'user_id' => Auth::user()->id ?? null,
             ]);
 
             if (! is_null(Auth::user())) {
