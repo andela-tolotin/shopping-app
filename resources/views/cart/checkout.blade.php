@@ -54,8 +54,11 @@
 		<!-- RADIO -->
 		@if (Auth::check())
 		<?php
-		$wallet = Auth::user()->pointWallet;
-		$balance = (int) ($wallet->point - $wallet->balance)
+		$balance = 0;
+		if (!is_null(Auth::user()->pointWallet)) {
+			$wallet = Auth::user()->pointWallet
+			$balance = (int) ($wallet->point - $wallet->balance)
+		};
 		?>
 		<input type="radio" form="checkout-form" id="credit_card" name="payment_method" value="cc">
 		<label for="credit_card" class="linked-radio">
@@ -82,39 +85,37 @@
 		</form>
 		@endif
 		@if ($paymentGateway->name == 'PayPal')
-		<script src="https://www.paypalobjects.com/api/checkout.js"></script>
-		<div id="paypal-button-container"></div>
-		<script>
-		// Render the PayPal button
-		paypal.Button.render({
-			// Set your environment
-			env: 'sandbox', // sandbox | production
-			// PayPal Client IDs - replace with your own
-			// Create a PayPal app: https://developer.paypal.com/developer/applications/create
-			client: {
-			sandbox: '{{ $paymentGateway->client_id }}',
-			//production: 'Aco85QiB9jk8Q3GdsidqKVCXuPAAVbnqm0agscHCL2-K2Lu2L6MxDU2AwTZa-ALMn_N0z-s2MXKJBxqJ'
-			},
-			// Wait for the PayPal button to be clicked
-			payment: function() {
-			// Make a client-side call to the REST api to create the payment
-			return paypal.rest.payment.create(this.props.env, this.props.client, {
-			transactions: [
-			{
-			amount: { total: '0.01', currency: 'KRW' }
-			}
-			]
-		});
-		},
-		// Wait for the payment to be authorized by the customer
-		onAuthorize: function(data, actions) {
-			// Execute the payment
-			return actions.payment.execute().then(function() {
-			document.querySelector('#paypal-button-container').innerText = 'Payment Complete!';
-		});
-		}
-		}, '#paypal-button-container');
-		</script>
+		  <div id="paypal-button"></div> 
+
+<script src="https://www.paypalobjects.com/api/checkout.js"></script>
+<script>
+    paypal.Button.render({
+        env: 'production', // Optional: specify 'sandbox' environment
+        client: {
+            //sandbox:    'AFcWxV21C7fd0v3bYYYRCpSSRl31AbhPp6X-xX4lPXO3qfYiQJpyygbo',
+            production: 'AFcWxV21C7fd0v3bYYYRCpSSRl31AbhPp6X-xX4lPXO3qfYiQJpyygbo'
+        },
+        payment: function() {
+            var env    = this.props.env;
+            var client = this.props.client;
+            return paypal.rest.payment.create(env, client, {
+                transactions: [
+                    {
+                        amount: { total: '1.00', currency: 'USD' }
+                    }
+                ]
+            });
+        },
+        commit: true, // Optional: show a 'Pay Now' button in the checkout flow
+        onAuthorize: function(data, actions) {
+            // Optional: display a confirmation page here
+            return actions.payment.execute().then(function() {
+                // Show a success page to the buyer
+            });
+        }
+
+    }, '#paypal-button');
+</script>
 		@endif
 		@endforeach
 		@endif
