@@ -59,6 +59,11 @@ Route::group(['middleware' => ['auth.isAdmin']], function() {
     Route::post('/advert/upload', 'AdvertController@uploadAdvert')->name('upload_advert');
     Route::get('/adverts', 'AdvertController@listAdverts')->name('list_adverts');
     Route::get('/adverts/{id}/delete', 'AdvertController@deleteAdvert')->name('delete_advert');
+
+    //Order
+    Route::get('/orders', 'OrderController@listOrders')->name('list_orders');
+    Route::get('/order/{id}/delete', 'OrderController@deleteOrder')->name('delete_order');
+    Route::get('/order/{id}/approve', 'OrderController@approveOrder')->name('approve_order');
 });
 
 Route::get('/product/{id}/view', 'ProductController@viewProduct')->name('product-details');
