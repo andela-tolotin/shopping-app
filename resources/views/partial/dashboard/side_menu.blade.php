@@ -57,9 +57,9 @@
         </li>
         <!-- DROPDOWN ITEM -->
         <li class="dropdown-item">
-            <a href="dashboard-purchases.html">
+            <a href="{{ route('list_orders') }}">
                 <span class="sl-icon icon-tag"></span>
-                Your Purchases
+                Your Orders
             </a>
         </li>
     </ul>
