@@ -20,6 +20,8 @@ Route::get('/login', 'Auth\LoginController@showLoginForm')->name('load_login');
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('load_register');
 Route::post('/profile/update', 'ProfileUpdateController@updateProfile')->name('profile_update');
+Route::get('/user/orders', 'OrderController@listCurrentUserOrders')->name('list_user_orders');
+Route::get('/order/{id}/destroy', 'OrderController@destroyOrder')->name('destroy_order');
 
 Auth::routes();
 
@@ -31,6 +33,7 @@ Route::group(['middleware' => ['auth.isAdmin']], function() {
     Route::get('/product/{id}/edit', 'ProductController@editProductForm')->name('edit_product');
     Route::post('/product/{id}/update', 'ProductController@updateProduct')->name('update_product');
     Route::get('/product/{id}/delete', 'ProductController@deleteProduct')->name('delete_product');
+
 
     //Category
     Route::get('/category', 'CategoryController@showCategoryForm')->name('load_category');
@@ -59,7 +62,9 @@ Route::group(['middleware' => ['auth.isAdmin']], function() {
     Route::post('/advert/upload', 'AdvertController@uploadAdvert')->name('upload_advert');
     Route::get('/adverts', 'AdvertController@listAdverts')->name('list_adverts');
     Route::get('/adverts/{id}/delete', 'AdvertController@deleteAdvert')->name('delete_advert');
+});
 
+Route::group(['middleware' => ['auth.isAdminAndManager']], function() {
     //Order
     Route::get('/orders', 'OrderController@listOrders')->name('list_orders');
     Route::get('/order/{id}/delete', 'OrderController@deleteOrder')->name('delete_order');
