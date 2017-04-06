@@ -11,12 +11,11 @@
 			<th>Customer name</th>
 			<th>Item Name</th>
 			<th>Item Quantity</th>
-			<th>Price</th>
 			<th>Payment Status</th>
 			<th>Admin Status</th>
-			<th>Approval</th>
-			<th>Delete</th>
+			<th>Price</th>
 		</tr>
+
 	</thead>
 	<tbody>
 		@if ($orders->count() > 0)
@@ -31,7 +30,6 @@
 				@endif
 			<td>{{ $order->transaction->item_name }}</td>
 			<td>{{ $order->transaction->item_quantity }}</td>
-			<td>{{ $order->transaction->item_price }}</td>
 			<td>
 				@if ($order->transaction->status === 1)
 					Succesful
@@ -46,18 +44,22 @@
 					Approved
 				@endif
 			</td>
-			<td><a id ="approve" data-id="{{ $order->id }}" class="approve-order" href="#" title="Approve {{ $order->id }}"> <i class="glyphicon glyphicon-check"></i>
-				@if ($order->status === 0)
-					Approve
-				@else
-					Dissapprove
-				@endif 
-			</a></td>
-			<td><a data-id="{{ $order->id }}" class="delete-order" href="#" title="Delete {{ $order->name }}"> <i class="glyphicon glyphicon-trash Delete"></i> Delete</a></td>
+			<td>{{ $order->transaction->item_price }}</td>
 		</tr>
 		@endforeach
 		@endif
 	</tbody>
+	<tfoot>
+		<tr>
+			<td><b>Total Points</b></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td><b>{{ $orderTotal }}</b></td>
+		</tr>
+	</tfoot>
 </table>
 <p>
 	@if ($orders->count() > 0)

@@ -35,18 +35,6 @@ $(document).ready(function() {
         event.preventDefault();
     });
 
-    $(".destroy-order").click(function (event) {
-        var id   = $(this).data("id");
-
-        if (confirm('Are you sure you want to delete this item?')) {
-            var id = $(this).data("id");
-
-            window.location.href = "/order/"+id+"/destroy";
-        }
-
-        event.preventDefault();
-    });
-
     $(".approve-order").click(function (event) {
         var id   = $(this).data("id");
 

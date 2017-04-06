@@ -21,7 +21,6 @@ Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('load_register');
 Route::post('/profile/update', 'ProfileUpdateController@updateProfile')->name('profile_update');
 Route::get('/user/orders', 'OrderController@listCurrentUserOrders')->name('list_user_orders');
-Route::get('/order/{id}/destroy', 'OrderController@destroyOrder')->name('destroy_order');
 
 Auth::routes();
 
