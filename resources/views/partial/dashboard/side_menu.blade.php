@@ -47,7 +47,7 @@
         <!-- /DROPDOWN ITEM -->
         <!-- DROPDOWN ITEM -->
         <li class="dropdown-item">
-            <a href="dashboard-notifications.html">
+            <a href="#">
                 <span class="sl-icon icon-star"></span>
                 Notifications
             </a>
@@ -57,11 +57,23 @@
         </li>
         <!-- DROPDOWN ITEM -->
         <li class="dropdown-item">
-            <a href="{{ route('list_orders') }}">
+            <a href="{{ route('list_user_orders') }}">
                 <span class="sl-icon icon-tag"></span>
                 Your Orders
             </a>
         </li>
+        @can ( 'BUYER', Auth::user()->role_id )
+        <!-- DROPDOWN ITEM -->
+        <li class="dropdown-item">
+            <a href="{{ route('list_orders') }}">
+                <span class="sl-icon icon-star"></span>
+                Manage Orders
+            </a>
+            <!-- PIN -->
+            <span class="pin soft-edged big primary">49</span>
+            <!-- /PIN -->
+        </li>
+        @endcan
     </ul>
     <!-- /DROPDOWN -->
 

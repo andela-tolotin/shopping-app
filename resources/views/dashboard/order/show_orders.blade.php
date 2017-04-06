@@ -14,7 +14,9 @@
 			<th>Price</th>
 			<th>Payment Status</th>
 			<th>Admin Status</th>
+			@can ( 'BUYER', Auth::user()->role_id )
 			<th>Approval</th>
+			@endcan
 			<th>Delete</th>
 		</tr>
 	</thead>
@@ -46,14 +48,22 @@
 					Approved
 				@endif
 			</td>
-			<td><a id ="approve" data-id="{{ $order->id }}" class="approve-order" href="#" title="Approve {{ $order->id }}"> <i class="glyphicon glyphicon-check"></i>
-				@if ($order->status === 0)
-					Approve
-				@else
-					Dissapprove
-				@endif 
-			</a></td>
-			<td><a data-id="{{ $order->id }}" class="delete-order" href="#" title="Delete {{ $order->name }}"> <i class="glyphicon glyphicon-trash Delete"></i> Delete</a></td>
+			@can ( 'BUYER', Auth::user()->role_id )
+			<td>
+				<a id ="approve" data-id="{{ $order->id }}" class="approve-order" href="#" title="Approve {{ $order->id }}"> <i class="glyphicon glyphicon-check"></i>
+					@if ($order->status === 0)
+						Approve
+					@else
+						Dissapprove
+					@endif 
+				</a>
+			</td>
+			@endcan
+			@if (Auth::user()->role_id === 1)
+				<td><a data-id="{{ $order->id }}" class="destroy-order" href="#" title="Delete {{ $order->name }}"> <i class="glyphicon glyphicon-trash Delete"></i> Delete</a></td>
+			@else
+				<td><a data-id="{{ $order->id }}" class="delete-order" href="#" title="Delete {{ $order->name }}"> <i class="glyphicon glyphicon-trash Delete"></i> Delete</a></td>
+			@endif
 		</tr>
 		@endforeach
 		@endif

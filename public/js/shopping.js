@@ -25,12 +25,23 @@ $(document).ready(function() {
 
     $(".delete-order").click(function (event) {
         var id   = $(this).data("id");
-        console.log('This is me here', id);
 
         if (confirm('Are you sure you want to delete this item?')) {
             var id = $(this).data("id");
 
             window.location.href = "/order/"+id+"/delete";
+        }
+
+        event.preventDefault();
+    });
+
+    $(".destroy-order").click(function (event) {
+        var id   = $(this).data("id");
+
+        if (confirm('Are you sure you want to delete this item?')) {
+            var id = $(this).data("id");
+
+            window.location.href = "/order/"+id+"/destroy";
         }
 
         event.preventDefault();
