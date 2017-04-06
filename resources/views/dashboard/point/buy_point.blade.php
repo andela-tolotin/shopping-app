@@ -15,6 +15,7 @@
             </ul>
         </div>
         @endif
+        @foreach ($paymentGateways as $paymentGateway)
         @if ($paymentGateway->name == 'Stripe')
         <p> Pay with {{ $paymentGateway->name }}</p>
         <form action="{{ route('stripe_payment') }}" method="POST">
@@ -34,6 +35,7 @@
             <input type="hidden" name="payment_gateway_id" value="{{ $paymentGateway->id }}" />
         </form>
         @endif
+        @endforeach
     </div>
     <!-- /FORM POPUP CONTENT -->
 </div>

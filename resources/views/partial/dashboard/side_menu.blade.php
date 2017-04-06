@@ -186,6 +186,20 @@
             </a>
         </li>
     </ul>
+
+    <p class="side-menu-title">Point Wallet</p>
+    <!-- /SIDE MENU TITLE -->
+    <!-- DROPDOWN -->
+    <ul class="dropdown dark hover-effect">
+        <!-- DROPDOWN ITEM -->
+        <li class="dropdown-item">
+            <a href="{{ route('load_buy_point') }}">
+                <span class="sl-icon icon-arrow-up-circle"></span>
+                Buy Point
+            </a>
+        </li>
+        <!-- /DROPDOWN ITEM -->
+    </ul>
     @endcan
     <!-- /DROPDOWN -->
     @can ( 'ADMIN', Auth::user()->role_id )

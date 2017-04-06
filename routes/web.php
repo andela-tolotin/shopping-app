@@ -62,6 +62,9 @@ Route::group(['middleware' => ['auth.isAdmin']], function() {
     Route::post('/advert/upload', 'AdvertController@uploadAdvert')->name('upload_advert');
     Route::get('/adverts', 'AdvertController@listAdverts')->name('list_adverts');
     Route::get('/adverts/{id}/delete', 'AdvertController@deleteAdvert')->name('delete_advert');
+
+    //pointWallet
+    Route::get('/buy_point', 'PointWalletController@loadPointBag')->name('load_buy_point');
 });
 
 Route::group(['middleware' => ['auth.isAdminAndManager']], function() {
