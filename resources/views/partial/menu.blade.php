@@ -51,28 +51,22 @@
                 <ul class="dropdown small hover-effect closed">
                     <li class="dropdown-item">
                         <div class="dropdown-triangle"></div>
-                        <a href="author-profile.html">Profile Page</a>
+                        <a href="{{ route('profile') }}">Profile Page</a>
                     </li>
                     <li class="dropdown-item">
-                        <a href="dashboard-settings.html">Account Settings</a>
-                    </li>
-                    <li class="dropdown-item">
-                        <a href="dashboard-purchases.html">Your Purchases</a>
-                    </li>
-                    <li class="dropdown-item">
-                        <a href="dashboard-statement.html">Sales Statement</a>
+                        <a href="{{ route('list_orders') }}">Orders</a>
                     </li>
                     <li class="dropdown-item">
                         <a href="dashboard-buycredits.html">Buy Credits</a>
-                    </li>
-                    <li class="dropdown-item">
-                        <a href="dashboard-withdrawals.html">Withdrawals</a>
                     </li>
                     <li class="dropdown-item">
                         <a href="dashboard-uploaditem.html">Upload Item</a>
                     </li>
                     <li class="dropdown-item">
                         <a href="dashboard-manageitems.html">Manage Items</a>
+                    </li>
+                    <li class="dropdown-item">
+                        <a href="/logout">Log out</a>
                     </li>
                 </ul>
                 <!-- /DROPDOWN -->
