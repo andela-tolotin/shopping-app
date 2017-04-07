@@ -18,11 +18,14 @@ Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('l
 
 Auth::routes();
 
+Route::group(['middleware' => 'auth.isBuyer'], function () {
+    Route::get('/user/orders', 'OrderController@listCurrentUserOrders')->name('list_user_orders');
+});
+
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', 'HomeController@index')->name('dashboard_index');
     Route::get('/profile', 'ProfileUpdateController@editprofile')->name('profile');
     Route::post('/profile/update', 'ProfileUpdateController@updateProfile')->name('profile_update');
-    Route::get('/user/orders', 'OrderController@listCurrentUserOrders')->name('list_user_orders');
 });
 
 Route::group(['middleware' => ['auth.isAdmin']], function() {
