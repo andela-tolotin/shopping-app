@@ -8,8 +8,9 @@
 	<thead>
 		<tr>
 			<th>Sn</th>
-			<th>Thumbnails</th>
 			<th>Uploaded By</th>
+			<th>Thumbnails</th>
+			<th>Product Associated With</th>
 			<th>Delete</th>
 		</tr>
 	</thead>
@@ -20,10 +21,11 @@
 			<td>{{ $loop->index + 1 }}</td>
 			<td>{{ $advert->user->name }}</td>
 			<td>
-			@foreach(json_decode($advert->advert_photos) as $photo)
-			<img src="{{ $photo }}" class="img-responsive" alt="{{ $advert->user->name }}" style="width: 52px; height: auto; float: left; padding: 2px;">
-			@endforeach
+				@foreach(json_decode($advert->advert_photos) as $photo)
+				<img src="{{ $photo }}" class="img-responsive" alt="{{ $advert->user->name }}" style="width: 52px; height: auto; float: left; padding: 2px;">
+				@endforeach
 			</td>
+			<td>{{ $advert->product->name }}</td>
 			<td><a class="delete-advert" href="{{ route('delete_advert', ['id' => $advert->id ]) }}" title="Delete {{ $advert->name }}"> <i class="glyphicon glyphicon-trash Delete"></i> Delete</a></td>
 		</tr>
 		@endforeach

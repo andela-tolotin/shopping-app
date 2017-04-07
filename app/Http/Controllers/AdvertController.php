@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Auth;
 use Cloudder;
 use App\Advert;
+use App\Product;
 use Illuminate\Http\Request;
 use App\Http\Requests\AdvertRequest;
 
@@ -33,14 +34,17 @@ class AdvertController extends Controller
 
     public function loadAdvertForm()
     {
-    	return view('dashboard.advert.add_advert');
+        $products = product::all();
+
+    	return view('dashboard.advert.add_advert', compact('products'));
     }
 
     public function uploadAdvert(AdvertRequest $request)
     {
     	if (count($request->file('images')) > 0) {
     		$advert = Advert::create([
-    			'user_id' => Auth()->user()->id,
+    			'user_id'       => Auth()->user()->id,
+                'product_id'    => $request->product,
     			'advert_photos' => $this->uploadProductImage($request),
     		]);
 

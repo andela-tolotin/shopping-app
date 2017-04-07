@@ -6,12 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    //
     protected $fillable = [
         'name', 'price', 'description',
         'discount', 'tax', 'category_id',
         'product_img_url', 'user_id',
     ];
+
+    public function adverts()
+    {
+        return $this->hasMany('App\Advert');
+    }
 
     public function category()
     {

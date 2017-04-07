@@ -80,7 +80,7 @@ class PaymentController extends Controller
                 'payment_gateway_id' => $paymentGatewayId,
                 'product_id' => $product->id,
                 'user_id' => is_null(Auth::user()) ? null : Auth::user()->id,
-                'transaction_id' => $charge->balance_transaction
+                'transaction_ref_id' => $charge->balance_transaction
             ]);
 
             // store the purchase in the order table

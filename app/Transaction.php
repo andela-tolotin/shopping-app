@@ -11,7 +11,7 @@ class Transaction extends Model
         'currency', 'item_name', 'item_quantity', 
         'item_price', 'email', 'phone', 'status', 
         'payment_gateway_id', 'product_id', 'user_id',
-        'transaction_id',
+        'transaction_ref_id',
     ];
 
     public function paymentGateway()

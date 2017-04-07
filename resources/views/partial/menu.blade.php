@@ -42,6 +42,7 @@
                 <!-- USER INFORMATION -->
                 {{--  @if(Auth::check()) --}}
                 <p class="user-name">{{ Auth::user()->name }}</p>
+                <p class="user-money">{{ Auth::user()->role->name }}</p>
                 <!-- SVG ARROW -->
                 <svg class="svg-arrow">
                     <use xlink:href="#svg-arrow"></use>

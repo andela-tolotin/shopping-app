@@ -12,17 +12,18 @@
 */
 
 Route::get('/', 'HomeController@listProducts');
-
-Route::get('/profile', 'ProfileUpdateController@editprofile')->name('profile');
-Route::get('/home', 'HomeController@index')->name('dashboard_index');
-
 Route::get('/login', 'Auth\LoginController@showLoginForm')->name('load_login');
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('load_register');
-Route::post('/profile/update', 'ProfileUpdateController@updateProfile')->name('profile_update');
-Route::get('/user/orders', 'OrderController@listCurrentUserOrders')->name('list_user_orders');
 
 Auth::routes();
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/home', 'HomeController@index')->name('dashboard_index');
+    Route::get('/profile', 'ProfileUpdateController@editprofile')->name('profile');
+    Route::post('/profile/update', 'ProfileUpdateController@updateProfile')->name('profile_update');
+    Route::get('/user/orders', 'OrderController@listCurrentUserOrders')->name('list_user_orders');
+});
 
 Route::group(['middleware' => ['auth.isAdmin']], function() {
     //Product
