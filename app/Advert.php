@@ -6,8 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Advert extends Model
 {
-    protected $fillable = ['advert_photos', 'user_id'];
+    protected $fillable = ['advert_photos', 'user_id', 'product_id'];
 
+    public function product()
+    {
+        return $this->belongsTo('App\Product');
+    }
     public function user()
     {
     	return $this->belongsTo('App\User');

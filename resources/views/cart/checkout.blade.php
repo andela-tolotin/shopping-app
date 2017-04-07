@@ -67,7 +67,6 @@
 		</label>
 		@endif
 		<!-- /RADIO -->
-		@if (!Auth::check())
 		@if ($paymentGateways->count() > 0)
 		@foreach($paymentGateways as $paymentGateway)
 		@if ($paymentGateway->name == 'Stripe')
@@ -119,7 +118,6 @@
 </script>
 		@endif
 		@endforeach
-		@endif
 		@endif
 		<hr class="line-separator top">
 	</div>

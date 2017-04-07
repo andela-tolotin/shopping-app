@@ -26,6 +26,24 @@
                     <p class="upload-details"><input type="file" name="images[]" multiple="multiple" accept="image/*" required="required"></p>
                 </div>
             </div>
+            <div class="input-container">
+                <label for="product" class = "rl-label require">Product</label>
+                <label for="product" class="select-block">
+                    <select name="product" required="required">
+                        <option value="" >Select Product you want advert to be associated with</option>
+                        @foreach($products as $product)
+                        <option value="{{ $product->id }}">
+                            {{ $product->name }}
+                        </option>
+                        @endforeach
+                    </select>
+                    <!-- SVG ARROW -->
+                    <svg class="svg-arrow">
+                        <use xlink:href="#svg-arrow"></use>
+                    </svg>
+                    <!-- /SVG ARROW -->
+                </label>
+            </div>
             <button type="submit" class="button mid dark">Add Advert</button>
         </form>
     </div>

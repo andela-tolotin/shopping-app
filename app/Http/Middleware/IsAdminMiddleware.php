@@ -3,12 +3,38 @@
 namespace App\Http\Middleware;
 
 use Auth;
-use App\User;
 use Closure;
+use App\User;
+use Illuminate\Contracts\Auth\Guard;
 
 class IsAdminMiddleware
 {
+    /**
+     * The ADMIN role
+     *
+     * @var ISADMIN
+     */
     const ISADMIN = 'ADMIN';
+
+    /**
+     * The Guard implementation.
+     *
+     * @var Guard
+     */
+    protected $auth;
+
+    /**
+     * Create a new filter instance.
+     *
+     * @param Guard $auth
+     *
+     * @return void
+     */
+    public function __construct(Guard $auth)
+    {
+        $this->auth = $auth;
+    }
+
     /**
      * Handle an incoming request.
      *
@@ -19,6 +45,10 @@ class IsAdminMiddleware
     public function handle($request, Closure $next)
     {
         $user = Auth::user();
+
+        if (is_null($user)) {
+            return redirect()->guest('login');
+        }
 
         if ($user->role->name == self::ISADMIN) {
             return $next($request);
