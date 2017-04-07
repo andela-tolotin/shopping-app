@@ -15,7 +15,8 @@ class AddProductIdForeignKeyToAdvertsTable extends Migration
     {
         Schema::table('adverts', function (Blueprint $table) {
             $table->integer('product_id')
-                ->unsigned();
+                ->unsigned()
+                ->nullable();
 
             $table->foreign('product_id')
                 ->references('id')
