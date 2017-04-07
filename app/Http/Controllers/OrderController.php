@@ -29,9 +29,14 @@ class OrderController extends Controller
      */
     public function listCurrentUserOrders()
     {
-        $orders = Auth::user()->orders()->orderBy('created_at', 'DESC')->paginate(10);
-       
-        return view('dashboard.order.show_orders', compact('orders'));
+        $orders   = Auth::user()->orders()->orderBy('created_at', 'DESC')->paginate(10);
+        $orderTotal = 0;
+
+        foreach ($orders as $key => $value) {
+            $orderTotal += $value->transaction->item_price;
+        }
+
+        return view('dashboard.order.show_user_orders', compact('orders', 'orderTotal'));
     }
 
     /**
@@ -53,32 +58,6 @@ class OrderController extends Controller
             // code to user that something went wrong
 
             return redirect()->route('list_orders');
-        }
-    }
-
-    /**
-     * Delete order
-     *
-     * @param $id
-     *
-     * @return mixed
-     */
-    public function destroyOrder($id)
-    {
-        $order = Auth::user()->Orders->find($id);  
-        if (is_null($order) || empty($order)) {
-            // code to inform user that he cannot delete the order because either he is not the owner or order is empty
-            return redirect()->route('list_user_orders');
-        }
-        $deleteOrder = $order->delete();
-
-        if ($deleteOrder) {
-            // code to inform user that it was succesfully
-            return redirect()->route('list_user_orders');
-        } else {
-            // code to user that something went wrong
-
-            return redirect()->route('list_user_orders');
         }
     }
 
