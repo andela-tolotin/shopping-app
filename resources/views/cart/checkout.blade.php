@@ -60,10 +60,12 @@
 			$balance = (int) ($wallet->point - $wallet->balance);
 		}
 		?>
-		<input type="radio" form="checkout-form" id="credit_card" name="payment_method" value="cc">
+		{{-- <input type="radio" form="checkout-form" id="credit_card" name="payment_method" value="cc"> --}}
 		<label for="credit_card" class="linked-radio">
-			<span class="radio primary"><span></span></span>
+			{{-- <span class="radio primary"><span></span></span> --}}
 			Point Wallet : Balance {{ $balance }} point(s)
+			<hr class="line-separator top">
+			<button type="button" class="button mid dark" id="pay_with_point_wallet" data-id="{{ $product->id }}" data-point="{{ $balance }}">Pay</button>
 		</label>
 		@endif
 		<!-- /RADIO -->
