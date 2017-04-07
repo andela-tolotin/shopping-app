@@ -64,7 +64,8 @@ Route::group(['middleware' => ['auth.isAdmin']], function() {
     Route::get('/adverts/{id}/delete', 'AdvertController@deleteAdvert')->name('delete_advert');
 
     //pointWallet
-    Route::get('/buy_point', 'PointWalletController@loadPointBag')->name('load_buy_point');
+    Route::get('/add_amount', 'PointWalletController@loadPointAmountForm')->name('load_buy_point');
+    Route::get('/buy_point', 'PointWalletController@loadPointBag')->name('buy_point');
 });
 
 Route::group(['middleware' => ['auth.isAdminAndManager']], function() {

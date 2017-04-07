@@ -19,18 +19,14 @@
         @if ($paymentGateway->name == 'Stripe')
         <p> Pay with {{ $paymentGateway->name }}</p>
         <form action="{{ route('stripe_payment') }}" method="POST">
-            <div class="input-container">
-                <label for="name" class="rl-label required">Amount</label>
-                <input type="text" id="name" name="name" placeholder="Enter name of amount to buy here" required="required">
-            </div>
-            <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="{{ $paymentGateway->client_id }}" data-amount="" data-name="Buy Point" data-description="Payments" data-image="{{ $paymentGateway->logo }}" data-locale="auto" data-currency="krw"
+            <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="{{ $paymentGateway->client_id }}" data-amount="{{ $amount }}" data-name="Buy Point" data-description="Payments" data-image="{{ $paymentGateway->logo }}" data-locale="auto" data-currency="krw"
             @if (Auth::check())
             data-email="{{ Auth::user()->email }}"
             @endif
             >
             </script>
             {{ csrf_field() }}
-            <input type="hidden" name="amount" value="" />
+            <input type="hidden" name="amount" id="amount" value="{{ $amount }}" />
             <input type="hidden" name="payment_gateway_id" value="{{ $paymentGateway->id }}" />
         </form>
         @endif
