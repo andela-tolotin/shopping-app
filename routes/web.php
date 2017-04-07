@@ -62,6 +62,7 @@ Route::group(['middleware' => ['auth.isAdmin']], function() {
     Route::get('/advert', 'AdvertController@loadAdvertForm')->name('load_advert');
     Route::post('/advert/upload', 'AdvertController@uploadAdvert')->name('upload_advert');
     Route::get('/adverts', 'AdvertController@listAdverts')->name('list_adverts');
+    Route::get('/advert/{id}/display', 'AdvertController@displayAdvert')->name('display_advert');
     Route::get('/adverts/{id}/delete', 'AdvertController@deleteAdvert')->name('delete_advert');
 
     //pointWallet

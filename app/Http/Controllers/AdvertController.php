@@ -84,4 +84,26 @@ class AdvertController extends Controller
 
         return json_encode($urls);
     }
+
+    /**
+     * Display/Undisplay advert
+     *
+     * @param $id
+     *
+     * @return mixed
+     */
+    public function displayAdvert($id)
+    {
+        $advert = Advert::find($id);
+
+        if ($advert->status === 0) {
+            $advert->increment('status');
+
+            return redirect()->route('list_adverts');
+        } else {
+            $advert->decrement('status');
+
+            return redirect()->route('list_adverts');
+        }
+    }
 }
