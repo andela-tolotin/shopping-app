@@ -98,7 +98,7 @@
         <!-- /DROPDOWN ITEM -->
     </ul>
     @endcan
-    <!-- /DROPDOWN -->
+    {{-- <!-- /DROPDOWN -->
     <!-- SIDE MENU TITLE -->
     <p class="side-menu-title">Info &amp; Statistics</p>
     <!-- /SIDE MENU TITLE -->
@@ -118,7 +118,7 @@
                 <span class="sl-icon icon-chart"></span>
                 Statistics
             </a>
-        </li>
+        </li> --}}
         <!-- /DROPDOWN ITEM -->
     </ul>
     @can ( 'ADMIN', Auth::user()->role_id )
