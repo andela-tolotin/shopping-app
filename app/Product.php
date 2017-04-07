@@ -27,6 +27,11 @@ class Product extends Model
         return $this->belongsTo('App\User');
     }
 
+    public function advert()
+    {
+        return $this->hasOne('App\Advert');
+    }
+
     public function scopeFindOneById($query, $productId)
     {
     	return $query
