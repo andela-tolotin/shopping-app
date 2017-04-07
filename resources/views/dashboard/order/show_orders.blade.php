@@ -46,13 +46,15 @@
 					Approved
 				@endif
 			</td>
-			<td><a id ="approve" data-id="{{ $order->id }}" class="approve-order" href="#" title="Approve {{ $order->id }}"> <i class="glyphicon glyphicon-check"></i>
-				@if ($order->status === 0)
-					Approve
-				@else
-					Dissapprove
-				@endif 
-			</a></td>
+			<td>
+				<a id ="approve" data-id="{{ $order->id }}" class="approve-order" href="#" title="Approve {{ $order->id }}"> <i class="glyphicon glyphicon-check"></i>
+					@if ($order->status === 0)
+						Approve
+					@else
+						Dissapprove
+					@endif 
+				</a>
+			</td>
 			<td><a data-id="{{ $order->id }}" class="delete-order" href="#" title="Delete {{ $order->name }}"> <i class="glyphicon glyphicon-trash Delete"></i> Delete</a></td>
 		</tr>
 		@endforeach

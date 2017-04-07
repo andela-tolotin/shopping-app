@@ -35,22 +35,44 @@ $(document).ready(function() {
         event.preventDefault();
     });
 
-    $(".approve-order").click(function (event) {
+    $(".display-order").click(function (event) {
         var id   = $(this).data("id");
 
-        if (document.getElementById("approve").innerText == ' Approve') {
-            console.log(document.getElementById("approve").innerText);
-            if (confirm('Are you sure you want to Approve this order?')) {
+        if (document.getElementById("display").innerText == ' display') {
+            console.log(document.getElementById("display").innerText);
+            if (confirm('Are you sure you want to display this order?')) {
                 var id = $(this).data("id");
 
-                window.location.href = "/order/"+id+"/approve";
+                window.location.href = "/order/"+id+"/display";
             }
         } else {
-            console.log(document.getElementById("approve").innerText);
-            if (confirm('Are you sure you want to Dissapprove this order?')) {
+            console.log(document.getElementById("display").innerText);
+            if (confirm('Are you sure you want to Dissdisplay this order?')) {
                 var id = $(this).data("id");
 
-                window.location.href = "/order/"+id+"/approve";
+                window.location.href = "/order/"+id+"/display";
+            }
+        }
+
+        event.preventDefault();
+    });
+
+    $(".display-advert").click(function (event) {
+        var id   = $(this).data("id");
+
+        if (document.getElementById("display").innerText == ' Display') {
+            console.log(document.getElementById("display").innerText);
+            if (confirm('Are you sure you want to display this advert?')) {
+                var id = $(this).data("id");
+
+                window.location.href = "/advert/"+id+"/display";
+            }
+        } else {
+            console.log(document.getElementById("display").innerText);
+            if (confirm('Are you sure you want to Undisplay this advert?')) {
+                var id = $(this).data("id");
+
+                window.location.href = "/advert/"+id+"/display";
             }
         }
 
