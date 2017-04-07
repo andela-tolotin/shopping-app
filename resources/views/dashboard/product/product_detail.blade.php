@@ -21,6 +21,12 @@
             <span class="currency">{{ (int) $product->price }}</span>
             <span>Purchase Now!</span>
         </a>
+        @if ($productAdvert->count() > 0)
+        <?php $photos =  json_decode($productAdvert->advert_photos); ?>
+           @foreach($photos as $photo)
+             <img src="{{ $photo }}" class="img-responsive" alt="" style="width: 270px; height: auto; float: left; clear: both; margin-bottom: 20px;">
+           @endforeach
+        @endif
     </div>
     <!-- /SIDEBAR ITEM -->
 </div>

@@ -8,6 +8,7 @@ use App\User;
 use Exception;
 use App\Product;
 use App\Category;
+use App\Advert;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProductRequest;
 
@@ -183,8 +184,10 @@ class ProductController extends Controller
     {
         $product = Product::findOneById($id);
 
+        $productAdvert = Advert::withProduct($product->id);
+
         if ($product instanceof Product) {
-            return view('dashboard.product.product_detail', compact('product'));
+            return view('dashboard.product.product_detail', compact('product', 'productAdvert'));
         }
 
         throw new Exception('Product with this id not found');
