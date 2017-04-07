@@ -19,7 +19,7 @@
                         <img src="{{ asset('images/dashboard/profile-default-image.png') }}" alt="profile-default-image">
                         @else
                         <img src="{{ Auth::user()->profile_picture }}">
-                    @endif
+                        @endif
                     </figure>
                 </div>
             </a>
@@ -45,16 +45,6 @@
             </a>
         </li>
         <!-- /DROPDOWN ITEM -->
-        <!-- DROPDOWN ITEM -->
-        <li class="dropdown-item">
-            <a href="#">
-                <span class="sl-icon icon-star"></span>
-                Notifications
-            </a>
-            <!-- PIN -->
-            <span class="pin soft-edged big primary">49</span>
-            <!-- /PIN -->
-        </li>
         @can ( 'BUYER', Auth::user()->role_id )
         <!-- DROPDOWN ITEM -->
         <li class="dropdown-item">
@@ -63,6 +53,19 @@
                 Your Orders
             </a>
         </li>
+        <p class="side-menu-title">Point Wallet</p>
+        <!-- /SIDE MENU TITLE -->
+        <!-- DROPDOWN -->
+        <ul class="dropdown dark hover-effect">
+            <!-- DROPDOWN ITEM -->
+            <li class="dropdown-item">
+                <a href="{{ route('load_buy_point') }}">
+                    <span class="sl-icon icon-arrow-up-circle"></span>
+                    Buy Point
+                </a>
+            </li>
+            <!-- /DROPDOWN ITEM -->
+        </ul>
         @endcan
         @can ( 'ADMIN_MANAGER', Auth::user()->role_id )
         <!-- DROPDOWN ITEM -->
@@ -78,7 +81,6 @@
         @endcan
     </ul>
     <!-- /DROPDOWN -->
-
     @can ( 'ADMIN', Auth::user()->role_id )
     <!-- /SIDE MENU HEADER -->
     <!-- SIDE MENU TITLE -->
@@ -164,7 +166,6 @@
         </li>
     </ul>
     @endcan
-
     @can ( 'ADMIN', Auth::user()->role_id )
     <!-- /DROPDOWN -->
     <!-- SIDE MENU TITLE -->
@@ -187,20 +188,6 @@
                 Manage Payment
             </a>
         </li>
-    </ul>
-
-    <p class="side-menu-title">Point Wallet</p>
-    <!-- /SIDE MENU TITLE -->
-    <!-- DROPDOWN -->
-    <ul class="dropdown dark hover-effect">
-        <!-- DROPDOWN ITEM -->
-        <li class="dropdown-item">
-            <a href="{{ route('load_buy_point') }}">
-                <span class="sl-icon icon-arrow-up-circle"></span>
-                Buy Point
-            </a>
-        </li>
-        <!-- /DROPDOWN ITEM -->
     </ul>
     @endcan
     <!-- /DROPDOWN -->
