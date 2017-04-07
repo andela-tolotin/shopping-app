@@ -26,6 +26,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', 'HomeController@index')->name('dashboard_index');
     Route::get('/profile', 'ProfileUpdateController@editprofile')->name('profile');
     Route::post('/profile/update', 'ProfileUpdateController@updateProfile')->name('profile_update');
+    Route::post('/buy/point', 'PaymentController@buyPointWithStripe')->name('buy_point_with_stripe');
 });
 
 Route::group(['middleware' => ['auth.isAdmin']], function() {
@@ -84,5 +85,7 @@ Route::get('/carts', 'CartController@viewCart')->name('view_carts');
 Route::get('/product/{id}/checkout', 'CartController@checkout')->name('purchase_product');
 
 Route::post('/payment/stripe', 'PaymentController@payWithStrip')->name('stripe_payment');
+
+
 
 
