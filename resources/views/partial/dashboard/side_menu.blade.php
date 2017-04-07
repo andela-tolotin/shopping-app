@@ -55,6 +55,7 @@
             <span class="pin soft-edged big primary">49</span>
             <!-- /PIN -->
         </li>
+        @can ( 'BUYER', Auth::user()->role_id )
         <!-- DROPDOWN ITEM -->
         <li class="dropdown-item">
             <a href="{{ route('list_user_orders') }}">
@@ -62,7 +63,8 @@
                 Your Orders
             </a>
         </li>
-        @can ( 'BUYER', Auth::user()->role_id )
+        @endcan
+        @can ( 'ADMIN_MANAGER', Auth::user()->role_id )
         <!-- DROPDOWN ITEM -->
         <li class="dropdown-item">
             <a href="{{ route('list_orders') }}">
@@ -117,7 +119,7 @@
         </li>
         <!-- /DROPDOWN ITEM -->
     </ul>
-    @can ( 'BUYER', Auth::user()->role_id )
+    @can ( 'ADMIN', Auth::user()->role_id )
     <!-- /DROPDOWN -->
     <p class="side-menu-title">Category</p>
     <!-- /SIDE MENU TITLE -->

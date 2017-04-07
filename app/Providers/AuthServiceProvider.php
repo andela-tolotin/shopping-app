@@ -32,9 +32,14 @@ class AuthServiceProvider extends ServiceProvider
             return $user->role_id === 3;
         });
 
-        // Buyer cannot see any menu where this is apply but only Admin and Buyer can see such menu
-        $gate->define('BUYER', function ($user) {
+        // Buyer cannot see any menu where this is apply but only Admin and MANAGER can see such menu
+        $gate->define('ADMIN_MANAGER', function ($user) {
             return $user->role_id !== 1;
+        });
+
+        //Only Buyer can see the menu
+        $gate->define('BUYER', function ($user) {
+            return $user->role_id === 1;
         });
     }
 }
