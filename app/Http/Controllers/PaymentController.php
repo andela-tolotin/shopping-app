@@ -18,6 +18,66 @@ use App\Http\Requests\UpdatePaymentRequest;
 
 class PaymentController extends Controller
 {
+    public function buyPointWithStripe(Request $request)
+    {
+
+        $amount = $_POST['amount'];
+        $token  = $_POST['stripeToken'];
+        $email = $_POST["stripeEmail"];
+        $paymentGatewayId = $_POST['payment_gateway_id'];
+        //Set the Stripe Api Key
+        $stripe = [
+            "secret_key"      => env('STRIPE_SECRET'),
+            "publishable_key" => env('STRIPE_KEY')
+        ];
+        // set api key
+        Stripe::setApiKey($stripe['secret_key']);
+        // create the customer
+        $customer = Customer::create([
+            'email' => $email,
+            'source'  => $token
+        ]);
+        // charge the customer
+        $charge = Charge::create([
+            'customer' => $customer->id,
+            'amount'   => $amount,
+            'currency' => 'krw'
+        ]);
+
+        //Transactions from the charge object
+        $transactionId = $charge->balance_transaction;
+        $transactionAmount = $charge->amount;
+        $transactionCurrency = $charge->currency;
+        $transactionStatus = $charge->paid;
+        $multiplier = 1000; // 1 krw = 1 point and payment is made in 100's
+        $productAmount = ($transactionAmount / $multiplier);
+        // interact with the point wallet
+        if (! is_null(Auth::user())) {
+            $pointWallet = PointWallet::findOneByUser(Auth::user()->id);
+            if ($pointWallet instanceof PointWallet) {
+                $pointWallet->point = $pointWallet->point + $productAmount;
+                $pointWallet->save();
+            } else {
+                PointWallet::create([
+                    'user_id' => Auth::user()->id,
+                    'payment_gateway_id' => $paymentGatewayId,
+                    'point' => (int) $productAmount,
+                ]);
+            }
+        }
+
+        if ($transactionStatus) {
+            // return a flash message regarding the payment status
+            return redirect()
+            ->route('load_buy_point')
+            ->with('status', true);
+        }
+        // return a flash message regarding the status of the payment
+        return redirect()
+            ->route('load_buy_point')
+            ->with('status', false);
+    }
+
     public function payWithStrip(Request $request)
     {
         $amount = $_POST['amount'];
