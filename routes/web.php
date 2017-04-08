@@ -27,6 +27,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/profile', 'ProfileUpdateController@editprofile')->name('profile');
     Route::post('/profile/update', 'ProfileUpdateController@updateProfile')->name('profile_update');
     Route::post('/buy/point', 'PaymentController@buyPointWithStripe')->name('buy_point_with_stripe');
+     //pointWallet
+    Route::get('/add_amount', 'PointWalletController@loadPointAmountForm')->name('load_buy_point');
+    Route::get('/buy_point', 'PointWalletController@loadPointBag')->name('buy_point');
 });
 
 Route::group(['middleware' => ['auth.isAdmin']], function() {
@@ -67,10 +70,6 @@ Route::group(['middleware' => ['auth.isAdmin']], function() {
     Route::get('/adverts', 'AdvertController@listAdverts')->name('list_adverts');
     Route::get('/advert/{id}/display', 'AdvertController@displayAdvert')->name('display_advert');
     Route::get('/adverts/{id}/delete', 'AdvertController@deleteAdvert')->name('delete_advert');
-
-    //pointWallet
-    Route::get('/add_amount', 'PointWalletController@loadPointAmountForm')->name('load_buy_point');
-    Route::get('/buy_point', 'PointWalletController@loadPointBag')->name('buy_point');
 });
 
 Route::group(['middleware' => ['auth.isAdminAndManager']], function() {
