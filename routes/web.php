@@ -71,6 +71,9 @@ Route::group(['middleware' => ['auth.isAdmin']], function() {
     //pointWallet
     Route::get('/add_amount', 'PointWalletController@loadPointAmountForm')->name('load_buy_point');
     Route::get('/buy_point', 'PointWalletController@loadPointBag')->name('buy_point');
+
+    //Transaction stock
+    Route::get('/transactions', 'TransactionController@stock')->name('stock');
 });
 
 Route::group(['middleware' => ['auth.isAdminAndManager']], function() {

@@ -57,10 +57,32 @@ $(document).ready(function() {
         event.preventDefault();
     });
 
+    $(".approve-order").click(function (event) {
+        var id   = $(this).data("id");
+
+        if (document.getElementById("approve").innerText == ' Display') {
+            console.log(document.getElementById("approve").innerText);
+            if (confirm('Are you sure you want to approve this order?')) {
+                var id = $(this).data("id");
+
+                window.location.href = "/order/"+id+"/approve";
+            }
+        } else {
+            console.log(document.getElementById("approve").innerText);
+            if (confirm('Are you sure you want to dissaprove this order?')) {
+                var id = $(this).data("id");
+
+                window.location.href = "/order/"+id+"/approve";
+            }
+        }
+
+        event.preventDefault();
+    });
+
     $(".display-advert").click(function (event) {
         var id   = $(this).data("id");
 
-        if (document.getElementById("display").innerText == ' Display') {
+        if (document.getElementById("display").innerText == 'Display') {
             console.log(document.getElementById("display").innerText);
             if (confirm('Are you sure you want to display this advert?')) {
                 var id = $(this).data("id");
@@ -79,4 +101,8 @@ $(document).ready(function() {
         event.preventDefault();
     });
 
+    $("#reset").click(function (event) {
+        window.location.href = "/transactions";
+        event.preventDefault();
+    });
 });

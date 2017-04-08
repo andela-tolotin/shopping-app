@@ -100,7 +100,7 @@ class ProductController extends Controller
      */
     public function editProductForm($id)
     {
-        $product      = Auth::user()->products->find($id);
+        $product = Auth::user()->products->find($id);
 
         if (is_null($product)) {
 
@@ -123,12 +123,12 @@ class ProductController extends Controller
     public function updateProduct($id, ProductRequest $request)
     {
         $product = Product::where('id', $request->id)->update([
-            'name'            => $request->name,
-            'description'     => $request->description,
-            'category_id'     => $request->category,
-            'price'           => $request->price,
-            'discount'        => $request->discount,
-            'tax'             => $request->tax,
+            'name'        => $request->name,
+            'description' => $request->description,
+            'category_id' => $request->category,
+            'price'       => $request->price,
+            'discount'    => $request->discount,
+            'tax'         => $request->tax,
         ]);
 
         if (!is_null($request->images)) {
