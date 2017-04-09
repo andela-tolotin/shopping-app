@@ -22,20 +22,17 @@ class PaymentController extends Controller
     {
         $userPoint = $request->get('point');
 
-        $pointWallet = Auth::user()->pointWallet();
+        $pointWallet = Auth::user()->pointWallet;
         $product = Product::findOneById($id);
 
-        if ($userPoint !== $pointWallet->point) {
+        $balance = (int) ($pointWallet->point - $pointWallet->balance);
+
+        if ($userPoint != ($pointWallet->point - $pointWallet->balance)) {
             return response()->json(['message' => 'The Point Wallet mismatch']);
         }
 
-        if ($product->price < $pointWallet->point) {
+        if ($balance < $product->price) {
             return response()->json(['message' => 'The point you have cannot pay for this service']);
-        }
-
-        if ($pointWallet instanceof PointWallet) {
-            $pointWallet->point = $pointWallet->point + $productAmount;
-            $pointWallet->save();
         }
 
         if ($product instanceof Product) {
@@ -51,7 +48,7 @@ class PaymentController extends Controller
                 'payment_gateway_id' => $pointWallet->payment_gateway_id,
                 'product_id' => $product->id,
                 'user_id' => Auth::user()->id,
-                'transaction_ref_id' => $charge->balance_transaction
+                'transaction_ref_id' => $pointWallet->id
             ]);
 
             // store the purchase in the order table
@@ -73,6 +70,7 @@ class PaymentController extends Controller
 
                 return response()->json(['message' => true]);
             }
+        }
     }
 
     public function buyPointWithStripe(Request $request)
