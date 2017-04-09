@@ -14,33 +14,29 @@
             <div class="graph-stats-list">
 				<!-- GRAPH STATS LIST ITEM -->
 				<div class="graph-stats-list-item green bars">
-					<h2>863k</h2>
-					<p class="text-header">Visitors this Month</p>
-					<p>Avg 28766 per Day</p>
+					<p class="text-header">Remaining Points</p>
+					<h2>{{ $remainingPoints }}</h2>
 				</div>
 				<!-- /GRAPH STATS LIST ITEM -->
 
 				<!-- GRAPH STATS LIST ITEM -->
 				<div class="graph-stats-list-item violet line">
-					<h2>36.428</h2>
-					<p class="text-header">Referals this Month</p>
-					<p>Avg 1214 per Day</p>
+					<a href="user/orders"><p class="text-header">Total Orders</p></a>
+					<h2>{{ $userOrders }}</h2>
 				</div>
 				<!-- /GRAPH STATS LIST ITEM -->
 
 				<!-- GRAPH STATS LIST ITEM -->
 				<div class="graph-stats-list-item blue step">
-					<h2>7.698</h2>
-					<p class="text-header">Conversions this Month</p>
-					<p>Avg 256 per Day</p>
+					<a href="/orders"><p class="text-header">Total Unapproved Orders</p></a>
+					<h2>{{ $totalUnapprovedOrder }}</h2>
 				</div>
 				<!-- /GRAPH STATS LIST ITEM -->
 
 				<!-- GRAPH STATS LIST ITEM -->
 				<div class="graph-stats-list-item red curve">
-					<h2>65.254</h2>
-					<p class="text-header">Returns this Month</p>
-					<p>Avg 2175 per Day</p>
+					<a href="/transactions"><p class="text-header">Total Amount of Transactions</p></a>
+					<h2>{{ $totalTransactionAmount }}</h2>
 				</div>
 				<!-- /GRAPH STATS LIST ITEM -->
 			</div>
