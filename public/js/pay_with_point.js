@@ -10,13 +10,28 @@
       var userPoint = _this.attr('data-point');
       var token = _this.attr('data-token');
 
+      var message = $('p#status');
+
       var route = '/product/'+productId+'/pay_with_point';
 
       makeAjaxCall(route, {
         'point': userPoint,
         '_token': token
       }).done(function(data) {
-        console.log(data);
+        if (data.message == true) {
+          message.html(`<div class="alert alert-success">
+              Your Payment was successful!
+              </div>`
+            );
+          return setTimeout(function() {
+            window.location.href = '/product/'+productId+'/checkout';
+          }, 2000);
+        }
+        message.html(`<div class="alert alert-danger">`+data.message+`</div>`);
+
+        return setTimeout(function() {
+          window.location.href = '/product/'+productId+'/checkout';
+        }, 2000);
       }).fail(function(error) {
         console.log(error);
       });
