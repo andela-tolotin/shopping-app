@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\PointWallet;
 use App\PaymentGateway;
+use Illuminate\Http\Request;
 
 class PointWalletController extends Controller
 {

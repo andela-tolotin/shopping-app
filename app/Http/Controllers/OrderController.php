@@ -17,9 +17,10 @@ class OrderController extends Controller
      */
     public function listOrders()
     {
-        $orders = Order::orderBy('created_at', 'DESC')->paginate(10);
+        $unapprovedOrders = Order::where('status', 0)->orderBy('created_at', 'DESC')->get();
+        $approvedOrders   = Order::where('status', 1)->orderBy('created_at', 'DESC')->paginate(10);
        
-        return view('dashboard.order.show_orders', compact('orders'));
+        return view('dashboard.order.show_orders', compact('approvedOrders', 'unapprovedOrders'));
     }
 
     /**

@@ -28,6 +28,7 @@
 				@else
 					Unregistered User
 				@endif
+			</td>
 			<td>{{ $order->transaction->item_name }}</td>
 			<td>{{ $order->transaction->item_quantity }}</td>
 			<td>
