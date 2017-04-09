@@ -37,7 +37,7 @@
 	<div class="form-box-item">
 		<h4>Payment &amp; Confirmation</h4>
 		<hr class="line-separator">
-		<p>
+		<p id="status">
 			@if (!empty(session('status')))
 			@if (session('status'))
 			<div class="alert alert-success">
