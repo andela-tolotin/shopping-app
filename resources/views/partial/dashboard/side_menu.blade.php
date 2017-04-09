@@ -165,8 +165,19 @@
             </a>
         </li>
     </ul>
-    @endcan
-    @can ( 'ADMIN', Auth::user()->role_id )
+
+    <p class="side-menu-title">Transactions</p>
+    <!-- /SIDE MENU TITLE -->
+    <!-- DROPDOWN -->
+    <ul class="dropdown dark hover-effect">
+        <!-- DROPDOWN ITEM -->
+        <li class="dropdown-item">
+            <a href="{{ route('stock') }}">
+                <span class="sl-icon icon-arrow-up-circle"></span>
+                Transactions
+            </a>
+        </li>
+    </ul>
     <!-- /DROPDOWN -->
     <!-- SIDE MENU TITLE -->
     <p class="side-menu-title">Payment Configuration</p>
@@ -189,9 +200,7 @@
             </a>
         </li>
     </ul>
-    @endcan
     <!-- /DROPDOWN -->
-    @can ( 'ADMIN', Auth::user()->role_id )
     <!-- SIDE MENU TITLE -->
     <p class="side-menu-title">Advertisement</p>
     <!-- /SIDE MENU TITLE -->

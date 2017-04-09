@@ -18,6 +18,12 @@ Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('l
 
 Auth::routes();
 
+Route::get('/product/{id}/view', 'ProductController@viewProduct')->name('product-details');
+Route::get('/carts', 'CartController@viewCart')->name('view_carts');
+Route::get('/product/{id}/checkout', 'CartController@checkout')->name('purchase_product');
+
+Route::post('/payment/stripe', 'PaymentController@payWithStrip')->name('stripe_payment');
+
 Route::group(['middleware' => 'auth.isBuyer'], function () {
     Route::get('/user/orders', 'OrderController@listCurrentUserOrders')->name('list_user_orders');
 });
@@ -27,7 +33,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/profile', 'ProfileUpdateController@editprofile')->name('profile');
     Route::post('/profile/update', 'ProfileUpdateController@updateProfile')->name('profile_update');
     Route::post('/buy/point', 'PaymentController@buyPointWithStripe')->name('buy_point_with_stripe');
-     //pointWallet
+
+    //pointWallet
     Route::get('/add_amount', 'PointWalletController@loadPointAmountForm')->name('load_buy_point');
     Route::get('/buy_point', 'PointWalletController@loadPointBag')->name('buy_point');
 });
@@ -70,6 +77,9 @@ Route::group(['middleware' => ['auth.isAdmin']], function() {
     Route::get('/adverts', 'AdvertController@listAdverts')->name('list_adverts');
     Route::get('/advert/{id}/display', 'AdvertController@displayAdvert')->name('display_advert');
     Route::get('/adverts/{id}/delete', 'AdvertController@deleteAdvert')->name('delete_advert');
+
+    //Transaction stock
+    Route::get('/transactions', 'TransactionController@stock')->name('stock');
 });
 
 Route::group(['middleware' => ['auth.isAdminAndManager']], function() {
@@ -78,13 +88,3 @@ Route::group(['middleware' => ['auth.isAdminAndManager']], function() {
     Route::get('/order/{id}/delete', 'OrderController@deleteOrder')->name('delete_order');
     Route::get('/order/{id}/approve', 'OrderController@approveOrder')->name('approve_order');
 });
-
-Route::get('/product/{id}/view', 'ProductController@viewProduct')->name('product-details');
-Route::get('/carts', 'CartController@viewCart')->name('view_carts');
-Route::get('/product/{id}/checkout', 'CartController@checkout')->name('purchase_product');
-
-Route::post('/payment/stripe', 'PaymentController@payWithStrip')->name('stripe_payment');
-
-
-
-
