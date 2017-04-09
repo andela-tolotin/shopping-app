@@ -101,6 +101,18 @@ $(document).ready(function() {
         event.preventDefault();
     });
 
+    var fromDateInput = $('input[name="from"]');
+    var toDateInput = $('input[name="to"]');
+    var container = $('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+    var options = {
+        format: 'yyyy-mm-dd',
+        container: container,
+        todayHighlight: true,
+        autoclose: true,
+    };
+    fromDateInput.datepicker(options);
+    toDateInput.datepicker(options);
+
     $("#reset").click(function (event) {
         window.location.href = "/transactions";
         event.preventDefault();
