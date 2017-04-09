@@ -16,9 +16,9 @@ class PointWallet extends Model
         return $this->hasMany('App\PaymentGateway');
     }
 
-    public function users()
+    public function user()
     {
-        return $this->belongsTo('App\users');
+        return $this->belongsTo('App\User');
     }
 
     public function scopeFindOneById($query, $id)

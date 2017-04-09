@@ -32,7 +32,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', 'HomeController@index')->name('dashboard_index');
     Route::get('/profile', 'ProfileUpdateController@editprofile')->name('profile');
     Route::post('/profile/update', 'ProfileUpdateController@updateProfile')->name('profile_update');
+
+    //Payment
     Route::post('/buy/point', 'PaymentController@buyPointWithStripe')->name('buy_point_with_stripe');
+    Route::post('/product/{id}/pay_with_point', 'PaymentController@buyProductWithPoint')->name('buy_product_with_point');
 
     //pointWallet
     Route::get('/add_amount', 'PointWalletController@loadPointAmountForm')->name('load_buy_point');

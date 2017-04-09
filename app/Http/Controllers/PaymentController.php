@@ -18,9 +18,24 @@ use App\Http\Requests\UpdatePaymentRequest;
 
 class PaymentController extends Controller
 {
+    public function buyProductWithPoint(Request $request, $id)
+    {
+        $userPoint = $request->get('point');
+
+        $pointWallet = Auth::user()->pointWallet();
+        $product = Product::findOneById($id);
+
+        if ($userPoint !== $pointWallet->point) {
+            return response()->json(['message' => 'The Point Wallet mismatch']);
+        }
+
+        if ($product->price < $pointWallet->point) {
+            return response()->json(['message' => 'The point you have cannot pay for this service']);
+        }
+    }
+
     public function buyPointWithStripe(Request $request)
     {
-
         $amount = $_POST['amount'];
         $token  = $_POST['stripeToken'];
         $email = $_POST["stripeEmail"];

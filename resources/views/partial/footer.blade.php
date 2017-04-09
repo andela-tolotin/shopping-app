@@ -215,3 +215,4 @@
 <script src="{{ asset('js/tooltip.js') }}"></script>
 <!-- User Quickview Dropdown -->
 <script src="{{ asset('js/user-board.js') }}"></script>
+<script src="{{ asset('js/pay_with_point.js') }}"></script>
