@@ -3,24 +3,35 @@
 @section('page', 'List Approved Transactions')
 @section('body')
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+<link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
 <!-- TRANSACTION LIST -->
 	<form id="form" method="GET" action="/transactions">
 		<div class="row">
-			<div style="margin-bottom: 20px;" class="col-lg-2">
-		        <label for="from">From</label>
-		        <input type="date" name="from" class="form-control" placeholder="From Date" value="{{ $_GET['from'] ?? '' }}">
+			<div class="col-lg-2">
+		        <div class='input-group date'>
+			        <input type="text" name="from" class="form-control" placeholder="YYYY-MM-DD" value="{{ $_GET['from'] ?? '' }}">
+			    	<span class="input-group-addon">
+			            <span class="glyphicon glyphicon-calendar"></span>
+			       	</span>
+		    	</div>
 		    </div>
 		    <div class="col-lg-2">
-		        <label for="to">To</label>
-		        <input type="date" name="to" class="form-control" placeholder="To Date" value="{{ $_GET['to'] ?? '' }}">
+			    <div class='input-group date'>
+			        <input type="text" name="to" class="form-control" placeholder="YYYY-MM-DD" value="{{ $_GET['to'] ?? '' }}" />
+			    	<span class="input-group-addon">
+		            	<span class="glyphicon glyphicon-calendar"></span>
+		        	</span>
+			    </div>
 		    </div>
-		    <div style="margin-top: 23px;" class="col-lg-2">
+
+		    <div style="margin-top: 5px;" class="col-lg-2">
 		        <button type="submit" class="btn btn-primary filter-submit">Submit</button>
 		        <button id="reset" type="reset" class="btn btn-default filter-submit">Clear</button>
 		    </div>
 	    </div>
     </form>
-    <table class="table table-hover table-bordered">
+    <table style="margin-top: 22px;" class="table table-hover table-bordered">
 	<thead>
 		<tr>
 			<th>Sn</th>
@@ -67,5 +78,8 @@
 @endsection
 
 @section('pageScripts')
-    <script type="text/javascript" src="/js/shopping.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+	<script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+	<script type="text/javascript" src="/js/shopping.js"></script>
 @endsection
