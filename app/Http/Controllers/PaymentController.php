@@ -32,6 +32,47 @@ class PaymentController extends Controller
         if ($product->price < $pointWallet->point) {
             return response()->json(['message' => 'The point you have cannot pay for this service']);
         }
+
+        if ($pointWallet instanceof PointWallet) {
+            $pointWallet->point = $pointWallet->point + $productAmount;
+            $pointWallet->save();
+        }
+
+        if ($product instanceof Product) {
+            // add the transaction history
+            $transaction = Transaction::create([
+                'currency' => 'KRW',
+                'item_name' => $product->name,
+                'item_quantity' => 1,
+                'item_price' => $product->price,
+                'email' => Auth::user()->email,
+                'phone' => is_null(Auth::user()->email)? null: Auth::user()->email,
+                'status' => 1,
+                'payment_gateway_id' => $pointWallet->payment_gateway_id,
+                'product_id' => $product->id,
+                'user_id' => Auth::user()->id,
+                'transaction_ref_id' => $charge->balance_transaction
+            ]);
+
+            // store the purchase in the order table
+            Order::create([
+                'product_id' => $product->id,
+                'transaction_id' => $transaction->id,
+                'status' => 0,
+                'user_id' => Auth::user()->id ?? null,
+            ]);
+
+            if (! is_null(Auth::user())) {
+                // deduct money from point wallet
+                $transactions = array_pluck(Auth::user()->transactions, 'item_price');
+                $totalTransactions = (int) array_sum($transactions);
+                // find the point wallet and update the balance
+                $pWallet = PointWallet::findOneByUser(Auth::user()->id);
+                $pWallet->balance = $totalTransactions;
+                $pWallet->save();
+
+                return response()->json(['message' => true]);
+            }
     }
 
     public function buyPointWithStripe(Request $request)
