@@ -21,7 +21,7 @@
                     <td>{{ $loop->index + 1 }}</td>
                     <td>{{ $category->name }}</td>
                     <td>{{ $category->description }}</td>
-                    <td><a href="{{ route('edit_category', ['id' => $category->id ]) }}" title="Edit {{ $category->name }}"> <i class="glyphicon glyphicon-pencil"></i> Edit </a></td>
+                    <td><a href="{{ route('edit_category', ['id' => $category->id, 'locale' => App::getLocale()]) }}" title="Edit {{ $category->name }}"> <i class="glyphicon glyphicon-pencil"></i> Edit </a></td>
                     <td><a data-id="{{ $category->id }}" class="delete-category" href="#" title="Delete {{ $category->name }}"> <i class="glyphicon glyphicon-trash Delete"></i> Delete</a></td>
                 </tr>
             @endforeach

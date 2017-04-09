@@ -604,8 +604,8 @@
         <!-- /DROPDOWN ITEM -->
     </ul>
     <!-- /DROPDOWN -->
-    <a href="/logout" class="button medium secondary">Logout</a>
-    <a href="/home" class="button medium secondary">Dashboard</a>
+    <a href="/{{ App::getLocale() }}/logout" class="button medium secondary">Logout</a>
+    <a href="/{{ App::getLocale() }}/home" class="button medium secondary">Dashboard</a>
 </div>
 <!-- /SIDE MENU -->
 <!-- MAIN MENU -->
@@ -615,7 +615,7 @@
             <ul class="main-menu">
                 <!-- MENU ITEM -->
                 <li class="menu-item">
-                    <a href="/">Home</a>
+                    <a href="/{{ App::getLocale() }}">Home</a>
                 </li>
                 <!-- /MENU ITEM -->
             </ul>

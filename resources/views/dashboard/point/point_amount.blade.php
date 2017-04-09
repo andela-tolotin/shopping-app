@@ -15,7 +15,7 @@
             </ul>
         </div>
         @endif
-        <form action="{{ route('buy_point') }}" method="GET">
+        <form action="{{ route('buy_point', ['locale' => App::getLocale()]) }}" method="GET">
         <p>
             @if (!empty(session('status')))
             @if (session('status'))

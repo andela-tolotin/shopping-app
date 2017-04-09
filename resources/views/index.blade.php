@@ -64,7 +64,7 @@
 						<!-- /PRODUCT PREVIEW ACTIONS -->
 						<!-- PRODUCT INFO -->
 						<div class="product-info">
-							<a href="{{ route('product-details', ['id' => $product->id ])}}">
+							<a href="{{ route('product-details', ['id' => $product->id, 'locale' => App::getLocale()])}}">
 								<p class="text-header">{{ $product->name }}</p>
 							</a>
 							<p class="product-description">{!! str_limit($product->description, 100) !!}</p>

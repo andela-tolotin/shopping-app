@@ -14,7 +14,7 @@
 Route::get('/{locale}', 'HomeController@listProducts');
 Route::get('/{locale}/login', 'Auth\LoginController@showLoginForm')->name('load_login');
 Route::get('/{locale}/logout', 'Auth\LoginController@logout')->name('logout');
-Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('load_register');
+Route::get('/{locale}/register', 'Auth\RegisterController@showRegistrationForm')->name('load_register');
 
 Auth::routes();
 

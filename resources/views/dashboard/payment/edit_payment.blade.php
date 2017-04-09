@@ -19,7 +19,7 @@
             </ul>
         </div>
         @endif
-        <form id="profile-info-form" method="post" action="{{ route('update_payment', ['id' => $paymentGateway->id]) }}" enctype="multipart/form-data">
+        <form id="profile-info-form" method="post" action="{{ route('update_payment', ['id' => $paymentGateway->id,'locale' => App::getLocale()]) }}" enctype="multipart/form-data">
             {{ csrf_field() }}
             <div class="profile-image">
                 <div class="profile-image-data">

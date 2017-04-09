@@ -15,7 +15,7 @@
                     </ul>
                 </div>
             @endif
-            <form id="register-form4" method="post" action="/category/{{ $category->id }}/update">
+            <form id="register-form4" method="post" action="/{{ App::getLocale() }}/category/{{ $category->id }}/update">
                 {{ csrf_field() }}
                 <div class="input-container">
                     <label for="name" class="rl-label required">Name</label>

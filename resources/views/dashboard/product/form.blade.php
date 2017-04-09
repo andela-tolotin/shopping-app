@@ -15,7 +15,7 @@
             </ul>
         </div>
         @endif
-        <form id="register-form4" method="post" action={{ route('post_product') }} enctype="multipart/form-data">
+        <form id="register-form4" method="post" action={{ route('post_product', ['locale' => App::getLocale()]) }} enctype="multipart/form-data">
             {{ csrf_field() }}
              <div class="profile-image">
                 <div class="profile-image-data">
