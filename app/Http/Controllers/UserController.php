@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App;
 use Auth;
 use App\User;
 use App\Role;
@@ -32,10 +33,10 @@ class UserController extends Controller
 			return view('dashboard.manage_user.edit_user', compact('user', 'userRoles'));
 		}
 		
-		throw new Exception('User with this id not found');
+		abort(404);
     }
 
-    public function updateUser(UpdateUserRequest $request, $id)
+    public function updateUser(UpdateUserRequest $request, $locale, $id)
     {
     	$user = User::findOneById($id);
 
@@ -48,22 +49,22 @@ class UserController extends Controller
 
     		$user->save();
 
-    		return redirect()->route('manage_user');
+    		return redirect()->route('manage_user', ['locale' => $locale]);
     	}
 
-    	throw new Exception('User with this id not found');
+    	abort(404);
     }
 
-    public function deleteUser(Request $request, $id)
+    public function deleteUser(Request $request, $locale, $id)
     {
     	$user = User::findOneById($id);
 
     	if ($user instanceof User) {
     		$user->forceDelete();
 
-    		return redirect()->route('manage_user');
+    		return redirect()->route('manage_user', ['locale' => $locale]);
     	}
 
-    	throw new Exception('User with this id not found');
+    	abort(404);
     }
 }

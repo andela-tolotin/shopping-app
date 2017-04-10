@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App;
 use App\PointWallet;
 use App\PaymentGateway;
 use Illuminate\Http\Request;
@@ -15,6 +16,8 @@ class PointWalletController extends Controller
 
     public function loadPointBag(Request $request)
     {
+        $locale = App::getLocale();
+
     	$amount = 0;
 
     	if ($request->has('amount')) {
@@ -22,7 +25,7 @@ class PointWalletController extends Controller
     	}
 
     	if ($amount < 1000) {
-    		return redirect()->route('load_buy_point');
+    		return redirect()->route('load_buy_point', ['locale' => $locale]);
     	}
 
     	$paymentGateways = PaymentGateway::findAll();

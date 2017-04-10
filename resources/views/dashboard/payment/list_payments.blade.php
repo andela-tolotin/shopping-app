@@ -29,8 +29,8 @@
 			<td>{{ $paymentGateway->client_id }}</td>
 			<td>{{ $paymentGateway->client_secret }}</td>
 			<td>{{ $paymentGateway->callback_url }}</td>
-			<td><a href="{{ route('edit_payment', ['id' => $paymentGateway->id ]) }}" title="Edit {{ $paymentGateway->name }}"> <i class="glyphicon glyphicon-pencil"></i> Edit </a></td>
-			<td><a class="delete-payment" href="{{ route('delete_payment', ['id' => $paymentGateway->id ]) }}" title="Delete {{ $paymentGateway->name }}"> <i class="glyphicon glyphicon-trash Delete"></i> Delete</a></td>
+			<td><a href="{{ route('edit_payment', ['id' => $paymentGateway->id, 'locale' => App::getLocale()]) }}" title="Edit {{ $paymentGateway->name }}"> <i class="glyphicon glyphicon-pencil"></i> Edit </a></td>
+			<td><a class="delete-payment" href="{{ route('delete_payment', ['id' => $paymentGateway->id, 'locale' => App::getLocale() ]) }}" title="Delete {{ $paymentGateway->name }}"> <i class="glyphicon glyphicon-trash Delete"></i> Delete</a></td>
 		</tr>
 		@endforeach
 		@endif

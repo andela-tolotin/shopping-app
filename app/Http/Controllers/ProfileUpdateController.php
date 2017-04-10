@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Cloudder;
+use App;
 use App\User;
+use Cloudder;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProfileUpdateRequest;
 
@@ -27,6 +28,8 @@ class ProfileUpdateController extends Controller
      */
     public function updateProfile(Request $request)
     {
+        $locale = App::getLocale();
+
     	$email = $request->email;
     	$oldPassword = $request->password;
         $newPassword = $request->confirm_password;
@@ -46,7 +49,7 @@ class ProfileUpdateController extends Controller
     			if (\Hash::check($oldPassword, $user->getAuthPassword())) {
     				$user->password = bcrypt($newPassword);
     			} else {
-    				return redirect('home')
+    				return redirect('home', ['locale' => $locale])
                     ->withErrors(['Both passwords is incorrect'])
                     ->withInput();
                 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App;
 use Auth;
 use App\User;
 use Cloudder;
@@ -29,6 +30,8 @@ class CategoryController extends Controller
      */
     public function postCategory(CategoryRequest $request)
     {
+        $locale = App::getLocale();
+
         $category = Category::create([
             'name'        => $request['name'],
             'description' => $request['description'],
@@ -36,7 +39,7 @@ class CategoryController extends Controller
         ]);
 
         if ($category) {
-            return redirect()->route('list_categories');
+            return redirect()->route('list_categories', ['locale' => $locale]);
         }
 
         return redirect()->back();
@@ -60,7 +63,7 @@ class CategoryController extends Controller
      * @param $id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
-    public function editCategoryForm($id)
+    public function editCategoryForm(Request $request, $locale, $id)
     {
         $category = Auth::user()->categories->find($id);
 
@@ -78,10 +81,10 @@ class CategoryController extends Controller
      * @param Request $request
      * @return mixed
      */
-    public function updateCategory($id, Request $request)
+    public function updateCategory(Request $request, $locale, $id)
     {
         $this->validate($request, [
-            'name'        => 'required|unique:categories,name,'.$request->id,
+            'name'  => 'required|unique:categories,name,'.$request->id,
         ]);
 
         $category = Category::where('id', $request->id)->update([
@@ -90,7 +93,7 @@ class CategoryController extends Controller
         ]);
 
         if ($category) {
-            return redirect()->route('list_categories');
+            return redirect()->route('list_categories', ['locale' => $locale]);
         }
 
         return redirect()->back();
@@ -102,7 +105,7 @@ class CategoryController extends Controller
      * @param $id
      * @return mixed
      */
-    public function deleteCategory($id)
+    public function deleteCategory(Request $request, $locale, $id)
     {
         $category = Auth::user()->categories->find($id);
 
@@ -114,11 +117,11 @@ class CategoryController extends Controller
 
         if ($categoryDelete) {
             // code to inform user that it was succesfully
-            return redirect()->route('list_categories');
+            return redirect()->route('list_categories', ['locale' => $locale]);
         } else {
             // code to user that something went wrong
 
-            return redirect()->route('home');
+            return redirect()->route('home', ['locale' => $locale]);
         }
     }
 }

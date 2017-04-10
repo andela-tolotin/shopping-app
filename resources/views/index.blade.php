@@ -44,27 +44,27 @@
 				<!-- /HEADLINE -->
 				<!-- PRODUCT LIST -->
 				<div id="pl-1" class="product-list grid column4-wrap owl-carousel">
-				@if ($products->count() > 0)
-				@foreach($products as $product)
+					@if ($products->count() > 0)
+					@foreach($products as $product)
 					<!-- PRODUCT ITEM -->
 					<div class="product-item column">
 						<!-- PRODUCT PREVIEW ACTIONS -->
 						<div class="product-preview-actions">
 							<!-- PRODUCT PREVIEW IMAGE -->
 							<figure class="product-preview-image">
-							<?php $productImages = json_decode($product->product_img_url); ?>
-							@if (count($productImages) > 0)
-							<img src="{{ $productImages[0] }}" alt="product-image" style="width: 258px; height: 150px;">
-							@else
-							<img src="{{ asset('images/items/westeros_m.jpg') }}" alt="product-image">
-							@endif
+								<?php $productImages = json_decode($product->product_img_url); ?>
+								@if (count($productImages) > 0)
+								<img src="{{ $productImages[0] }}" alt="product-image" style="width: 258px; height: 150px;">
+								@else
+								<img src="{{ asset('images/items/westeros_m.jpg') }}" alt="product-image">
+								@endif
 							</figure>
 							<!-- /PRODUCT PREVIEW IMAGE -->
 						</div>
 						<!-- /PRODUCT PREVIEW ACTIONS -->
 						<!-- PRODUCT INFO -->
 						<div class="product-info">
-							<a href="{{ route('product-details', ['id' => $product->id ])}}">
+							<a href="{{ route('product-details', ['id' => $product->id, 'locale' => App::getLocale()])}}">
 								<p class="text-header">{{ $product->name }}</p>
 							</a>
 							<p class="product-description">{!! str_limit($product->description, 100) !!}</p>

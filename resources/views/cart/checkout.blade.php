@@ -52,7 +52,7 @@
 		</p>
 		<label class="rl-label">Choose your Payment Method</label>
 		<!-- RADIO -->
-		@if (Auth::check())
+		@if (Auth::check() && Auth::user()->role_id == 1)
 		<?php
 		$balance = 0;
 		if (!is_null(Auth::user()->pointWallet)) {
@@ -66,9 +66,9 @@
 			Point Wallet : Balance {{ $balance }} point(s)
 			<hr class="line-separator top">
 			@if ($balance <= 0 && Auth::user()->role_id == 1) 
-			<a href="{{ route('load_buy_point') }}" class="button mid dark">Buy Point</a>
+			<a href="{{ route('load_buy_point', ['locale' => App::getLocale()]) }}" class="button mid dark">Buy Point</a>
 			@else
-			<button type="button" class="button mid dark" id="pay_with_point_wallet" data-id="{{ $product->id }}" data-point="{{ $balance }}" data-token="{{ csrf_token() }}" >Pay</button>
+			<button type="button" class="button mid dark" id="pay_with_point_wallet" data-id="{{ $product->id }}" data-point="{{ $balance }}" data-token="{{ csrf_token() }}" data-locale="{{ App::getLocale() }}">Pay</button>
 			@endif
 		</label>
 		@endif
@@ -78,7 +78,7 @@
 		@foreach($paymentGateways as $paymentGateway)
 		@if ($paymentGateway->name == 'Stripe')
 		<p> Pay with {{ $paymentGateway->name }}</p>
-		<form action="{{ route('stripe_payment') }}" method="POST">
+		<form action="{{ route('stripe_payment', ['locale' => App::getLocale()]) }}" method="POST">
 			<script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="{{ $paymentGateway->client_id }}" data-amount="{{ $product->price * 1000 }}" data-name="{{ $product->name }}" data-description="Payments" data-image="{{ $paymentGateway->logo }}" data-locale="auto" data-currency="krw"
 			@if (Auth::check())
 			data-email="{{ Auth::user()->email }}"
@@ -126,6 +126,8 @@
 		@endif
 		@endforeach
 		@endif
+		@else
+		<p>Pls Register a Buyer Account</p>
 		@endif
 		<hr class="line-separator top">
 	</div>
