@@ -46,7 +46,6 @@ class UserController extends Controller
     		$user->name = $request->name;
     		$user->role_id = $request->role;
     		$user->status = $request->status;
-
     		$user->save();
 
     		return redirect()->route('manage_user', ['locale' => $locale]);

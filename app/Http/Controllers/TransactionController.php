@@ -18,6 +18,7 @@ class TransactionController extends Controller
 	{
 		if (is_null($request->from) || empty($request->from)) {
 			$this->resetOrderStatus();
+
 			return $this->loadStockWithoutQuery();
     	}
     	
