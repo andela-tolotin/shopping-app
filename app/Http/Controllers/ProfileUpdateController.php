@@ -58,8 +58,7 @@ class ProfileUpdateController extends Controller
     		$user->save();
     	}
 
-
-    	return redirect('home');
+    	return redirect()->route('profile', ['locale' =>  $locale]);
     }
 
     /**
