@@ -29,6 +29,7 @@ class TransactionController extends Controller
      * Rest order_status in the Transaction table and increment
      * it for where status in Order table equals one
      *
+     * @return void
      */
     public function resetOrderStatus()
     {
