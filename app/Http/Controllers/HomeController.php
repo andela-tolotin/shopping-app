@@ -18,12 +18,18 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $remainingPoints = 0;
+        $totalTransactionAmount = 0;
+
         $userPointWallet = Auth::user()->pointWallet()->first();
         $userOrders      = Auth::user()->orders->count();
-        $remainingPoints = $userPointWallet->point - $userPointWallet->balance;
+
+        if (!is_null($userPointWallet)) {
+            $remainingPoints = $userPointWallet->point - $userPointWallet->balance;
+        }
+        
         $totalUnapprovedOrder = Order::where('status', 0)->count();
         $transaction = Transaction::get();
-        $totalTransactionAmount = 0;
 
         foreach ($transaction as $key => $value) {
             $totalTransactionAmount += $value->item_price;
