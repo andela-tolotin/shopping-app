@@ -126,7 +126,8 @@
 		@endif
 		@endforeach
 		@endif
-		@else
+		@endif
+		@if (Auth::check() && Auth::user()->role_id > 1)
 		<p>Pls Register a Buyer Account</p>
 		@endif
 		<hr class="line-separator top">
