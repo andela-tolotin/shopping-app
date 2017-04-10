@@ -22,7 +22,7 @@ class UserController extends Controller
     	return view('dashboard.manage_user.list_users', compact('users'));
     }
 
-    public function editUser(Request $request, $id) 
+    public function editUser(Request $request, $locale, $id) 
     {
     	$authenticatedUser = Auth::user()->role->name;
 
