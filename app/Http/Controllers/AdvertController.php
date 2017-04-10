@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App;
 use Auth;
 use Cloudder;
 use App\Advert;
@@ -11,14 +12,14 @@ use App\Http\Requests\AdvertRequest;
 
 class AdvertController extends Controller
 {
-    public function deleteAdvert(Request $request, $id)
+    public function deleteAdvert(Request $request, $locale, $id)
     {
         $user = Advert::findOneById($id);
 
         if ($user instanceof Advert) {
             $user->forceDelete();
 
-            return redirect()->route('list_adverts');
+            return redirect()->route('list_adverts', ['locale' => $locale]);
         }
 
         throw new Exception('Advert with this id not found');
@@ -41,6 +42,8 @@ class AdvertController extends Controller
 
     public function uploadAdvert(AdvertRequest $request)
     {
+        $locale = App::getLocale();
+
     	if (count($request->file('images')) > 0) {
     		$advert = Advert::create([
     			'user_id'       => Auth()->user()->id,
@@ -49,7 +52,7 @@ class AdvertController extends Controller
     		]);
 
     		if ($advert instanceof Advert) {
-    			return redirect()->route('list_adverts');
+    			return redirect()->route('list_adverts', ['locale' => $locale]);
     		}
     	}
 
@@ -92,18 +95,18 @@ class AdvertController extends Controller
      *
      * @return mixed
      */
-    public function displayAdvert($id)
+    public function displayAdvert(Request $request, $locale, $id)
     {
         $advert = Advert::find($id);
 
         if ($advert->status === 0) {
             $advert->increment('status');
 
-            return redirect()->route('list_adverts');
+            return redirect()->route('list_adverts', ['locale' => $locale]);
         } else {
             $advert->decrement('status');
 
-            return redirect()->route('list_adverts');
+            return redirect()->route('list_adverts', ['locale' => $locale]);
         }
     }
 }

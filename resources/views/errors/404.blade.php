@@ -43,7 +43,7 @@
         <div class="title">The page you looking for cannot be found</div>
     </div>
     <a class="content">
-        <a href="/"> <div>This way home.</div></a>
+        <a href="/{{ App::getLocale() }}"> <div>This way home.</div></a>
     </div>
 </div>
 </body>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App;
 use Auth;
 use Cloudder;
 use App\User;
@@ -33,6 +34,8 @@ class ProductController extends Controller
      */
     public function postProduct(ProductRequest $request)
     {
+        $locale = App::getLocale();
+
         $product = Product::create([
             'name'            => $request['name'],
             'description'     => $request['description'],
@@ -45,7 +48,7 @@ class ProductController extends Controller
         ]);
 
         if ($product) {
-            return redirect()->route('list_products');
+            return redirect()->route('list_products', ['locale' => $locale]);
         }
 
         return redirect()->back();
@@ -98,7 +101,7 @@ class ProductController extends Controller
      * @param $id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
-    public function editProductForm($id)
+    public function editProductForm(Request $request, $locale, $id)
     {
         $product = Auth::user()->products->find($id);
 
@@ -120,8 +123,10 @@ class ProductController extends Controller
      * @param ProductRequest $request
      * @return mixed
      */
-    public function updateProduct($id, ProductRequest $request)
+    public function updateProduct(ProductRequest $request, $locale, $id)
     {
+        $locale = App::getLocale();
+
         $product = Product::where('id', $request->id)->update([
             'name'        => $request->name,
             'description' => $request->description,
@@ -140,7 +145,7 @@ class ProductController extends Controller
         }
 
         if ($product) {
-            return redirect()->route('list_products');
+            return redirect()->route('list_products', ['locale' => $locale]);
         }
 
         return redirect()->back();
@@ -152,8 +157,10 @@ class ProductController extends Controller
      * @param $id
      * @return mixed
      */
-    public function deleteProduct($id)
+    public function deleteProduct(Request $request, $locale, $id)
     {
+        $locale = App::getLocale();
+
         $product = Auth::user()->products->find($id);
 
         if (is_null($product)) {
@@ -164,12 +171,10 @@ class ProductController extends Controller
 
         if ($productDelete) {
             // code to inform user that it was succesfully
-            return redirect()->route('list_products');
-        } else {
-            // code to user that something went wrong
-
-            return redirect()->route('home');
+            return redirect()->route('list_products', ['locale' => $locale]);
         }
+        // code to user that something went wrong
+        return redirect()->route('home', ['locale' => $locale]);
     }
 
     /**
@@ -180,7 +185,7 @@ class ProductController extends Controller
      *
      * @return mixed
      */
-    public function viewProduct(Request $request, $id)
+    public function viewProduct(Request $request, $locale, $id)
     {
         $product = Product::findOneById($id);
 
@@ -190,6 +195,6 @@ class ProductController extends Controller
             return view('dashboard.product.product_detail', compact('product', 'productAdvert'));
         }
 
-        throw new Exception('Product with this id not found');
+        abort(404);
     }
 }

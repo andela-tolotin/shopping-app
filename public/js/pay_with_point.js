@@ -9,10 +9,11 @@
       var productId = _this.attr('data-id');
       var userPoint = _this.attr('data-point');
       var token = _this.attr('data-token');
+      var locale = _this.attr('data-locale');
 
       var message = $('p#status');
 
-      var route = '/product/'+productId+'/pay_with_point';
+      var route = '/'+locale+'/product/'+productId+'/pay_with_point';
 
       makeAjaxCall(route, {
         'point': userPoint,
@@ -24,13 +25,13 @@
               </div>`
             );
           return setTimeout(function() {
-            window.location.href = '/product/'+productId+'/checkout';
+            window.location.href = '/'+locale+'/product/'+productId+'/checkout';
           }, 2000);
         }
         message.html(`<div class="alert alert-danger">`+data.message+`</div>`);
 
         return setTimeout(function() {
-          window.location.href = '/product/'+productId+'/checkout';
+          window.location.href = '/'+locale+'/product/'+productId+'/checkout';
         }, 2000);
       }).fail(function(error) {
         console.log(error);

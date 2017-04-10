@@ -19,9 +19,9 @@ class TransactionController extends Controller
 		if (is_null($request->from) || empty($request->from)) {
 			$this->resetOrderStatus();
 			return $this->loadStockWithoutQuery();
-    	} else {
-    		return $this->loadStockWithQuery($request);
     	}
+    	
+        return $this->loadStockWithQuery($request);
     }
 
     /**
@@ -55,14 +55,19 @@ class TransactionController extends Controller
      */
     public function loadStockWithoutQuery()
     {
-    	$approvedTransactions      = Transaction::where('order_status', 1)->orderBy('created_at', 'DESC')->paginate(10);
+    	$approvedTransactions = Transaction::where('order_status', 1)
+           ->orderBy('created_at', 'DESC')
+           ->paginate(10);
+
 		$approvedTransactionsTotal = 0;
 
-			foreach ($approvedTransactions as $key => $value) {
-	            $approvedTransactionsTotal += $value->item_price;
-	        }
+		foreach ($approvedTransactions as $key => $value) {
+            $approvedTransactionsTotal += $value->item_price;
+        }
 
-		    return view('dashboard.transaction.stock', compact('approvedTransactions', 'approvedTransactionsTotal'));
+	    return view('dashboard.transaction.stock',
+            compact('approvedTransactions', 'approvedTransactionsTotal')
+        );
     }
 
     /**
@@ -73,13 +78,20 @@ class TransactionController extends Controller
      */
     public function loadStockWithQuery($request)
     {
-    	$approvedTransactions      = Transaction::whereBetween('created_at', [$request->from, $request->to])->where('order_status', 1)->orderBy('created_at', 'DESC')->paginate(10);
-		$approvedTransactionsTotal = 0;
+    	$approvedTransactions = Transaction::whereBetween('created_at', [
+            $request->from, $request->to
+        ])->where('order_status', 1)
+            ->orderBy('created_at', 'DESC')
+            ->paginate(10);
+		
+        $approvedTransactionsTotal = 0;
 
-			foreach ($approvedTransactions as $key => $value) {
-	            $approvedTransactionsTotal += $value->item_price;
-	        }
+		foreach ($approvedTransactions as $key => $value) {
+            $approvedTransactionsTotal += $value->item_price;
+        }
 
-		    return view('dashboard.transaction.stock', compact('approvedTransactions', 'approvedTransactionsTotal'));
+		return view('dashboard.transaction.stock', 
+            compact('approvedTransactions', 'approvedTransactionsTotal')
+        );
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App;
 use Auth;
 use Cloudder;
 use App\Order;
@@ -18,21 +19,25 @@ use App\Http\Requests\UpdatePaymentRequest;
 
 class PaymentController extends Controller
 {
-    public function buyProductWithPoint(Request $request, $id)
+    public function buyProductWithPoint(Request $request, $locale, $id)
     {
         $userPoint = $request->get('point');
+
+        $balance = 0;
 
         $pointWallet = Auth::user()->pointWallet;
         $product = Product::findOneById($id);
 
-        $balance = (int) ($pointWallet->point - $pointWallet->balance);
+        if (!is_null($pointWallet)) {
+            $balance = (int) ($pointWallet->point - $pointWallet->balance);
 
-        if ($userPoint != ($pointWallet->point - $pointWallet->balance)) {
-            return response()->json(['message' => 'The Point Wallet mismatch']);
-        }
+            if ($userPoint != ($pointWallet->point - $pointWallet->balance)) {
+                return response()->json(['message' => 'The Point Wallet mismatch']);
+            }
 
-        if ($balance < $product->price) {
-            return response()->json(['message' => 'The point you have cannot pay for this service']);
+            if ($balance < $product->price) {
+                return response()->json(['message' => 'The point you have cannot pay for this service']);
+            }
         }
 
         if ($product instanceof Product) {
@@ -43,7 +48,7 @@ class PaymentController extends Controller
                 'item_quantity' => 1,
                 'item_price' => $product->price,
                 'email' => Auth::user()->email,
-                'phone' => is_null(Auth::user()->email)? null: Auth::user()->email,
+                'phone' => is_null(Auth::user()->email) ? null : Auth::user()->email,
                 'status' => 1,
                 'payment_gateway_id' => $pointWallet->payment_gateway_id,
                 'product_id' => $product->id,
@@ -75,6 +80,8 @@ class PaymentController extends Controller
 
     public function buyPointWithStripe(Request $request)
     {
+        $locale = App::getLocale();
+
         $amount = $_POST['amount'];
         $token  = $_POST['stripeToken'];
         $email = $_POST["stripeEmail"];
@@ -123,17 +130,19 @@ class PaymentController extends Controller
         if ($transactionStatus) {
             // return a flash message regarding the payment status
             return redirect()
-            ->route('load_buy_point')
+            ->route('load_buy_point', ['locale' =>  $locale])
             ->with('status', true);
         }
         // return a flash message regarding the status of the payment
         return redirect()
-            ->route('load_buy_point')
+            ->route('load_buy_point', ['locale' =>  $locale])
             ->with('status', false);
     }
 
     public function payWithStrip(Request $request)
     {
+        $locale = App::getLocale();
+
         $amount = $_POST['amount'];
         $token  = $_POST['stripeToken'];
         $email = $_POST["stripeEmail"];
@@ -218,30 +227,30 @@ class PaymentController extends Controller
             if ($transactionStatus) {
                 // return a flash message regarding the payment status
                 return redirect()
-                ->route('purchase_product', ['id' => $product->id])
+                ->route('purchase_product', ['locale' =>  $locale, 'id' => $product->id])
                 ->with('status', true);
             }
             // return a flash message regarding the status of the payment
             return redirect()
-                ->route('purchase_product', ['id' => $product->id])
+                ->route('purchase_product', ['locale' =>  $locale, 'id' => $product->id])
                 ->with('status', false);
         }
     }
 
-	public function deletePayment(Request $request, $id)
+	public function deletePayment(Request $request, $locale, $id)
     {
     	$paymentGateway = PaymentGateway::findOneById($id);
 
     	if ($paymentGateway instanceof PaymentGateway) {
     		$paymentGateway->forceDelete();
 
-    		return redirect()->route('list_payments');
+    		return redirect()->route('list_payments', ['locale' => $locale]);
     	}
 
     	abort(404);
     }
 
-	public function updatePayment(UpdatePaymentRequest $request, $id)
+	public function updatePayment(UpdatePaymentRequest $request, $locale, $id)
 	{
 		$paymentGateway = PaymentGateway::findOneById($id);
 
@@ -264,14 +273,14 @@ class PaymentController extends Controller
 	    	$paymentGateway->save();
 
 	    	if ($paymentGateway instanceof PaymentGateway) {
-	    		return redirect()->route('list_payments');
+	    		return redirect()->route('list_payments', ['locale' => $locale]);
 	    	}
 		}
 
 		abort(404);
 	}
 
-	public function editPayment(Request $request, $id)
+	public function editPayment(Request $request, $locale, $id)
 	{
 		$paymentGateway = PaymentGateway::findOneById($id);
 
@@ -279,22 +288,24 @@ class PaymentController extends Controller
 			return view('dashboard.payment.edit_payment', compact('paymentGateway'));
 		}
 
-		abort(401);
+		abort(404);
 	}
 
 	public function listpaymentGateway()
 	{
 		$paymentGateways = PaymentGateway::findAll();
 
-		if ($paymentGateways->count() > 0) {
+		//if ($paymentGateways->count() > 0) {
 			return view('dashboard.payment.list_payments', compact('paymentGateways'));
-		}
+		//}
 
-		abort(401);
+		//abort(404);
 	}
 
     public function addPaymentConfig(ConfigPaymentRequest $request)
     {
+        $locale = App::getLocale();
+
     	$name = $request->name;
     	$clientId = $request->client_id;
     	$clientSecret = $request->client_secret;
@@ -311,7 +322,7 @@ class PaymentController extends Controller
     		]);
 
     		if ($paymentGateway instanceof PaymentGateway) {
-    			return redirect()->route('list_payments');
+    			return redirect()->route('list_payments', ['locale' => $locale]);
     		}
 
     		abort(503);

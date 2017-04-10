@@ -13,7 +13,7 @@ class CartController extends Controller
     	return view('cart.checkout');
     }
 
-    public function checkout(Request $request, $id)
+    public function checkout(Request $request, $locale, $id)
     {
     	$product = Product::findOneById($id);
         $paymentGateways = PaymentGateway::findAll();

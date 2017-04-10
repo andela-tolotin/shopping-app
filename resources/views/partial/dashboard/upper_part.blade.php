@@ -30,7 +30,7 @@
     </div>
     <!-- DASHBOARD HEADER ITEM -->
     <div class="dashboard-header-item back-button">
-        <a href="/" class="button mid dark-light">Back to Homepage</a>
+        <a href="{{ route('home', ['locale' => App::getLocale()]) }}" class="button mid dark-light">Back to Homepage</a>
     </div>
     <!-- /DASHBOARD HEADER ITEM -->
 </div>

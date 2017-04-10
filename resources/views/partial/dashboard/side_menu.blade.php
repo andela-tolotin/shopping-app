@@ -98,28 +98,6 @@
         <!-- /DROPDOWN ITEM -->
     </ul>
     @endcan
-    {{-- <!-- /DROPDOWN -->
-    <!-- SIDE MENU TITLE -->
-    <p class="side-menu-title">Info &amp; Statistics</p>
-    <!-- /SIDE MENU TITLE -->
-    <!-- DROPDOWN -->
-    <ul class="dropdown dark hover-effect">
-        <!-- DROPDOWN ITEM -->
-        <li class="dropdown-item">
-            <a href="dashboard-statement.html">
-                <span class="sl-icon icon-layers"></span>
-                Sales Statement
-            </a>
-        </li>
-        <!-- /DROPDOWN ITEM -->
-        <!-- DROPDOWN ITEM -->
-        <li class="dropdown-item">
-            <a href="{{ route('dashboard_index')  }}">
-                <span class="sl-icon icon-chart"></span>
-                Statistics
-            </a>
-        </li> --}}
-        <!-- /DROPDOWN ITEM -->
     </ul>
     @can ( 'ADMIN', Auth::user()->role_id )
     <!-- /DROPDOWN -->
