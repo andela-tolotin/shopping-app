@@ -24,8 +24,10 @@ class PointWalletController extends Controller
     		$amount = $request->get('amount');
     	}
 
-    	if ($amount < 1000) {
-    		return redirect()->route('load_buy_point', ['locale' => $locale]);
+    	if (($amount % 1000) > 0) {
+    		return redirect()
+            ->route('load_buy_point', ['locale' => $locale])
+            ->with('message', 'Enter your amount in thousands e.g 1000');
     	}
 
     	$paymentGateways = PaymentGateway::findAll();

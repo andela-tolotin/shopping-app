@@ -68,7 +68,7 @@
 								<p class="text-header">{{ $product->name }}</p>
 							</a>
 							<p class="product-description">{!! str_limit($product->description, 100) !!}</p>
-							<a href="shop-gridview-v1.html">
+							<a href="#">
 								<p class="category primary">{{ $product->category->name }}</p>
 							</a>
 							<p class="price"><span>P</span>{{ $product->price }}</p>

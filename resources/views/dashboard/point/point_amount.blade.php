@@ -28,6 +28,11 @@
             </div>
             @endif
             @endif
+             @if (session('message'))
+             <div class="alert alert-danger">
+                {{ session('message') }}!
+            </div>
+            @endif
         </p>
             <div class="input-container">
                 <label for="name" class="rl-label required">Amount</label>
