@@ -39,7 +39,7 @@
     <ul class="dropdown dark hover-effect interactive">
         <!-- DROPDOWN ITEM -->
         <li class="dropdown-item active">
-            <a href="{{ route('dashboard_index') }}">
+            <a href="{{ route('dashboard_index', ['locale' => App::getLocale()]) }}">
                 <span class="sl-icon icon-settings"></span>
                 Home
             </a>
