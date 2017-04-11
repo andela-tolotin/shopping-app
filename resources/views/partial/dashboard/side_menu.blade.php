@@ -39,6 +39,18 @@
     <ul class="dropdown dark hover-effect interactive">
         <!-- DROPDOWN ITEM -->
         <li class="dropdown-item active">
+            <a href="{{ route('dashboard_index') }}">
+                <span class="sl-icon icon-settings"></span>
+                Home
+            </a>
+        </li>
+        <li class="dropdown-item active">
+            <a href="{{ route('profile', ['locale' => App::getLocale()]) }}">
+                <span class="sl-icon icon-settings"></span>
+                Account Settings
+            </a>
+        </li>
+        <li class="dropdown-item active">
             <a href="{{ route('profile', ['locale' => App::getLocale()]) }}">
                 <span class="sl-icon icon-settings"></span>
                 Account Settings
