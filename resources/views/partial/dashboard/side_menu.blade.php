@@ -81,7 +81,7 @@
                 Manage Orders
             </a>
             <!-- PIN -->
-            <span class="pin soft-edged big primary">49</span>
+            <span class="pin soft-edged big primary">{{ $orders->count() }}</span>
             <!-- /PIN -->
         </li>
         @endcan
