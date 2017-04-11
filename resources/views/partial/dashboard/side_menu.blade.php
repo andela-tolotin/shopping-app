@@ -40,7 +40,7 @@
         <!-- DROPDOWN ITEM -->
         <li class="dropdown-item active">
             <a href="{{ route('dashboard_index', ['locale' => App::getLocale()]) }}">
-                <span class="sl-icon icon-settings"></span>
+                <span class="sl-icon icon-home"></span>
                 Home
             </a>
         </li>
