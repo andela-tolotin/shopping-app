@@ -202,6 +202,6 @@
     </ul>
     <!-- /DROPDOWN -->
     @endcan
-    <a href="{{ route('logout') }}" class="button medium secondary">Logout</a>
+    <a href="{{ route('logout', ['locale' => App::getLocale()]) }}" class="button medium secondary">Logout</a>
 </div>
 <!-- /SIDE MENU -->
