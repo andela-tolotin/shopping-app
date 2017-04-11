@@ -32,7 +32,7 @@
         <form id="register-form4" method="post" action="/register">
             {{ csrf_field() }}
             <label for="name" class="rl-label required">Name</label>
-            <input type="text" id="name" name="name" placeholder="Enter your name here..." required="required">
+            <input type="text" id="name" name="name" value="{{ old('name')}}" placeholder="Enter your name here..." required="required">
             <label for="gender" class="rl-label required">Gender</label>
             <label for="gender" class="select-block">
                 <select name="gender" id="gender" required="required">
@@ -47,9 +47,9 @@
                 <!-- /SVG ARROW -->
             </label>
             <label for="phone" class="rl-label required">Phone</label>
-            <input type="text" id="phone" name="phone" placeholder="Enter your phone here..." required="required">
+            <input type="text" id="phone" name="phone" placeholder="Enter your phone here..."  value="{{ old('phone')}}" required="required">
             <label for="email_address6" class="rl-label required">Email Address</label>
-            <input type="email" id="email" name="email" placeholder="Enter your email address here..." required="required">
+            <input type="email" id="email" name="email" value="{{ old('email')}}" placeholder="Enter your email address here..." required="required">
             <label for="password" class="rl-label required">Password</label>
             <input type="password" id="password" name="password" placeholder="Enter your password here..." required="required">
             <label for="password_confirmation" class="rl-label required">Repeat Password</label>
