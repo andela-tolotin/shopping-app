@@ -81,7 +81,7 @@
                 Manage Orders
             </a>
             <!-- PIN -->
-            <span class="pin soft-edged big primary">{{ $orders->count() }}</span>
+                <span class="pin soft-edged big primary">{{ App\Order::where('status', 0)->count() }}</span>
             <!-- /PIN -->
         </li>
         @endcan
