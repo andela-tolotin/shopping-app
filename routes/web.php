@@ -13,7 +13,7 @@
 
 Route::get('/{locale}', 'HomeController@listProducts')->name('home');
 Route::get('/{locale}/login', 'Auth\LoginController@showLoginForm')->name('load_login');
-Route::post('/{locale}/logout', 'Auth\LoginController@logout')->name('logout');
+Route::get('/{locale}/signout', 'Auth\LoginController@logout')->name('signout');
 Route::get('/{locale}/register', 'Auth\RegisterController@showRegistrationForm')->name('load_register');
 
 Auth::routes();
