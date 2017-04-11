@@ -40,14 +40,8 @@
         <!-- DROPDOWN ITEM -->
         <li class="dropdown-item active">
             <a href="{{ route('dashboard_index', ['locale' => App::getLocale()]) }}">
-                <span class="sl-icon icon-settings"></span>
+                <span class="sl-icon icon-home"></span>
                 Home
-            </a>
-        </li>
-        <li class="dropdown-item active">
-            <a href="{{ route('profile', ['locale' => App::getLocale()]) }}">
-                <span class="sl-icon icon-settings"></span>
-                Account Settings
             </a>
         </li>
         <li class="dropdown-item active">
@@ -87,7 +81,7 @@
                 Manage Orders
             </a>
             <!-- PIN -->
-            <span class="pin soft-edged big primary">49</span>
+            <span class="pin soft-edged big primary">{{ $orders->count() }}</span>
             <!-- /PIN -->
         </li>
         @endcan
