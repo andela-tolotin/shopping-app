@@ -58,7 +58,7 @@
                         <a href="{{ route('list_orders', ['locale' => App::getLocale()]) }}">Orders</a>
                     </li>
                     <li class="dropdown-item">
-                        <a href="{{ route('logout', ['locale' => App::getLocale()]) }}">Log out</a>
+                        <a href="{{ route('logout') }}">Log out</a>
                     </li>
                 </ul>
                 <!-- /DROPDOWN -->
@@ -126,7 +126,7 @@
         <!-- /DROPDOWN ITEM -->
     </ul>
     <!-- /DROPDOWN -->
-    <a href="{{ route('logout', ['locale' => App::getLocale()]) }}" class="button medium secondary">Logout</a>
+    <a href="{{ route('logout') }}" class="button medium secondary">Logout</a>
     <a href="{{ route('home', ['locale' => App::getLocale()]) }}" class="button medium secondary">Dashboard</a>
 </div>
 <!-- /SIDE MENU -->
