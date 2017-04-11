@@ -50,12 +50,6 @@
                 Account Settings
             </a>
         </li>
-        <li class="dropdown-item active">
-            <a href="{{ route('profile', ['locale' => App::getLocale()]) }}">
-                <span class="sl-icon icon-settings"></span>
-                Account Settings
-            </a>
-        </li>
         <!-- /DROPDOWN ITEM -->
         @can ( 'BUYER', Auth::user()->role_id )
         <!-- DROPDOWN ITEM -->
