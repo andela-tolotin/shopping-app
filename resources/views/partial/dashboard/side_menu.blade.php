@@ -81,7 +81,7 @@
                 Manage Orders
             </a>
             <!-- PIN -->
-            <span class="pin soft-edged big primary">{{ $orders}}</span>
+                <span class="pin soft-edged big primary">{{ App\Order::where('status', 0)->count() }}</span>
             <!-- /PIN -->
         </li>
         @endcan
@@ -208,6 +208,6 @@
     </ul>
     <!-- /DROPDOWN -->
     @endcan
-    <a href="{{ route('logout', ['locale' => App::getLocale()]) }}" class="button medium secondary">Logout</a>
+    <a href="{{ route('signout', ['locale' => App::getLocale()]) }}" class="button medium secondary">Logout</a>
 </div>
 <!-- /SIDE MENU -->

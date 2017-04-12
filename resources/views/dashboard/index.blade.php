@@ -20,14 +20,14 @@
 				<!-- /GRAPH STATS LIST ITEM -->
 
 				<!-- GRAPH STATS LIST ITEM -->
-				<a href="user/orders"><div class="graph-stats-list-item violet line">
+				<a href="{{ route('list_user_orders', ['locale' => App::getLocale()]) }}"><div class="graph-stats-list-item violet line">
 					<p class="text-header">Total Orders</p>
 					<h2>{{ $userOrders }}</h2>
 				</div></a>
 				<!-- /GRAPH STATS LIST ITEM -->
 				@can ( 'ADMIN_MANAGER', Auth::user()->role_id )
 				<!-- GRAPH STATS LIST ITEM -->
-				<a href="/orders"><div class="graph-stats-list-item blue step">
+				<a href="{{ route('list_orders', ['locale' => App::getLocale()]) }}"><div class="graph-stats-list-item blue step">
 					<p class="text-header">Total Unapproved Orders</p>
 					<h2>{{ $totalUnapprovedOrder }}</h2>
 				</div></a>
@@ -35,7 +35,7 @@
 				<!-- /GRAPH STATS LIST ITEM -->
 				@can ( 'ADMIN', Auth::user()->role_id )
 				<!-- GRAPH STATS LIST ITEM -->
-				<a href="/transactions"><div class="graph-stats-list-item red curve">
+				<a href="{{ route('stock', ['locale' => App::getLocale()]) }}"><div class="graph-stats-list-item red curve">
 					<p class="text-header">Total Amount of Transactions</p>
 					<h2>{{ $totalTransactionAmount }}</h2>
 				</div></a>

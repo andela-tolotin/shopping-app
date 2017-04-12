@@ -11,7 +11,8 @@
         "jrm2k6/cloudder": "^0.2.2",
         "laravel/cashier": "~7.0",
         "laravel/framework": "5.3.*",
-        "stripe/stripe-php": "^4.5"
+        "stripe/stripe-php": "^4.5",
+        "sendgrid/sendgrid": "~4.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
