@@ -1,6 +1,6 @@
 @include('partial.dashboard.header')
 <body>
-	@include('partial.dashboard.side_menu', ['orders' => $totalUnapprovedOrder])
+	@include('partial.dashboard.side_menu')
 	<div class="dashboard-body">
         @include('partial.dashboard.upper_part')
         <!-- DASHBOARD HEADER -->

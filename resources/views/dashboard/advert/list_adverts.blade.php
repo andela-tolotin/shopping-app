@@ -24,12 +24,12 @@
 			<td>{{ $advert->user->name }}</td>
 			<td>
 				@foreach(json_decode($advert->advert_photos) as $photo)
-				<img src="{{ $photo }}" class="img-responsive" alt="{{ $advert->user->name }}" style="width: 52px; height: auto; float: left; padding: 2px;">
+				<img src="{{ $photo }}" class="img-responsive" alt="{{ @$advert->user->name }}" style="width: 52px; height: auto; float: left; padding: 2px;">
 				@endforeach
 			</td>
-			<td>{{ $advert->product->name }}</td>
+			<td>{{ @$advert->product->name }}</td>
 			<td>
-				@if ($advert->status === 0)
+				@if (@$advert->status === 0)
 					Pending
 				@else
 					Displayed
