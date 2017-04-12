@@ -5,6 +5,13 @@
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <!-- TRANSACTION LIST -->
 <table class="table table-hover table-bordered">
+	<p>
+		@if (session('message'))
+	        <div class="alert alert-danger">
+	            {{ session('message') }}!
+	        </div>
+        @endif
+	</p>
 	<thead>
 		<tr>
 			<th>Sn</th>

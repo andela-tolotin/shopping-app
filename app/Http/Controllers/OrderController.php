@@ -2,14 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Auth;
 use App\Order;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Mail\Mailer as Mail;
 use App\Http\Requests\ProductRequest;
 
 class OrderController extends Controller
 {
+    protected $mail;
+
+    public function __construct(Mail $mail) 
+    {
+        $this->mail = $mail;
+    }
     /**
      * List all Orders made by all users
      *
@@ -78,11 +86,31 @@ class OrderController extends Controller
     	if ($order->status === 0) {
         	$order->increment('status');
 
-        	return redirect()->route('list_orders', ['locale' => $locale]);
+            $response = $this->mail($order);
+
+        	return redirect()->route('list_orders', ['locale' => $locale])
+                ->with('message', $response);
     	} else {
     		$order->decrement('status');
 
     		return redirect()->route('list_orders', ['locale' => $locale]);
     	}
+    }
+
+    protected function mail($order)
+    {
+        $transaction = $order->transaction()->first()->toArray();
+
+        try {
+            $this->mail->send('emails.mailEvent', $transaction, function($message) use ($transaction) {
+                $message->from( getenv('SENDER_ADDRESS'), getenv('SENDER_NAME'));
+                $message->to($transaction['email'])->subject('Your Order has been approved');
+            });
+            
+            return 'Email sent succesfully to user';
+        } catch (\Exception $e) {
+            return 'Failure ' . $e->getMessage();
+        }
+        
     }
 }

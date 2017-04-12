@@ -1,0 +1,1 @@
+Hello, This is to inform you that your order has been approved.
