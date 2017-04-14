@@ -103,7 +103,7 @@ class OrderController extends Controller
 
         try {
             $this->mail->send('emails.mailEvent', $transaction, function($message) use ($transaction) {
-                $message->from( getenv('SENDER_ADDRESS'), getenv('SENDER_NAME'));
+                $message->from(env('SENDER_EMAIL'), 'Order status');
                 $message->to($transaction['email'])->subject('Your Order has been approved');
             });
             
