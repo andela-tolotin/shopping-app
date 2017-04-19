@@ -91,4 +91,5 @@ Route::group(['middleware' => ['auth.isAdminAndManager']], function() {
     Route::get('/{locale}/orders', 'OrderController@listOrders')->name('list_orders');
     Route::get('/{locale}/order/{id}/delete', 'OrderController@deleteOrder')->name('delete_order');
     Route::get('/{locale}/order/{id}/approve', 'OrderController@approveOrder')->name('approve_order');
+    Route::get('/{locale}/order/{id}/ratings', 'OrderController@orderRating')->name('order_rating');
 });

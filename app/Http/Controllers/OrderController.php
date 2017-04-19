@@ -27,7 +27,7 @@ class OrderController extends Controller
     {
         $unapprovedOrders = Order::where('status', 0)->orderBy('created_at', 'DESC')->get();
         $approvedOrders   = Order::where('status', 1)->orderBy('created_at', 'DESC')->paginate(10);
-       
+
         return view('dashboard.order.show_orders', compact('approvedOrders', 'unapprovedOrders'));
     }
 
@@ -103,7 +103,7 @@ class OrderController extends Controller
 
         try {
             $this->mail->send('emails.mailEvent', $transaction, function($message) use ($transaction) {
-                $message->from(env('SENDER_EMAIL'), 'Order status');
+                $message->from(env('SENDER_ADDRESS'), env('SENDER_NAME'));
                 $message->to($transaction['email'])->subject('Your Order has been approved');
             });
             
@@ -111,6 +111,15 @@ class OrderController extends Controller
         } catch (\Exception $e) {
             return 'Failure ' . $e->getMessage();
         }
-        
+    }
+
+    public function orderRating(Request $request)
+    {
+        $order = Order::find($request->id);
+
+        $order->ratings = $request->ratings;
+        $order->save();
+
+        return response()->json(['message' => 'Succesfully updated', 'status' => 201]);
     }
 }

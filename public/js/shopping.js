@@ -101,6 +101,23 @@ $(document).ready(function() {
         event.preventDefault();
     });
 
+    $('.rating').on('rating.change', function(e) {
+        var id   = $(this).data('id');
+        var ratings = $(this).val();
+        $.ajax({
+            type: 'GET',
+            url: '/en/order/'+id+'/ratings',
+            data: {ratings: ratings},
+          }).done(function(data) {
+                if (data.status == 201) {
+                    alert('You have succesfully rate the customer');
+                } else {
+                    alert('Rating failed please try again');
+                }
+        });
+
+    });
+
     var fromDateInput = $('input[name="from"]');
     var toDateInput = $('input[name="to"]');
     var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : 'body';
@@ -110,11 +127,16 @@ $(document).ready(function() {
         todayHighlight: true,
         autoclose: true,
     };
-    fromDateInput.datepicker(options);
-    toDateInput.datepicker(options);
+
+    if (fromDateInput.size() > 0 && toDateInput.size() > 0 ) {
+        fromDateInput.datepicker(options);
+        toDateInput.datepicker(options);
+    }
+    
 
     $('#reset').click(function (event) {
         window.location.href = '/en/transactions';
         event.preventDefault();
     });
+
 });
