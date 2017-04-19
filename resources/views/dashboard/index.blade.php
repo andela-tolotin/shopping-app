@@ -13,6 +13,7 @@
             <!-- /HEADLINE -->
             <div class="graph-stats-list">
 				<!-- GRAPH STATS LIST ITEM -->
+				@can ( 'BUYER', Auth::user()->role_id )
 				<div class="graph-stats-list-item green bars">
 					<p class="text-header">Remaining Points</p>
 					<h2>{{ $remainingPoints }}</h2>
@@ -20,25 +21,46 @@
 				<!-- /GRAPH STATS LIST ITEM -->
 
 				<!-- GRAPH STATS LIST ITEM -->
-				<a href="{{ route('list_user_orders', ['locale' => App::getLocale()]) }}"><div class="graph-stats-list-item violet line">
-					<p class="text-header">Total Orders</p>
-					<h2>{{ $userOrders }}</h2>
-				</div></a>
+				
+				<div class="graph-stats-list-item violet line">
+					<a href="{{ route('list_user_orders', ['locale' => App::getLocale()]) }}">
+						<p class="text-header">Total Orders</p>
+						<h2>{{ $userOrdersCount }}</h2>
+					</a>
+				</div>
+
+				<div class="graph-stats-list-item green bars">
+					<p class="text-header">Review</p>
+					<h2>
+						@if ($averageRatings === 1)
+							{{ $averageRatings }} - Poor
+						@elseif ($averageRatings === 2)
+							{{ $averageRatings }} - Good
+						@elseif ($averageRatings === 3)
+							{{ $averageRatings }} - Excellent
+						@else
+							Not Rated
+						@endif
+					</h2>
+				</div>
+				@endcan
 				<!-- /GRAPH STATS LIST ITEM -->
 				@can ( 'ADMIN_MANAGER', Auth::user()->role_id )
 				<!-- GRAPH STATS LIST ITEM -->
-				<a href="{{ route('list_orders', ['locale' => App::getLocale()]) }}"><div class="graph-stats-list-item blue step">
+				<div class="graph-stats-list-item blue step">
+				<a href="{{ route('list_orders', ['locale' => App::getLocale()]) }}">
 					<p class="text-header">Total Unapproved Orders</p>
 					<h2>{{ $totalUnapprovedOrder }}</h2>
-				</div></a>
+				</a></div>
 				@endcan
 				<!-- /GRAPH STATS LIST ITEM -->
 				@can ( 'ADMIN', Auth::user()->role_id )
 				<!-- GRAPH STATS LIST ITEM -->
-				<a href="{{ route('stock', ['locale' => App::getLocale()]) }}"><div class="graph-stats-list-item red curve">
+				<div class="graph-stats-list-item red curve">
+				<a href="{{ route('stock', ['locale' => App::getLocale()]) }}">
 					<p class="text-header">Total Amount of Transactions</p>
 					<h2>{{ $totalTransactionAmount }}</h2>
-				</div></a>
+				</a></div>
 				@endcan
 			</div>
 

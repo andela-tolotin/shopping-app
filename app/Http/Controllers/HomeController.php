@@ -18,12 +18,19 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $totalRatings = 0;
         $remainingPoints = 0;
         $totalTransactionAmount = 0;
 
         $userPointWallet = Auth::user()->pointWallet()->first();
-        $userOrders      = Auth::user()->orders->count();
+        $userOrders     = Auth::user()->orders;
+        $userOrdersCount = $userOrders->count();
 
+        foreach ($userOrders as $key => $value) {
+            $totalRatings += $value->ratings;
+        }
+
+        $averageRatings = $totalRatings/$userOrdersCount;
         if (!is_null($userPointWallet)) {
             $remainingPoints = $userPointWallet->point - $userPointWallet->balance;
         }
@@ -35,7 +42,7 @@ class HomeController extends Controller
             $totalTransactionAmount += $value->item_price;
         }
 
-        return view('dashboard.index', compact('userOrders', 'remainingPoints', 'totalUnapprovedOrder', 'totalTransactionAmount'));
+        return view('dashboard.index', compact('averageRatings', 'userOrdersCount', 'remainingPoints', 'totalUnapprovedOrder', 'totalTransactionAmount'));
     }
 
     public function listProducts(Request $request)

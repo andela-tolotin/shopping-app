@@ -9,7 +9,8 @@ class Order extends Model
     protected $fillable = [
         'user_id', 
         'product_id', 
-        'transaction_id'
+        'transaction_id',
+        'ratings'
     ];
 
     public function user()
