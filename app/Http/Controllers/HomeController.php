@@ -21,16 +21,30 @@ class HomeController extends Controller
         $totalRatings = 0;
         $remainingPoints = 0;
         $totalTransactionAmount = 0;
+        $averageRatings = 0;
+        $queueNo = 0;
 
         $userPointWallet = Auth::user()->pointWallet()->first();
-        $userOrders     = Auth::user()->orders;
+        $userOrders = Auth::user()->orders;
+
+        $unapprovedOrders = Order::where('status', 0)->orderBy('created_at', 'DESC')->get();
+
+        foreach ($unapprovedOrders as $index => $order) {
+            if ($order->user_id == Auth::user()->id ) {
+                $queueNo = $index + 1;
+            }
+        }
+
         $userOrdersCount = $userOrders->count();
 
         foreach ($userOrders as $key => $value) {
             $totalRatings += $value->ratings;
         }
 
-        $averageRatings = $totalRatings/$userOrdersCount;
+        if ($totalRatings > 0 && $userOrdersCount > 0) {
+            $averageRatings = $totalRatings / $userOrdersCount;
+        }
+
         if (!is_null($userPointWallet)) {
             $remainingPoints = $userPointWallet->point - $userPointWallet->balance;
         }
@@ -42,7 +56,7 @@ class HomeController extends Controller
             $totalTransactionAmount += $value->item_price;
         }
 
-        return view('dashboard.index', compact('averageRatings', 'userOrdersCount', 'remainingPoints', 'totalUnapprovedOrder', 'totalTransactionAmount'));
+        return view('dashboard.index', compact('averageRatings', 'userOrdersCount', 'remainingPoints', 'totalUnapprovedOrder', 'totalTransactionAmount', 'queueNo'));
     }
 
     public function listProducts(Request $request)

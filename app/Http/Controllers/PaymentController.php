@@ -19,6 +19,11 @@ use App\Http\Requests\UpdatePaymentRequest;
 
 class PaymentController extends Controller
 {
+    public function payWithInicis(Request $request)
+    {
+
+    }
+
     public function buyProductWithPoint(Request $request, $locale, $id)
     {
         $userPoint = $request->get('point');

@@ -43,6 +43,13 @@
 						@endif
 					</h2>
 				</div>
+
+				<div class="graph-stats-list-item violet line">
+					<a href="{{ route('list_user_orders', ['locale' => App::getLocale()]) }}">
+						<p class="text-header">Waiting Queue No</p>
+						<h2>{{ $queueNo }}</h2>
+					</a>
+				</div>
 				@endcan
 				<!-- /GRAPH STATS LIST ITEM -->
 				@can ( 'ADMIN_MANAGER', Auth::user()->role_id )
