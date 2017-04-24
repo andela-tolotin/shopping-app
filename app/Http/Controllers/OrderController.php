@@ -6,6 +6,7 @@ use App\User;
 use Auth;
 use App\Order;
 use Exception;
+use App\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Mail\Mailer as Mail;
 use App\Http\Requests\ProductRequest;
@@ -73,6 +74,23 @@ class OrderController extends Controller
     }
 
     /**
+     * Log notification
+     *
+     * @return bolean
+     */
+    protected function logNotification()
+    {
+        return Notification::create([
+                'user_id' => Auth::user()->id ?? null,
+                'message' => "Your order have been approved",
+                'status' => 1,
+                'action' => 'Approve Order',
+                'date_created' => Carbon::now(),
+                'url' => "/en/home",
+            ]);
+    }
+
+    /**
      * Approve/Dissaprove order
      *
      * @param $id
@@ -87,6 +105,9 @@ class OrderController extends Controller
         	$order->increment('status');
 
             $response = $this->mail($order);
+
+            // Log the notification in the notification table
+            $this->logNotification();
 
         	return redirect()->route('list_orders', ['locale' => $locale])
                 ->with('message', $response);

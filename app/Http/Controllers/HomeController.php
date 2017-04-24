@@ -7,6 +7,7 @@ use App\Order;
 use App\Product;
 use App\Transaction;
 use App\PointWallet;
+use App\Notification;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -62,7 +63,15 @@ class HomeController extends Controller
     public function listProducts(Request $request)
     {
     	$products = Product::findAll();
+        $adminNotification = Notification::where([['status', 1], ['action', 'Approve Order']])->orderBy('date_created', 'DESC');
+        $buyerNotification = Notification::where([['status', 1], ['action', 'Login succesfully']])->orderBy('date_created', 'DESC');
+        $adminNotifications = $adminNotification->get();
+        $buyerNotifications = $buyerNotification->get();
+        // dd($buyerNotifications);
+        // $userNames = $adminNotification->users()->get();
+        $adminNotificationCount = $adminNotification->count();
+        $buyerNotificationCount = $buyerNotification->count();
 
-    	return view('index', compact('products'));
+    	return view('index', compact('products', 'adminNotifications', 'buyerNotifications', 'buyerNotificationCount', 'adminNotificationCount'));
     }
 }

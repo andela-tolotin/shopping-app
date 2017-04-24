@@ -9,9 +9,11 @@ use App\Order;
 use App\Product;
 use Stripe\Charge;
 use Stripe\Stripe;
+use Carbon\Carbon;
 use Stripe\Customer;
 use App\PointWallet;
 use App\Transaction;
+use App\Notification;
 use App\PaymentGateway;
 use Illuminate\Http\Request;
 use App\Http\Requests\ConfigPaymentRequest;
@@ -68,6 +70,9 @@ class PaymentController extends Controller
                 'status' => 0,
                 'user_id' => Auth::user()->id ?? null,
             ]);
+
+            // Log the notification in the notification table
+            $this->logNotification();
 
             if (! is_null(Auth::user())) {
                 // deduct money from point wallet
@@ -219,6 +224,9 @@ class PaymentController extends Controller
                 'user_id' => Auth::user()->id ?? null,
             ]);
 
+            // Log the notification in the notification table
+            $this->logNotification();
+
             if (! is_null(Auth::user())) {
                 // deduct money from point wallet
                 $transactions = array_pluck(Auth::user()->transactions, 'item_price');
@@ -240,6 +248,23 @@ class PaymentController extends Controller
                 ->route('purchase_product', ['locale' =>  $locale, 'id' => $product->id])
                 ->with('status', false);
         }
+    }
+
+    /**
+     * Log notification
+     *
+     * @return bolean
+     */
+    protected function logNotification()
+    {
+        return Notification::create([
+                'user_id' => Auth::user()->id ?? null,
+                'message' => "Your order have been approved",
+                'status' => 1,
+                'action' => 'Approve Order',
+                'date_created' => Carbon::now(),
+                'url' => "/en/home",
+            ]);
     }
 
 	public function deletePayment(Request $request, $locale, $id)

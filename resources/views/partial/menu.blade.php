@@ -63,6 +63,84 @@
                 </ul>
                 <!-- /DROPDOWN -->
             </div>
+            @can ( 'ADMIN_MANAGER', Auth::user()->role_id )
+            <div  class="user-quickview">
+                <span class="icon-settings">
+                    <!-- SVG ARROW -->
+                    <svg class="svg-arrow">
+                        <use xlink:href="#svg-arrow"></use>
+                    </svg>
+                    <!-- /SVG ARROW -->
+                </span>
+
+                <!-- PIN -->
+                <span class="pin soft-edged primary">{{ $adminNotificationCount }}</span>
+                <!-- /PIN -->
+
+                <!-- DROPDOWN NOTIFICATIONS -->
+                <ul class="dropdown notifications no-hover closed">
+                    
+                    <!-- DROPDOWN ITEM -->
+                    @foreach($adminNotifications as $notification)
+                    <li class="dropdown-item">
+                        <a href="author-profile.html">
+                            <figure class="user-avatar">
+                                <img src="images/avatars/avatar_05.jpg" alt="">
+                            </figure>
+                        </a>
+                        <p class="title">
+                            <a href="author-profile.html"><span></span>{{ $notification->message }}</a>
+                        </p>
+                        <p class="timestamp">{{ Carbon\Carbon::now()->subDays(Carbon\Carbon::now()->toDateTimeString() - $notification->date_created)->diffForHumans() }}</p>
+                        @endforeach
+                        <span class="notification-type icon-tag"></span>
+                        <a href="#" class="button primary">View all Notifications</a>
+                    </li>
+                    
+                    <!-- /DROPDOWN ITEM -->
+                </ul>
+                <!-- /DROPDOWN NOTIFICATIONS -->
+            </div>
+            @endcan
+            @can ( 'BUYER', Auth::user()->role_id )
+            <div  class="user-quickview">
+                <span class="icon-settings">
+                    <!-- SVG ARROW -->
+                    <svg class="svg-arrow">
+                        <use xlink:href="#svg-arrow"></use>
+                    </svg>
+                    <!-- /SVG ARROW -->
+                </span>
+
+                <!-- PIN -->
+                <span class="pin soft-edged primary">{{ $buyerNotificationCount }}</span>
+                <!-- /PIN -->
+
+                <!-- DROPDOWN NOTIFICATIONS -->
+                <ul class="dropdown notifications no-hover closed">
+                    
+                    <!-- DROPDOWN ITEM -->
+                    @foreach($buyerNotifications as $notification)
+                    <li class="dropdown-item">
+                        <a href="author-profile.html">
+                            <figure class="user-avatar">
+                                <img src="images/avatars/avatar_05.jpg" alt="">
+                            </figure>
+                        </a>
+                        <p class="title">
+                            <a href="author-profile.html"><span> </span>{{ $notification->message }}</a>
+                        </p>
+                        <p class="timestamp">{{ Carbon\Carbon::now()->subDays($notification->date_created)->diffForHumans() }}</p>
+                        @endforeach
+                        <span class="notification-type icon-tag"></span>
+                        <a href="#" class="button primary">View all Notifications</a>
+                    </li>
+                    
+                    <!-- /DROPDOWN ITEM -->
+                </ul>
+                <!-- /DROPDOWN NOTIFICATIONS -->
+            </div>
+            @endcan
             @endif
             <div class="account-actions">
                 @if(!Auth::check())
