@@ -76,6 +76,9 @@
                 <!-- PIN -->
                 <span class="pin soft-edged primary">{{ $adminNotificationCount }}</span>
                 <!-- /PIN -->
+                @if ($adminNotificationCount === 0)
+
+                @else
 
                 <!-- DROPDOWN NOTIFICATIONS -->
                 <ul class="dropdown notifications no-hover closed">
@@ -91,7 +94,7 @@
                         <p class="title">
                             <a href="author-profile.html"><span></span>{{ $notification->message }}</a>
                         </p>
-                        <p class="timestamp">{{ Carbon\Carbon::now()->subDays(Carbon\Carbon::now()->toDateTimeString() - $notification->date_created)->diffForHumans() }}</p>
+                        <p class="timestamp">{{ $notification->created_at->diffForHumans(\Carbon\Carbon::now()) }}</p>
                         @endforeach
                         <span class="notification-type icon-tag"></span>
                         <a href="#" class="button primary">View all Notifications</a>
@@ -100,6 +103,7 @@
                     <!-- /DROPDOWN ITEM -->
                 </ul>
                 <!-- /DROPDOWN NOTIFICATIONS -->
+                @endif
             </div>
             @endcan
             @can ( 'BUYER', Auth::user()->role_id )
@@ -115,7 +119,9 @@
                 <!-- PIN -->
                 <span class="pin soft-edged primary">{{ $buyerNotificationCount }}</span>
                 <!-- /PIN -->
+                @if ($buyerNotificationCount === 0)
 
+                @else
                 <!-- DROPDOWN NOTIFICATIONS -->
                 <ul class="dropdown notifications no-hover closed">
                     
@@ -130,7 +136,7 @@
                         <p class="title">
                             <a href="author-profile.html"><span> </span>{{ $notification->message }}</a>
                         </p>
-                        <p class="timestamp">{{ Carbon\Carbon::now()->subDays($notification->date_created)->diffForHumans() }}</p>
+                        <p class="timestamp">{{ $notification->created_at->diffForHumans(\Carbon\Carbon::now()) }}</p>
                         @endforeach
                         <span class="notification-type icon-tag"></span>
                         <a href="#" class="button primary">View all Notifications</a>
@@ -139,6 +145,7 @@
                     <!-- /DROPDOWN ITEM -->
                 </ul>
                 <!-- /DROPDOWN NOTIFICATIONS -->
+               @endif
             </div>
             @endcan
             @endif

@@ -91,6 +91,32 @@ class OrderController extends Controller
     }
 
     /**
+     * decrement status to 0
+     *
+     * @return bolean
+     */
+    protected function decrementApproveOrderStatus()
+
+    {
+        $notification = Notification::find(Auth::user()->id)->where([['status', 1], ['action', 'Approve Order']]);
+
+        $notification->decrement('status');
+    }
+
+    /**
+     * decrement status to 0
+     *
+     * @return bolean
+     */
+    protected function decrementMadeOrderStatus()
+
+    {
+        $notification = Notification::find(Auth::user()->id)->where([['status', 1], ['action', 'Made Order']]);
+
+        $notification->decrement('status');
+    }
+
+    /**
      * Approve/Dissaprove order
      *
      * @param $id
@@ -108,6 +134,7 @@ class OrderController extends Controller
 
             // Log the notification in the notification table
             $this->logNotification();
+            $this->decrementMadeOrderStatus();
 
         	return redirect()->route('list_orders', ['locale' => $locale])
                 ->with('message', $response);

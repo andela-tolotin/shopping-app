@@ -7,9 +7,10 @@ use Auth;
 use Cloudder;
 use App\User;
 use Exception;
+use App\Advert;
 use App\Product;
 use App\Category;
-use App\Advert;
+use App\Notification;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProductRequest;
 
@@ -188,11 +189,16 @@ class ProductController extends Controller
     public function viewProduct(Request $request, $locale, $id)
     {
         $product = Product::findOneById($id);
-
         $productAdvert = Advert::withProduct($product->id);
+        $adminNotification = Notification::where([['status', 1], ['action', 'Approve Order']])->orderBy('created_at', 'DESC');
+        $buyerNotification = Notification::where([['status', 1], ['action', 'Login succesfully']])->orderBy('created_at', 'DESC');
+        $adminNotifications = $adminNotification->get();
+        $buyerNotifications = $buyerNotification->get();
+        $adminNotificationCount = $adminNotification->count();
+        $buyerNotificationCount = $buyerNotification->count();
 
         if ($product instanceof Product) {
-            return view('dashboard.product.product_detail', compact('product', 'productAdvert'));
+            return view('dashboard.product.product_detail', compact('product', 'productAdvert', 'adminNotifications', 'buyerNotifications', 'buyerNotificationCount', 'adminNotificationCount'));
         }
 
         abort(404);

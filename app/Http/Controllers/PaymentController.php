@@ -261,10 +261,23 @@ class PaymentController extends Controller
                 'user_id' => Auth::user()->id ?? null,
                 'message' => "Your order have been approved",
                 'status' => 1,
-                'action' => 'Approve Order',
+                'action' => 'Made Order',
                 'date_created' => Carbon::now(),
                 'url' => "/en/home",
             ]);
+    }
+
+    /**
+     * decrement status to 0
+     *
+     * @return bolean
+     */
+    protected function decrementStatus()
+
+    {
+        $notification = Notification::find(Auth::user()->id)->where([['status', 1], ['action', 'Made Order']]);
+
+        $notification->decrement('status');
     }
 
 	public function deletePayment(Request $request, $locale, $id)
