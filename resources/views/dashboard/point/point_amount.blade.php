@@ -1,6 +1,6 @@
 @extends('dashboard.base')
 @section('title', 'Buy Point')
-@section('page', 'Specify Amount')
+@section('page', 'Specify Point')
 @section('body')
 <!-- FORM POPUP -->
 <div class="form-box-items">
@@ -35,8 +35,8 @@
             @endif
         </p>
             <div class="input-container">
-                <label for="name" class="rl-label required">Amount</label>
-                <input type="text" id="amount" name="amount" placeholder="Enter name of amount to buy here" required="required">
+                <label for="name" class="rl-label required">Point</label>
+                <input type="text" id="point" name="point" placeholder="Enter points to buy here" required="required">
             </div>
             <button class="button mid dark">Proceed</button>
         </form>

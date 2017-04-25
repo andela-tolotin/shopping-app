@@ -18,19 +18,21 @@ class PointWalletController extends Controller
     {
         $locale = App::getLocale();
 
-    	$amount = 0;
+    	$point = 0;
 
-    	if ($request->has('amount')) {
-    		$amount = $request->get('amount');
+    	if ($request->has('point')) {
+    		$point = $request->get('point');
     	}
 
-    	if (($amount % 1000) > 0) {
+    	if (($point % 1) > 0) {
     		return redirect()
-            ->route('load_buy_point', ['locale' => $locale])
-            ->with('message', 'Enter your amount in thousands e.g 1000');
+                ->route('load_buy_point', ['locale' => $locale])
+                ->with('message', 'Enter your point in whole number e.g 1 or 2');
     	}
 
     	$paymentGateways = PaymentGateway::findAll();
+
+        $amount = $point;
 
     	return view('dashboard.point.buy_point', compact('paymentGateways', 'amount'));
     }
