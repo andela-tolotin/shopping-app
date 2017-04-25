@@ -8,6 +8,7 @@
         <div class="dashboard-content">
             <div class="headline buttons primary">
                 <h4>@yield('page')</h4>
+                @yield('href', '')
             </div>
             @yield('body')
         </div>

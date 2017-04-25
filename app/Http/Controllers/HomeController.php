@@ -57,14 +57,21 @@ class HomeController extends Controller
             $totalTransactionAmount += $value->item_price;
         }
 
-        return view('dashboard.index', compact('averageRatings', 'userOrdersCount', 'remainingPoints', 'totalUnapprovedOrder', 'totalTransactionAmount', 'queueNo'));
+        $adminNotification = Notification::where([['status', 1], ['action', 'Made Order']])->orderBy('created_at', 'DESC');
+        $buyerNotification = Notification::where([['status', 1], ['action', 'Login succesfully']])->orWhere([['status', 1], ['action', 'Approve Order']])->orderBy('created_at', 'DESC');
+        $adminNotifications = $adminNotification->get();
+        $buyerNotifications = $buyerNotification->get();
+        $adminNotificationCount = $adminNotification->count();
+        $buyerNotificationCount = $buyerNotification->count();
+
+        return view('dashboard.index', compact('averageRatings', 'userOrdersCount', 'remainingPoints', 'totalUnapprovedOrder', 'totalTransactionAmount', 'queueNo', 'adminNotifications', 'buyerNotifications', 'buyerNotificationCount', 'adminNotificationCount'));
     }
 
     public function listProducts(Request $request)
     {
     	$products = Product::findAll();
         $adminNotification = Notification::where([['status', 1], ['action', 'Made Order']])->orderBy('created_at', 'DESC');
-        $buyerNotification = Notification::where([['status', 1], ['action', 'Login succesfully'], ['action', 'Approve Order']])->orderBy('created_at', 'DESC');
+        $buyerNotification = Notification::where([['status', 1], ['action', 'Login succesfully']])->orWhere([['status', 1], ['action', 'Approve Order']])->orderBy('created_at', 'DESC');
         $adminNotifications = $adminNotification->get();
         $buyerNotifications = $buyerNotification->get();
         $adminNotificationCount = $adminNotification->count();

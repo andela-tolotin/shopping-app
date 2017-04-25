@@ -259,11 +259,11 @@ class PaymentController extends Controller
     {
         return Notification::create([
                 'user_id' => Auth::user()->id ?? null,
-                'message' => "Your order have been approved",
+                'message' => "User made an order",
                 'status' => 1,
                 'action' => 'Made Order',
                 'date_created' => Carbon::now(),
-                'url' => "/en/home",
+                'url' => "/en/orders",
             ]);
     }
 

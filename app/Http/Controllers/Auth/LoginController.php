@@ -53,6 +53,7 @@ class LoginController extends Controller
                 'user_id' => Auth::user()->id ?? null,
                 'message' => "You succesfully login into your account",
                 'status' => 1,
+                'url' => '#',
                 'action' => 'Login succesfully',
                 'date_created' => Carbon::now(),
         ]);
@@ -63,10 +64,23 @@ class LoginController extends Controller
      *
      * @return bolean
      */
-    protected function decrementStatus()
+    protected function decrementOrderStatus()
 
     {
-        $notification = Notification::find(Auth::user()->id)->where([['status', 1], ['action', 'Login succesfully'], ['action', 'Approve Order']]);
+        $notification = Notification::find(Auth::user()->id)->where([['status', 1], ['action', 'Approve Order']]);
+
+        $notification->decrement('status');
+    }
+
+    /**
+     * decrement status to 0
+     *
+     * @return bolean
+     */
+    protected function decrementLoginStatus()
+
+    {
+        $notification = Notification::find(Auth::user()->id)->where([['status', 1], ['action', 'Login succesfully']]);
 
         $notification->decrement('status');
     }

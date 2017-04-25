@@ -86,18 +86,18 @@
                     <!-- DROPDOWN ITEM -->
                     @foreach($adminNotifications as $notification)
                     <li class="dropdown-item">
-                        <a href="author-profile.html">
+                        <a href="{{ $notification->url }}">
                             <figure class="user-avatar">
                                 <img src="images/avatars/avatar_05.jpg" alt="">
                             </figure>
                         </a>
                         <p class="title">
-                            <a href="author-profile.html"><span></span>{{ $notification->message }}</a>
+                            <a href="{{ $notification->url }}"><span></span>{{ $notification->message }}</a>
                         </p>
                         <p class="timestamp">{{ $notification->created_at->diffForHumans(\Carbon\Carbon::now()) }}</p>
                         @endforeach
                         <span class="notification-type icon-tag"></span>
-                        <a href="#" class="button primary">View all Notifications</a>
+                        <a href="{{ route('view_notification', ['locale' => App::getLocale()]) }}" class="button primary">View all Notifications</a>
                     </li>
                     
                     <!-- /DROPDOWN ITEM -->
@@ -128,18 +128,18 @@
                     <!-- DROPDOWN ITEM -->
                     @foreach($buyerNotifications as $notification)
                     <li class="dropdown-item">
-                        <a href="author-profile.html">
+                        <a href="{{ $notification->url }}">
                             <figure class="user-avatar">
                                 <img src="images/avatars/avatar_05.jpg" alt="">
                             </figure>
                         </a>
                         <p class="title">
-                            <a href="author-profile.html"><span> </span>{{ $notification->message }}</a>
+                            <a href="{{ $notification->url }}"><span> </span>{{ $notification->message }}</a>
                         </p>
                         <p class="timestamp">{{ $notification->created_at->diffForHumans(\Carbon\Carbon::now()) }}</p>
                         @endforeach
                         <span class="notification-type icon-tag"></span>
-                        <a href="#" class="button primary">View all Notifications</a>
+                        <a href="{{ route('view_notification', ['locale' => App::getLocale()]) }}" class="button primary">View all Notifications</a>
                     </li>
                     
                     <!-- /DROPDOWN ITEM -->

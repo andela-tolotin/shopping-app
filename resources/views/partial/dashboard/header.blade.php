@@ -8,4 +8,5 @@
 	<!-- favicon -->
 	<link rel="icon" href="{{ asset('favicon.ico') }}">
 	<title>@yield('title')</title>
+	
 </head>

@@ -6,6 +6,7 @@ use App\User;
 use Auth;
 use App\Order;
 use Exception;
+use Carbon\Carbon;
 use App\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Mail\Mailer as Mail;
@@ -88,19 +89,6 @@ class OrderController extends Controller
                 'date_created' => Carbon::now(),
                 'url' => "/en/home",
             ]);
-    }
-
-    /**
-     * decrement status to 0
-     *
-     * @return bolean
-     */
-    protected function decrementApproveOrderStatus()
-
-    {
-        $notification = Notification::find(Auth::user()->id)->where([['status', 1], ['action', 'Approve Order']]);
-
-        $notification->decrement('status');
     }
 
     /**
