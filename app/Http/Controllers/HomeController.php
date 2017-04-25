@@ -27,7 +27,9 @@ class HomeController extends Controller
         $userPointWallet = Auth::user()->pointWallet()->first();
         $userOrders = Auth::user()->orders;
 
-        $unapprovedOrders = Order::where('status', 0)->orderBy('created_at', 'DESC')->get();
+        $unapprovedOrders = Order::where('status', 0)
+            ->orderBy('created_at', 'DESC')
+            ->get();
 
         foreach ($unapprovedOrders as $index => $order) {
             if ($order->user_id == Auth::user()->id ) {
