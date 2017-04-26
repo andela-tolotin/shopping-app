@@ -7,9 +7,10 @@ use Auth;
 use Cloudder;
 use App\User;
 use Exception;
+use App\Advert;
 use App\Product;
 use App\Category;
-use App\Advert;
+use App\Notification;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProductRequest;
 
@@ -23,7 +24,14 @@ class ProductController extends Controller
     public function showProductForm()
     {
         $categories = Category::all();
-        return view('dashboard.product.form', compact('categories'));
+        $adminNotification = Notification::where([['status', 1], ['action', 'Made Order']])->orderBy('created_at', 'DESC');
+        $buyerNotification = Notification::where([['status', 1], ['action', 'Login succesfully']])->orWhere([['status', 1], ['action', 'Approve Order']])->orderBy('created_at', 'DESC');
+        $adminNotifications = $adminNotification->get();
+        $buyerNotifications = $buyerNotification->get();
+        $adminNotificationCount = $adminNotification->count();
+        $buyerNotificationCount = $buyerNotification->count();
+
+        return view('dashboard.product.form', compact('categories', 'paymentGateways', 'amount', 'adminNotifications', 'buyerNotifications', 'buyerNotificationCount', 'adminNotificationCount'));
     }
 
     /**
@@ -91,8 +99,14 @@ class ProductController extends Controller
     public function listProducts()
     {
         $products = Product::orderBy('name', 'DESC')->paginate(10);
+        $adminNotification = Notification::where([['status', 1], ['action', 'Made Order']])->orderBy('created_at', 'DESC');
+        $buyerNotification = Notification::where([['status', 1], ['action', 'Login succesfully']])->orWhere([['status', 1], ['action', 'Approve Order']])->orderBy('created_at', 'DESC');
+        $adminNotifications = $adminNotification->get();
+        $buyerNotifications = $buyerNotification->get();
+        $adminNotificationCount = $adminNotification->count();
+        $buyerNotificationCount = $buyerNotification->count();
 
-        return view('dashboard.product.show_products', compact('products'));
+        return view('dashboard.product.show_products', compact('products', 'paymentGateways', 'amount', 'adminNotifications', 'buyerNotifications', 'buyerNotificationCount', 'adminNotificationCount'));
     }
 
     /**
@@ -112,8 +126,14 @@ class ProductController extends Controller
 
         $productImage = json_decode($product->product_img_url);
         $categories   = Category::all();
+        $adminNotification = Notification::where([['status', 1], ['action', 'Made Order']])->orderBy('created_at', 'DESC');
+        $buyerNotification = Notification::where([['status', 1], ['action', 'Login succesfully']])->orWhere([['status', 1], ['action', 'Approve Order']])->orderBy('created_at', 'DESC');
+        $adminNotifications = $adminNotification->get();
+        $buyerNotifications = $buyerNotification->get();
+        $adminNotificationCount = $adminNotification->count();
+        $buyerNotificationCount = $buyerNotification->count();
 
-        return view('dashboard.product.edit_form', compact('product', 'categories', 'productImage'));
+        return view('dashboard.product.edit_form', compact('product', 'categories', 'productImage', 'paymentGateways', 'amount', 'adminNotifications', 'buyerNotifications', 'buyerNotificationCount', 'adminNotificationCount'));
     }
 
     /**
@@ -188,11 +208,16 @@ class ProductController extends Controller
     public function viewProduct(Request $request, $locale, $id)
     {
         $product = Product::findOneById($id);
-
         $productAdvert = Advert::withProduct($product->id);
+        $adminNotification = Notification::where([['status', 1], ['action', 'Approve Order']])->orderBy('created_at', 'DESC');
+        $buyerNotification = Notification::where([['status', 1], ['action', 'Login succesfully']])->orderBy('created_at', 'DESC');
+        $adminNotifications = $adminNotification->get();
+        $buyerNotifications = $buyerNotification->get();
+        $adminNotificationCount = $adminNotification->count();
+        $buyerNotificationCount = $buyerNotification->count();
 
         if ($product instanceof Product) {
-            return view('dashboard.product.product_detail', compact('product', 'productAdvert'));
+            return view('dashboard.product.product_detail', compact('product', 'productAdvert', 'adminNotifications', 'buyerNotifications', 'buyerNotificationCount', 'adminNotificationCount'));
         }
 
         abort(404);

@@ -50,6 +50,20 @@
                 Account Settings
             </a>
         </li>
+
+        <li class="dropdown-item active">
+            <a href="{{ route('view_notification', ['locale' => App::getLocale()]) }}">
+                <span class="sl-icon icon-settings"></span>
+                Notifications
+            </a>
+            <span class="pin soft-edged big primary">
+                @if (Auth::user()->role_id === 1)
+                    {{ $buyerNotificationCount }}
+                @else
+                    {{ $adminNotificationCount }}
+                @endif
+            </span>
+        </li>
         <!-- /DROPDOWN ITEM -->
         @can ( 'BUYER', Auth::user()->role_id )
         <!-- DROPDOWN ITEM -->
