@@ -56,7 +56,14 @@ class OrderController extends Controller
             $orderTotal += $value->transaction->item_price;
         }
 
-        return view('dashboard.order.show_user_orders', compact('orders', 'orderTotal'));
+        $adminNotification = Notification::where([['status', 1], ['action', 'Made Order']])->orderBy('created_at', 'DESC');
+        $buyerNotification = Notification::where([['status', 1], ['action', 'Login succesfully']])->orWhere([['status', 1], ['action', 'Approve Order']])->orderBy('created_at', 'DESC');
+        $adminNotifications = $adminNotification->get();
+        $buyerNotifications = $buyerNotification->get();
+        $adminNotificationCount = $adminNotification->count();
+        $buyerNotificationCount = $buyerNotification->count();
+
+        return view('dashboard.order.show_user_orders', compact('orders', 'orderTotal', 'approvedOrders', 'unapprovedOrders', 'paymentGateways', 'amount', 'adminNotifications', 'buyerNotifications', 'buyerNotificationCount', 'adminNotificationCount'));
     }
 
     /**
