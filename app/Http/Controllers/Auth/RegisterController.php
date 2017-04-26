@@ -41,6 +41,23 @@ class RegisterController extends Controller
     }
 
     /**
+     * Log notification
+     *
+     * @return bolean
+     */
+    protected function logNotification()
+    {
+        return Notification::create([
+                'user_id' => Auth::user()->id ?? null,
+                'message' => "You succesfully created an account",
+                'status' => 1,
+                'url' => '#',
+                'action' => 'Login succesfully',
+                'date_created' => Carbon::now(),
+        ]);
+    }
+
+    /**
      * Get a validator for an incoming registration request.
      *
      * @param  array  $data

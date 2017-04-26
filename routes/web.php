@@ -46,6 +46,9 @@ Route::group(['middleware' => 'auth'], function () {
     //pointWallet
     Route::get('/{locale}/add_amount', 'PointWalletController@loadPointAmountForm')->name('load_buy_point');
     Route::get('/{locale}/buy_point', 'PointWalletController@loadPointBag')->name('buy_point');
+
+    //pointWallet
+    Route::get('/{locale}/notifications', 'NotificationContoller@loadNotification')->name('view_notification');
 });
 
 Route::group(['middleware' => ['auth.isAdmin']], function() {
