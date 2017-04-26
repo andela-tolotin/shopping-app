@@ -36,13 +36,13 @@
                 <ul class="dropdown small hover-effect closed">
                     <li class="dropdown-item">
                         <div class="dropdown-triangle"></div>
-                        <a href="">EN</a>
+                        <a href="{{ route(Route::current()->getName(), ['locale' => 'en']) }}">EN</a>
                     </li>
                     <li class="dropdown-item">
-                        <a href="">KR</a>
+                        <a href="{{ route(Route::current()->getName(), ['locale' => 'kr']) }}">KR</a>
                     </li>
                     <li class="dropdown-item">
-                        <a href="">FR</a>
+                        <a href="{{ route(Route::current()->getName(), ['locale' => 'fr']) }}">FR</a>
                     </li>
                 </ul>
                 <!-- /DROPDOWN -->
