@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App;
 use App\PointWallet;
+use App\Notification;
 use App\PaymentGateway;
 use Illuminate\Http\Request;
 
@@ -11,7 +12,14 @@ class PointWalletController extends Controller
 {
     public function loadPointAmountForm(Request $request)
     {
-    	return view('dashboard.point.point_amount');
+        $adminNotification = Notification::where([['status', 1], ['action', 'Made Order']])->orderBy('created_at', 'DESC');
+        $buyerNotification = Notification::where([['status', 1], ['action', 'Login succesfully']])->orWhere([['status', 1], ['action', 'Approve Order']])->orderBy('created_at', 'DESC');
+        $adminNotifications = $adminNotification->get();
+        $buyerNotifications = $buyerNotification->get();
+        $adminNotificationCount = $adminNotification->count();
+        $buyerNotificationCount = $buyerNotification->count();
+
+    	return view('dashboard.point.point_amount', compact('adminNotifications', 'buyerNotifications', 'buyerNotificationCount', 'adminNotificationCount'));
     }
 
     public function loadPointBag(Request $request)
@@ -34,6 +42,13 @@ class PointWalletController extends Controller
 
         $amount = $point;
 
-    	return view('dashboard.point.buy_point', compact('paymentGateways', 'amount'));
+        $adminNotification = Notification::where([['status', 1], ['action', 'Made Order']])->orderBy('created_at', 'DESC');
+        $buyerNotification = Notification::where([['status', 1], ['action', 'Login succesfully']])->orWhere([['status', 1], ['action', 'Approve Order']])->orderBy('created_at', 'DESC');
+        $adminNotifications = $adminNotification->get();
+        $buyerNotifications = $buyerNotification->get();
+        $adminNotificationCount = $adminNotification->count();
+        $buyerNotificationCount = $buyerNotification->count();
+
+    	return view('dashboard.point.buy_point', compact('paymentGateways', 'amount', 'adminNotifications', 'buyerNotifications', 'buyerNotificationCount', 'adminNotificationCount'));
     }
 }

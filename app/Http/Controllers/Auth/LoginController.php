@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App;
 use Auth;
+use Carbon\Carbon;
+use App\Notification;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -37,5 +40,48 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest', ['except' => 'logout']);
+    }
+
+    /**
+     * Log notification
+     *
+     * @return bolean
+     */
+    protected function logNotification()
+    {
+        return Notification::create([
+                'user_id' => Auth::user()->id ?? null,
+                'message' => "You succesfully login into your account",
+                'status' => 1,
+                'url' => '#',
+                'action' => 'Login succesfully',
+                'date_created' => Carbon::now(),
+        ]);
+    }
+
+    /**
+     * decrement status to 0
+     *
+     * @return bolean
+     */
+    protected function decrementOrderStatus()
+
+    {
+        $notification = Notification::find(Auth::user()->id)->where([['status', 1], ['action', 'Approve Order']]);
+
+        $notification->decrement('status');
+    }
+
+    /**
+     * decrement status to 0
+     *
+     * @return bolean
+     */
+    protected function decrementLoginStatus()
+
+    {
+        $notification = Notification::find(Auth::user()->id)->where([['status', 1], ['action', 'Login succesfully']]);
+
+        $notification->decrement('status');
     }
 }
