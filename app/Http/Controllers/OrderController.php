@@ -29,8 +29,14 @@ class OrderController extends Controller
     {
         $unapprovedOrders = Order::where('status', 0)->orderBy('created_at', 'DESC')->get();
         $approvedOrders   = Order::where('status', 1)->orderBy('created_at', 'DESC')->paginate(10);
+        $adminNotification = Notification::where([['status', 1], ['action', 'Made Order']])->orderBy('created_at', 'DESC');
+        $buyerNotification = Notification::where([['status', 1], ['action', 'Login succesfully']])->orWhere([['status', 1], ['action', 'Approve Order']])->orderBy('created_at', 'DESC');
+        $adminNotifications = $adminNotification->get();
+        $buyerNotifications = $buyerNotification->get();
+        $adminNotificationCount = $adminNotification->count();
+        $buyerNotificationCount = $buyerNotification->count();
 
-        return view('dashboard.order.show_orders', compact('approvedOrders', 'unapprovedOrders'));
+        return view('dashboard.order.show_orders', compact('approvedOrders', 'unapprovedOrders', 'paymentGateways', 'amount', 'adminNotifications', 'buyerNotifications', 'buyerNotificationCount', 'adminNotificationCount'));
     }
 
     /**

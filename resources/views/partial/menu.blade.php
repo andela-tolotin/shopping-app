@@ -26,6 +26,28 @@
         <!-- /MOBILE ACCOUNT OPTIONS HANDLER -->
         <!-- USER BOARD -->
         <div class="user-board">
+            <div class="user-quickview">
+            <p class="user-name">Language</p>
+                <!-- SVG ARROW -->
+                <svg class="svg-arrow">
+                    <use xlink:href="#svg-arrow"></use>
+                </svg>
+                <!-- DROPDOWN -->
+                <ul class="dropdown small hover-effect closed">
+                    <li class="dropdown-item">
+                        <div class="dropdown-triangle"></div>
+                        <a href="">EN</a>
+                    </li>
+                    <li class="dropdown-item">
+                        <a href="">KR</a>
+                    </li>
+                    <li class="dropdown-item">
+                        <a href="">FR</a>
+                    </li>
+                </ul>
+                <!-- /DROPDOWN -->
+            </div>
+            <!-- /DROPDOWN -->
             <!-- USER QUICKVIEW -->
             @if(Auth::check())
             <div class="user-quickview">

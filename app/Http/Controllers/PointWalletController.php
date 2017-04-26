@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App;
 use App\PointWallet;
+use App\Notification;
 use App\PaymentGateway;
 use Illuminate\Http\Request;
 
@@ -11,27 +12,43 @@ class PointWalletController extends Controller
 {
     public function loadPointAmountForm(Request $request)
     {
-    	return view('dashboard.point.point_amount');
+        $adminNotification = Notification::where([['status', 1], ['action', 'Made Order']])->orderBy('created_at', 'DESC');
+        $buyerNotification = Notification::where([['status', 1], ['action', 'Login succesfully']])->orWhere([['status', 1], ['action', 'Approve Order']])->orderBy('created_at', 'DESC');
+        $adminNotifications = $adminNotification->get();
+        $buyerNotifications = $buyerNotification->get();
+        $adminNotificationCount = $adminNotification->count();
+        $buyerNotificationCount = $buyerNotification->count();
+
+    	return view('dashboard.point.point_amount', compact('adminNotifications', 'buyerNotifications', 'buyerNotificationCount', 'adminNotificationCount'));
     }
 
     public function loadPointBag(Request $request)
     {
         $locale = App::getLocale();
 
-    	$amount = 0;
+    	$point = 0;
 
-    	if ($request->has('amount')) {
-    		$amount = $request->get('amount');
+    	if ($request->has('point')) {
+    		$point = $request->get('point');
     	}
 
-    	if (($amount % 1000) > 0) {
+    	if (($point % 1) > 0) {
     		return redirect()
-            ->route('load_buy_point', ['locale' => $locale])
-            ->with('message', 'Enter your amount in thousands e.g 1000');
+                ->route('load_buy_point', ['locale' => $locale])
+                ->with('message', 'Enter your point in whole number e.g 1 or 2');
     	}
 
     	$paymentGateways = PaymentGateway::findAll();
 
-    	return view('dashboard.point.buy_point', compact('paymentGateways', 'amount'));
+        $amount = $point;
+
+        $adminNotification = Notification::where([['status', 1], ['action', 'Made Order']])->orderBy('created_at', 'DESC');
+        $buyerNotification = Notification::where([['status', 1], ['action', 'Login succesfully']])->orWhere([['status', 1], ['action', 'Approve Order']])->orderBy('created_at', 'DESC');
+        $adminNotifications = $adminNotification->get();
+        $buyerNotifications = $buyerNotification->get();
+        $adminNotificationCount = $adminNotification->count();
+        $buyerNotificationCount = $buyerNotification->count();
+
+    	return view('dashboard.point.buy_point', compact('paymentGateways', 'amount', 'adminNotifications', 'buyerNotifications', 'buyerNotificationCount', 'adminNotificationCount'));
     }
 }
