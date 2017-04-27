@@ -19,10 +19,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $totalRatings = 0;
         $remainingPoints = 0;
-        // $totalTransactionAmount = 0;
-        $averageRatings = 0;
         $queueNo = 0;
 
         $userPointWallet = Auth::user()->pointWallet()->first();
@@ -39,13 +36,18 @@ class HomeController extends Controller
         }
 
         $userOrdersCount = $userOrders->count();
+        $good = [];
+        $excellent = [];
 
         foreach ($userOrders as $key => $value) {
-            $totalRatings += $value->ratings;
-        }
+            if ($value->ratings === 1) {
+                array_push($good, $value->ratings);
+            }
 
-        if ($totalRatings > 0 && $userOrdersCount > 0) {
-            $averageRatings = $totalRatings / $userOrdersCount;
+            if ($value->ratings === 2) {
+                array_push($excellent, $value->ratings);
+            }
+            
         }
 
         if (!is_null($userPointWallet)) {
@@ -55,10 +57,6 @@ class HomeController extends Controller
         $totalUnapprovedOrder = Order::where('status', 0)->count();
         $totalTransactionAmount = Transaction::get()->count();
 
-        // foreach ($transaction as $key => $value) {
-        //     $totalTransactionAmount += $value->item_price;
-        // }
-
         $adminNotification = Notification::where([['status', 1], ['action', 'Made Order']])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC');
         $buyerNotification = Notification::where([['status', 1], ['action', 'Login succesfully']])->orWhere([['status', 1], ['action', 'Approve Order']])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC');
         $adminNotifications = $adminNotification->get();
@@ -66,7 +64,7 @@ class HomeController extends Controller
         $adminNotificationCount = $adminNotification->count();
         $buyerNotificationCount = $buyerNotification->count();
 
-        return view('dashboard.index', compact('averageRatings', 'userOrdersCount', 'remainingPoints', 'totalUnapprovedOrder', 'totalTransactionAmount', 'queueNo', 'adminNotifications', 'buyerNotifications', 'buyerNotificationCount', 'adminNotificationCount'));
+        return view('dashboard.index', compact('good', 'excellent', 'userOrdersCount', 'remainingPoints', 'totalUnapprovedOrder', 'totalTransactionAmount', 'queueNo', 'adminNotifications', 'buyerNotifications', 'buyerNotificationCount', 'adminNotificationCount'));
     }
 
     public function listProducts(Request $request)

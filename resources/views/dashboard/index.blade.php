@@ -30,17 +30,9 @@
 				</div>
 
 				<div class="graph-stats-list-item green bars">
-					<p class="text-header">Review</p>
+					<p class="text-header">T. Orders - T. Excellents - T. Goods</p>
 					<h2>
-						@if ($averageRatings === 1)
-							{{ $averageRatings }} - Poor
-						@elseif ($averageRatings === 2)
-							{{ $averageRatings }} - Good
-						@elseif ($averageRatings === 3)
-							{{ $averageRatings }} - Excellent
-						@else
-							Not Rated
-						@endif
+						{{ $userOrdersCount }} - {{ count($excellent) }} - {{ count($good) }}
 					</h2>
 				</div>
 
