@@ -21,7 +21,7 @@ class HomeController extends Controller
     {
         $totalRatings = 0;
         $remainingPoints = 0;
-        $totalTransactionAmount = 0;
+        // $totalTransactionAmount = 0;
         $averageRatings = 0;
         $queueNo = 0;
 
@@ -53,14 +53,14 @@ class HomeController extends Controller
         }
         
         $totalUnapprovedOrder = Order::where('status', 0)->count();
-        $transaction = Transaction::get();
+        $totalTransactionAmount = Transaction::get()->count();
 
-        foreach ($transaction as $key => $value) {
-            $totalTransactionAmount += $value->item_price;
-        }
+        // foreach ($transaction as $key => $value) {
+        //     $totalTransactionAmount += $value->item_price;
+        // }
 
-        $adminNotification = Notification::where([['status', 1], ['action', 'Made Order']])->orderBy('created_at', 'DESC');
-        $buyerNotification = Notification::where([['status', 1], ['action', 'Login succesfully']])->orWhere([['status', 1], ['action', 'Approve Order']])->orderBy('created_at', 'DESC');
+        $adminNotification = Notification::where([['status', 1], ['action', 'Made Order']])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC');
+        $buyerNotification = Notification::where([['status', 1], ['action', 'Login succesfully']])->orWhere([['status', 1], ['action', 'Approve Order']])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC');
         $adminNotifications = $adminNotification->get();
         $buyerNotifications = $buyerNotification->get();
         $adminNotificationCount = $adminNotification->count();
@@ -72,8 +72,8 @@ class HomeController extends Controller
     public function listProducts(Request $request)
     {
     	$products = Product::findAll();
-        $adminNotification = Notification::where([['status', 1], ['action', 'Made Order']])->orderBy('created_at', 'DESC');
-        $buyerNotification = Notification::where([['status', 1], ['action', 'Login succesfully']])->orWhere([['status', 1], ['action', 'Approve Order']])->orderBy('created_at', 'DESC');
+        $adminNotification = Notification::where([['status', 1], ['action', 'Made Order']])->groupBy('id', 'created_at')->orderBy('created_at', 'desc');
+        $buyerNotification = Notification::where([['status', 1], ['action', 'Login succesfully']])->orWhere([['status', 1], ['action', 'Approve Order']])->groupBy('id', 'created_at')->orderBy('created_at', 'desc');
         $adminNotifications = $adminNotification->get();
         $buyerNotifications = $buyerNotification->get();
         $adminNotificationCount = $adminNotification->count();
