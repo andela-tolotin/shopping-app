@@ -112,7 +112,7 @@ class OrderController extends Controller
     protected function decrementMadeOrderStatus()
 
     {
-        $notification = Notification::where('user_id', Auth::user()->id)->where([['status', 1], ['action', 'Made Order']]);
+        $notification = Notification::where('user_id', Auth::user()->id)->orWhere([['status', 1], ['action', 'Made Order']]);
 
         $notification->decrement('status');
     }
