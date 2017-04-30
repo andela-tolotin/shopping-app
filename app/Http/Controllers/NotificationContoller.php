@@ -21,4 +21,11 @@ class NotificationContoller extends Controller
 
     	return view('notification', compact('notifications', 'adminNotifications', 'buyerNotifications', 'buyerNotificationCount', 'adminNotificationCount'));
     }
+
+    public function readNotifications()
+    {
+        $notifications = Notification::where('status', '<=', 1)->update(['status' => 0]);
+        
+        return response()->json(['message' => 'Succesfully read all', 'status' => 201]);
+    }
 }

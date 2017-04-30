@@ -101,6 +101,21 @@ $(document).ready(function() {
         event.preventDefault();
     });
 
+    $('#all-read').click(function (event) {
+        event.preventDefault();
+
+        $.ajax({
+            type: 'GET',
+            url: '/en/read-all/notifications',
+        }).done(function(data) {
+            if (data.status == 201) {
+                window.location.href = '/en/notifications';
+            } else {
+                window.location.href = '/en/notifications';
+            }
+        });
+    });
+
     $('.rating').on('rating.change', function(e) {
         var id   = $(this).data('id');
         var ratings = $(this).val();
@@ -115,7 +130,6 @@ $(document).ready(function() {
                     alert('Rating failed please try again');
                 }
         });
-
     });
 
     var fromDateInput = $('input[name="from"]');
