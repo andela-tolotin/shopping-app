@@ -53,8 +53,9 @@ class HomeController extends Controller
         if (!is_null($userPointWallet)) {
             $remainingPoints = $userPointWallet->point - $userPointWallet->balance;
         }
-        
-        $totalUnapprovedOrder = Order::where('status', 0)->count();
+        $userId = Auth::user()->id;
+
+        $totalUnapprovedOrder = Order::where([['status', 0], ['assignee_id', $userId]])->orwhere('admin_id', 3)->count();
         $totalTransactionAmount = Transaction::get()->count();
 
         $adminNotification = Notification::where([['status', 1], ['action', 'Made Order']])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC');
