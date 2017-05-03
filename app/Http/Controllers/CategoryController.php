@@ -21,8 +21,8 @@ class CategoryController extends Controller
      */
     public function showCategoryForm()
     {
-        $adminNotification = Notification::where([['status', 1], ['action', 'Made Order']])->orderBy('created_at', 'DESC');
-        $buyerNotification = Notification::where([['status', 1], ['action', 'Login succesfully']])->orWhere([['status', 1], ['action', 'Approve Order']])->orderBy('created_at', 'DESC');
+        $adminNotification = Notification::where([['status', 1], ['action', 'Made Order']])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC');
+        $buyerNotification = Notification::where([['status', 1], ['action', 'Login succesfully']])->orWhere([['status', 1], ['action', 'Approve Order']])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC');
         $adminNotifications = $adminNotification->get();
         $buyerNotifications = $buyerNotification->get();
         $adminNotificationCount = $adminNotification->count();
@@ -61,8 +61,8 @@ class CategoryController extends Controller
     public function listCategories()
     {
         $categories = Category::orderBy('name', 'ASC')->paginate(10);
-        $adminNotification = Notification::where([['status', 1], ['action', 'Made Order']])->orderBy('created_at', 'DESC');
-        $buyerNotification = Notification::where([['status', 1], ['action', 'Login succesfully']])->orWhere([['status', 1], ['action', 'Approve Order']])->orderBy('created_at', 'DESC');
+        $adminNotification = Notification::where([['status', 1], ['action', 'Made Order']])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC');
+        $buyerNotification = Notification::where([['status', 1], ['action', 'Login succesfully']])->orWhere([['status', 1], ['action', 'Approve Order']])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC');
         $adminNotifications = $adminNotification->get();
         $buyerNotifications = $buyerNotification->get();
         $adminNotificationCount = $adminNotification->count();
@@ -80,8 +80,8 @@ class CategoryController extends Controller
     public function editCategoryForm(Request $request, $locale, $id)
     {
         $category = Auth::user()->categories->find($id);
-        $adminNotification = Notification::where([['status', 1], ['action', 'Made Order']])->orderBy('created_at', 'DESC');
-        $buyerNotification = Notification::where([['status', 1], ['action', 'Login succesfully']])->orWhere([['status', 1], ['action', 'Approve Order']])->orderBy('created_at', 'DESC');
+        $adminNotification = Notification::where([['status', 1], ['action', 'Made Order']])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC');
+        $buyerNotification = Notification::where([['status', 1], ['action', 'Login succesfully']])->orWhere([['status', 1], ['action', 'Approve Order']])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC');
         $adminNotifications = $adminNotification->get();
         $buyerNotifications = $buyerNotification->get();
         $adminNotificationCount = $adminNotification->count();

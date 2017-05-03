@@ -275,7 +275,7 @@ class PaymentController extends Controller
     protected function decrementStatus()
 
     {
-        $notification = Notification::find(Auth::user()->id)->where([['status', 1], ['action', 'Made Order']]);
+        $notification = Notification::where('user_id', Auth::user()->id)->orWhere([['status', 1], ['action', 'Made Order']]);
 
         $notification->decrement('status');
     }

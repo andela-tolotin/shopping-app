@@ -49,6 +49,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     //pointWallet
     Route::get('/{locale}/notifications', 'NotificationContoller@loadNotification')->name('view_notification');
+    Route::get('/{locale}/read-all/notifications', 'NotificationContoller@readNotifications')->name('mark_all_notification');
 });
 
 Route::group(['middleware' => ['auth.isAdmin']], function() {

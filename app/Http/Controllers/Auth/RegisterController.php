@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App;
+use Auth;
 use App\User;
+use Carbon\Carbon;
+use App\Notification;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;

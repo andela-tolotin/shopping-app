@@ -65,7 +65,7 @@
 					@endif 
 				</a>
 			</td>
-			<td><input data-id="{{ $order->id }}" name="rating" value="{{ $order->ratings }}" type="number" class="rating" min=0 max=3 step=1 data-size="xs"></td>
+			<td><input data-id="{{ $order->id }}" name="rating" value="{{ $order->ratings }}" type="number" class="rating" min=0 max=2 step=1 data-size="xs"></td>
 			<td><a data-id="{{ $order->id }}" class="delete-order" href="#" title="Delete {{ $order->name }}"> <i class="glyphicon glyphicon-trash Delete"></i> Delete</a></td>
 		</tr>
 		@endforeach
@@ -124,7 +124,7 @@
 					@endif 
 				</a>
 			</td>
-			<td><input data-id="{{ $order->id }}" name="rating" value="{{ $order->ratings }}" type="number" class="rating" min=0 max=3 step=1 data-size="xs"></td>
+			<td><input data-id="{{ $order->id }}" name="rating" value="{{ $order->ratings }}" type="number" class="rating" min=0 max=2 step=1 data-size="xs"></td>
 			<td><a data-id="{{ $order->id }}" class="delete-order" href="#" title="Delete {{ $order->name }}"> <i class="glyphicon glyphicon-trash Delete"></i> Delete</a></td>
 		</tr>
 		@endforeach

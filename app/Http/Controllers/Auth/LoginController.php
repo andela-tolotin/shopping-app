@@ -67,7 +67,7 @@ class LoginController extends Controller
     protected function decrementOrderStatus()
 
     {
-        $notification = Notification::find(Auth::user()->id)->where([['status', 1], ['action', 'Approve Order']]);
+        $notification = Notification::where('user_id', Auth::user()->id)->orwhere([['status', 1], ['action', 'Approve Order']]);
 
         $notification->decrement('status');
     }
@@ -80,7 +80,7 @@ class LoginController extends Controller
     protected function decrementLoginStatus()
 
     {
-        $notification = Notification::find(Auth::user()->id)->where([['status', 1], ['action', 'Login succesfully']]);
+        $notification = Notification::where('user_id', Auth::user()->id)->where([['status', 1], ['action', 'Login succesfully']]);
 
         $notification->decrement('status');
     }
