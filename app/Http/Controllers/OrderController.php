@@ -27,6 +27,7 @@ class OrderController extends Controller
      */
     public function listOrders()
     {
+        // $order = order::
         $unapprovedOrders = Order::where('status', 0)->orderBy('created_at', 'DESC')->get();
         $approvedOrders   = Order::where('status', 1)->orderBy('created_at', 'DESC')->paginate(10);
         $adminNotification = Notification::where([['status', 1], ['action', 'Made Order']])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC');
