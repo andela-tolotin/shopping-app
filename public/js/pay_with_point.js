@@ -6,6 +6,10 @@
 
     payButton.on('click', function() {
       var _this = $(this);
+      _this
+        .attr('disabled', 'disabled')
+        .css('background', '#ccc');
+
       var productId = _this.attr('data-id');
       var userPoint = _this.attr('data-point');
       var token = _this.attr('data-token');
