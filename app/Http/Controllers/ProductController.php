@@ -99,11 +99,23 @@ class ProductController extends Controller
     public function listProducts()
     {
         $products = Product::orderBy('name', 'DESC')->paginate(10);
-        $adminNotification = Notification::where([['status', 1], ['action', 'Made Order']])->orderBy('created_at', 'DESC');
-        $buyerNotification = Notification::where([['status', 1], ['action', 'Login succesfully']])->orWhere([['status', 1], ['action', 'Approve Order']])->orderBy('created_at', 'DESC');
+        $adminNotification = Notification::where([
+            ['status', 1], 
+            ['action', 'Made Order']
+        ])->orderBy('created_at', 'DESC');
+
+        $buyerNotification = Notification::where([
+            ['status', 1], 
+            ['action', 'Login succesfully']])
+        ->orWhere([
+            ['status', 1], 
+            ['action', 'Approve Order']
+        ]);///->orderBy('created_at', 'DESC');
+
         $adminNotifications = $adminNotification->get();
-        $buyerNotifications = $buyerNotification->get();
         $adminNotificationCount = $adminNotification->count();
+
+        $buyerNotifications = $buyerNotification->get();
         $buyerNotificationCount = $buyerNotification->count();
 
         return view('dashboard.product.show_products', compact('products', 'paymentGateways', 'amount', 'adminNotifications', 'buyerNotifications', 'buyerNotificationCount', 'adminNotificationCount'));
