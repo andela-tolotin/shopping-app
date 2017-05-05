@@ -15,7 +15,7 @@
                     </ul>
                 </div>
             @endif
-            <form id="register-form4" method="post" action="/{{ App::getLocale() }}/product/{{ $product->id }}/update" enctype="multipart/form-data">
+            <form id="register-form4" method="post" action="/product/{{ $product->id }}/update" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="profile-image">
                     @if ($product->product_img_url == '')

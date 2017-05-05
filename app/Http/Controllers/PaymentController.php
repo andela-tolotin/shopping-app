@@ -21,12 +21,7 @@ use App\Http\Requests\UpdatePaymentRequest;
 
 class PaymentController extends Controller
 {
-    public function payWithInicis(Request $request)
-    {
-
-    }
-
-    public function buyProductWithPoint(Request $request, $locale, $id)
+    public function buyProductWithPoint(Request $request, $id)
     {
         $userPoint = $request->get('point');
 
@@ -140,12 +135,12 @@ class PaymentController extends Controller
         if ($transactionStatus) {
             // return a flash message regarding the payment status
             return redirect()
-            ->route('load_buy_point', ['locale' =>  $locale])
+            ->route('load_buy_point')
             ->with('status', true);
         }
         // return a flash message regarding the status of the payment
         return redirect()
-            ->route('load_buy_point', ['locale' =>  $locale])
+            ->route('load_buy_point')
             ->with('status', false);
     }
 
@@ -240,12 +235,12 @@ class PaymentController extends Controller
             if ($transactionStatus) {
                 // return a flash message regarding the payment status
                 return redirect()
-                ->route('purchase_product', ['locale' =>  $locale, 'id' => $product->id])
+                ->route('purchase_product', ['id' => $product->id])
                 ->with('status', true);
             }
             // return a flash message regarding the status of the payment
             return redirect()
-                ->route('purchase_product', ['locale' =>  $locale, 'id' => $product->id])
+                ->route('purchase_product', ['id' => $product->id])
                 ->with('status', false);
         }
     }
@@ -275,25 +270,29 @@ class PaymentController extends Controller
     protected function decrementStatus()
 
     {
-        $notification = Notification::where('user_id', Auth::user()->id)->orWhere([['status', 1], ['action', 'Made Order']]);
+        $notification = Notification::where('user_id', Auth::user()->id)
+            ->orWhere([
+                ['status', 1], 
+                ['action', 'Made Order']
+            ]);
 
         $notification->decrement('status');
     }
 
-	public function deletePayment(Request $request, $locale, $id)
+	public function deletePayment(Request $request, $id)
     {
     	$paymentGateway = PaymentGateway::findOneById($id);
 
     	if ($paymentGateway instanceof PaymentGateway) {
     		$paymentGateway->forceDelete();
 
-    		return redirect()->route('list_payments', ['locale' => $locale]);
+    		return redirect()->route('list_payments');
     	}
 
     	abort(404);
     }
 
-	public function updatePayment(UpdatePaymentRequest $request, $locale, $id)
+	public function updatePayment(UpdatePaymentRequest $request, $id)
 	{
 		$paymentGateway = PaymentGateway::findOneById($id);
 
@@ -316,14 +315,14 @@ class PaymentController extends Controller
 	    	$paymentGateway->save();
 
 	    	if ($paymentGateway instanceof PaymentGateway) {
-	    		return redirect()->route('list_payments', ['locale' => $locale]);
+	    		return redirect()->route('list_payments');
 	    	}
 		}
 
 		abort(404);
 	}
 
-	public function editPayment(Request $request, $locale, $id)
+	public function editPayment(Request $request, $id)
 	{
 		$paymentGateway = PaymentGateway::findOneById($id);
 
@@ -347,8 +346,6 @@ class PaymentController extends Controller
 
     public function addPaymentConfig(ConfigPaymentRequest $request)
     {
-        $locale = App::getLocale();
-
     	$name = $request->name;
     	$clientId = $request->client_id;
     	$clientSecret = $request->client_secret;
@@ -365,7 +362,7 @@ class PaymentController extends Controller
     		]);
 
     		if ($paymentGateway instanceof PaymentGateway) {
-    			return redirect()->route('list_payments', ['locale' => $locale]);
+    			return redirect()->route('list_payments');
     		}
 
     		abort(503);

@@ -73,17 +73,17 @@ class OrderController extends Controller
      *
      * @return mixed
      */
-    public function deleteOrder(Request $request, $locale, $id)
+    public function deleteOrder(Request $request, $id)
     {
     	$order = Order::find($id);	
         $deleteOrder = $order->delete();
 
         if ($deleteOrder) {
             // code to inform user that it was succesfully
-            return redirect()->route('list_orders', ['locale' => $locale]);
+            return redirect()->route('list_orders');
         }
         // code to user that something went wrong
-        return redirect()->route('list_orders', ['locale' => $locale]);
+        return redirect()->route('list_orders');
         
     }
 
@@ -112,7 +112,11 @@ class OrderController extends Controller
     protected function decrementMadeOrderStatus()
 
     {
-        $notification = Notification::where('user_id', Auth::user()->id)->orWhere([['status', 1], ['action', 'Made Order']]);
+        $notification = Notification::where('user_id', Auth::user()->id)
+            ->orWhere([
+                ['status', 1], 
+                ['action', 'Made Order']
+            ]);
 
         $notification->decrement('status');
     }
@@ -124,7 +128,7 @@ class OrderController extends Controller
      *
      * @return mixed
      */
-    public function approveOrder(Request $request, $locale, $id)
+    public function approveOrder(Request $request, $id)
     {
     	$order = Order::find($id);
 
@@ -137,12 +141,12 @@ class OrderController extends Controller
             $this->logNotification();
             $this->decrementMadeOrderStatus();
 
-        	return redirect()->route('list_orders', ['locale' => $locale])
+        	return redirect()->route('list_orders')
                 ->with('message', $response);
     	} else {
     		$order->decrement('status');
 
-    		return redirect()->route('list_orders', ['locale' => $locale]);
+    		return redirect()->route('list_orders');
     	}
     }
 

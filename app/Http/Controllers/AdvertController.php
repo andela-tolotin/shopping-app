@@ -20,7 +20,7 @@ class AdvertController extends Controller
         if ($user instanceof Advert) {
             $user->forceDelete();
 
-            return redirect()->route('list_adverts', ['locale' => $locale]);
+            return redirect()->route('list_adverts');
         }
 
         throw new Exception('Advert with this id not found');
@@ -29,8 +29,19 @@ class AdvertController extends Controller
 	public function listAdverts()
     {
     	$adverts = Advert::orderBy('id', 'DESC')->paginate(10);
-        $adminNotification = Notification::where([['status', 1], ['action', 'Made Order']])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC');
-        $buyerNotification = Notification::where([['status', 1], ['action', 'Login succesfully']])->orWhere([['status', 1], ['action', 'Approve Order']])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC');
+        $adminNotification = Notification::where([['status', 1], ['action', 'Made Order']])
+            ->groupBy('id', 'created_at')
+            ->orderBy('created_at', 'DESC');
+
+        $buyerNotification = Notification::where([
+            ['status', 1], 
+            ['action', 'Login succesfully']
+        ])->orWhere([
+            ['status', 1], 
+            ['action', 'Approve Order']
+        ])->groupBy('id', 'created_at')
+            ->orderBy('created_at', 'DESC');
+
         $adminNotifications = $adminNotification->get();
         $buyerNotifications = $buyerNotification->get();
         $adminNotificationCount = $adminNotification->count();
@@ -54,8 +65,6 @@ class AdvertController extends Controller
 
     public function uploadAdvert(AdvertRequest $request)
     {
-        $locale = App::getLocale();
-
     	if (count($request->file('images')) > 0) {
     		$advert = Advert::create([
     			'user_id'       => Auth()->user()->id,
@@ -64,7 +73,7 @@ class AdvertController extends Controller
     		]);
 
     		if ($advert instanceof Advert) {
-    			return redirect()->route('list_adverts', ['locale' => $locale]);
+    			return redirect()->route('list_adverts');
     		}
     	}
 
@@ -114,11 +123,11 @@ class AdvertController extends Controller
         if ($advert->status === 0) {
             $advert->increment('status');
 
-            return redirect()->route('list_adverts', ['locale' => $locale]);
+            return redirect()->route('list_adverts');
         } else {
             $advert->decrement('status');
 
-            return redirect()->route('list_adverts', ['locale' => $locale]);
+            return redirect()->route('list_adverts');
         }
     }
 }

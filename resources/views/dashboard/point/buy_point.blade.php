@@ -18,7 +18,7 @@
         @foreach ($paymentGateways as $paymentGateway)
         @if ($paymentGateway->name == 'Stripe')
         <p> Pay with {{ $paymentGateway->name }}</p>
-        <form action="{{ route('buy_point_with_stripe', ['locale' => App::getLocale()]) }}" method="POST">
+        <form action="{{ route('buy_point_with_stripe') }}" method="POST">
             <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="{{ $paymentGateway->client_id }}" data-amount="{{ $amount * 1000 }}" data-name="Buy Point" data-description="Payments" data-image="{{ $paymentGateway->logo }}" data-locale="auto" data-currency="krw"
             @if (Auth::check())
             data-email="{{ Auth::user()->email }}"

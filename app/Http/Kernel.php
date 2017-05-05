@@ -56,5 +56,10 @@ class Kernel extends HttpKernel
         'auth.isBuyer' => \App\Http\Middleware\IsBuyerMiddleware::class,
         'auth.isAdmin' => \App\Http\Middleware\IsAdminMiddleware::class,
         'auth.isAdminAndManager' => \App\Http\Middleware\IsAdminAndManagerMiddleware::class,
+        /**** OTHER MIDDLEWARE ****/
+        'localize' => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRoutes::class,
+        'localizationRedirect' => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRedirectFilter::class,
+        'localeSessionRedirect' => \Mcamara\LaravelLocalization\Middleware\LocaleSessionRedirect::class
+        // REDIRECTION MIDDLEWARE
     ];
 }

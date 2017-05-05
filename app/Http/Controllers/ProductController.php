@@ -42,8 +42,6 @@ class ProductController extends Controller
      */
     public function postProduct(ProductRequest $request)
     {
-        $locale = App::getLocale();
-
         $product = Product::create([
             'name'            => $request['name'],
             'description'     => $request['description'],
@@ -56,7 +54,7 @@ class ProductController extends Controller
         ]);
 
         if ($product) {
-            return redirect()->route('list_products', ['locale' => $locale]);
+            return redirect()->route('list_products');
         }
 
         return redirect()->back();
@@ -115,7 +113,7 @@ class ProductController extends Controller
      * @param $id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
-    public function editProductForm(Request $request, $locale, $id)
+    public function editProductForm(Request $request, $id)
     {
         $product = Auth::user()->products->find($id);
 
@@ -143,10 +141,8 @@ class ProductController extends Controller
      * @param ProductRequest $request
      * @return mixed
      */
-    public function updateProduct(ProductRequest $request, $locale, $id)
+    public function updateProduct(ProductRequest $request, $id)
     {
-        $locale = App::getLocale();
-
         $product = Product::where('id', $request->id)->update([
             'name'        => $request->name,
             'description' => $request->description,
@@ -165,7 +161,7 @@ class ProductController extends Controller
         }
 
         if ($product) {
-            return redirect()->route('list_products', ['locale' => $locale]);
+            return redirect()->route('list_products');
         }
 
         return redirect()->back();
@@ -177,10 +173,8 @@ class ProductController extends Controller
      * @param $id
      * @return mixed
      */
-    public function deleteProduct(Request $request, $locale, $id)
+    public function deleteProduct(Request $request, $id)
     {
-        $locale = App::getLocale();
-
         $product = Auth::user()->products->find($id);
 
         if (is_null($product)) {
@@ -191,10 +185,10 @@ class ProductController extends Controller
 
         if ($productDelete) {
             // code to inform user that it was succesfully
-            return redirect()->route('list_products', ['locale' => $locale]);
+            return redirect()->route('list_products');
         }
         // code to user that something went wrong
-        return redirect()->route('home', ['locale' => $locale]);
+        return redirect()->route('home');
     }
 
     /**
@@ -205,7 +199,7 @@ class ProductController extends Controller
      *
      * @return mixed
      */
-    public function viewProduct(Request $request, $locale, $id)
+    public function viewProduct(Request $request, $id)
     {
         $product = Product::findOneById($id);
         $productAdvert = Advert::withProduct($product->id);

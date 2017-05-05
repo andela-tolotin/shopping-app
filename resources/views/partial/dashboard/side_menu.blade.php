@@ -39,28 +39,28 @@
     <ul class="dropdown dark hover-effect interactive">
         <!-- DROPDOWN ITEM -->
         <li class="dropdown-item active">
-            <a href="{{ route('dashboard_index', ['locale' => App::getLocale()]) }}">
+            <a href="{{ route('dashboard_index') }}">
                 <span class="sl-icon icon-home"></span>
                 Home
             </a>
         </li>
         <li class="dropdown-item active">
-            <a href="{{ route('profile', ['locale' => App::getLocale()]) }}">
+            <a href="{{ route('profile') }}">
                 <span class="sl-icon icon-settings"></span>
                 Account Settings
             </a>
         </li>
 
         <li class="dropdown-item active">
-            <a href="{{ route('view_notification', ['locale' => App::getLocale()]) }}">
+            <a href="{{ route('view_notification') }}">
                 <span class="sl-icon icon-settings"></span>
                 Notifications
             </a>
             <span class="pin soft-edged big primary">
                 @if (Auth::user()->role_id === 1)
-                    {{ $buyerNotificationCount }}
+                    {{ @$buyerNotificationCount }}
                 @else
-                    {{ $adminNotificationCount }}
+                    {{ @$adminNotificationCount }}
                 @endif
             </span>
         </li>
@@ -68,7 +68,7 @@
         @can ( 'BUYER', Auth::user()->role_id )
         <!-- DROPDOWN ITEM -->
         <li class="dropdown-item">
-            <a href="{{ route('list_user_orders', ['locale' => App::getLocale()]) }}">
+            <a href="{{ route('list_user_orders') }}">
                 <span class="sl-icon icon-tag"></span>
                 Your Orders
             </a>
@@ -79,7 +79,7 @@
         <ul class="dropdown dark hover-effect">
             <!-- DROPDOWN ITEM -->
             <li class="dropdown-item">
-                <a href="{{ route('load_buy_point', ['locale' => App::getLocale()]) }}">
+                <a href="{{ route('load_buy_point') }}">
                     <span class="sl-icon icon-arrow-up-circle"></span>
                     Buy Point
                 </a>
@@ -90,7 +90,7 @@
         @can ( 'ADMIN_MANAGER', Auth::user()->role_id )
         <!-- DROPDOWN ITEM -->
         <li class="dropdown-item">
-            <a href="{{ route('list_orders', ['locale' => App::getLocale()]) }}">
+            <a href="{{ route('list_orders') }}">
                 <span class="sl-icon icon-star"></span>
                 Manage Orders
             </a>
@@ -110,7 +110,7 @@
     <ul class="dropdown dark hover-effect interactive">
         <!-- DROPDOWN ITEM -->
         <li class="dropdown-item active">
-            <a href="{{ route('manage_user', ['locale' => App::getLocale()]) }}">
+            <a href="{{ route('manage_user') }}">
                 <span class="sl-icon icon-settings"></span>
                 Manage User
             </a>
@@ -127,7 +127,7 @@
     <ul class="dropdown dark hover-effect">
         <!-- DROPDOWN ITEM -->
         <li class="dropdown-item">
-            <a href="{{ route('load_category', ['locale' => App::getLocale()])  }}">
+            <a href="{{ route('load_category')  }}">
                 <span class="sl-icon icon-arrow-up-circle"></span>
                 Add Category
             </a>
@@ -135,7 +135,7 @@
         <!-- /DROPDOWN ITEM -->
         <!-- DROPDOWN ITEM -->
         <li class="dropdown-item">
-            <a href="{{ route('list_categories', ['locale' => App::getLocale()]) }} ">
+            <a href="{{ route('list_categories') }} ">
                 <span class="sl-icon icon-folder-alt"></span>
                 Manage Category
             </a>
@@ -149,7 +149,7 @@
     <ul class="dropdown dark hover-effect">
         <!-- DROPDOWN ITEM -->
         <li class="dropdown-item">
-            <a href="{{ route('load_product', ['locale' => App::getLocale()]) }}">
+            <a href="{{ route('load_product') }}">
                 <span class="sl-icon icon-arrow-up-circle"></span>
                 Add Product
             </a>
@@ -157,7 +157,7 @@
         <!-- /DROPDOWN ITEM -->
         <!-- DROPDOWN ITEM -->
         <li class="dropdown-item">
-            <a href="{{ route('list_products', ['locale' => App::getLocale()]) }}">
+            <a href="{{ route('list_products') }}">
                 <span class="sl-icon icon-folder-alt"></span>
                 Manage Product
             </a>
@@ -170,7 +170,7 @@
     <ul class="dropdown dark hover-effect">
         <!-- DROPDOWN ITEM -->
         <li class="dropdown-item">
-            <a href="{{ route('stock', ['locale' => App::getLocale()]) }}">
+            <a href="{{ route('stock') }}">
                 <span class="sl-icon icon-arrow-up-circle"></span>
                 Transactions
             </a>
@@ -184,7 +184,7 @@
     <ul class="dropdown dark hover-effect">
         <!-- DROPDOWN ITEM -->
         <li class="dropdown-item">
-            <a href="{{ route('config_payment', ['locale' => App::getLocale()]) }}">
+            <a href="{{ route('config_payment') }}">
                 <span class="sl-icon icon-arrow-up-circle"></span>
                 Configure Payment
             </a>
@@ -192,7 +192,7 @@
         <!-- /DROPDOWN ITEM -->
         <!-- DROPDOWN ITEM -->
         <li class="dropdown-item">
-            <a href="{{ route('list_payments', ['locale' => App::getLocale()]) }}">
+            <a href="{{ route('list_payments') }}">
                 <span class="sl-icon icon-folder-alt"></span>
                 Manage Payment
             </a>
@@ -206,7 +206,7 @@
     <ul class="dropdown dark hover-effect">
         <!-- DROPDOWN ITEM -->
         <li class="dropdown-item">
-            <a href="{{ route('load_advert', ['locale' => App::getLocale()]) }}">
+            <a href="{{ route('load_advert') }}">
                 <span class="sl-icon icon-arrow-up-circle"></span>
                 Add Advert
             </a>
@@ -214,7 +214,7 @@
         <!-- /DROPDOWN ITEM -->
         <!-- DROPDOWN ITEM -->
         <li class="dropdown-item">
-            <a href="{{ route('list_adverts', ['locale' => App::getLocale()]) }}">
+            <a href="{{ route('list_adverts') }}">
                 <span class="sl-icon icon-folder-alt"></span>
                 Manage Advert
             </a>
@@ -222,6 +222,6 @@
     </ul>
     <!-- /DROPDOWN -->
     @endcan
-    <a href="{{ route('signout', ['locale' => App::getLocale()]) }}" class="button medium secondary">Logout</a>
+    <a href="{{ route('signout') }}" class="button medium secondary">Logout</a>
 </div>
 <!-- /SIDE MENU -->

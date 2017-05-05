@@ -64,7 +64,7 @@
 						<!-- /PRODUCT PREVIEW ACTIONS -->
 						<!-- PRODUCT INFO -->
 						<div class="product-info">
-							<a href="{{ route('product-details', ['id' => $product->id, 'locale' => App::getLocale()])}}">
+							<a href="{{ route('product-details', ['id' => $product->id])}}">
 								<p class="text-header">{{ $product->name }}</p>
 							</a>
 							<a href="#">

@@ -36,8 +36,6 @@ class ProfileUpdateController extends Controller
      */
     public function updateProfile(Request $request)
     {
-        $locale = App::getLocale();
-
     	$email = $request->email;
     	$oldPassword = $request->password;
         $newPassword = $request->confirm_password;
@@ -66,7 +64,7 @@ class ProfileUpdateController extends Controller
     		$user->save();
     	}
 
-    	return redirect()->route('profile', ['locale' =>  $locale]);
+    	return redirect()->route('profile');
     }
 
     /**

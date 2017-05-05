@@ -15,7 +15,7 @@
             </ul>
         </div>
         @endif
-        <form id="register-form4" method="post" action={{ route('post_category', ['locale' => App::getLocale()]) }}>
+        <form id="register-form4" method="post" action={{ route('post_category') }}>
             {{ csrf_field() }}
             <div class="input-container">
                 <label for="name" class="rl-label required">Name</label>

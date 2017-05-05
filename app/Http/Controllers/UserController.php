@@ -30,7 +30,7 @@ class UserController extends Controller
     	return view('dashboard.manage_user.list_users', compact('users', 'paymentGateways', 'amount', 'adminNotifications', 'buyerNotifications', 'buyerNotificationCount', 'adminNotificationCount'));
     }
 
-    public function editUser(Request $request, $locale, $id) 
+    public function editUser(Request $request, $id) 
     {
     	$authenticatedUser = Auth::user()->role->name;
 
@@ -51,7 +51,7 @@ class UserController extends Controller
 		abort(404);
     }
 
-    public function updateUser(UpdateUserRequest $request, $locale, $id)
+    public function updateUser(UpdateUserRequest $request, $id)
     {
     	$user = User::findOneById($id);
 
@@ -63,20 +63,20 @@ class UserController extends Controller
     		$user->status = $request->status;
     		$user->save();
 
-    		return redirect()->route('manage_user', ['locale' => $locale]);
+    		return redirect()->route('manage_user');
     	}
 
     	abort(404);
     }
 
-    public function deleteUser(Request $request, $locale, $id)
+    public function deleteUser(Request $request, $id)
     {
     	$user = User::findOneById($id);
 
     	if ($user instanceof User) {
     		$user->forceDelete();
 
-    		return redirect()->route('manage_user', ['locale' => $locale]);
+    		return redirect()->route('manage_user');
     	}
 
     	abort(404);

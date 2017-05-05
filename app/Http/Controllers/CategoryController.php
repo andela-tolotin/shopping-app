@@ -77,7 +77,7 @@ class CategoryController extends Controller
      * @param $id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
-    public function editCategoryForm(Request $request, $locale, $id)
+    public function editCategoryForm(Request $request, $id)
     {
         $category = Auth::user()->categories->find($id);
         $adminNotification = Notification::where([['status', 1], ['action', 'Made Order']])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC');
@@ -101,7 +101,7 @@ class CategoryController extends Controller
      * @param Request $request
      * @return mixed
      */
-    public function updateCategory(Request $request, $locale, $id)
+    public function updateCategory(Request $request, $id)
     {
         $this->validate($request, [
             'name'  => 'required|unique:categories,name,'.$request->id,
@@ -113,7 +113,7 @@ class CategoryController extends Controller
         ]);
 
         if ($category) {
-            return redirect()->route('list_categories', ['locale' => $locale]);
+            return redirect()->route('list_categories');
         }
 
         return redirect()->back();
@@ -125,7 +125,7 @@ class CategoryController extends Controller
      * @param $id
      * @return mixed
      */
-    public function deleteCategory(Request $request, $locale, $id)
+    public function deleteCategory(Request $request, $id)
     {
         $category = Auth::user()->categories->find($id);
 
@@ -137,11 +137,11 @@ class CategoryController extends Controller
 
         if ($categoryDelete) {
             // code to inform user that it was succesfully
-            return redirect()->route('list_categories', ['locale' => $locale]);
+            return redirect()->route('list_categories');
         } else {
             // code to user that something went wrong
 
-            return redirect()->route('home', ['locale' => $locale]);
+            return redirect()->route('home');
         }
     }
 }

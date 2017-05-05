@@ -1,7 +1,7 @@
 <div class="header-wrap">
     <header>
         <!-- LOGO -->
-        <a href="{{ route('home', ['locale' => App::getLocale()]) }}">
+        <a href="{{ route('home') }}">
             <figure class="logo">
                 <img src="{{ asset('images/logo.png') }}" alt="logo">
             </figure>
@@ -13,7 +13,7 @@
         </div>
         <!-- /MOBILE MENU HANDLER -->
         <!-- LOGO MOBILE -->
-        <a href="{{ route('home', ['locale' => App::getLocale()]) }}">
+        <a href="{{ route('home') }}">
             <figure class="logo-mobile">
                 <img src="{{ asset('images/logo_mobile.png') }}" alt="logo-mobile">
             </figure>
@@ -27,23 +27,20 @@
         <!-- USER BOARD -->
         <div class="user-board">
             <div class="user-quickview">
-            <p class="user-name">Language</p>
+                <p class="user-name">Language</p>
                 <!-- SVG ARROW -->
                 <svg class="svg-arrow">
                     <use xlink:href="#svg-arrow"></use>
                 </svg>
                 <!-- DROPDOWN -->
-                <ul class="dropdown small hover-effect closed">
+                <ul class="language_bar_chooser dropdown small hover-effect closed">
+                    @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
                     <li class="dropdown-item">
-                        <div class="dropdown-triangle"></div>
-                        <a href="{{-- route(Route::current()->getName(), ['locale' => 'en']) --}}">EN</a>
+                        <a rel="alternate" hreflang="{{$localeCode}}" href="{{LaravelLocalization::getLocalizedURL($localeCode) }}">
+                            {{ $properties['native'] }}
+                        </a>
                     </li>
-                    <li class="dropdown-item">
-                        <a href="{{-- route(Route::current()->getName(), ['locale' => 'kr']) --}}">KR</a>
-                    </li>
-                    <li class="dropdown-item">
-                        <a href="{{-- route(Route::current()->getName(), ['locale' => 'fr']) --}}">FR</a>
-                    </li>
+                    @endforeach
                 </ul>
                 <!-- /DROPDOWN -->
             </div>
@@ -52,7 +49,7 @@
             @if(Auth::check())
             <div class="user-quickview">
                 <!-- USER AVATAR -->
-                <a href="{{ route('dashboard_index', ['locale' => App::getLocale()]) }}">
+                <a href="{{ route('dashboard_index') }}">
                     <div class="outer-ring">
                         <div class="inner-ring"></div>
                         <figure class="user-avatar">
@@ -74,13 +71,13 @@
                 <ul class="dropdown small hover-effect closed">
                     <li class="dropdown-item">
                         <div class="dropdown-triangle"></div>
-                        <a href="{{ route('profile', ['locale' => App::getLocale()]) }}">Profile Page</a>
+                        <a href="{{ route('profile') }}">Profile Page</a>
                     </li>
                     <li class="dropdown-item">
-                        <a href="{{ route('list_orders', ['locale' => App::getLocale()]) }}">Orders</a>
+                        <a href="{{ route('list_orders') }}">Orders</a>
                     </li>
                     <li class="dropdown-item">
-                        <a href="{{ route('signout', ['locale' => App::getLocale()]) }}">Log out</a>
+                        <a href="{{ route('signout') }}">Log out</a>
                     </li>
                 </ul>
                 <!-- /DROPDOWN -->
@@ -94,14 +91,11 @@
                     </svg>
                     <!-- /SVG ARROW -->
                 </span>
-
                 <!-- PIN -->
                 <span class="pin soft-edged primary">{{ $adminNotificationCount }}</span>
                 <!-- /PIN -->
                 @if ($adminNotificationCount === 0)
-
                 @else
-
                 <!-- DROPDOWN NOTIFICATIONS -->
                 <ul class="dropdown notifications no-hover closed">
                     
@@ -119,7 +113,7 @@
                         <p class="timestamp">{{ $notification->created_at->diffForHumans(\Carbon\Carbon::now()) }}</p>
                         @endforeach
                         <span class="notification-type icon-tag"></span>
-                        <a href="{{ route('view_notification', ['locale' => App::getLocale()]) }}" class="button primary">View all Notifications</a>
+                        <a href="{{ route('view_notification') }}" class="button primary">View all Notifications</a>
                     </li>
                     
                     <!-- /DROPDOWN ITEM -->
@@ -137,12 +131,10 @@
                     </svg>
                     <!-- /SVG ARROW -->
                 </span>
-
                 <!-- PIN -->
                 <span class="pin soft-edged primary">{{ $buyerNotificationCount }}</span>
                 <!-- /PIN -->
                 @if ($buyerNotificationCount === 0)
-
                 @else
                 <!-- DROPDOWN NOTIFICATIONS -->
                 <ul class="dropdown notifications no-hover closed">
@@ -161,23 +153,23 @@
                         <p class="timestamp">{{ $notification->created_at->diffForHumans(\Carbon\Carbon::now()) }}</p>
                         @endforeach
                         <span class="notification-type icon-tag"></span>
-                        <a href="{{ route('view_notification', ['locale' => App::getLocale()]) }}" class="button primary">View all Notifications</a>
+                        <a href="{{ route('view_notification') }}" class="button primary">View all Notifications</a>
                     </li>
                     
                     <!-- /DROPDOWN ITEM -->
                 </ul>
                 <!-- /DROPDOWN NOTIFICATIONS -->
-               @endif
+                @endif
             </div>
             @endcan
             @endif
             <div class="account-actions">
                 @if(!Auth::check())
-                <a href="{{ route('load_register', ['locale' => App::getLocale()]) }}" class="button primary">Register</a>
-                <a href="{{ route('load_login', ['locale' => App::getLocale()]) }}" class="button secondary">Login</a>
+                <a href="{{ route('register') }}" class="button primary">Register</a>
+                <a href="{{ route('login') }}" class="button secondary">Login</a>
                 @else
-                <a href="{{ route('signout', ['locale' => App::getLocale()]) }}" class="button primary">Logout</a>
-                <a href="{{ route('dashboard_index', ['locale' => App::getLocale()]) }}" class="button secondary">Dashboard</a>
+                <a href="{{ route('signout') }}" class="button primary">Logout</a>
+                <a href="{{ route('dashboard_index') }}" class="button secondary">Dashboard</a>
                 @endif
             </div>
             <!-- /ACCOUNT ACTIONS -->
@@ -223,18 +215,18 @@
     <ul class="dropdown dark hover-effect">
         <!-- DROPDOWN ITEM -->
         <li class="dropdown-item">
-            <a href="{{ route('profile', ['locale' => App::getLocale()]) }}">Profile Page</a>
+            <a href="{{ route('profile') }}">Profile Page</a>
         </li>
         <!-- /DROPDOWN ITEM -->
         <!-- DROPDOWN ITEM -->
         <li class="dropdown-item">
-            <a href="{{ route('profile', ['locale' => App::getLocale()]) }}">Account Settings</a>
+            <a href="{{ route('profile') }}">Account Settings</a>
         </li>
         <!-- /DROPDOWN ITEM -->
     </ul>
     <!-- /DROPDOWN -->
-    <a href="{{ route('signout', ['locale' => App::getLocale()]) }}" class="button medium secondary">Logout</a>
-    <a href="{{ route('home', ['locale' => App::getLocale()]) }}" class="button medium secondary">Dashboard</a>
+    <a href="{{ route('signout') }}" class="button medium secondary">Logout</a>
+    <a href="{{ route('home') }}" class="button medium secondary">Dashboard</a>
 </div>
 <!-- /SIDE MENU -->
 <!-- MAIN MENU -->
@@ -244,7 +236,7 @@
             <ul class="main-menu">
                 <!-- MENU ITEM -->
                 <li class="menu-item">
-                    <a href="{{ route('home', ['locale' => App::getLocale()]) }}">Home</a>
+                    <a href="{{ route('home') }}">Home</a>
                 </li>
                 <!-- /MENU ITEM -->
             </ul>
