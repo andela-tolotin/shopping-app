@@ -64,7 +64,7 @@
                 <label for="assignee" class="rl-label required">Assignee</label>
                 <label for="gender" class="select-block">
                     <select name="assignee">
-                        <option value="0">Assignee</option>
+                        <option value="{{ Auth::user()->id }}">Assignee</option>
                         @foreach($assignees as $assignee)
                         <option value="{{ $assignee->id }}">{{ $assignee->name }}</option>
                         @endforeach
