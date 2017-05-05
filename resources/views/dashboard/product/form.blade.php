@@ -56,7 +56,7 @@
                 <label for="discount" class="rl-label required">Discount</label>
                 <input type="number" id="discount" name="discount" placeholder="Enter discount here...">
             </div>
-            <div class="input-container half">
+            <div class="input-container">
                 <label for="tax" class="rl-label required">Tax</label>
                 <input type="number" id="tax" name="tax" placeholder="Enter tax here...">
             </div>
