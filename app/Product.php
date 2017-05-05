@@ -10,6 +10,7 @@ class Product extends Model
         'name', 'price', 'description',
         'discount', 'tax', 'category_id',
         'product_img_url', 'user_id',
+        'assignee_id',
     ];
 
     public function adverts()
@@ -30,6 +31,11 @@ class Product extends Model
     public function advert()
     {
         return $this->hasOne('App\Advert');
+    }
+
+    public function order()
+    {
+        return $this->hasMany('App\Order');
     }
 
     public function scopeFindOneById($query, $productId)

@@ -10,7 +10,8 @@ class Order extends Model
         'user_id', 
         'product_id', 
         'transaction_id',
-        'ratings'
+        'ratings',
+        'assignee_id',
     ];
 
     public function user()
@@ -21,5 +22,10 @@ class Order extends Model
     public function transaction()
     {
     	return $this->belongsTo('App\Transaction');
+    }
+
+    public function product()
+    {
+        return $this->belongsTo('App\Product');
     }
 }

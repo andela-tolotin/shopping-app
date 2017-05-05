@@ -56,9 +56,27 @@
                 <label for="discount" class="rl-label required">Discount</label>
                 <input type="number" id="discount" name="discount" placeholder="Enter discount here...">
             </div>
-            <div class="input-container">
+            <div class="input-container half">
                 <label for="tax" class="rl-label required">Tax</label>
                 <input type="number" id="tax" name="tax" placeholder="Enter tax here...">
+            </div>
+            <div class="input-container half">
+                <label for="assignee" class="rl-label required">Assignee</label>
+                <label for="gender" class="select-block">
+                    <select name="assignee" required="required">
+                        <option value="" >Assignee</option>
+                        @foreach($assignees as $assignee)
+                        <option value="{{ $assignee->id }}">
+                            {{ $assignee->name }}
+                        </option>
+                        @endforeach
+                    </select>
+                    <!-- SVG ARROW -->
+                    <svg class="svg-arrow">
+                        <use xlink:href="#svg-arrow"></use>
+                    </svg>
+                    <!-- /SVG ARROW -->
+                </label>
             </div>
             <div class="input-container">
                 <label for="description" class="rl-label required">Description</label>

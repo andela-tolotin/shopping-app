@@ -62,6 +62,7 @@ class PaymentController extends Controller
             Order::create([
                 'product_id' => $product->id,
                 'transaction_id' => $transaction->id,
+                'assignee_id' => $product->assignee_id,
                 'status' => 0,
                 'user_id' => Auth::user()->id ?? null,
             ]);
@@ -216,6 +217,7 @@ class PaymentController extends Controller
                 'product_id' => $product->id,
                 'transaction_id' => $transaction->id,
                 'status' => 0,
+                'assignee_id' => $product->assignee_id,
                 'user_id' => Auth::user()->id ?? null,
             ]);
 

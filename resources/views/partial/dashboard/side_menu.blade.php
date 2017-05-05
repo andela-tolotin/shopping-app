@@ -95,7 +95,7 @@
                 Manage Orders
             </a>
             <!-- PIN -->
-                <span class="pin soft-edged big primary">{{ App\Order::where('status', 0)->count() }}</span>
+                <span class="pin soft-edged big primary">{{ App\Order::where([['status', 0], ['assignee_id', Auth::user()->id]])->orwhere([['status', 0], ['admin_id', '3']])->count() }}</span>
             <!-- /PIN -->
         </li>
         @endcan
