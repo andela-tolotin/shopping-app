@@ -101,16 +101,18 @@ class ProductController extends Controller
         $products = Product::orderBy('name', 'DESC')->paginate(10);
         $adminNotification = Notification::where([
             ['status', 1], 
-            ['action', 'Made Order']
-        ])->orderBy('created_at', 'DESC');
+            ['action', 'Made Order'],
+            ['created_at', 'DESC']
+        ]);
 
         $buyerNotification = Notification::where([
             ['status', 1], 
             ['action', 'Login succesfully']])
         ->orWhere([
             ['status', 1], 
-            ['action', 'Approve Order']
-        ]);///->orderBy('created_at', 'DESC');
+            ['action', 'Approve Order'],
+            ['created_at', 'DESC']
+        ]);
 
         $adminNotifications = $adminNotification->get();
         $adminNotificationCount = $adminNotification->count();
