@@ -132,6 +132,7 @@ class ProductController extends Controller
     public function editProductForm(Request $request, $id)
     {
         $product = Auth::user()->products->find($id);
+        $assignees = User::where('role_id', 2)->get();
 
         if (is_null($product)) {
 
@@ -147,7 +148,7 @@ class ProductController extends Controller
         $adminNotificationCount = $adminNotification->count();
         $buyerNotificationCount = $buyerNotification->count();
 
-        return view('dashboard.product.edit_form', compact('product', 'categories', 'productImage', 'paymentGateways', 'amount', 'adminNotifications', 'buyerNotifications', 'buyerNotificationCount', 'adminNotificationCount'));
+        return view('dashboard.product.edit_form', compact('product', 'categories', 'productImage', 'paymentGateways', 'amount', 'adminNotifications', 'buyerNotifications', 'buyerNotificationCount', 'adminNotificationCount', 'assignees'));
     }
 
     /**
@@ -163,6 +164,7 @@ class ProductController extends Controller
             'name'        => $request->name,
             'description' => $request->description,
             'category_id' => $request->category,
+            'assignee_id' => $request['assignee'] ?? null,
             'price'       => $request->price,
             'discount'    => $request->discount,
             'tax'         => $request->tax,
