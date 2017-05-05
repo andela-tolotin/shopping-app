@@ -63,7 +63,7 @@
             <div class="input-container half">
                 <label for="assignee" class="rl-label required">Assignee</label>
                 <label for="gender" class="select-block">
-                    <select name="assignee" required="required">
+                    <select name="assignee">
                         <option value="" >Assignee</option>
                         @foreach($assignees as $assignee)
                         <option value="{{ $assignee->id }}">
