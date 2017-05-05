@@ -13,7 +13,7 @@ use App\Http\Requests\AdvertRequest;
 
 class AdvertController extends Controller
 {
-    public function deleteAdvert(Request $request, $locale, $id)
+    public function deleteAdvert(Request $request, $id)
     {
         $user = Advert::findOneById($id);
 
@@ -116,7 +116,7 @@ class AdvertController extends Controller
      *
      * @return mixed
      */
-    public function displayAdvert(Request $request, $locale, $id)
+    public function displayAdvert(Request $request, $id)
     {
         $advert = Advert::find($id);
 
