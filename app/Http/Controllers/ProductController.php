@@ -102,7 +102,7 @@ class ProductController extends Controller
         $adminNotification = Notification::where([
             ['status', 1], 
             ['action', 'Made Order'],
-            ['created_at', 'DESC']
+            //['created_at', 'DESC']
         ]);
 
         $buyerNotification = Notification::where([
@@ -111,7 +111,7 @@ class ProductController extends Controller
         ->orWhere([
             ['status', 1], 
             ['action', 'Approve Order'],
-            ['created_at', 'DESC']
+            //['created_at', 'DESC']
         ]);
 
         $adminNotifications = $adminNotification->get();
