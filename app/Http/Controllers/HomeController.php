@@ -55,7 +55,7 @@ class HomeController extends Controller
         }
         $userId = Auth::user()->id;
 
-        $totalUnapprovedOrder = Order::where([['status', 0], ['assignee_id', $userId]])->orwhere('admin_id', 3)->count();
+        $totalUnapprovedOrder = Order::where([['status', 0], ['assignee_id', $userId]])->orwhere([['status', 0], ['admin_id', 3]])->count();
         $totalTransactionAmount = Transaction::get()->count();
 
         $adminNotification = Notification::where([['status', 1], ['action', 'Made Order']])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC');
