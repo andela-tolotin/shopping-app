@@ -14,7 +14,7 @@
             </ul>
         </div>
         <?php endif; ?>
-        <form action="<?php echo e(route('buy_point', ['locale' => App::getLocale()])); ?>" method="GET">
+        <form action="<?php echo e(route('buy_point')); ?>" method="GET">
         <p>
             <?php if(!empty(session('status'))): ?>
             <?php if(session('status')): ?>

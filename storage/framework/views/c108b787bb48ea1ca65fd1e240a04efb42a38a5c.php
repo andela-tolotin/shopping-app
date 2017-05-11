@@ -15,7 +15,7 @@
             </ul>
         </div>
         <?php endif; ?>
-        <form id="profile-info-form" method="post" action="<?php echo e(route('profile_update', ['locale' => App::getLocale()])); ?>" enctype="multipart/form-data">
+        <form id="profile-info-form" method="post" action="<?php echo e(route('profile_update')); ?>" enctype="multipart/form-data">
             <div class="profile-image">
                 <div class="profile-image-data">
                     <figure class="user-avatar medium">

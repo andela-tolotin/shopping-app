@@ -88,12 +88,12 @@
                     <!-- /SVG ARROW -->
                 </label>
             </div>
-            <!-- /INPUT CONTAINER -->
-            <!-- INPUT CONTAINER -->
+
             <div class="input-container">
                 <label for="email" class="rl-label">Email</label>
                 <input type="email" id="email" name="email" placeholder="Enter your email address here..." value="{{ $user->email }}" readonly="readonly">
             </div>
+
             <div class="input-container half">
                 <label for="gender" class="rl-label required">Gender</label>
                 <label for="gender" class="select-block">
@@ -117,8 +117,25 @@
                     <!-- /SVG ARROW -->
                 </label>
             </div>
-            <!-- /INPUT CONTAINER -->
+
             <div class="input-container half">
+                <label for="product" class="rl-label required">Product</label>
+                <label for="gender" class="select-block">
+                    <select name="product">
+                        <option value="">Product</option>
+                        @foreach($products as $product)
+                            <option value="{{ $product->id }}">{{ $product->name }}</option>
+                        @endforeach
+                    </select>
+                    <!-- SVG ARROW -->
+                    <svg class="svg-arrow">
+                        <use xlink:href="#svg-arrow"></use>
+                    </svg>
+                    <!-- /SVG ARROW -->
+                </label>
+            </div>
+            <!-- /INPUT CONTAINER -->
+            <div class="input-container">
                 <label for="phone" class="rl-label">Phone</label>
                 <input type="text" id="phone" name="phone" placeholder="Enter your phone here..." value="{{ $user->phone }}" required="required">
             </div>

@@ -1,3 +1,28 @@
+<?php
+    if (Auth::check()) {
+        $serviceManager = App\ServiceManager::where('user_id', Auth::user()->id)->get();
+        $allManagerNotification = [];
+        $managerNotificationCount = 0;
+
+        if (count($serviceManager) > 0 ) {
+            foreach ($serviceManager as $key => $value) {
+                $managerNotification = App\Notification::where([['status', 1], ['action', 'Login succesfully'], ['user_id', Auth::user()->id]])->orWhere([['status', 1], ['action', 'Made Order'], ['product_id', $value['product_id']]])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC')->get();
+                array_push($allManagerNotification, $managerNotification);
+            }
+
+            foreach ($allManagerNotification as $key => $value) {
+                $managerNotificationCount += count($value);
+            }
+        } else {
+            $managerNotification = App\Notification::where([['status', 1], ['action', 'Login succesfully'], ['user_id', Auth::user()->id]])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC')->get();
+            array_push($allManagerNotification, $managerNotification);
+            $managerNotificationCount =+ count($allManagerNotification); 
+        }
+
+        $allBuyerNotifications = App\Notification::where([['status', 1], ['action', 'Login succesfully'], ['user_id', Auth::user()->id]])->orWhere([['status', 1], ['action', 'Approve Order'], ['user_id', Auth::user()->id]])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC')->get();
+        $allAdminNotifications = App\Notification::where([['status', 1], ['action', 'Login succesfully'], ['user_id', Auth::user()->id]])->orWhere([['status', 1], ['action', 'Made Order']])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC')->get();
+    }
+?>
 <div class="header-wrap">
     <header>
         <!-- LOGO -->
@@ -82,9 +107,9 @@
                 </ul>
                 <!-- /DROPDOWN -->
             </div>
-            @can ( 'ADMIN_MANAGER', Auth::user()->role_id )
+            @can ( 'ADMIN', Auth::user()->role_id )
             <div  class="user-quickview">
-                <span class="icon-settings">
+                <span class="icon-bell">
                     <!-- SVG ARROW -->
                     <svg class="svg-arrow">
                         <use xlink:href="#svg-arrow"></use>
@@ -92,15 +117,15 @@
                     <!-- /SVG ARROW -->
                 </span>
                 <!-- PIN -->
-                <span class="pin soft-edged primary">{{ $adminNotificationCount }}</span>
+                <span class="pin soft-edged primary">{{ count($allAdminNotifications) }}</span>
                 <!-- /PIN -->
-                @if ($adminNotificationCount === 0)
+                @if (count($allAdminNotifications) === 0)
                 @else
                 <!-- DROPDOWN NOTIFICATIONS -->
                 <ul class="dropdown notifications no-hover closed">
                     
                     <!-- DROPDOWN ITEM -->
-                    @foreach($adminNotifications as $notification)
+                    @foreach($allAdminNotifications as $notification)
                     <li class="dropdown-item">
                         <a href="{{ $notification->url }}">
                             <figure class="user-avatar">
@@ -124,7 +149,7 @@
             @endcan
             @can ( 'BUYER', Auth::user()->role_id )
             <div  class="user-quickview">
-                <span class="icon-settings">
+                <span class="icon-bell">
                     <!-- SVG ARROW -->
                     <svg class="svg-arrow">
                         <use xlink:href="#svg-arrow"></use>
@@ -132,15 +157,15 @@
                     <!-- /SVG ARROW -->
                 </span>
                 <!-- PIN -->
-                <span class="pin soft-edged primary">{{ $buyerNotificationCount }}</span>
+                <span class="pin soft-edged primary">{{ count($allBuyerNotifications) }}</span>
                 <!-- /PIN -->
-                @if ($buyerNotificationCount === 0)
+                @if (count($allBuyerNotifications) === 0)
                 @else
                 <!-- DROPDOWN NOTIFICATIONS -->
                 <ul class="dropdown notifications no-hover closed">
                     
                     <!-- DROPDOWN ITEM -->
-                    @foreach($buyerNotifications as $notification)
+                    @foreach($allBuyerNotifications as $notification)
                     <li class="dropdown-item">
                         <a href="{{ $notification->url }}">
                             <figure class="user-avatar">
@@ -153,6 +178,47 @@
                         <p class="timestamp">{{ $notification->created_at->diffForHumans(\Carbon\Carbon::now()) }}</p>
                         @endforeach
                         <span class="notification-type icon-tag"></span>
+                        <a href="{{ route('view_notification') }}" class="button primary">View all Notifications</a>
+                    </li>
+                    
+                    <!-- /DROPDOWN ITEM -->
+                </ul>
+                <!-- /DROPDOWN NOTIFICATIONS -->
+                @endif
+            </div>
+            @endcan
+            @can ( 'MANAGER', Auth::user()->role_id )
+            <div  class="user-quickview">
+                <span class="icon-bell">
+                    <!-- SVG ARROW -->
+                    <svg class="svg-arrow">
+                        <use xlink:href="#svg-arrow"></use>
+                    </svg>
+                    <!-- /SVG ARROW -->
+                </span>
+                <!-- PIN -->
+                <span class="pin soft-edged primary">{{ $managerNotificationCount }}</span>
+                <!-- /PIN -->
+                @if ($managerNotificationCount === 0)
+                @else
+                <!-- DROPDOWN NOTIFICATIONS -->
+                <ul class="dropdown notifications no-hover closed">
+                    
+                    <!-- DROPDOWN ITEM -->
+                    @foreach ($allManagerNotification as $notifications)
+                    @foreach ($notifications as $notification)
+                    <li class="dropdown-item">
+                        <a href="{{ $notification->url }}">
+                            <figure class="user-avatar">
+                                <img src="images/avatars/avatar_05.jpg" alt="">
+                            </figure>
+                        </a>
+                        <p class="title">
+                            <a href="{{ $notification->url }}"><span></span>{{ $notification->message }}</a>
+                        </p>
+                        <p class="timestamp">{{ $notification->created_at->diffForHumans(\Carbon\Carbon::now()) }}</p>
+                        @endforeach
+                        @endforeach
                         <a href="{{ route('view_notification') }}" class="button primary">View all Notifications</a>
                     </li>
                     

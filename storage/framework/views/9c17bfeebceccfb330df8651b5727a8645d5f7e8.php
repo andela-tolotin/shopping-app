@@ -14,7 +14,7 @@
             </ul>
         </div>
         <?php endif; ?>
-        <form id="register-form4" method="post" action=<?php echo e(route('upload_advert')); ?> enctype="multipart/form-data">
+        <form id="register-form4" method="post" action=<?php echo e(route('upload_advert', ['locale' => App::getLocale()])); ?> enctype="multipart/form-data">
             <?php echo e(csrf_field()); ?>
 
             <div class="profile-image">

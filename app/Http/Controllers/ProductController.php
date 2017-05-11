@@ -10,7 +10,6 @@ use Exception;
 use App\Advert;
 use App\Product;
 use App\Category;
-use App\Notification;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProductRequest;
 
@@ -25,14 +24,8 @@ class ProductController extends Controller
     {
         $categories = Category::all();
         $assignees = User::where('role_id', 2)->get();
-        $adminNotification = Notification::where([['status', 1], ['action', 'Made Order']])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC');
-        $buyerNotification = Notification::where([['status', 1], ['action', 'Login succesfully']])->orWhere([['status', 1], ['action', 'Approve Order']])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC');
-        $adminNotifications = $adminNotification->get();
-        $buyerNotifications = $buyerNotification->get();
-        $adminNotificationCount = $adminNotification->count();
-        $buyerNotificationCount = $buyerNotification->count();
 
-        return view('dashboard.product.form', compact('categories', 'assignees', 'paymentGateways', 'amount', 'adminNotifications', 'buyerNotifications', 'buyerNotificationCount', 'adminNotificationCount'));
+        return view('dashboard.product.form', compact('categories', 'assignees', 'paymentGateways', 'amount'));
     }
 
     /**
@@ -48,7 +41,6 @@ class ProductController extends Controller
             'description'     => $request['description'],
             'category_id'     => $request['category'],
             'user_id'         => Auth::user()->id,
-            'assignee_id'     => $request['assignee'] ?? null,
             'price'           => $request['price'],
             'discount'        => $request['discount'],
             'tax'             => $request['tax'],
@@ -99,28 +91,8 @@ class ProductController extends Controller
     public function listProducts()
     {
         $products = Product::orderBy('name', 'DESC')->paginate(10);
-        $adminNotification = Notification::where([
-            ['status', 1], 
-            ['action', 'Made Order'],
-            //['created_at', 'DESC']
-        ]);
 
-        $buyerNotification = Notification::where([
-            ['status', 1], 
-            ['action', 'Login succesfully']])
-        ->orWhere([
-            ['status', 1], 
-            ['action', 'Approve Order'],
-            //['created_at', 'DESC']
-        ]);
-
-        $adminNotifications = $adminNotification->get();
-        $adminNotificationCount = $adminNotification->count();
-
-        $buyerNotifications = $buyerNotification->get();
-        $buyerNotificationCount = $buyerNotification->count();
-
-        return view('dashboard.product.show_products', compact('products', 'paymentGateways', 'amount', 'adminNotifications', 'buyerNotifications', 'buyerNotificationCount', 'adminNotificationCount'));
+        return view('dashboard.product.show_products', compact('products', 'paymentGateways', 'amount'));
     }
 
     /**
@@ -141,14 +113,8 @@ class ProductController extends Controller
 
         $productImage = json_decode($product->product_img_url);
         $categories   = Category::all();
-        $adminNotification = Notification::where([['status', 1], ['action', 'Made Order']])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC');
-        $buyerNotification = Notification::where([['status', 1], ['action', 'Login succesfully']])->orWhere([['status', 1], ['action', 'Approve Order']])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC');
-        $adminNotifications = $adminNotification->get();
-        $buyerNotifications = $buyerNotification->get();
-        $adminNotificationCount = $adminNotification->count();
-        $buyerNotificationCount = $buyerNotification->count();
 
-        return view('dashboard.product.edit_form', compact('product', 'categories', 'productImage', 'paymentGateways', 'amount', 'adminNotifications', 'buyerNotifications', 'buyerNotificationCount', 'adminNotificationCount', 'assignees'));
+        return view('dashboard.product.edit_form', compact('product', 'categories', 'productImage', 'paymentGateways', 'amount'));
     }
 
     /**
@@ -164,7 +130,6 @@ class ProductController extends Controller
             'name'        => $request->name,
             'description' => $request->description,
             'category_id' => $request->category,
-            'assignee_id' => $request['assignee'] ?? null,
             'price'       => $request->price,
             'discount'    => $request->discount,
             'tax'         => $request->tax,
@@ -221,15 +186,9 @@ class ProductController extends Controller
     {
         $product = Product::findOneById($id);
         $productAdvert = Advert::withProduct($product->id);
-        $adminNotification = Notification::where([['status', 1], ['action', 'Approve Order']])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC');
-        $buyerNotification = Notification::where([['status', 1], ['action', 'Login succesfully']])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC');
-        $adminNotifications = $adminNotification->get();
-        $buyerNotifications = $buyerNotification->get();
-        $adminNotificationCount = $adminNotification->count();
-        $buyerNotificationCount = $buyerNotification->count();
 
         if ($product instanceof Product) {
-            return view('dashboard.product.product_detail', compact('product', 'productAdvert', 'adminNotifications', 'buyerNotifications', 'buyerNotificationCount', 'adminNotificationCount'));
+            return view('dashboard.product.product_detail', compact('product', 'productAdvert'));
         }
 
         abort(404);

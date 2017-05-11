@@ -8,7 +8,6 @@ use App\User;
 use Cloudder;
 use App\Product;
 use App\Category;
-use App\Notification;
 use Illuminate\Http\Request;
 use App\Http\Requests\CategoryRequest;
 
@@ -21,14 +20,7 @@ class CategoryController extends Controller
      */
     public function showCategoryForm()
     {
-        $adminNotification = Notification::where([['status', 1], ['action', 'Made Order']])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC');
-        $buyerNotification = Notification::where([['status', 1], ['action', 'Login succesfully']])->orWhere([['status', 1], ['action', 'Approve Order']])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC');
-        $adminNotifications = $adminNotification->get();
-        $buyerNotifications = $buyerNotification->get();
-        $adminNotificationCount = $adminNotification->count();
-        $buyerNotificationCount = $buyerNotification->count();
-
-        return view('dashboard.category.form', compact('paymentGateways', 'amount', 'adminNotifications', 'buyerNotifications', 'buyerNotificationCount', 'adminNotificationCount'));
+        return view('dashboard.category.form', compact('paymentGateways', 'amount'));
     }
 
     /**
@@ -61,14 +53,8 @@ class CategoryController extends Controller
     public function listCategories()
     {
         $categories = Category::orderBy('name', 'ASC')->paginate(10);
-        $adminNotification = Notification::where([['status', 1], ['action', 'Made Order']])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC');
-        $buyerNotification = Notification::where([['status', 1], ['action', 'Login succesfully']])->orWhere([['status', 1], ['action', 'Approve Order']])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC');
-        $adminNotifications = $adminNotification->get();
-        $buyerNotifications = $buyerNotification->get();
-        $adminNotificationCount = $adminNotification->count();
-        $buyerNotificationCount = $buyerNotification->count();
 
-        return view('dashboard.category.show_categories', compact('categories', 'paymentGateways', 'amount', 'adminNotifications', 'buyerNotifications', 'buyerNotificationCount', 'adminNotificationCount'));
+        return view('dashboard.category.show_categories', compact('categories', 'paymentGateways', 'amount'));
     }
 
     /**
@@ -80,18 +66,12 @@ class CategoryController extends Controller
     public function editCategoryForm(Request $request, $id)
     {
         $category = Auth::user()->categories->find($id);
-        $adminNotification = Notification::where([['status', 1], ['action', 'Made Order']])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC');
-        $buyerNotification = Notification::where([['status', 1], ['action', 'Login succesfully']])->orWhere([['status', 1], ['action', 'Approve Order']])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC');
-        $adminNotifications = $adminNotification->get();
-        $buyerNotifications = $buyerNotification->get();
-        $adminNotificationCount = $adminNotification->count();
-        $buyerNotificationCount = $buyerNotification->count();
 
         if (is_null($category)) {
             abort(400);
         }
 
-        return view('dashboard.category.edit_form', compact('category', 'paymentGateways', 'amount', 'adminNotifications', 'buyerNotifications', 'buyerNotificationCount', 'adminNotificationCount'));
+        return view('dashboard.category.edit_form', compact('category', 'paymentGateways', 'amount'));
     }
 
     /**

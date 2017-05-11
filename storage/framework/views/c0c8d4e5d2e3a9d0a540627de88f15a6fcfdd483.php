@@ -17,7 +17,7 @@
         <?php $__currentLoopData = $paymentGateways; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $paymentGateway): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
         <?php if($paymentGateway->name == 'Stripe'): ?>
         <p> Pay with <?php echo e($paymentGateway->name); ?></p>
-        <form action="<?php echo e(route('buy_point_with_stripe', ['locale' => App::getLocale()])); ?>" method="POST">
+        <form action="<?php echo e(route('buy_point_with_stripe')); ?>" method="POST">
             <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="<?php echo e($paymentGateway->client_id); ?>" data-amount="<?php echo e($amount * 1000); ?>" data-name="Buy Point" data-description="Payments" data-image="<?php echo e($paymentGateway->logo); ?>" data-locale="auto" data-currency="krw"
             <?php if(Auth::check()): ?>
             data-email="<?php echo e(Auth::user()->email); ?>"

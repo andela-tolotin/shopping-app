@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
 <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
 <!-- TRANSACTION LIST -->
-	<form id="form" method="GET" action="/<?php echo e(App::getLocale()); ?>/transactions">
+	<form id="form" method="GET" action="/transactions">
 		<div class="row">
 			<div class="col-lg-2">
 		        <div class='input-group date'>

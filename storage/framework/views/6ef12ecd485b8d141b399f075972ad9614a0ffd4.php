@@ -14,14 +14,16 @@
                     </ul>
                 </div>
             <?php endif; ?>
-            <form id="register-form4" method="post" action="/<?php echo e(App::getLocale()); ?>/product/<?php echo e($product->id); ?>/update" enctype="multipart/form-data">
+            <form id="register-form4" method="post" action="/product/<?php echo e($product->id); ?>/update" enctype="multipart/form-data">
                 <?php echo e(csrf_field()); ?>
 
                 <div class="profile-image">
                     <?php if($product->product_img_url == ''): ?>
                         <img src="<?php echo e(asset('images/dashboard/profile-default-image.png')); ?>" alt="profile-default-image">
                     <?php else: ?>
-                        
+                        <?php $__currentLoopData = $productImage; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $image): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
+                            <img src="<?php echo e($image); ?>" style="width: 20%; height: auto;">
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
                     <?php endif; ?>
                     <p class="text-header">Product Photo</p><br>
                             <p class="upload-details"><input type="file" name="images[]" multiple="multiple" accept="image/*"></p>
@@ -56,6 +58,23 @@
                     <label for="tax" class="rl-label required">Tax</label>
                     <input type="number" id="tax" name="tax" value="<?php echo e($product->tax); ?>">
                 </div>
+
+                <div class="input-container half">
+                <label for="assignee" class="rl-label required">Assignee</label>
+                <label for="gender" class="select-block">
+                    <select name="assignee">
+                        <option value="<?php echo e(Auth::user()->id); ?>">Assignee</option>
+                        <?php $__currentLoopData = $assignees; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $assignee): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
+                        <option value="<?php echo e($assignee->id); ?>"><?php echo e($assignee->name); ?></option>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
+                    </select>
+                    <!-- SVG ARROW -->
+                    <svg class="svg-arrow">
+                        <use xlink:href="#svg-arrow"></use>
+                    </svg>
+                    <!-- /SVG ARROW -->
+                </label>
+            </div>
 
                 <div class="input-container">
                     <label for="description" class="rl-label required">Description</label>

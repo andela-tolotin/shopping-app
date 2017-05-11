@@ -28,8 +28,10 @@
 		</tr>
 	</thead>
 	<tbody>
-		<?php if($unapprovedOrders->count() > 0): ?>
-		<?php $__currentLoopData = $unapprovedOrders; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $order): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
+		<?php if(count($unapprovedOrders) > 0): ?>
+		<?php $__currentLoopData = $unapprovedOrders; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
+		<?php $__currentLoopData = $value; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $order): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
+
 		<tr>
 			<td><?php echo e($loop->index + 1); ?></td>
 			<td>
@@ -68,6 +70,7 @@
 			<td><input data-id="<?php echo e($order->id); ?>" name="rating" value="<?php echo e($order->ratings); ?>" type="number" class="rating" min=0 max=2 step=1 data-size="xs"></td>
 			<td><a data-id="<?php echo e($order->id); ?>" class="delete-order" href="#" title="Delete <?php echo e($order->name); ?>"> <i class="glyphicon glyphicon-trash Delete"></i> Delete</a></td>
 		</tr>
+		<?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
 		<?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
 		<?php endif; ?>
 		
@@ -88,8 +91,9 @@
 	</thead>
 		<tbody>
 
-		<?php if($approvedOrders->count() > 0): ?>
-		<?php $__currentLoopData = $approvedOrders; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $order): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
+		<?php if(count($approvedOrders) > 0): ?>
+		<?php $__currentLoopData = $approvedOrders; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
+		<?php $__currentLoopData = $value; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $order): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
 		<tr>
 			<td><?php echo e($loop->index + 1); ?></td>
 			<td>
@@ -129,13 +133,16 @@
 			<td><a data-id="<?php echo e($order->id); ?>" class="delete-order" href="#" title="Delete <?php echo e($order->name); ?>"> <i class="glyphicon glyphicon-trash Delete"></i> Delete</a></td>
 		</tr>
 		<?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
+		<?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
 		<?php endif; ?>
 	</tbody>
 </table>
 <p>
-	<?php if($approvedOrders->count() > 0): ?>
-	<?php echo $approvedOrders->render(); ?>
+	<?php if(count($approvedOrders) > 0): ?>
+	<?php $__currentLoopData = $approvedOrders; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $order): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
+		<?php echo $order->render(); ?>
 
+	<?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
 	<?php endif; ?>
 </p>
 <?php $__env->stopSection(); ?>

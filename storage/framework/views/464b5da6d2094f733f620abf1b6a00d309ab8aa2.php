@@ -20,7 +20,7 @@
                     <td><?php echo e($loop->index + 1); ?></td>
                     <td><?php echo e($category->name); ?></td>
                     <td><?php echo e($category->description); ?></td>
-                    <td><a href="<?php echo e(route('edit_category', ['id' => $category->id, 'locale' => App::getLocale()])); ?>" title="Edit <?php echo e($category->name); ?>"> <i class="glyphicon glyphicon-pencil"></i> Edit </a></td>
+                    <td><a href="<?php echo e(route('edit_category', ['id' => $category->id])); ?>" title="Edit <?php echo e($category->name); ?>"> <i class="glyphicon glyphicon-pencil"></i> Edit </a></td>
                     <td><a data-id="<?php echo e($category->id); ?>" class="delete-category" href="#" title="Delete <?php echo e($category->name); ?>"> <i class="glyphicon glyphicon-trash Delete"></i> Delete</a></td>
                 </tr>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>

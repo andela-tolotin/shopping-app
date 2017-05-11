@@ -41,5 +41,10 @@ class AuthServiceProvider extends ServiceProvider
         $gate->define('BUYER', function ($user) {
             return $user->role_id === 1;
         });
+
+        //Only MANAGER can see the menu
+        $gate->define('MANAGER', function ($user) {
+            return $user->role_id === 2;
+        });
     }
 }

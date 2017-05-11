@@ -64,7 +64,7 @@
 						<!-- /PRODUCT PREVIEW ACTIONS -->
 						<!-- PRODUCT INFO -->
 						<div class="product-info">
-							<a href="<?php echo e(route('product-details', ['id' => $product->id, 'locale' => App::getLocale()])); ?>">
+							<a href="<?php echo e(route('product-details', ['id' => $product->id])); ?>">
 								<p class="text-header"><?php echo e($product->name); ?></p>
 							</a>
 							<a href="#">

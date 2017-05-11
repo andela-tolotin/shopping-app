@@ -18,7 +18,7 @@
             </ul>
         </div>
         <?php endif; ?>
-        <form id="profile-info-form" method="post" action="<?php echo e(route('update_user', ['id' => $user->id, 'locale' => App::getLocale() ])); ?>" enctype="multipart/form-data">
+        <form id="profile-info-form" method="post" action="<?php echo e(route('update_user', ['id' => $user->id])); ?>" enctype="multipart/form-data">
             <?php echo e(csrf_field()); ?>
 
             <div class="profile-image">
@@ -88,12 +88,12 @@
                     <!-- /SVG ARROW -->
                 </label>
             </div>
-            <!-- /INPUT CONTAINER -->
-            <!-- INPUT CONTAINER -->
+
             <div class="input-container">
                 <label for="email" class="rl-label">Email</label>
                 <input type="email" id="email" name="email" placeholder="Enter your email address here..." value="<?php echo e($user->email); ?>" readonly="readonly">
             </div>
+
             <div class="input-container half">
                 <label for="gender" class="rl-label required">Gender</label>
                 <label for="gender" class="select-block">
@@ -117,8 +117,25 @@
                     <!-- /SVG ARROW -->
                 </label>
             </div>
-            <!-- /INPUT CONTAINER -->
+
             <div class="input-container half">
+                <label for="product" class="rl-label required">Product</label>
+                <label for="gender" class="select-block">
+                    <select name="product">
+                        <option value="">Product</option>
+                        <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
+                            <option value="<?php echo e($product->id); ?>"><?php echo e($product->name); ?></option>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
+                    </select>
+                    <!-- SVG ARROW -->
+                    <svg class="svg-arrow">
+                        <use xlink:href="#svg-arrow"></use>
+                    </svg>
+                    <!-- /SVG ARROW -->
+                </label>
+            </div>
+            <!-- /INPUT CONTAINER -->
+            <div class="input-container">
                 <label for="phone" class="rl-label">Phone</label>
                 <input type="text" id="phone" name="phone" placeholder="Enter your phone here..." value="<?php echo e($user->phone); ?>" required="required">
             </div>

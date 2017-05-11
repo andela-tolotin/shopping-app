@@ -14,7 +14,7 @@
             </ul>
         </div>
         <?php endif; ?>
-        <form id="register-form4" method="post" action=<?php echo e(route('post_category', ['locale' => App::getLocale()])); ?>>
+        <form id="register-form4" method="post" action=<?php echo e(route('post_category')); ?>>
             <?php echo e(csrf_field()); ?>
 
             <div class="input-container">

@@ -7,7 +7,6 @@ use Auth;
 use Cloudder;
 use App\Advert;
 use App\Product;
-use App\Notification;
 use Illuminate\Http\Request;
 use App\Http\Requests\AdvertRequest;
 
@@ -29,38 +28,15 @@ class AdvertController extends Controller
 	public function listAdverts()
     {
     	$adverts = Advert::orderBy('id', 'DESC')->paginate(10);
-        $adminNotification = Notification::where([['status', 1], ['action', 'Made Order']])
-            ->groupBy('id', 'created_at')
-            ->orderBy('created_at', 'DESC');
 
-        $buyerNotification = Notification::where([
-            ['status', 1], 
-            ['action', 'Login succesfully']
-        ])->orWhere([
-            ['status', 1], 
-            ['action', 'Approve Order']
-        ])->groupBy('id', 'created_at')
-            ->orderBy('created_at', 'DESC');
-
-        $adminNotifications = $adminNotification->get();
-        $buyerNotifications = $buyerNotification->get();
-        $adminNotificationCount = $adminNotification->count();
-        $buyerNotificationCount = $buyerNotification->count();
-
-    	return view('dashboard.advert.list_adverts', compact('adverts', 'paymentGateways', 'amount', 'adminNotifications', 'buyerNotifications', 'buyerNotificationCount', 'adminNotificationCount'));
+    	return view('dashboard.advert.list_adverts', compact('adverts', 'paymentGateways', 'amount'));
     }
 
     public function loadAdvertForm()
     {
         $products = product::all();
-        $adminNotification = Notification::where([['status', 1], ['action', 'Made Order']])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC');
-        $buyerNotification = Notification::where([['status', 1], ['action', 'Login succesfully']])->orWhere([['status', 1], ['action', 'Approve Order']])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC');
-        $adminNotifications = $adminNotification->get();
-        $buyerNotifications = $buyerNotification->get();
-        $adminNotificationCount = $adminNotification->count();
-        $buyerNotificationCount = $buyerNotification->count();
 
-    	return view('dashboard.advert.add_advert', compact('products', 'paymentGateways', 'amount', 'adminNotifications', 'buyerNotifications', 'buyerNotificationCount', 'adminNotificationCount'));
+    	return view('dashboard.advert.add_advert', compact('products', 'paymentGateways', 'amount'));
     }
 
     public function uploadAdvert(AdvertRequest $request)

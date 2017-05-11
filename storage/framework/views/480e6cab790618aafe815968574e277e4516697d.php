@@ -28,8 +28,8 @@
 			<td><?php echo e($paymentGateway->client_id); ?></td>
 			<td><?php echo e($paymentGateway->client_secret); ?></td>
 			<td><?php echo e($paymentGateway->callback_url); ?></td>
-			<td><a href="<?php echo e(route('edit_payment', ['id' => $paymentGateway->id ])); ?>" title="Edit <?php echo e($paymentGateway->name); ?>"> <i class="glyphicon glyphicon-pencil"></i> Edit </a></td>
-			<td><a class="delete-payment" href="<?php echo e(route('delete_payment', ['id' => $paymentGateway->id ])); ?>" title="Delete <?php echo e($paymentGateway->name); ?>"> <i class="glyphicon glyphicon-trash Delete"></i> Delete</a></td>
+			<td><a href="<?php echo e(route('edit_payment', ['id' => $paymentGateway->id, 'locale' => App::getLocale()])); ?>" title="Edit <?php echo e($paymentGateway->name); ?>"> <i class="glyphicon glyphicon-pencil"></i> Edit </a></td>
+			<td><a class="delete-payment" href="<?php echo e(route('delete_payment', ['id' => $paymentGateway->id, 'locale' => App::getLocale() ])); ?>" title="Delete <?php echo e($paymentGateway->name); ?>"> <i class="glyphicon glyphicon-trash Delete"></i> Delete</a></td>
 		</tr>
 		<?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
 		<?php endif; ?>

@@ -1,3 +1,28 @@
+<?php
+    if (Auth::check()) {
+        $serviceManager = App\ServiceManager::where('user_id', Auth::user()->id)->get();
+        $allManagerNotification = [];
+        $managerNotificationCount = 0;
+
+        if (count($serviceManager) > 0 ) {
+            foreach ($serviceManager as $key => $value) {
+                $managerNotification = App\Notification::where([['status', 1], ['action', 'Login succesfully'], ['user_id', Auth::user()->id]])->orWhere([['status', 1], ['action', 'Made Order'], ['product_id', $value['product_id']]])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC')->get();
+                array_push($allManagerNotification, $managerNotification);
+            }
+
+            foreach ($allManagerNotification as $key => $value) {
+                $managerNotificationCount += count($value);
+            }
+        } else {
+            $managerNotification = App\Notification::where([['status', 1], ['action', 'Login succesfully'], ['user_id', Auth::user()->id]])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC')->get();
+            array_push($allManagerNotification, $managerNotification);
+            $managerNotificationCount =+ count($allManagerNotification); 
+        }
+
+        $allBuyerNotifications = App\Notification::where([['status', 1], ['action', 'Login succesfully'], ['user_id', Auth::user()->id]])->orWhere([['status', 1], ['action', 'Approve Order'], ['user_id', Auth::user()->id]])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC')->get();
+        $allAdminNotifications = App\Notification::where([['status', 1], ['action', 'Login succesfully'], ['user_id', Auth::user()->id]])->orWhere([['status', 1], ['action', 'Made Order']])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC')->get();
+    }
+?>
 <div class="header-wrap">
     <header>
         <!-- LOGO -->
@@ -83,9 +108,9 @@
                 </ul>
                 <!-- /DROPDOWN -->
             </div>
-            <?php if (app('Illuminate\Contracts\Auth\Access\Gate')->check( 'ADMIN_MANAGER', Auth::user()->role_id )): ?>
+            <?php if (app('Illuminate\Contracts\Auth\Access\Gate')->check( 'ADMIN', Auth::user()->role_id )): ?>
             <div  class="user-quickview">
-                <span class="icon-settings">
+                <span class="icon-bell">
                     <!-- SVG ARROW -->
                     <svg class="svg-arrow">
                         <use xlink:href="#svg-arrow"></use>
@@ -93,15 +118,15 @@
                     <!-- /SVG ARROW -->
                 </span>
                 <!-- PIN -->
-                <span class="pin soft-edged primary"><?php echo e($adminNotificationCount); ?></span>
+                <span class="pin soft-edged primary"><?php echo e(count($allAdminNotifications)); ?></span>
                 <!-- /PIN -->
-                <?php if($adminNotificationCount === 0): ?>
+                <?php if(count($allAdminNotifications) === 0): ?>
                 <?php else: ?>
                 <!-- DROPDOWN NOTIFICATIONS -->
                 <ul class="dropdown notifications no-hover closed">
                     
                     <!-- DROPDOWN ITEM -->
-                    <?php $__currentLoopData = $adminNotifications; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $notification): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
+                    <?php $__currentLoopData = $allAdminNotifications; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $notification): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
                     <li class="dropdown-item">
                         <a href="<?php echo e($notification->url); ?>">
                             <figure class="user-avatar">
@@ -125,7 +150,7 @@
             <?php endif; ?>
             <?php if (app('Illuminate\Contracts\Auth\Access\Gate')->check( 'BUYER', Auth::user()->role_id )): ?>
             <div  class="user-quickview">
-                <span class="icon-settings">
+                <span class="icon-bell">
                     <!-- SVG ARROW -->
                     <svg class="svg-arrow">
                         <use xlink:href="#svg-arrow"></use>
@@ -133,15 +158,15 @@
                     <!-- /SVG ARROW -->
                 </span>
                 <!-- PIN -->
-                <span class="pin soft-edged primary"><?php echo e($buyerNotificationCount); ?></span>
+                <span class="pin soft-edged primary"><?php echo e(count($allBuyerNotifications)); ?></span>
                 <!-- /PIN -->
-                <?php if($buyerNotificationCount === 0): ?>
+                <?php if(count($allBuyerNotifications) === 0): ?>
                 <?php else: ?>
                 <!-- DROPDOWN NOTIFICATIONS -->
                 <ul class="dropdown notifications no-hover closed">
                     
                     <!-- DROPDOWN ITEM -->
-                    <?php $__currentLoopData = $buyerNotifications; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $notification): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
+                    <?php $__currentLoopData = $allBuyerNotifications; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $notification): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
                     <li class="dropdown-item">
                         <a href="<?php echo e($notification->url); ?>">
                             <figure class="user-avatar">
@@ -154,6 +179,47 @@
                         <p class="timestamp"><?php echo e($notification->created_at->diffForHumans(\Carbon\Carbon::now())); ?></p>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
                         <span class="notification-type icon-tag"></span>
+                        <a href="<?php echo e(route('view_notification')); ?>" class="button primary">View all Notifications</a>
+                    </li>
+                    
+                    <!-- /DROPDOWN ITEM -->
+                </ul>
+                <!-- /DROPDOWN NOTIFICATIONS -->
+                <?php endif; ?>
+            </div>
+            <?php endif; ?>
+            <?php if (app('Illuminate\Contracts\Auth\Access\Gate')->check( 'MANAGER', Auth::user()->role_id )): ?>
+            <div  class="user-quickview">
+                <span class="icon-bell">
+                    <!-- SVG ARROW -->
+                    <svg class="svg-arrow">
+                        <use xlink:href="#svg-arrow"></use>
+                    </svg>
+                    <!-- /SVG ARROW -->
+                </span>
+                <!-- PIN -->
+                <span class="pin soft-edged primary"><?php echo e($managerNotificationCount); ?></span>
+                <!-- /PIN -->
+                <?php if($managerNotificationCount === 0): ?>
+                <?php else: ?>
+                <!-- DROPDOWN NOTIFICATIONS -->
+                <ul class="dropdown notifications no-hover closed">
+                    
+                    <!-- DROPDOWN ITEM -->
+                    <?php $__currentLoopData = $allManagerNotification; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $notifications): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
+                    <?php $__currentLoopData = $notifications; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $notification): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
+                    <li class="dropdown-item">
+                        <a href="<?php echo e($notification->url); ?>">
+                            <figure class="user-avatar">
+                                <img src="images/avatars/avatar_05.jpg" alt="">
+                            </figure>
+                        </a>
+                        <p class="title">
+                            <a href="<?php echo e($notification->url); ?>"><span></span><?php echo e($notification->message); ?></a>
+                        </p>
+                        <p class="timestamp"><?php echo e($notification->created_at->diffForHumans(\Carbon\Carbon::now())); ?></p>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
                         <a href="<?php echo e(route('view_notification')); ?>" class="button primary">View all Notifications</a>
                     </li>
                     

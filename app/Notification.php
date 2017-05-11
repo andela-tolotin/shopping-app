@@ -13,6 +13,7 @@ class Notification extends Model
        'action',
        'date_created',
        'url',
+       'product_id',
     ];
 
     public function user()

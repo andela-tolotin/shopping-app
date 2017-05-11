@@ -14,7 +14,7 @@
             </ul>
         </div>
         <?php endif; ?>
-        <form id="register-form4" method="post" action=<?php echo e(route('post_product', ['locale' => App::getLocale()])); ?> enctype="multipart/form-data">
+        <form id="register-form4" method="post" action=<?php echo e(route('post_product')); ?> enctype="multipart/form-data">
             <?php echo e(csrf_field()); ?>
 
              <div class="profile-image">
@@ -57,28 +57,9 @@
                 <label for="discount" class="rl-label required">Discount</label>
                 <input type="number" id="discount" name="discount" placeholder="Enter discount here...">
             </div>
-            <div class="input-container half">
+            <div class="input-container">
                 <label for="tax" class="rl-label required">Tax</label>
                 <input type="number" id="tax" name="tax" placeholder="Enter tax here...">
-            </div>
-            <div class="input-container half">
-                <label for="assignee" class="rl-label required">Assignee</label>
-                <label for="gender" class="select-block">
-                    <select name="assignee" required="required">
-                        <option value="" >Assignee</option>
-                        <?php $__currentLoopData = $assignees; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $assignee): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
-                        <option value="<?php echo e($assignee->id); ?>">
-                            <?php echo e($assignee->name); ?>
-
-                        </option>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
-                    </select>
-                    <!-- SVG ARROW -->
-                    <svg class="svg-arrow">
-                        <use xlink:href="#svg-arrow"></use>
-                    </svg>
-                    <!-- /SVG ARROW -->
-                </label>
             </div>
             <div class="input-container">
                 <label for="description" class="rl-label required">Description</label>
