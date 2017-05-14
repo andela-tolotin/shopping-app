@@ -188,6 +188,12 @@
         <rect y="5" width="13" height="3"/>
     </symbol>
 </svg>
+
+<style type="text/css">
+    .modal-open .modal {
+        z-index: 9999;
+    }
+</style>
 <!-- /SVG PLUS -->
 
 <!-- jQuery -->

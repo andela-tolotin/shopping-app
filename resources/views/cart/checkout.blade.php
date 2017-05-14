@@ -135,6 +135,7 @@
 	<!-- /FORM BOX ITEM -->
 </div>
 <!-- /FORM BOX ITEMS -->
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <style type="text/css">
 	.alert-success {
 		color: #3c763d;
