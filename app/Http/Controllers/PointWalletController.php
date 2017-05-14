@@ -24,8 +24,6 @@ class PointWalletController extends Controller
 
     public function loadPointBag(Request $request)
     {
-        $locale = App::getLocale();
-
     	$point = 0;
 
     	if ($request->has('point')) {
@@ -34,7 +32,7 @@ class PointWalletController extends Controller
 
     	if (($point % 1) > 0) {
     		return redirect()
-                ->route('load_buy_point', ['locale' => $locale])
+                ->route('load_buy_point')
                 ->with('message', 'Enter your point in whole number e.g 1 or 2');
     	}
 

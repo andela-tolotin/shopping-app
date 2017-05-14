@@ -43,16 +43,6 @@
         return false;
     });
 </script>
-<script type="text/javascript">
-    $(function() {
-        var pointWallet = $(document).find('input#credit_card');
-        console.log(pointWallet.size());
-        
-        if ($('input[type="radio"]:checked')) {
-            console.log('pointWallet was selected');
-        }
-    });
-</script>
 <style type="text/css">
     .modal-open .modal {
         z-index: 9999;

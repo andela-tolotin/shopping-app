@@ -215,4 +215,8 @@
 <script src="{{ asset('js/tooltip.js') }}"></script>
 <!-- User Quickview Dropdown -->
 <script src="{{ asset('js/user-board.js') }}"></script>
+<!-- bootbox -->
+<script src="{{ asset('js/bootbox.min.js') }}"></script>
+<!-- Bootrap js file -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script src="{{ asset('js/pay_with_point.js') }}"></script>
