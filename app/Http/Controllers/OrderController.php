@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
 use Auth;
+use App\User;
 use App\Order;
 use Exception;
 use Carbon\Carbon;
 use App\Notification;
+use App\ServiceManager;
 use Illuminate\Http\Request;
 use Illuminate\Mail\Mailer as Mail;
 use App\Http\Requests\ProductRequest;
@@ -29,17 +30,27 @@ class OrderController extends Controller
     {
         $userId = Auth::user()->id;
         $adminId = Auth::user()->role_id;
+        $unapprovedOrders = [];
+        $approvedOrders = [];
+        $serviceManager = ServiceManager::where('user_id', $userId)->get();
 
-        $unapprovedOrders = Order::where([['status', 0], ['assignee_id', $userId]])->orWhere([['status', 0], ['admin_id', $adminId]])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC')->get();
-        $approvedOrders   = Order::where([['status', 1], ['assignee_id', $userId]])->orWhere([['status', 1], ['admin_id', $adminId]])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC')->paginate(10);
-        $adminNotification = Notification::where([['status', 1], ['action', 'Made Order']])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC');
-        $buyerNotification = Notification::where([['status', 1], ['action', 'Login succesfully']])->orWhere([['status', 1], ['action', 'Approve Order']])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC');
-        $adminNotifications = $adminNotification->get();
-        $buyerNotifications = $buyerNotification->get();
-        $adminNotificationCount = $adminNotification->count();
-        $buyerNotificationCount = $buyerNotification->count();
+        if ($serviceManager->count() > 0) {
+            foreach ($serviceManager as $key => $value) {
+                $unapproveOrders = Order::where([['status', 0], ['product_id', $value->product_id]])->orWhere([['status', 0], ['admin_id', $adminId]])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC')->get();
+                $approveOrders   = Order::where([['status', 1], ['product_id', $value->product_id]])->orWhere([['status', 1], ['admin_id', $adminId]])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC')->paginate(10);
 
-        return view('dashboard.order.show_orders', compact('approvedOrders', 'unapprovedOrders', 'paymentGateways', 'amount', 'adminNotifications', 'buyerNotifications', 'buyerNotificationCount', 'adminNotificationCount'));
+                array_push($unapprovedOrders, $unapproveOrders);
+                array_push($approvedOrders, $approveOrders);
+            }
+        }
+
+        $unapproveOrders = Order::Where([['status', 0], ['admin_id', $adminId]])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC')->get();
+        $approveOrders   = Order::Where([['status', 1], ['admin_id', $adminId]])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC')->paginate(10);
+
+        array_push($unapprovedOrders, $unapproveOrders);
+        array_push($approvedOrders, $approveOrders);
+
+        return view('dashboard.order.show_orders', compact('approvedOrders', 'unapprovedOrders', 'paymentGateways', 'amount'));
     }
 
     /**
@@ -59,14 +70,7 @@ class OrderController extends Controller
             $orderTotal += $value->transaction->item_price;
         }
 
-        $adminNotification = Notification::where([['status', 1], ['action', 'Made Order']])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC');
-        $buyerNotification = Notification::where([['status', 1], ['action', 'Login succesfully']])->orWhere([['status', 1], ['action', 'Approve Order']])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC');
-        $adminNotifications = $adminNotification->get();
-        $buyerNotifications = $buyerNotification->get();
-        $adminNotificationCount = $adminNotification->count();
-        $buyerNotificationCount = $buyerNotification->count();
-
-        return view('dashboard.order.show_user_orders', compact('orders', 'orderTotal', 'approvedOrders', 'unapprovedOrders', 'paymentGateways', 'amount', 'adminNotifications', 'buyerNotifications', 'buyerNotificationCount', 'adminNotificationCount'));
+        return view('dashboard.order.show_user_orders', compact('orders', 'orderTotal', 'approvedOrders', 'unapprovedOrders', 'paymentGateways', 'amount'));
     }
 
     /**
@@ -95,12 +99,14 @@ class OrderController extends Controller
      *
      * @return bolean
      */
-    protected function logNotification()
+    protected function logNotification($userId, $productId)
     {
+
         return Notification::create([
-                'user_id' => Auth::user()->id ?? null,
+                'user_id' => $userId ?? null,
                 'message' => "Your order have been approved",
                 'status' => 1,
+                'product_id' => $productId,
                 'action' => 'Approve Order',
                 'date_created' => Carbon::now(),
                 'url' => "/en/home",
@@ -139,9 +145,10 @@ class OrderController extends Controller
         	$order->increment('status');
 
             $response = $this->mail($order);
-
+            $userId = $order->user_id;
+            $productId = $order->product_id;
             // Log the notification in the notification table
-            $this->logNotification();
+            $this->logNotification($userId, $productId);
             $this->decrementMadeOrderStatus();
 
         	return redirect()->route('list_orders')

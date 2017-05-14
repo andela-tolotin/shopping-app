@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Order;
 use App\Transaction;
-use App\Notification;
 use Illuminate\Http\Request;
 
 class TransactionController extends Controller
@@ -68,15 +67,8 @@ class TransactionController extends Controller
             $approvedTransactionsTotal += $value->item_price;
         }
 
-        $adminNotification = Notification::where([['status', 1], ['action', 'Made Order']])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC');
-        $buyerNotification = Notification::where([['status', 1], ['action', 'Login succesfully']])->orWhere([['status', 1], ['action', 'Approve Order']])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC');
-        $adminNotifications = $adminNotification->get();
-        $buyerNotifications = $buyerNotification->get();
-        $adminNotificationCount = $adminNotification->count();
-        $buyerNotificationCount = $buyerNotification->count();
-
 	    return view('dashboard.transaction.stock',
-            compact('approvedTransactions', 'approvedTransactionsTotal', 'adminNotifications', 'buyerNotifications', 'buyerNotificationCount', 'adminNotificationCount')
+            compact('approvedTransactions', 'approvedTransactionsTotal')
         );
     }
 
@@ -100,15 +92,8 @@ class TransactionController extends Controller
             $approvedTransactionsTotal += $value->item_price;
         }
 
-        $adminNotification = Notification::where([['status', 1], ['action', 'Made Order']])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC');
-        $buyerNotification = Notification::where([['status', 1], ['action', 'Login succesfully']])->orWhere([['status', 1], ['action', 'Approve Order']])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC');
-        $adminNotifications = $adminNotification->get();
-        $buyerNotifications = $buyerNotification->get();
-        $adminNotificationCount = $adminNotification->count();
-        $buyerNotificationCount = $buyerNotification->count();
-
 		return view('dashboard.transaction.stock', 
-            compact('approvedTransactions', 'approvedTransactionsTotal', 'adminNotifications', 'buyerNotifications', 'buyerNotificationCount', 'adminNotificationCount')
+            compact('approvedTransactions', 'approvedTransactionsTotal')
         );
     }
 }

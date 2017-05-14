@@ -8,6 +8,7 @@ use App\Product;
 use App\Transaction;
 use App\PointWallet;
 use App\Notification;
+use App\ServiceManager;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -55,29 +56,35 @@ class HomeController extends Controller
         }
         $userId = Auth::user()->id;
 
-        $totalUnapprovedOrder = Order::where([['status', 0], ['assignee_id', $userId]])->orwhere('admin_id', 3)->count();
+        $serviceManager = ServiceManager::where('user_id', $userId)->get();
+        $unapprovedOrders = [];
+        $totalUnapprovedOrder = 0;
+
+
+        if ($serviceManager->count() > 0) {
+            foreach ($serviceManager as $key => $value) {
+                $unapproveOrders = Order::where([['status', 0], ['product_id', $value->product_id]])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC')->get();
+
+                array_push($unapprovedOrders, $unapproveOrders);
+            }
+
+            foreach ($unapprovedOrders as $key => $value) {
+                $totalUnapprovedOrder += count($value);
+            }
+        } else {
+            $unapproveOrders = Order::Where([['status', 0], ['admin_id', Auth::user()->role_id]])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC')->get()->count();
+            $totalUnapprovedOrder =+ $unapproveOrders;
+        }
+
         $totalTransactionAmount = Transaction::get()->count();
 
-        $adminNotification = Notification::where([['status', 1], ['action', 'Made Order']])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC');
-        $buyerNotification = Notification::where([['status', 1], ['action', 'Login succesfully']])->orWhere([['status', 1], ['action', 'Approve Order']])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC');
-        $adminNotifications = $adminNotification->get();
-        $buyerNotifications = $buyerNotification->get();
-        $adminNotificationCount = $adminNotification->count();
-        $buyerNotificationCount = $buyerNotification->count();
-
-        return view('dashboard.index', compact('good', 'excellent', 'userOrdersCount', 'remainingPoints', 'totalUnapprovedOrder', 'totalTransactionAmount', 'queueNo', 'adminNotifications', 'buyerNotifications', 'buyerNotificationCount', 'adminNotificationCount'));
+        return view('dashboard.index', compact('good', 'excellent', 'userOrdersCount', 'remainingPoints', 'totalUnapprovedOrder', 'totalTransactionAmount', 'queueNo'));
     }
 
     public function listProducts(Request $request)
     {
     	$products = Product::findAll();
-        $adminNotification = Notification::where([['status', 1], ['action', 'Made Order']])->groupBy('id', 'created_at')->orderBy('created_at', 'desc');
-        $buyerNotification = Notification::where([['status', 1], ['action', 'Login succesfully']])->orWhere([['status', 1], ['action', 'Approve Order']])->groupBy('id', 'created_at')->orderBy('created_at', 'desc');
-        $adminNotifications = $adminNotification->get();
-        $buyerNotifications = $buyerNotification->get();
-        $adminNotificationCount = $adminNotification->count();
-        $buyerNotificationCount = $buyerNotification->count();
 
-    	return view('index', compact('products', 'adminNotifications', 'buyerNotifications', 'buyerNotificationCount', 'adminNotificationCount'));
+    	return view('index', compact('products'));
     }
 }

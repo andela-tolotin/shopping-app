@@ -4,22 +4,30 @@ namespace App\Http\Controllers;
 
 use Auth;
 use App\Notification;
+use App\ServiceManager;
 use Illuminate\Http\Request;
 
 class NotificationContoller extends Controller
 {
     public function loadNotification()
     {
-    	$notifications = Notification::where('user_id', Auth::user()->id)->get();
+        $serviceManager = ServiceManager::where('user_id', Auth::user()->id)->get();
+        $allManagerNotification = [];
 
-    	$adminNotification = Notification::where([['status', 1], ['action', 'Made Order']])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC');
-        $buyerNotification = Notification::where([['status', 1], ['action', 'Login succesfully']])->orWhere([['status', 1], ['action', 'Approve Order']])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC');
-        $adminNotifications = $adminNotification->get();
-        $buyerNotifications = $buyerNotification->get();
-        $adminNotificationCount = $adminNotification->count();
-        $buyerNotificationCount = $buyerNotification->count();
+        if (count($serviceManager) > 0 ) {
+            foreach ($serviceManager as $key => $value) {
+                $managerNotification = Notification::where([['action', 'Login succesfully'], ['user_id', Auth::user()->id]])->orWhere([['action', 'Made Order'], ['product_id', $value['product_id']]])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC')->get();
+                array_push($allManagerNotification, $managerNotification);
+            }
+        }
 
-    	return view('notification', compact('notifications', 'adminNotifications', 'buyerNotifications', 'buyerNotificationCount', 'adminNotificationCount'));
+        $managerNotification = Notification::where([['action', 'Login succesfully'], ['user_id', Auth::user()->id]])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC')->get();
+        array_push($allManagerNotification, $managerNotification);        
+        
+    	$allBuyerNotifications = Notification::where([['action', 'Login succesfully'], ['user_id', Auth::user()->id]])->orWhere([['action', 'Approve Order'], ['user_id', Auth::user()->id]])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC')->get();
+        $allAdminNotifications = Notification::where([['action', 'Login succesfully'], ['user_id', Auth::user()->id]])->orWhere('action', 'Made Order')->groupBy('id', 'created_at')->orderBy('created_at', 'DESC')->get();
+
+    	return view('notification', compact('allBuyerNotifications', 'allAdminNotifications', 'allManagerNotification'));
     }
 
     public function readNotifications()

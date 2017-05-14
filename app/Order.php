@@ -11,7 +11,6 @@ class Order extends Model
         'product_id', 
         'transaction_id',
         'ratings',
-        'assignee_id',
     ];
 
     public function user()

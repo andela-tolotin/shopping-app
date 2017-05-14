@@ -29,8 +29,10 @@
 		</tr>
 	</thead>
 	<tbody>
-		@if ($unapprovedOrders->count() > 0)
-		@foreach($unapprovedOrders as $order)
+		@if (count($unapprovedOrders) > 0)
+		@foreach ($unapprovedOrders as $value)
+		@foreach ($value as $order)
+
 		<tr>
 			<td>{{ $loop->index + 1 }}</td>
 			<td>
@@ -68,6 +70,7 @@
 			<td><input data-id="{{ $order->id }}" name="rating" value="{{ $order->ratings }}" type="number" class="rating" min=0 max=2 step=1 data-size="xs"></td>
 			<td><a data-id="{{ $order->id }}" class="delete-order" href="#" title="Delete {{ $order->name }}"> <i class="glyphicon glyphicon-trash Delete"></i> Delete</a></td>
 		</tr>
+		@endforeach
 		@endforeach
 		@endif
 		
@@ -88,8 +91,9 @@
 	</thead>
 		<tbody>
 
-		@if ($approvedOrders->count() > 0)
-		@foreach($approvedOrders as $order)
+		@if (count($approvedOrders) > 0)
+		@foreach($approvedOrders as $value)
+		@foreach($value as $order)
 		<tr>
 			<td>{{ $loop->index + 1 }}</td>
 			<td>
@@ -128,12 +132,15 @@
 			<td><a data-id="{{ $order->id }}" class="delete-order" href="#" title="Delete {{ $order->name }}"> <i class="glyphicon glyphicon-trash Delete"></i> Delete</a></td>
 		</tr>
 		@endforeach
+		@endforeach
 		@endif
 	</tbody>
 </table>
 <p>
-	@if ($approvedOrders->count() > 0)
-	{!! $approvedOrders->render() !!}
+	@if (count($approvedOrders) > 0)
+	@foreach($approvedOrders as $order)
+		{!! $order->render() !!}
+	@endforeach
 	@endif
 </p>
 @endsection

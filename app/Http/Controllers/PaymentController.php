@@ -62,13 +62,13 @@ class PaymentController extends Controller
             Order::create([
                 'product_id' => $product->id,
                 'transaction_id' => $transaction->id,
-                'assignee_id' => $product->assignee_id,
                 'status' => 0,
                 'user_id' => Auth::user()->id ?? null,
             ]);
 
+            $productId = $product->id;
             // Log the notification in the notification table
-            $this->logNotification();
+            $this->logNotification($productId);
 
             if (! is_null(Auth::user())) {
                 // deduct money from point wallet
@@ -217,12 +217,12 @@ class PaymentController extends Controller
                 'product_id' => $product->id,
                 'transaction_id' => $transaction->id,
                 'status' => 0,
-                'assignee_id' => $product->assignee_id,
                 'user_id' => Auth::user()->id ?? null,
             ]);
 
+            $productId = $product->id;
             // Log the notification in the notification table
-            $this->logNotification();
+            $this->logNotification($productId);
 
             if (! is_null(Auth::user())) {
                 // deduct money from point wallet
@@ -252,12 +252,13 @@ class PaymentController extends Controller
      *
      * @return bolean
      */
-    protected function logNotification()
+    protected function logNotification($productId)
     {
         return Notification::create([
                 'user_id' => Auth::user()->id ?? null,
-                'message' => "User made an order",
+                'message' => "A user made an order",
                 'status' => 1,
+                'product_id'=> $productId,
                 'action' => 'Made Order',
                 'date_created' => Carbon::now(),
                 'url' => "/en/orders",
