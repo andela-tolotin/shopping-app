@@ -136,7 +136,7 @@ class PaymentController extends Controller
         if ($transactionStatus) {
             // return a flash message regarding the payment status
             return redirect()
-            ->route('load_buy_point')
+            ->route('dashboard_index')
             ->with('status', true);
         }
         // return a flash message regarding the status of the payment
