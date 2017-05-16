@@ -15,11 +15,11 @@
         var productId = _this.attr('data-id');
         var userPoint = _this.attr('data-point');
         var token = _this.attr('data-token');
-        var locale = _this.attr('data-locale');
+        /*var locale = _this.attr('data-locale');*/
 
         var message = $('p#status');
 
-        var route = '/'+locale+'/product/'+productId+'/pay_with_point';
+        var route = '/product/'+productId+'/pay_with_point';
 
         makeAjaxCall(route, {
           'point': userPoint,
