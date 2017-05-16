@@ -50,7 +50,7 @@
 			@endif
 			@endif
 		</p>
-		<label class="rl-label">Choose your Payment Method</label>
+		<label class="rl-label" style="clear: both; width: 100%;">Choose your Payment Method</label>
 		<!-- RADIO -->
 		@if (Auth::check() && Auth::user()->role_id == 1)
 		<?php
