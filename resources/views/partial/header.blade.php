@@ -8,6 +8,7 @@
 	<link rel="stylesheet" href="{{ asset('css/vendor/magnific-popup.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/vendor/owl.carousel.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/additional_styles.css') }}">
     <!-- favicon -->
     <link rel="icon" href="{{ asset('favicon.ico') }}">
     <title> @yield('title') </title>
