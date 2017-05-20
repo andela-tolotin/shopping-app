@@ -6,7 +6,7 @@
     }
 }
 
-@media screen and (max-width:500px) {
+@media screen and (max-width:767px) {
 	div.fix-align {
         width: 50%;
         margin: auto;
