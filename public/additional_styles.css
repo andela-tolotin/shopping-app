@@ -1,11 +1,14 @@
-div.fix-align {
-    width: 50% !important;
-    margin: auto;
-}
 
 @media screen and (min-width:480px) {
     div.fix-align {
-        width: 100% !important;
+        width: 100%;
         margin: auto;
     }
+}
+
+@media screen and (max-width:500px) {
+	div.fix-align {
+        width: 50%;
+        margin: auto;
+   }
 }
