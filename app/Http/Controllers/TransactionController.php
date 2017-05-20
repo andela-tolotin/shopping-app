@@ -82,7 +82,7 @@ class TransactionController extends Controller
     {
     	$approvedTransactions = Transaction::whereBetween('transaction_date', [
             $request->from, $request->to
-        ])->where('order_status', 1)
+        ])//->where('order_status', 1)
             ->orderBy('created_at', 'DESC')
             ->paginate(10);
 		
