@@ -11,7 +11,7 @@
 <!-- /SECTION HEADLINE -->
 @endsection
 @section('body')
-<div class="fix-align" style="width: 50%; margin:auto;">
+<div class="fix-align" style="">
 <div class="form-popup">
     <div class="form-popup-headline secondary">
         <h2>Login to your Account</h2>

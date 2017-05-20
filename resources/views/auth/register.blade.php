@@ -12,7 +12,7 @@
 @endsection
 @section('body')
 <!-- FORM POPUP -->
-<div class="fix-align" style="width: 50%; margin:auto;">
+<div class="fix-align" style="">
 <div class="form-popup">
     <!-- FORM POPUP HEADLINE -->
     <div class="form-popup-headline primary">
