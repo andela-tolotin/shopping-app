@@ -14,7 +14,7 @@ class AddTransactionDateTo extends Migration
     public function up()
     {
         Schema::table('transactions', function (Blueprint $table) {
-            $table->date('transaction_date');
+            $table->date('transaction_date')->nullable();
         });
     }
 
