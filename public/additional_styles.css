@@ -1,0 +1,5 @@
+@media screen and (min-width: 480px) {
+	div.fix-align {
+		width: 100% !important;
+	}
+}
