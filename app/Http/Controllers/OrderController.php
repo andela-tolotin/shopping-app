@@ -101,7 +101,6 @@ class OrderController extends Controller
      */
     protected function logNotification($userId, $productId)
     {
-
         return Notification::create([
                 'user_id' => $userId ?? null,
                 'message' => "Your order have been approved",
