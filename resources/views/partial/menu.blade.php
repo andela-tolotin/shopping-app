@@ -313,3 +313,8 @@
         </form>
     </div>
 </div>
+<style type="text/css">
+    span.icon-bell {
+        color: white;
+    }
+</style>
