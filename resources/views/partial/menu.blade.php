@@ -28,7 +28,7 @@
         <!-- LOGO -->
         <a href="{{ route('home') }}">
             <figure class="logo">
-                <img src="{{ asset('images/logo.png') }}" alt="logo">
+                <img src="{{ asset('images/new_logo.png') }}" alt="logo" style="width: 239px; height: auto;">
             </figure>
         </a>
         <!-- /LOGO -->
@@ -40,7 +40,7 @@
         <!-- LOGO MOBILE -->
         <a href="{{ route('home') }}">
             <figure class="logo-mobile">
-                <img src="{{ asset('images/logo_mobile.png') }}" alt="logo-mobile">
+                <img src="{{ asset('images/new_logo.png') }}" alt="logo-mobile" style="width: 239px; height: auto;">
             </figure>
         </a>
         <!-- /LOGO MOBILE -->
