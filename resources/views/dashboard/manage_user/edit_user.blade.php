@@ -126,6 +126,7 @@
                         <option value="">Product</option>
                         @foreach($products as $product)
                         @if ($serviceManager->product_id == $product->id)
+                        <option value="{{ $product->id }}" selected="selected">{{ $product->name }}</option>
                         @else
                         <option value="{{ $product->id }}">{{ $product->name }}</option>
                         @endif
