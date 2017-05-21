@@ -122,11 +122,13 @@
                 <label for="product" class="rl-label required">Product</label>
                 <label for="gender" class="select-block">
                <?php $serviceManager = $user->serviceManager; ?>
-                {{ dump($serviceManager) }}
                     <select name="product">
                         <option value="">Product</option>
                         @foreach($products as $product)
-                            <option value="{{ $product->id }}">{{ $product->name }}</option>
+                        @if ($serviceManager->product_id == $product->id)
+                        @else
+                        <option value="{{ $product->id }}">{{ $product->name }}</option>
+                        @endif
                         @endforeach
                     </select>
                     <!-- SVG ARROW -->
