@@ -121,7 +121,7 @@
             <div class="input-container half">
                 <label for="product" class="rl-label required">Product</label>
                 <label for="gender" class="select-block">
-               <?php $serviceManager = $user->serviceManager; ?>
+               <?php $serviceManager = $user; ?>
                 {{ dump($serviceManager) }}
                     <select name="product">
                         <option value="">Product</option>
