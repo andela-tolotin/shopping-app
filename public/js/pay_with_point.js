@@ -36,7 +36,9 @@
           message.html(`<div class="alert alert-danger">`+data.message+`</div>`);
 
           return setTimeout(function() {
-            window.location.href = '/product/'+productId+'/checkout';
+            var buyPoint = '/add_amount';
+            //var checkoutUrl = '/product/'+productId+'/checkout';
+            window.location.href = buyPoint;
           }, 2000);
         }).fail(function(error) {
           console.log(error);
