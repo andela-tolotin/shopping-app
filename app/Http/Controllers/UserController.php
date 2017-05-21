@@ -33,7 +33,7 @@ class UserController extends Controller
         $products = Product::get();
 
 		if ($user instanceof User) {
-			return view('dashboard.manage_user.edit_user', compact('user', 'products', 'userRoles', 'users', 'paymentGateways', 'amount'));
+			return view('dashboard.manage_user.edit_user', compact('user', 'products', 'userRoles', 'users', 'paymentGateways', 'amount', 'id'));
 		}
 		
 		abort(404);
