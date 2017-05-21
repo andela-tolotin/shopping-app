@@ -58,7 +58,7 @@ class User extends Authenticatable
 
     public function serviceManager()
     {
-        return $this->hasOne('App\serviceManager');
+        return $this->hasOne('App\ServiceManager');
     }
 
     public function categories()
