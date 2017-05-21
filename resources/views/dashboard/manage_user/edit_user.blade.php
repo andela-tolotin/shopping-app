@@ -121,7 +121,8 @@
             <div class="input-container half">
                 <label for="product" class="rl-label required">Product</label>
                 <label for="gender" class="select-block">
-                {{ dump($products[1]->serviceManager) }}
+               <?php $serviceManager = App\ServiceManager::where('user_id', '{{ id }}')->first(); ?>
+                {{ dump($serviceManager) }}
                     <select name="product">
                         <option value="">Product</option>
                         @foreach($products as $product)
