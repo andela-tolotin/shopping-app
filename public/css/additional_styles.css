@@ -5,6 +5,7 @@ span.icon-bell {
 .pin.soft-edged {
 	line-height: 18px;
 	padding: 0 10px;
+	font-size: 14px;
 }
 
 @media screen and (min-width:480px) {
