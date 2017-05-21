@@ -1,3 +1,11 @@
+span.icon-bell {
+	font-size: 24px;
+}
+
+.pin.soft-edged {
+	line-height: 18px;
+	padding: 0 10px;
+}
 
 @media screen and (min-width:480px) {
     div.fix-align {
