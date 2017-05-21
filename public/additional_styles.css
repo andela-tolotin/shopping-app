@@ -6,14 +6,7 @@
     }
 }
 
-@media (min-width:767px) {
-	div.fix-align {
-        width: 50%;
-        margin: auto;
-   }
-}
-
-@media (min-width: 961px) {
+@media only screen and (min-device-width: 768px){
 	div.fix-align {
         width: 50%;
         margin: auto;
