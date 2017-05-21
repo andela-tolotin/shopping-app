@@ -124,8 +124,7 @@
                     <select name="product">
                         <option value="">Product</option>
                         @foreach($products as $product)
-                        {{ dump($product->serviceManager) }}
-                            <option value="{{ $product->id }}">{{ $product->name }}</option>
+                            <option value="{{ $product->id }}">{{-- $product->name --}}{{ dump($product->serviceManager) }}</option>
                         @endforeach
                     </select>
                     <!-- SVG ARROW -->
