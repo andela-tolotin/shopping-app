@@ -151,9 +151,9 @@
             <div  class="user-quickview">
                 <span class="icon-bell">
                     <!-- SVG ARROW -->
-                    <svg class="svg-arrow">
+                    {{-- <svg class="svg-arrow">
                         <use xlink:href="#svg-arrow"></use>
-                    </svg>
+                    </svg> --}}
                     <!-- /SVG ARROW -->
                 </span>
                 <!-- PIN -->
@@ -191,9 +191,9 @@
             <div  class="user-quickview">
                 <span class="icon-bell">
                     <!-- SVG ARROW -->
-                    <svg class="svg-arrow">
+                    {{-- <svg class="svg-arrow">
                         <use xlink:href="#svg-arrow"></use>
-                    </svg>
+                    </svg> --}}
                     <!-- /SVG ARROW -->
                 </span>
                 <!-- PIN -->
