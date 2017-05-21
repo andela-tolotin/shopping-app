@@ -121,7 +121,7 @@
             <div class="input-container half">
                 <label for="product" class="rl-label required">Product</label>
                 <label for="gender" class="select-block">
-                {{ dump($product[0]->serviceManager) }}
+                {{ dump($products[0]->serviceManager) }}
                     <select name="product">
                         <option value="">Product</option>
                         @foreach($products as $product)
