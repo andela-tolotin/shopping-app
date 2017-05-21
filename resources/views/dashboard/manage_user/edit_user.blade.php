@@ -124,11 +124,8 @@
                     <select name="product">
                         <option value="">Product</option>
                         @foreach($products as $product)
-                            @if (Auth::user()->product->id == $product->id)
-                            <option value="{{ $product->id }}" selected="selected">{{ $product->name }}</option>
-                            @else
+                        {{ dump($product->serviceManager) }}
                             <option value="{{ $product->id }}">{{ $product->name }}</option>
-                            @endif
                         @endforeach
                     </select>
                     <!-- SVG ARROW -->

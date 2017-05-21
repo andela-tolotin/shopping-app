@@ -29,7 +29,7 @@ class Product extends Model
 
     public function serviceManager()
     {
-        return $this->belongsTo('App\serviceManager');
+        return $this->belongsTo('App\ServiceManager');
     }
 
     public function advert()
