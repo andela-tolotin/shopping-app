@@ -6,13 +6,6 @@
     }
 }
 
-@media screen and (min-width: 767px) {
-   div.fix-align {
-        width: 50%;
-        margin: auto;
-   }
-}
-
 @media only screen and (min-device-width: 768px){
 	div.fix-align {
         width: 50%;
