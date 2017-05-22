@@ -25,7 +25,7 @@ class NotificationContoller extends Controller
             foreach ($serviceManager as $key => $value) {
                 $managerNotification = Notification::where([
                     ['action', 'Login succesfully'], 
-                    ['user_id', Auth::user()->id]
+                    ['user_id', Auth::user()->id],
                     ['product_id', $asignedProduct]
                 ])->orWhere([
                     ['action', 'Made Order'], 
