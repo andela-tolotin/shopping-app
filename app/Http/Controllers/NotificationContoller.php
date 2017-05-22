@@ -29,8 +29,8 @@ class NotificationContoller extends Controller
                     ['product_id', $asignedProduct]
                 ])->orWhere([
                     ['action', 'Made Order'], 
-                    //['product_id', $value['product_id']
-                ]])->groupBy('id', 'created_at')
+                    //['product_id', $value['product_id']]
+                ])->groupBy('id', 'created_at')
                 ->orderBy('created_at', 'DESC')
                 ->get();
 
