@@ -12,13 +12,6 @@ class NotificationContoller extends Controller
     public function loadNotification()
     {
         $user = Auth::user()->id;
-        $asignedProduct = null;
-
-        dump($user->serviceManager); exit;
-
-        if (!is_null($user->serviceManager)) {
-            $asignedProduct = $user->serviceManager->product_id;
-        }
 
         $serviceManager = ServiceManager::where('user_id', Auth::user()->id)->get();
         $allManagerNotification = [];
@@ -28,7 +21,7 @@ class NotificationContoller extends Controller
                 $managerNotification = Notification::where([
                     ['action', 'Login succesfully'], 
                     ['user_id', Auth::user()->id],
-                    ['product_id', $asignedProduct]
+                    ['product_id', $serviceManager->product_id]
                 ])->orWhere([
                     ['action', 'Made Order'], 
                     //['product_id', $value['product_id']]
@@ -43,7 +36,7 @@ class NotificationContoller extends Controller
         $managerNotification = Notification::where([
             ['action', 'Login succesfully'], 
             ['user_id', Auth::user()->id],
-            ['product_id', $asignedProduct]
+            ['product_id', $serviceManager->product_id]
             ])->groupBy('id', 'created_at')
             ->orderBy('created_at', 'DESC')
             ->get();
