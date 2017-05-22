@@ -18,6 +18,10 @@ class NotificationContoller extends Controller
 
         $assignedProduct = null;
 
+        $manager = $serviceManager[count($serviceManager) - 1];
+
+        dump($manager); exit;
+
         if (count($serviceManager) > 0 ) {
             foreach ($serviceManager[count($serviceManager) - 1] as $key => $value) {
                 $assignedProduct = $value['product_id'];
