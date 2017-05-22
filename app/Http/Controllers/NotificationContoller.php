@@ -28,7 +28,7 @@ class NotificationContoller extends Controller
                 ])->orWhere([
                     ['action', 'Made Order'], 
                     //['product_id', $value['product_id']]
-                ])->groupBy('id', 'created_at')
+                ])//->groupBy('id', 'created_at')
                 ->orderBy('created_at', 'DESC')
                 ->get();
 
@@ -40,7 +40,7 @@ class NotificationContoller extends Controller
             ['action', 'Login succesfully'], 
             ['user_id', Auth::user()->id],
             ['product_id', $assignedProduct]
-            ])->groupBy('id', 'created_at')
+            ])//->groupBy('id', 'created_at')
             ->orderBy('created_at', 'DESC')
             ->get();
 
