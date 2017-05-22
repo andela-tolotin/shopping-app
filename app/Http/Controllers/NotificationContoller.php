@@ -13,7 +13,7 @@ class NotificationContoller extends Controller
     {
         $user = Auth::user()->id;
 
-        $serviceManager = ServiceManager::where('user_id', Auth::user()->id)->get();
+        $serviceManager = ServiceManager::where('user_id', Auth::user()->id)->first();
         $allManagerNotification = [];
 
         $assignedProduct = null;
@@ -24,11 +24,11 @@ class NotificationContoller extends Controller
                 $managerNotification = Notification::where([
                     ['action', 'Login succesfully'], 
                     ['user_id', Auth::user()->id],
-                    ['product_id', $serviceManager[$key]->product_id]
+                    ['product_id', $value['product_id']]
                 ])->orWhere([
                     ['action', 'Made Order'], 
-                    //['product_id', $value['product_id']]
-                ])//->groupBy('id', 'created_at')
+                    ['product_id', $value['product_id']]
+                ])->groupBy('id', 'created_at')
                 ->orderBy('created_at', 'DESC')
                 ->get();
 
@@ -40,7 +40,7 @@ class NotificationContoller extends Controller
             ['action', 'Login succesfully'], 
             ['user_id', Auth::user()->id],
             ['product_id', $assignedProduct]
-            ])//->groupBy('id', 'created_at')
+            ])->groupBy('id', 'created_at')
             ->orderBy('created_at', 'DESC')
             ->get();
 
