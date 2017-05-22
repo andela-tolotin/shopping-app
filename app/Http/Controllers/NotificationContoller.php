@@ -24,7 +24,7 @@ class NotificationContoller extends Controller
             foreach ($manager as $key => $value) {
                 $assignedProduct = $value['product_id'];
                 $managerNotification = Notification::where([
-                    ['action', 'Login succesfully'], 
+                    //['action', 'Login succesfully'], 
                     ['user_id', Auth::user()->id],
                     ['product_id', $value['product_id']]
                 ])->orWhere([
@@ -39,7 +39,7 @@ class NotificationContoller extends Controller
         }
 
         $managerNotification = Notification::where([
-            ['action', 'Login succesfully'], 
+            //['action', 'Login succesfully'], 
             ['user_id', Auth::user()->id],
             ['product_id', $assignedProduct]
             ])->groupBy('id', 'created_at')
