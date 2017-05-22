@@ -21,7 +21,7 @@ class NotificationContoller extends Controller
         if (count($manager ) > 0 ) {
             foreach ($manager as $key => $value) {
                 $assignedProduct = $value['product_id'];
-                $managerNotification = Notification::where('user_id', Auth::user()->id, 'product_id', 2)
+                $managerNotification = Notification::where('user_id', Auth::user()->id, 'product_id', $assignedProduct)
                 ->orderBy('created_at', 'DESC')
                 ->get();
 
