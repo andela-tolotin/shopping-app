@@ -23,30 +23,16 @@ class NotificationContoller extends Controller
         if (count($manager ) > 0 ) {
             foreach ($manager as $key => $value) {
                 $assignedProduct = $value['product_id'];
-                $managerNotification = Notification::where([
-                    //['action', 'Login succesfully'], 
+                $managerNotification = Notification::where([ 
                     ['user_id', Auth::user()->id],
                     ['product_id', $value['product_id']]
-                ])->orWhere([
-                    //['action', 'Made Order'], 
-                    ['product_id', $value['product_id']]
-                ])->groupBy('id', 'created_at')
+                ])
                 ->orderBy('created_at', 'DESC')
                 ->get();
 
                 array_push($allManagerNotification, $managerNotification);
             }
-        }
-
-        $managerNotification = Notification::where([
-            //['action', 'Login succesfully'], 
-            ['user_id', Auth::user()->id],
-            ['product_id', $assignedProduct]
-            ])->groupBy('id', 'created_at')
-            ->orderBy('created_at', 'DESC')
-            ->get();
-
-        array_push($allManagerNotification, $managerNotification);        
+        }  
         
     	$allBuyerNotifications = Notification::where([['action', 'Login succesfully'], ['user_id', Auth::user()->id]])->orWhere([['action', 'Approve Order'], ['user_id', Auth::user()->id]])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC')->get();
         $allAdminNotifications = Notification::where([['action', 'Login succesfully'], ['user_id', Auth::user()->id]])->orWhere('action', 'Made Order')->groupBy('id', 'created_at')->orderBy('created_at', 'DESC')->get();
