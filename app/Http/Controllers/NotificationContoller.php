@@ -13,10 +13,12 @@ class NotificationContoller extends Controller
     {
         $user = Auth::user()->id;
 
-        $serviceManager = ServiceManager::where('user_id', Auth::user()->id)->first();
+        $serviceManager = ServiceManager::where('user_id', Auth::user()->id)->get();
         $allManagerNotification = [];
 
         $assignedProduct = null;
+
+        dump($serviceManager); exit;
 
         if (count($serviceManager) > 0 ) {
             foreach ($serviceManager as $key => $value) {
