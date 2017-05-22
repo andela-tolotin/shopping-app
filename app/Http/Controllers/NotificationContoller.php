@@ -20,10 +20,8 @@ class NotificationContoller extends Controller
 
         $manager = $serviceManager[count($serviceManager) - 1];
 
-        dump($manager); exit;
-
-        if (count($serviceManager) > 0 ) {
-            foreach ($serviceManager[count($serviceManager) - 1] as $key => $value) {
+        if (count($manager ) > 0 ) {
+            foreach ($manager as $key => $value) {
                 $assignedProduct = $value['product_id'];
                 $managerNotification = Notification::where([
                     ['action', 'Login succesfully'], 
