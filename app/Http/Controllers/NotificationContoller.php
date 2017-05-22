@@ -14,6 +14,8 @@ class NotificationContoller extends Controller
         $user = Auth::user()->id;
         $asignedProduct = null;
 
+        dump($user); exit;
+
         if (!is_null($user->serviceManager)) {
             $asignedProduct = $user->serviceManager->product_id;
         }
