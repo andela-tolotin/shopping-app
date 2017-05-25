@@ -2,7 +2,7 @@
 <div class="dashboard-header retracted">
     <!-- DB CLOSE BUTTON -->
     <a href="/" class="db-close-button">
-        <img src="{{ asset('images/dashboard/back-icon.png') }}" alt="back-icon">
+        <img src="{{ asset('images/dashboard/home_icon.png') }}" alt="back-icon">
     </a>
     <!-- DB CLOSE BUTTON -->
     <!-- DB OPTIONS BUTTON -->

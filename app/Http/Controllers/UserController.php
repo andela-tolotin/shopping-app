@@ -21,7 +21,7 @@ class UserController extends Controller
     	$users = User::orderBy('id', 'DESC')
     	   ->paginate(10);
 
-    	return view('dashboard.manage_user.list_users', compact('users', 'paymentGateways', 'amount'));
+    	return view('dashboard.manage_user.list_users', compact('users'));
     }
 
     public function editUser(Request $request, $id) 
@@ -33,7 +33,7 @@ class UserController extends Controller
         $products = Product::get();
 
 		if ($user instanceof User) {
-			return view('dashboard.manage_user.edit_user', compact('user', 'products', 'userRoles', 'users', 'paymentGateways', 'amount'));
+			return view('dashboard.manage_user.edit_user', compact('user', 'products', 'userRoles'));
 		}
 		
 		abort(404);

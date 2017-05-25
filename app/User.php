@@ -51,9 +51,14 @@ class User extends Authenticatable
         return $this->hasMany('App\Product');
     }
 
+    public function product()
+    {
+        return $this->hasOne('App\Product');
+    }
+
     public function serviceManager()
     {
-        return $this->hasOne('App\serviceManager');
+        return $this->hasOne('App\ServiceManager');
     }
 
     public function categories()

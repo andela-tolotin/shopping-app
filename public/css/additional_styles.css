@@ -1,0 +1,30 @@
+span.icon-bell {
+	font-size: 24px;
+}
+
+.pin.soft-edged {
+	line-height: 18px;
+	padding: 0 10px;
+	font-size: 14px;
+}
+
+@media screen and (min-width:480px) {
+    div.fix-align {
+        width: 100%;
+        margin: auto;
+    }
+}
+
+@media screen and (min-width: 767px) {
+   div.fix-align {
+        width: 50%;
+        margin: auto;
+   }
+}
+
+@media only screen and (min-device-width: 768px){
+	div.fix-align {
+        width: 50%;
+        margin: auto;
+   }
+}

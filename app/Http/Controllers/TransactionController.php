@@ -80,9 +80,9 @@ class TransactionController extends Controller
      */
     public function loadStockWithQuery($request)
     {
-    	$approvedTransactions = Transaction::whereBetween('created_at', [
+    	$approvedTransactions = Transaction::whereBetween('transaction_date', [
             $request->from, $request->to
-        ])->where('order_status', 1)
+        ])//->where('order_status', 1)
             ->orderBy('created_at', 'DESC')
             ->paginate(10);
 		

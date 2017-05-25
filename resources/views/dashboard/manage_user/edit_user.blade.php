@@ -25,7 +25,7 @@
                 <div class="profile-image-data">
                     <figure class="user-avatar medium">
                         @if (Auth::user()->profile_picture == '')
-                        <img src="images/dashboard/profile-default-image.png" alt="profile-default-image">
+                        <img src="{{ asset('images/dashboard/profile-default-image.png') }}" alt="profile-default-image">
                         @else
                         <img src="{{ Auth::user()->profile_picture }}">
                         @endif
@@ -121,9 +121,15 @@
             <div class="input-container half">
                 <label for="product" class="rl-label required">Product</label>
                 <label for="gender" class="select-block">
+               <?php $serviceManager = $user->serviceManager; ?>
                     <select name="product">
                         <option value="">Product</option>
                         @foreach($products as $product)
+                            @if (!is_null($serviceManager))
+                                @if ($serviceManager->product_id == $product->id)
+                                    <option value="{{ $product->id }}" selected="selected">{{ $product->name }}</option>
+                                @endif
+                            @endif
                             <option value="{{ $product->id }}">{{ $product->name }}</option>
                         @endforeach
                     </select>

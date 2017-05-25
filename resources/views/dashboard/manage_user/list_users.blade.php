@@ -12,6 +12,7 @@
 			<th>Email</th>
 			<th>Phone</th>
 			<th>Gender</th>
+			<th>Role</th>
 			<th>Edit</th>
 			<th>Delete</th>
 		</tr>
@@ -25,6 +26,7 @@
 			<td>{{ $user->email }}</td>
 			<td>{{ $user->phone }}</td>
 			<td>{{ $user->gender }}</td>
+			<td>{{ ucwords($user->role->name) }}</td>
 			<td><a href="{{ route('edit_user', ['id' => $user->id]) }}" title="Edit {{ $user->name }}"> <i class="glyphicon glyphicon-pencil"></i> Edit </a></td>
 			<td><a class="delete-user" href="{{ route('delete_user', ['id' => $user->id]) }}" title="Delete {{ $user->name }}"> <i class="glyphicon glyphicon-trash Delete"></i> Delete</a></td>
 		</tr>
