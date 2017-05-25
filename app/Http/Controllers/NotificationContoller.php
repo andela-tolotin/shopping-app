@@ -15,6 +15,7 @@ class NotificationContoller extends Controller
 
         $serviceManager = ServiceManager::where('user_id', Auth::user()->id)->get();
         $allManagerNotification = [];
+
         if (count($serviceManager) >= 1) {
             $manager = $serviceManager[count($serviceManager) - 1];
 
@@ -28,6 +29,11 @@ class NotificationContoller extends Controller
                     array_push($allManagerNotification, $managerNotification);
                 }
             }  
+        } else {
+            $managerNotification = Notification::where([['action', 'Login succesfully'], ['user_id', Auth::user()->id]])
+                ->orderBy('created_at', 'DESC')
+                ->get();
+            array_push($allManagerNotification, $managerNotification);
         }
         
     	$allBuyerNotifications = Notification::where([['action', 'Login succesfully'], ['user_id', Auth::user()->id]])->orWhere([['action', 'Approve Order'], ['user_id', Auth::user()->id]])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC')->get();
