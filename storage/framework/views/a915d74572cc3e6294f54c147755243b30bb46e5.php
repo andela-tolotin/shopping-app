@@ -1,22 +1,22 @@
-@extends('dashboard.base')
-@section('title', 'Add a product')
-@section('page', 'Add a product')
-@section('body')
+<?php $__env->startSection('title', 'Add a product'); ?>
+<?php $__env->startSection('page', 'Add a product'); ?>
+<?php $__env->startSection('body'); ?>
 <!-- FORM POPUP -->
 <div class="form-box-items">
     <!-- FORM BOX ITEM -->
     <div class="form-box-item">
-        @if (count($errors) > 0)
+        <?php if(count($errors) > 0): ?>
         <div class="alert alert-danger">
             <ul>
-                @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-                @endforeach
+                <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
+                <li><?php echo e($error); ?></li>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
             </ul>
         </div>
-        @endif
-        <form id="register-form4" method="post" action={{ route('post_product') }} enctype="multipart/form-data">
-            {{ csrf_field() }}
+        <?php endif; ?>
+        <form id="register-form4" method="post" action=<?php echo e(route('post_product')); ?> enctype="multipart/form-data">
+            <?php echo e(csrf_field()); ?>
+
              <div class="profile-image">
                 <div class="profile-image-data">
                     <figure class="user-avatar medium">
@@ -43,11 +43,12 @@
                 <label for="gender" class="select-block">
                     <select name="category" required="required">
                         <option value="" >Product Category</option>
-                        @foreach($categories as $category)
-                        <option value="{{ $category->id }}">
-                            {{ $category->name }}
+                        <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
+                        <option value="<?php echo e($category->id); ?>">
+                            <?php echo e($category->name); ?>
+
                         </option>
-                        @endforeach
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
                     </select>
                     <!-- SVG ARROW -->
                     <svg class="svg-arrow">
@@ -65,10 +66,10 @@
                 <label for="assignee" class="rl-label required">Assignee</label>
                 <label for="gender" class="select-block">
                     <select name="assignee">
-                        <option value="{{ Auth::user()->id }}">Assignee</option>
-                        @foreach($assignees as $assignee)
-                        <option value="{{ $assignee->id }}">{{ $assignee->name }}</option>
-                        @endforeach
+                        <option value="<?php echo e(Auth::user()->id); ?>">Assignee</option>
+                        <?php $__currentLoopData = $assignees; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $assignee): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
+                        <option value="<?php echo e($assignee->id); ?>"><?php echo e($assignee->name); ?></option>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
                     </select>
                     <!-- SVG ARROW -->
                     <svg class="svg-arrow">
@@ -88,7 +89,8 @@
     <!-- /FORM POPUP CONTENT -->
 </div>
 </div>
-@endsection
-@section('pageScripts')
-@include('partial.dashboard.tinymce')
-@endsection
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('pageScripts'); ?>
+<?php echo $__env->make('partial.dashboard.tinymce', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('dashboard.base', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

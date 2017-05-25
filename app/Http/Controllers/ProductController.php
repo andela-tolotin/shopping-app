@@ -114,7 +114,7 @@ class ProductController extends Controller
         $productImage = json_decode($product->product_img_url);
         $categories   = Category::all();
 
-        return view('dashboard.product.edit_form', compact('product', 'categories', 'productImage', 'paymentGateways', 'amount'));
+        return view('dashboard.product.edit_form', compact('product', 'categories', 'productImage', 'assignees', 'paymentGateways', 'amount'));
     }
 
     /**
