@@ -33,7 +33,7 @@
               );
             return setTimeout(function() {
               //window.location.href = '/product/'+productId+'/checkout';
-              window.location.href = buyPoint;
+              window.location.href = '/en/home';
             }, 2000);
           }
           message.html(`<div class="alert alert-danger">`+data.message+`</div>`);
