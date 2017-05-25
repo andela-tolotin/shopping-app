@@ -24,19 +24,22 @@
           'point': userPoint,
           '_token': token
         }).done(function(data) {
+          var buyPoint = '/add_amount';
+
           if (data.message == true) {
             message.html(`<div class="alert alert-success">
                 Your Payment was successful!
                 </div>`
               );
             return setTimeout(function() {
-              window.location.href = '/product/'+productId+'/checkout';
+              //window.location.href = '/product/'+productId+'/checkout';
+              window.location.href = '/en/home';
             }, 2000);
           }
           message.html(`<div class="alert alert-danger">`+data.message+`</div>`);
 
           return setTimeout(function() {
-            var buyPoint = '/add_amount';
+            //var buyPoint = '/add_amount';
             //var checkoutUrl = '/product/'+productId+'/checkout';
             window.location.href = buyPoint;
           }, 2000);
