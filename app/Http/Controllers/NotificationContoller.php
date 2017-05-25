@@ -33,6 +33,7 @@ class NotificationContoller extends Controller
             $managerNotification = Notification::where([['action', 'Login succesfully'], ['user_id', Auth::user()->id]])
                 ->orderBy('created_at', 'DESC')
                 ->get();
+
             array_push($allManagerNotification, $managerNotification);
         }
         
