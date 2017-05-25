@@ -28,7 +28,7 @@
         <!-- LOGO -->
         <a href="<?php echo e(route('home')); ?>">
             <figure class="logo">
-                <img src="<?php echo e(asset('images/logo.png')); ?>" alt="logo">
+                <img src="<?php echo e(asset('images/new_logo.png')); ?>" alt="logo">
             </figure>
         </a>
         <!-- /LOGO -->
@@ -40,7 +40,7 @@
         <!-- LOGO MOBILE -->
         <a href="<?php echo e(route('home')); ?>">
             <figure class="logo-mobile">
-                <img src="<?php echo e(asset('images/logo_mobile.png')); ?>" alt="logo-mobile">
+                <img src="<?php echo e(asset('images/new_logo.png')); ?>" alt="logo-mobile">
             </figure>
         </a>
         <!-- /LOGO MOBILE -->
