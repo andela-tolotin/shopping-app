@@ -112,9 +112,7 @@
             <div  class="user-quickview">
                 <span class="icon-bell">
                     <!-- SVG ARROW -->
-                    <svg class="svg-arrow">
-                        <use xlink:href="#svg-arrow"></use>
-                    </svg>
+                    
                     <!-- /SVG ARROW -->
                 </span>
                 <!-- PIN -->
@@ -152,9 +150,7 @@
             <div  class="user-quickview">
                 <span class="icon-bell">
                     <!-- SVG ARROW -->
-                    <svg class="svg-arrow">
-                        <use xlink:href="#svg-arrow"></use>
-                    </svg>
+                    
                     <!-- /SVG ARROW -->
                 </span>
                 <!-- PIN -->
@@ -192,9 +188,7 @@
             <div  class="user-quickview">
                 <span class="icon-bell">
                     <!-- SVG ARROW -->
-                    <svg class="svg-arrow">
-                        <use xlink:href="#svg-arrow"></use>
-                    </svg>
+                    
                     <!-- /SVG ARROW -->
                 </span>
                 <!-- PIN -->
@@ -314,3 +308,8 @@
         </form>
     </div>
 </div>
+<style type="text/css">
+    span.icon-bell {
+        color: white;
+    }
+</style>

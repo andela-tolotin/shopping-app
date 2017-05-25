@@ -10,34 +10,32 @@
 <!-- /SECTION HEADLINE -->
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('body'); ?>
-<div class="fix-align" style="width: 50%; margin:auto;">
-<div class="form-popup">
-    <div class="form-popup-headline secondary">
-        <h2>Login to your Account</h2>
-    </div>
-    <div class="form-popup-content">
-        <?php if(count($errors) > 0): ?>
-        <div class="alert alert-danger">
-            <ul>
-                <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
-                <li><?php echo e($error); ?></li>
-                <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
-            </ul>
+<div class="fix-align">
+    <div class="form-popup">
+        <div class="form-popup-headline secondary">
+            <h2>Login to your Account</h2>
         </div>
-        <?php endif; ?>
-        <form id="login-form" method="post" action="<?php echo e(route('login')); ?>">
-            <?php echo e(csrf_field()); ?>
+        <div class="form-popup-content">
+            <?php if(count($errors) > 0): ?>
+            <div class="alert alert-danger">
+                <ul>
+                    <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
+                    <li><?php echo e($error); ?></li>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
+                </ul>
+            </div>
+            <?php endif; ?>
+            <form id="login-form" method="post" action="<?php echo e(route('login')); ?>">
+                <?php echo e(csrf_field()); ?>
 
-            <label for="email" class="rl-label">Username</label>
-            <input type="email" id="email" name="email" placeholder="Enter your email here...">
-            <label for="password" class="rl-label">Password</label>
-            <input type="password" id="password" name="password" placeholder="Enter your password here...">
-            <!-- CHECKBOX -->
-            
-            <button class="button mid dark">Login <span class="primary">Now!</span></button>
-        </form>
+                <label for="email" class="rl-label">Username</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email here...">
+                <label for="password" class="rl-label">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password here...">
+                <button class="button mid dark">Login <span class="primary">Now!</span></button>
+            </form>
+        </div>
     </div>
-</div>
 </div>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

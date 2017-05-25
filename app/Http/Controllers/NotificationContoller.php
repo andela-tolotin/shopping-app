@@ -15,19 +15,20 @@ class NotificationContoller extends Controller
 
         $serviceManager = ServiceManager::where('user_id', Auth::user()->id)->get();
         $allManagerNotification = [];
+        if (count($serviceManager) >= 1) {
+            $manager = $serviceManager[count($serviceManager) - 1];
 
-        $manager = $serviceManager[count($serviceManager) - 1];
+            if (count($manager ) > 0 ) {
+                foreach ($manager as $key => $value) {
+                    $assignedProduct = $value['product_id'];
+                    $managerNotification = Notification::where('user_id', Auth::user()->id, 'product_id', $assignedProduct)
+                    ->orderBy('created_at', 'DESC')
+                    ->get();
 
-        if (count($manager ) > 0 ) {
-            foreach ($manager as $key => $value) {
-                $assignedProduct = $value['product_id'];
-                $managerNotification = Notification::where('user_id', Auth::user()->id, 'product_id', $assignedProduct)
-                ->orderBy('created_at', 'DESC')
-                ->get();
-
-                array_push($allManagerNotification, $managerNotification);
-            }
-        }  
+                    array_push($allManagerNotification, $managerNotification);
+                }
+            }  
+        }
         
     	$allBuyerNotifications = Notification::where([['action', 'Login succesfully'], ['user_id', Auth::user()->id]])->orWhere([['action', 'Approve Order'], ['user_id', Auth::user()->id]])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC')->get();
         $allAdminNotifications = Notification::where([['action', 'Login succesfully'], ['user_id', Auth::user()->id]])->orWhere('action', 'Made Order')->groupBy('id', 'created_at')->orderBy('created_at', 'DESC')->get();
