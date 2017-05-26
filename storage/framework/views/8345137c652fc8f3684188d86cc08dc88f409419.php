@@ -17,7 +17,7 @@
         } else {
             $managerNotification = App\Notification::where([['status', 1], ['action', 'Login succesfully'], ['user_id', Auth::user()->id]])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC')->get();
             array_push($allManagerNotification, $managerNotification);
-            
+
             foreach ($allManagerNotification as $key => $value) {
                 $managerNotificationCount += count($value);
             }

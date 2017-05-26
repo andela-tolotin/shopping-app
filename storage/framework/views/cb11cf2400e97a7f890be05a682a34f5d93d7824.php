@@ -16,7 +16,10 @@
         } else {
             $managerNotification = App\Notification::where([['status', 1], ['action', 'Login succesfully'], ['user_id', Auth::user()->id]])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC')->get();
             array_push($allManagerNotification, $managerNotification);
-            $managerNotificationCount =+ count($allManagerNotification); 
+
+            foreach ($allManagerNotification as $key => $value) {
+                $managerNotificationCount += count($value);
+            }
         }
 
         $allBuyerNotifications = App\Notification::where([['status', 1], ['action', 'Login succesfully'], ['user_id', Auth::user()->id]])->orWhere([['status', 1], ['action', 'Approve Order'], ['user_id', Auth::user()->id]])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC')->get();
