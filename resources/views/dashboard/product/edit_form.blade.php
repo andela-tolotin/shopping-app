@@ -59,23 +59,6 @@
                     <input type="number" id="tax" name="tax" value="{{ $product->tax }}">
                 </div>
 
-                <div class="input-container half">
-                    <label for="assignee" class="rl-label required">Assignee</label>
-                    <label for="gender" class="select-block">
-                        <select name="assignee">
-                            <option value="{{ Auth::user()->id }}">Assignee</option>
-                            @foreach($assignees as $assignee)
-                            <option value="{{ $assignee->id }}">{{ $assignee->name }}</option>
-                            @endforeach
-                        </select>
-                        <!-- SVG ARROW -->
-                        <svg class="svg-arrow">
-                            <use xlink:href="#svg-arrow"></use>
-                        </svg>
-                        <!-- /SVG ARROW -->
-                    </label>
-                </div>
-
                 <div class="input-container">
                     <label for="description" class="rl-label required">Description</label>
                     <textarea name="description" required="required">{{ $product->description }}</textarea>

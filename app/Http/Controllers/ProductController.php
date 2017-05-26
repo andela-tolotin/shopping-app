@@ -41,7 +41,6 @@ class ProductController extends Controller
             'description'     => $request['description'],
             'category_id'     => $request['category'],
             'user_id'         => Auth::user()->id,
-            'assignee_id'     => $request->assignee,
             'price'           => $request['price'],
             'discount'        => $request['discount'],
             'tax'             => $request['tax'],
@@ -132,7 +131,6 @@ class ProductController extends Controller
             'description' => $request->description,
             'category_id' => $request->category,
             'price'       => $request->price,
-            'assignee_id' => $request->assignee,
             'discount'    => $request->discount,
             'tax'         => $request->tax,
         ]);

@@ -9,7 +9,7 @@ class Product extends Model
     protected $fillable = [
         'name', 'price', 'description',
         'discount', 'tax', 'category_id',
-        'product_img_url', 'user_id', 'assignee_id',
+        'product_img_url', 'user_id',
     ];
 
     public function adverts()
