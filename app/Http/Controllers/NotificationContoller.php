@@ -19,14 +19,14 @@ class NotificationContoller extends Controller
         if (count($serviceManager ) > 0 ) {
             foreach ($serviceManager as $key => $value) {
                 $assignedProduct = $value['product_id'];
-                $managerNotification = Notification::where('product_id', $assignedProduct)
+                $managerNotification = Notification::where([['action', 'Made Order'], ['product_id', $assignedProduct]])
                 ->orderBy('created_at', 'DESC')
                 ->get();
 
                 array_push($allManagerNotification, $managerNotification);
             }
         }  else {
-            $managerNotification = Notification::where([['action', 'Login succesfully'], ['user_id', Auth::user()->id]])
+            $managerNotification = Notification::where([['action', 'Made Order'], ['user_id', Auth::user()->id]])
                 ->orderBy('created_at', 'DESC')
                 ->get();
 

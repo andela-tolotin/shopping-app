@@ -59,23 +59,6 @@
                     <input type="number" id="tax" name="tax" value="<?php echo e($product->tax); ?>">
                 </div>
 
-                <div class="input-container half">
-                    <label for="assignee" class="rl-label required">Assignee</label>
-                    <label for="gender" class="select-block">
-                        <select name="assignee">
-                            <option value="<?php echo e(Auth::user()->id); ?>">Assignee</option>
-                            <?php $__currentLoopData = $assignees; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $assignee): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
-                            <option value="<?php echo e($assignee->id); ?>"><?php echo e($assignee->name); ?></option>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
-                        </select>
-                        <!-- SVG ARROW -->
-                        <svg class="svg-arrow">
-                            <use xlink:href="#svg-arrow"></use>
-                        </svg>
-                        <!-- /SVG ARROW -->
-                    </label>
-                </div>
-
                 <div class="input-container">
                     <label for="description" class="rl-label required">Description</label>
                     <textarea name="description" required="required"><?php echo e($product->description); ?></textarea>

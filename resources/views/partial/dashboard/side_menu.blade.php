@@ -28,7 +28,7 @@
     }
 
     $unapproveOrders = [];
-    $totalUnapprovedOrdercount;
+    $totalUnapprovedOrdercount = 0;
 
     $serviceManager = App\ServiceManager::where('user_id', Auth::user()->id)->get();
 
@@ -41,11 +41,15 @@
                 $managerUnapproveOrders = App\Order::where([['status', 0], ['product_id', $value->product_id]])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC')->get();
 
                 array_push($unapproveOrders, $managerUnapproveOrders);
-                
             }
 
         }
-        $totalUnapprovedOrdercount = count($unapproveOrders);
+        // dd($unapproveOrders);
+        foreach ($unapproveOrders as $key => $value) {
+
+            $totalUnapprovedOrdercount += count($value);
+        }
+        
     } else {
         $unapproveOrders = App\Order::Where([['status', 0], ['admin_id', Auth::user()->role_id]])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC')->get()->count();
         $totalUnapprovedOrdercount = $unapproveOrders;
