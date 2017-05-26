@@ -27,15 +27,25 @@
         $allAdminNotifications = App\Notification::where([['status', 1], ['action', 'Login succesfully'], ['user_id', Auth::user()->id]])->orWhere([['status', 1], ['action', 'Made Order']])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC')->get();
     }
 
+    $unapproveOrders = [];
     $totalUnapprovedOrdercount;
 
     $serviceManager = App\ServiceManager::where('user_id', Auth::user()->id)->get();
 
     if ($serviceManager->count() > 0 ) {
         foreach ($serviceManager as $key => $value) {
-            $unapproveOrders = App\Order::where([['status', 0], ['product_id', $value->product_id]])->orWhere([['status', 0], ['admin_id', 3]])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC')->get()->count();
-            $totalUnapprovedOrdercount = $unapproveOrders;
+            if (Auth::user()->id === 3) {
+                $adminUnapproveOrders = App\Order::where([['status', 0], ['admin', 3]])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC')->get()->count();
+                $totalUnapprovedOrdercount = $adminUnapproveOrders;
+            } else {
+                $managerUnapproveOrders = App\Order::where([['status', 0], ['product_id', $value->product_id]])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC')->get();
+
+                array_push($unapproveOrders, $managerUnapproveOrders);
+                
+            }
+
         }
+        $totalUnapprovedOrdercount = count($unapproveOrders);
     } else {
         $unapproveOrders = App\Order::Where([['status', 0], ['admin_id', Auth::user()->role_id]])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC')->get()->count();
         $totalUnapprovedOrdercount = $unapproveOrders;
