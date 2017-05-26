@@ -35,7 +35,7 @@
     if ($serviceManager->count() > 0 ) {
         foreach ($serviceManager as $key => $value) {
             if (Auth::user()->id === 3) {
-                $adminUnapproveOrders = App\Order::where([['status', 0], ['admin', 3]])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC')->get()->count();
+                $adminUnapproveOrders = App\Order::where([['status', 0], ['admin_id', 3]])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC')->get()->count();
                 $totalUnapprovedOrdercount = $adminUnapproveOrders;
             } else {
                 $managerUnapproveOrders = App\Order::where([['status', 0], ['product_id', $value->product_id]])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC')->get();
