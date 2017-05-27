@@ -120,8 +120,8 @@
 
             <div class="input-container half">
                 <label for="product" class="rl-label required">Product</label>
-                <label for="gender" class="select-block">
-               <?php $serviceManager = $user->serviceManager; ?>
+                <label for="product" class="select-block">
+               <?php $serviceManager = $user->serviceManager;?>
                     <select name="product">
                         <option value="">Product</option>
                         @foreach($products as $product)

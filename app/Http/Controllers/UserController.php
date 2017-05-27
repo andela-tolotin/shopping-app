@@ -52,10 +52,10 @@ class UserController extends Controller
     		$user->save();
 
             if  (!empty($request['product'])) {
-                ServiceManager::firstOrCreate([
-                    'user_id'    => $id,
-                    'product_id' => $request['product'],
-                ]);
+                ServiceManager::updateOrCreate(
+                    ['user_id'    => $id],
+                    ['product_id' => $request->product]
+                );
             }
 
             return redirect()->route('manage_user');
