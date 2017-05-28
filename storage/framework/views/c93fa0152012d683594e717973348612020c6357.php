@@ -8,6 +8,7 @@
 	<link rel="stylesheet" href="<?php echo e(asset('css/vendor/magnific-popup.css')); ?>">
 	<link rel="stylesheet" href="<?php echo e(asset('css/vendor/owl.carousel.css')); ?>">
 	<link rel="stylesheet" href="<?php echo e(asset('css/style.css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(asset('css/additional_styles.css')); ?>">
     <!-- favicon -->
     <link rel="icon" href="<?php echo e(asset('favicon.ico')); ?>">
     <title> <?php echo $__env->yieldContent('title'); ?> </title>

@@ -26,6 +26,7 @@ Route::get('/carts', 'CartController@viewCart')->name('view_carts');
 Route::get('/product/{id}/checkout', 'CartController@checkout')->name('purchase_product');
 
 Route::post('/payment/stripe', 'PaymentController@payWithStrip')->name('stripe_payment');
+Route::get('/load/inicis/{method}', 'PayGateController@getPayment')->name('load_inicis_payment');
 
 Route::group(['middleware' => 'auth.isBuyer'], function () {
     Route::get('/user/orders', 'OrderController@listCurrentUserOrders')->name('list_user_orders');

@@ -1,3 +1,61 @@
+<?php
+
+    if (Auth::check()) {
+        $serviceManager = App\ServiceManager::where('user_id', Auth::user()->id)->get();
+        $allManagerNotification = [];
+        $managerNotificationCount = 0;
+
+        if (count($serviceManager) > 0 ) {
+            foreach ($serviceManager as $key => $value) {
+                $managerNotification = App\Notification::where([['status', 1], ['action', 'Login succesfully'], ['user_id', Auth::user()->id]])->orWhere([['status', 1], ['action', 'Made Order'], ['product_id', $value['product_id']]])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC')->get();
+                array_push($allManagerNotification, $managerNotification);
+            }
+
+            foreach ($allManagerNotification as $key => $value) {
+                $managerNotificationCount += count($value);
+            }
+        } else {
+            $managerNotification = App\Notification::where([['status', 1], ['action', 'Login succesfully'], ['user_id', Auth::user()->id]])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC')->get();
+            array_push($allManagerNotification, $managerNotification);
+
+            foreach ($allManagerNotification as $key => $value) {
+                $managerNotificationCount += count($value);
+            }
+        }
+
+        $allBuyerNotifications = App\Notification::where([['status', 1], ['action', 'Login succesfully'], ['user_id', Auth::user()->id]])->orWhere([['status', 1], ['action', 'Approve Order'], ['user_id', Auth::user()->id]])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC')->get();
+        $allAdminNotifications = App\Notification::where([['status', 1], ['action', 'Login succesfully'], ['user_id', Auth::user()->id]])->orWhere([['status', 1], ['action', 'Made Order']])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC')->get();
+    }
+
+    $unapproveOrders = [];
+    $totalUnapprovedOrdercount = 0;
+
+    $serviceManager = App\ServiceManager::where('user_id', Auth::user()->id)->get();
+
+    if ($serviceManager->count() > 0 ) {
+        foreach ($serviceManager as $key => $value) {
+            if (Auth::user()->id === 3) {
+                $adminUnapproveOrders = App\Order::where([['status', 0], ['admin_id', 3]])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC')->get()->count();
+                $totalUnapprovedOrdercount = $adminUnapproveOrders;
+            } else {
+                $managerUnapproveOrders = App\Order::where([['status', 0], ['product_id', $value->product_id]])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC')->get();
+
+                array_push($unapproveOrders, $managerUnapproveOrders);
+            }
+
+        }
+        // dd($unapproveOrders);
+        foreach ($unapproveOrders as $key => $value) {
+
+            $totalUnapprovedOrdercount += count($value);
+        }
+        
+    } else {
+        $unapproveOrders = App\Order::Where([['status', 0], ['admin_id', Auth::user()->role_id]])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC')->get()->count();
+        $totalUnapprovedOrdercount = $unapproveOrders;
+    }
+?>
+
 <!-- SIDE MENU -->
 <div id="dashboard-options-menu" class="side-menu dashboard left closed">
     <!-- SVG PLUS -->
@@ -53,15 +111,18 @@
 
         <li class="dropdown-item active">
             <a href="<?php echo e(route('view_notification')); ?>">
-                <span class="sl-icon icon-settings"></span>
+                <span class="sl-icon icon-bell"></span>
                 Notifications
             </a>
             <span class="pin soft-edged big primary">
                 <?php if(Auth::user()->role_id === 1): ?>
-                    <?php echo e(@$buyerNotificationCount); ?>
+                    <?php echo e(count($allBuyerNotifications)); ?>
+
+                <?php elseif(Auth::user()->role_id === 2): ?>
+                    <?php echo e($managerNotificationCount); ?>
 
                 <?php else: ?>
-                    <?php echo e(@$adminNotificationCount); ?>
+                    <?php echo e(count($allAdminNotifications)); ?>
 
                 <?php endif; ?>
             </span>
@@ -97,7 +158,10 @@
                 Manage Orders
             </a>
             <!-- PIN -->
-                <span class="pin soft-edged big primary"><?php echo e(App\Order::where('status', 0)->count()); ?></span>
+                <span class="pin soft-edged big primary">
+                    <?php echo e($totalUnapprovedOrdercount); ?>
+
+                </span>
             <!-- /PIN -->
         </li>
         <?php endif; ?>

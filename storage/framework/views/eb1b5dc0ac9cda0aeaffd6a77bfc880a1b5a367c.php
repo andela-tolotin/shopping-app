@@ -2,7 +2,7 @@
 <div class="dashboard-header retracted">
     <!-- DB CLOSE BUTTON -->
     <a href="/" class="db-close-button">
-        <img src="<?php echo e(asset('images/dashboard/back-icon.png')); ?>" alt="back-icon">
+        <img src="<?php echo e(asset('images/dashboard/home_icon.png')); ?>" alt="back-icon">
     </a>
     <!-- DB CLOSE BUTTON -->
     <!-- DB OPTIONS BUTTON -->
@@ -30,7 +30,7 @@
     </div>
     <!-- DASHBOARD HEADER ITEM -->
     <div class="dashboard-header-item back-button">
-        <a href="<?php echo e(route('home', ['locale' => App::getLocale()])); ?>" class="button mid dark-light">Back to Homepage</a>
+        <a href="<?php echo e(route('home')); ?>" class="button mid dark-light">Back to Homepage</a>
     </div>
     <!-- /DASHBOARD HEADER ITEM -->
 </div>

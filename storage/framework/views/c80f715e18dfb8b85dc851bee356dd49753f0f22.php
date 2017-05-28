@@ -188,6 +188,12 @@
         <rect y="5" width="13" height="3"/>
     </symbol>
 </svg>
+
+<style type="text/css">
+    .modal-open .modal {
+        z-index: 9999;
+    }
+</style>
 <!-- /SVG PLUS -->
 
 <!-- jQuery -->
@@ -215,4 +221,8 @@
 <script src="<?php echo e(asset('js/tooltip.js')); ?>"></script>
 <!-- User Quickview Dropdown -->
 <script src="<?php echo e(asset('js/user-board.js')); ?>"></script>
+<!-- bootbox -->
+<script src="<?php echo e(asset('js/bootbox.min.js')); ?>"></script>
+<!-- Bootrap js file -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script src="<?php echo e(asset('js/pay_with_point.js')); ?>"></script>

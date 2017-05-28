@@ -50,7 +50,10 @@
 				<div class="graph-stats-list-item blue step">
 				<a href="<?php echo e(route('list_orders')); ?>">
 					<p class="text-header">Total Unapproved Orders</p>
-					<h2><?php echo e($totalUnapprovedOrder); ?></h2>
+					<h2>
+						<?php echo e($totalUnapprovedOrder); ?>
+
+					</h2>
 				</a></div>
 				<?php endif; ?>
 				<!-- /GRAPH STATS LIST ITEM -->
