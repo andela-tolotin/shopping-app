@@ -5,7 +5,7 @@
                 <!-- COMPANY INFO -->
                 <div class="company-info">
                     <figure class="logo small">
-                        <img src="<?php echo e(asset('images/logo_small.png')); ?>" alt="logo-small">
+                        <img src="<?php echo e(asset('images/new_logo.png')); ?>" alt="logo-small">
                     </figure>
                     <p>Lorem ipsum dolor sit amet, consectetur isicing elit, sed do eiusmod tempor incididunt ut labo dolore magna ua.</p>
                     <ul class="company-info-list">
@@ -154,7 +154,7 @@
         <!-- FOOTER BOTTOM -->
         <div id="footer-bottom-wrap">
             <div id="footer-bottom">
-                <p><span>&copy;</span><a href="index.html">Emerald Dragon</a> Template - All Rights Reserved 2015</p>
+                <p><span>&copy;</span><a href="/">Play to the Sky</a> All Rights Reserved <?php echo date('Y'); ?></p>
             </div>
         </div>
         <!-- /FOOTER BOTTOM -->
