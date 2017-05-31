@@ -34,7 +34,7 @@
                 <input type="password" id="password" name="password" placeholder="Enter your password here...">
                 <p> {!! captcha_img() !!} </p>
                 <br>
-                <p><input type="text" name="captcha" placeholder="Enter your captcha here..."></p>
+                <p><input type="text" name="captcha" required="required" placeholder="Enter your captcha here..."></p>
                 <button class="button mid dark">Login <span class="primary">Now!</span></button>
             </form>
         </div>

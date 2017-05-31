@@ -56,6 +56,10 @@
                 <input type="password" id="password_confirmation" name="password_confirmation" placeholder="Repeat your password here..." required="required">
                 <label for="address" class="rl-label required">Address</label>
                 <textarea name="address" placeholder="Write your address here..."></textarea>
+                <br><br>
+                <p> {!! captcha_img() !!} </p>
+                <br>
+                <p><input type="text" name="captcha" required="required" placeholder="Enter your captcha here..."></p>
                 <button class="button mid dark">Register <span class="primary">Now!</span></button>
             </form>
         </div>
