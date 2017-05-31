@@ -10,6 +10,7 @@ span.icon-bell {
 
 figure>img {
   margin-top: -20px;
+  width: 97%;
 }
 
 @media screen and (max-width:480px) {
