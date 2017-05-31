@@ -21,7 +21,11 @@
             <div class="alert alert-danger">
                 <ul>
                     @foreach ($errors->all() as $error)
+                    @if ($error == 'validation.captcha')
+                    <li> Invalid Captcha </li>
+                    @else
                     <li>{{ $error }}</li>
+                    @endif
                     @endforeach
                 </ul>
             </div>
