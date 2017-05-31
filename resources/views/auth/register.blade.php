@@ -66,4 +66,5 @@
         <!-- /FORM POPUP CONTENT -->
     </div>
 </div>
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 @endsection

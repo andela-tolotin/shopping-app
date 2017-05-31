@@ -34,11 +34,12 @@
                 <input type="password" id="password" name="password" placeholder="Enter your password here...">
                 <p> <?php echo captcha_img(); ?> </p>
                 <br>
-                <p><input type="text" name="captcha" placeholder="Enter your captcha here..."></p>
+                <p><input type="text" name="captcha" required="required" placeholder="Enter your captcha here..."></p>
                 <button class="button mid dark">Login <span class="primary">Now!</span></button>
             </form>
         </div>
     </div>
 </div>
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

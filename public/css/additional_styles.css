@@ -1,16 +1,43 @@
 span.icon-bell {
-	font-size: 24px;
+    font-size: 24px;
 }
 
 .pin.soft-edged {
-	line-height: 18px;
-	padding: 0 10px;
-	font-size: 14px;
+    padding: 0 10px;
+    font-size: 14px;
+    line-height: 18px;
 }
 
-figure>img {
-  margin-top: -20px;
-  width: 97%;
+figure > img {
+    width: 97%;
+    margin-top: -20px;
+}
+
+.alert-success {
+    border-color: #d6e9c6;
+    color: #3c763d;
+    background-color: #dff0d8;
+}
+
+.alert {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.alert-danger {
+    border-color: #ebccd1;
+    color: #a94442;
+    background-color: #f2dede;
+}
+
+div.form-popup-headline > h2, div.section-headline > h2 {
+    color: #ffffff;
+}
+
+div.section-headline > h2 {
+  margin-top: -5px;
 }
 
 @media screen and (max-width:480px) {
@@ -18,21 +45,22 @@ figure>img {
         width: 100%;
         margin: auto;
     }
-    figure>img {
-      margin-top: 20px;
+
+    figure > img {
+        margin-top: 20px;
     }
 }
 
-@media screen and (min-width: 767px) {
-   div.fix-align {
+@media screen and (min-width:767px) {
+    div.fix-align {
         width: 50%;
         margin: auto;
-   }
+    }
 }
 
-@media only screen and (min-device-width: 768px){
-	div.fix-align {
+@media only screen and (min-device-width:768px) {
+    div.fix-align {
         width: 50%;
         margin: auto;
-   }
+    }
 }
