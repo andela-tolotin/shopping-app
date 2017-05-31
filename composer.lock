@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b09c5c1e96d96a4d6e36b4bfdf11d12a",
-    "content-hash": "6fd27d01ca1932341eb50300e6880176",
+    "hash": "268318511daf4e1728cb79c86d429cae",
+    "content-hash": "aa76b3d2165461f5e2207915b355ba14",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -722,6 +722,246 @@
             "time": "2016-07-18 04:51:16"
         },
         {
+            "name": "guzzlehttp/guzzle",
+            "version": "6.2.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/guzzle/guzzle.git",
+                "reference": "8d6c6cc55186db87b7dc5009827429ba4e9dc006"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/8d6c6cc55186db87b7dc5009827429ba4e9dc006",
+                "reference": "8d6c6cc55186db87b7dc5009827429ba4e9dc006",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/promises": "^1.0",
+                "guzzlehttp/psr7": "^1.4",
+                "php": ">=5.5"
+            },
+            "require-dev": {
+                "ext-curl": "*",
+                "phpunit/phpunit": "^4.0",
+                "psr/log": "^1.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "6.2-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/functions_include.php"
+                ],
+                "psr-4": {
+                    "GuzzleHttp\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Dowling",
+                    "email": "mtdowling@gmail.com",
+                    "homepage": "https://github.com/mtdowling"
+                }
+            ],
+            "description": "Guzzle is a PHP HTTP client library",
+            "homepage": "http://guzzlephp.org/",
+            "keywords": [
+                "client",
+                "curl",
+                "framework",
+                "http",
+                "http client",
+                "rest",
+                "web service"
+            ],
+            "time": "2017-02-28 22:50:30"
+        },
+        {
+            "name": "guzzlehttp/promises",
+            "version": "v1.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/guzzle/promises.git",
+                "reference": "a59da6cf61d80060647ff4d3eb2c03a2bc694646"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/guzzle/promises/zipball/a59da6cf61d80060647ff4d3eb2c03a2bc694646",
+                "reference": "a59da6cf61d80060647ff4d3eb2c03a2bc694646",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.4-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "GuzzleHttp\\Promise\\": "src/"
+                },
+                "files": [
+                    "src/functions_include.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Dowling",
+                    "email": "mtdowling@gmail.com",
+                    "homepage": "https://github.com/mtdowling"
+                }
+            ],
+            "description": "Guzzle promises library",
+            "keywords": [
+                "promise"
+            ],
+            "time": "2016-12-20 10:07:11"
+        },
+        {
+            "name": "guzzlehttp/psr7",
+            "version": "1.4.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/guzzle/psr7.git",
+                "reference": "f5b8a8512e2b58b0071a7280e39f14f72e05d87c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/f5b8a8512e2b58b0071a7280e39f14f72e05d87c",
+                "reference": "f5b8a8512e2b58b0071a7280e39f14f72e05d87c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0",
+                "psr/http-message": "~1.0"
+            },
+            "provide": {
+                "psr/http-message-implementation": "1.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.4-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "GuzzleHttp\\Psr7\\": "src/"
+                },
+                "files": [
+                    "src/functions_include.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Dowling",
+                    "email": "mtdowling@gmail.com",
+                    "homepage": "https://github.com/mtdowling"
+                },
+                {
+                    "name": "Tobias Schultze",
+                    "homepage": "https://github.com/Tobion"
+                }
+            ],
+            "description": "PSR-7 message implementation that also provides common utility methods",
+            "keywords": [
+                "http",
+                "message",
+                "request",
+                "response",
+                "stream",
+                "uri",
+                "url"
+            ],
+            "time": "2017-03-20 17:10:46"
+        },
+        {
+            "name": "intervention/image",
+            "version": "2.3.13",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Intervention/image.git",
+                "reference": "15a517f052ee15d373ffa145c9642d5fec7ddf5c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Intervention/image/zipball/15a517f052ee15d373ffa145c9642d5fec7ddf5c",
+                "reference": "15a517f052ee15d373ffa145c9642d5fec7ddf5c",
+                "shasum": ""
+            },
+            "require": {
+                "ext-fileinfo": "*",
+                "guzzlehttp/psr7": "~1.1",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "~0.9.2",
+                "phpunit/phpunit": "3.*"
+            },
+            "suggest": {
+                "ext-gd": "to use GD library based image processing.",
+                "ext-imagick": "to use Imagick based image processing.",
+                "intervention/imagecache": "Caching extension for the Intervention Image library"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Intervention\\Image\\": "src/Intervention/Image"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Oliver Vogel",
+                    "email": "oliver@olivervogel.net",
+                    "homepage": "http://olivervogel.net/"
+                }
+            ],
+            "description": "Image handling and manipulation library with support for Laravel integration",
+            "homepage": "http://image.intervention.io/",
+            "keywords": [
+                "gd",
+                "image",
+                "imagick",
+                "laravel",
+                "thumbnail",
+                "watermark"
+            ],
+            "time": "2017-04-23 18:45:36"
+        },
+        {
             "name": "jakub-onderka/php-console-color",
             "version": "0.1",
             "source": {
@@ -972,6 +1212,42 @@
                 "tokenizer"
             ],
             "time": "2016-12-07 09:37:55"
+        },
+        {
+            "name": "jinseokoh/sms",
+            "version": "1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jinseokoh/sms.git",
+                "reference": "7b29974148d2f82fcda6c2825a1e2fc3c583f390"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jinseokoh/sms/zipball/7b29974148d2f82fcda6c2825a1e2fc3c583f390",
+                "reference": "7b29974148d2f82fcda6c2825a1e2fc3c583f390",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "~5.3|~6.0",
+                "php": ">=5.5.9"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Chuck JS. Oh",
+                    "email": "jinseokoh@hotmail.com"
+                }
+            ],
+            "description": "Package to send SMS text messages to Korean mobile users",
+            "keywords": [
+                "korean",
+                "sms"
+            ],
+            "time": "2016-09-23 14:49:58"
         },
         {
             "name": "jrm2k6/cloudder",
@@ -1399,6 +1675,63 @@
             "time": "2017-05-18 10:22:35"
         },
         {
+            "name": "mews/captcha",
+            "version": "v2.1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mewebstudio/captcha.git",
+                "reference": "ada76309e55fcbd3bb5604f4fd0dd357dec35823"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mewebstudio/captcha/zipball/ada76309e55fcbd3bb5604f4fd0dd357dec35823",
+                "reference": "ada76309e55fcbd3bb5604f4fd0dd357dec35823",
+                "shasum": ""
+            },
+            "require": {
+                "ext-gd": "*",
+                "illuminate/config": "~5.0",
+                "illuminate/filesystem": "~5.0",
+                "illuminate/hashing": "~5.0",
+                "illuminate/support": "~5.0",
+                "intervention/image": "~2.2",
+                "php": ">=5.4"
+            },
+            "require-dev": {
+                "mockery/mockery": "0.9.*",
+                "phpunit/phpunit": "~4.1"
+            },
+            "type": "package",
+            "autoload": {
+                "psr-4": {
+                    "Mews\\Captcha\\": "src/"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Muharrem ERİN",
+                    "email": "me@mewebstudio.com",
+                    "homepage": "https://github.com/mewebstudio",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Laravel 5 Captcha Package",
+            "homepage": "https://github.com/mewebstudio/captcha",
+            "keywords": [
+                "captcha",
+                "laravel5 Captcha",
+                "laravel5 Security"
+            ],
+            "time": "2016-07-19 09:01:51"
+        },
+        {
             "name": "mobiledetect/mobiledetectlib",
             "version": "2.8.25",
             "source": {
@@ -1797,6 +2130,56 @@
             "description": "A library to read, parse and export to PDF SVG files.",
             "homepage": "https://github.com/PhenX/php-svg-lib",
             "time": "2016-12-13 20:25:45"
+        },
+        {
+            "name": "psr/http-message",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/http-message.git",
+                "reference": "f6561bf28d520154e4b0ec72be95418abe6d9363"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/http-message/zipball/f6561bf28d520154e4b0ec72be95418abe6d9363",
+                "reference": "f6561bf28d520154e4b0ec72be95418abe6d9363",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Psr\\Http\\Message\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "http://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interface for HTTP messages",
+            "homepage": "https://github.com/php-fig/http-message",
+            "keywords": [
+                "http",
+                "http-message",
+                "psr",
+                "psr-7",
+                "request",
+                "response"
+            ],
+            "time": "2016-08-06 14:39:51"
         },
         {
             "name": "psr/log",
@@ -2929,6 +3312,152 @@
                 "dump"
             ],
             "time": "2017-01-24 13:02:38"
+        },
+        {
+            "name": "toplan/laravel-sms",
+            "version": "2.6.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/toplan/laravel-sms.git",
+                "reference": "2713c1278a79c4d8637847f83cc451346c54be3f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/toplan/laravel-sms/zipball/2713c1278a79c4d8637847f83cc451346c54be3f",
+                "reference": "2713c1278a79c4d8637847f83cc451346c54be3f",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0",
+                "toplan/phpsms": "^1.7"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ],
+                "psr-0": {
+                    "Toplan\\Sms": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "toplan",
+                    "email": "toplan710@gmail.com"
+                }
+            ],
+            "description": "A mobile phone number validation solution based on laravel",
+            "keywords": [
+                "laravel",
+                "laravel-sms",
+                "mobile",
+                "phone",
+                "sms"
+            ],
+            "time": "2017-03-27 06:30:55"
+        },
+        {
+            "name": "toplan/phpsms",
+            "version": "1.7.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/toplan/phpsms.git",
+                "reference": "2832035ace8a06673deb5b5d5385664cb7a1c512"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/toplan/phpsms/zipball/2832035ace8a06673deb5b5d5385664cb7a1c512",
+                "reference": "2832035ace8a06673deb5b5d5385664cb7a1c512",
+                "shasum": ""
+            },
+            "require": {
+                "jeremeamia/superclosure": "~2.2",
+                "php": ">=5.4.0",
+                "toplan/task-balancer": "~0.4"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Toplan\\PhpSms\\": [
+                        "src/phpsms/",
+                        "src/phpsms/agents/",
+                        "src/phpsms/interfaces/"
+                    ],
+                    "Toplan\\PhpSms\\Facades\\": [
+                        "src/phpsms/facades/"
+                    ]
+                },
+                "classmap": [
+                    "src/phpsms/lib/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "toplan",
+                    "email": "toplan710@gmail.com"
+                }
+            ],
+            "description": "May be the most intelligent, elegant sms send library in php",
+            "keywords": [
+                "php",
+                "phpsms",
+                "sms",
+                "sms library"
+            ],
+            "time": "2017-04-07 02:43:10"
+        },
+        {
+            "name": "toplan/task-balancer",
+            "version": "0.4.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/toplan/task-balancer.git",
+                "reference": "32914c1162fd566d811315f3e015039870642150"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/toplan/task-balancer/zipball/32914c1162fd566d811315f3e015039870642150",
+                "reference": "32914c1162fd566d811315f3e015039870642150",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Toplan\\TaskBalance\\": "src/TaskBalancer/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "toplan",
+                    "email": "toplan710@gmail.com"
+                }
+            ],
+            "description": "lightweight and powerful task load balancing for php (like the nginx load balancing)",
+            "keywords": [
+                "balance",
+                "balancer",
+                "load balancing",
+                "task"
+            ],
+            "time": "2016-04-14 09:24:31"
         },
         {
             "name": "vlucas/phpdotenv",

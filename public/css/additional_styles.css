@@ -8,10 +8,17 @@ span.icon-bell {
 	font-size: 14px;
 }
 
-@media screen and (min-width:480px) {
+figure>img {
+  margin-top: -20px;
+}
+
+@media screen and (max-width:480px) {
     div.fix-align {
         width: 100%;
         margin: auto;
+    }
+    figure>img {
+      margin-top: 20px;
     }
 }
 

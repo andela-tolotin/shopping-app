@@ -9,12 +9,15 @@
         "doctrine/dbal": "^2.5",
         "firebase/php-jwt": "^4.0",
         "jenssegers/agent": "^2.5",
+        "jinseokoh/sms": "^1.0",
         "jrm2k6/cloudder": "^0.2.2",
         "laravel/cashier": "~7.0",
         "laravel/framework": "5.3.*",
         "laravelcollective/html": "^5.2.0",
         "mcamara/laravel-localization": "^1.2",
-        "stripe/stripe-php": "^4.5"
+        "mews/captcha": "^2.1",
+        "stripe/stripe-php": "^4.5",
+        "toplan/laravel-sms": "^2.6"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

@@ -167,6 +167,9 @@ return [
         Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider::class,
         Jenssegers\Agent\AgentServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+        Toplan\PhpSms\PhpSmsServiceProvider::class, 
+        Toplan\Sms\SmsManagerServiceProvider::class,
+        Mews\Captcha\CaptchaServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -236,6 +239,9 @@ return [
         'Agent' => Jenssegers\Agent\Facades\Agent::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+        'PhpSms' => Toplan\PhpSms\Facades\Sms::class ,
+        'SmsManager' => Toplan\Sms\Facades\SmsManager::class,
+        'Captcha' => Mews\Captcha\Facades\Captcha::class,
 
     ],
 
