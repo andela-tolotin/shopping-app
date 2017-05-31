@@ -84,6 +84,6 @@
 	</div>
 	<!-- /PRODUCTS SIDESHOW -->
 	<!-- FOOTER -->
-	@include('partial.footer');
+	@include('partial.footer')
 </body>
 </html>
