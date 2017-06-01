@@ -10,7 +10,7 @@ span.icon-bell {
 
 figure > img {
     width: 97%;
-    margin-top: -20px;
+    margin-top: -40px;
 }
 
 .alert-success {
@@ -47,7 +47,7 @@ div.section-headline > h2 {
     }
 
     figure > img {
-        margin-top: 20px;
+        margin-top: 40px;
     }
 }
 
