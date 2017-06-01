@@ -56,11 +56,11 @@
                         </li>
                         <li class="link-item">
                             <div class="bullet"></div>
-                            <a href="forum.html">Emerald Forum</a>
+                            <a href="forum.html">Play to the Sky Forum</a>
                         </li>
                         <li class="link-item">
                             <div class="bullet"></div>
-                            <a href="blog-v1.html">Emerald Blog</a>
+                            <a href="blog-v1.html">Play to the Sky Blog</a>
                         </li>
                         <li class="link-item">
                             <div class="bullet"></div>
@@ -154,7 +154,7 @@
         <!-- FOOTER BOTTOM -->
         <div id="footer-bottom-wrap">
             <div id="footer-bottom">
-                <p><span>&copy;</span><a href="index.html">Emerald Dragon</a> Template - All Rights Reserved 2015</p>
+                <p><span>&copy;</span><a href="index.html">Play to the Sky Dragon</a> Template - All Rights Reserved 2015</p>
             </div>
         </div>
         <!-- /FOOTER BOTTOM -->

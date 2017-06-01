@@ -56,11 +56,11 @@
                         </li>
                         <li class="link-item">
                             <div class="bullet"></div>
-                            <a href="forum.html">Emerald Forum</a>
+                            <a href="forum.html">Play to the Sky Forum</a>
                         </li>
                         <li class="link-item">
                             <div class="bullet"></div>
-                            <a href="blog-v1.html">Emerald Blog</a>
+                            <a href="blog-v1.html">Play to the Sky Blog</a>
                         </li>
                         <li class="link-item">
                             <div class="bullet"></div>
