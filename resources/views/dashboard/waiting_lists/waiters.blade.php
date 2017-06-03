@@ -2,6 +2,7 @@
 @section('title', 'Waiting Lists')
 @section('page', 'All User waiting lists')
 @section('body')
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <table style="margin-top: 22px;" class="table table-hover table-bordered">
 	<thead>
 		<tr>
