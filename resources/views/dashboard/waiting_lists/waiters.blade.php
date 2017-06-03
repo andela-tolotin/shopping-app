@@ -12,7 +12,11 @@
 	</thead>
 	<tbody>
 		@if (count($waiters) > 0)
-		{{ dump($waiters) }}
+		@foreach($waiters as $waiter)
+		<tr>{{ $loop->index + 1 }}</tr>
+		<tr>{{ $waiter['user'] }}</tr>
+		<tr>{{ $waiter['queue_no'] }}</tr>
+		@endforeach
 		@else
 		<h2>No waiters available</h2>
 		@endif
