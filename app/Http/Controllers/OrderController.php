@@ -47,7 +47,7 @@ class OrderController extends Controller
             ]);
         }
 
-        dd($waiters); exit;
+        return view('dashboard.waiting_lists.waiters', compact('waiters'));
     }
 
     /**

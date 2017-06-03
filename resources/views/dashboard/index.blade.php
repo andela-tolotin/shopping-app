@@ -37,7 +37,7 @@
 				</div>
 
 				<div class="graph-stats-list-item violet line">
-					<a href="{{ route('list_user_orders') }}">
+					<a href="{{ route('waiting_list') }}">
 						<p class="text-header">Waiting Queue No</p>
 						<h2>{{ $queueNo }}</h2>
 					</a>
