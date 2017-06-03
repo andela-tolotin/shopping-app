@@ -21,10 +21,6 @@
                                 @endif
                             </p>
                         </div>
-                        <div class="profile-notification-type">
-                            <span class="type-icon icon-heart primary"></span>
-
-                        </div>
                     </div>
                     @endforeach
                 @endcan

@@ -15,9 +15,9 @@
 		@if (count($waiters) > 0)
 		@foreach($waiters as $waiter)
 		<tr>
-		  <td>{{ $loop->index + 1 }}</td>
-		<td>{{ $waiter['user'] }}</td>
-		<td>{{ $waiter['queue_no'] }}</td>
+			<td>{{ $loop->index + 1 }}</td>
+			<td>{{ $waiter['user'] }}</td>
+			<td>{{ $waiter['queue_no'] }}</td>
 		</tr>
 		@endforeach
 		@else
