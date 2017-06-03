@@ -29,7 +29,7 @@ class HomeController extends Controller
         $userOrders = Auth::user()->orders;
 
         $unapprovedOrders = Order::where('status', 0)
-            ->orderBy('created_at', 'DESC')
+            ->orderBy('created_at', 'ASC')
             ->get();
 
         foreach ($unapprovedOrders as $index => $order) {
@@ -67,7 +67,7 @@ class HomeController extends Controller
                     ['status', 0], 
                     ['product_id', $value->product_id]
                 ])->groupBy('id', 'created_at')
-                ->orderBy('created_at', 'DESC')
+                ->orderBy('created_at', 'ASC')
                 ->get();
 
                 array_push($unapprovedOrders, $unapproveOrders);
@@ -82,7 +82,7 @@ class HomeController extends Controller
                 ['status', 0], 
                 ['admin_id', Auth::user()->role_id]
             ])->groupBy('id', 'created_at')
-            ->orderBy('created_at', 'DESC')
+            ->orderBy('created_at', 'ASC')
             ->get()
             ->count();
 

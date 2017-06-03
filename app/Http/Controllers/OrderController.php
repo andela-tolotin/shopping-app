@@ -28,7 +28,7 @@ class OrderController extends Controller
         $waiters = [];
 
         $unapprovedOrders = Order::where('status', 0)
-            ->orderBy('created_at', 'DESC')
+            ->orderBy('created_at', 'ASC')
             ->get();
 
         foreach ($unapprovedOrders as $index => $order) {
