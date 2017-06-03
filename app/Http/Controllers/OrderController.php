@@ -72,7 +72,7 @@ class OrderController extends Controller
                     ['status', 0], 
                     ['admin_id', $adminId]
                 ])->groupBy('id', 'created_at')
-                ->orderBy('created_at', 'DESC')
+                ->orderBy('created_at', 'ASC')
                 ->get();
 
                 $approveOrders = Order::where([
@@ -82,7 +82,7 @@ class OrderController extends Controller
                     ['status', 1], 
                     ['admin_id', $adminId]
                 ])->groupBy('id', 'created_at')
-                ->orderBy('created_at', 'DESC')
+                ->orderBy('created_at', 'ASC')
                 ->paginate(10);
 
                 array_push($unapprovedOrders, $unapproveOrders);
@@ -90,8 +90,19 @@ class OrderController extends Controller
             }
         }
 
-        $unapproveOrders = Order::Where([['status', 0], ['admin_id', $adminId]])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC')->get();
-        $approveOrders   = Order::Where([['status', 1], ['admin_id', $adminId]])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC')->paginate(10);
+        $unapproveOrders = Order::Where([
+            ['status', 0], 
+            ['admin_id', $adminId]
+        ])->groupBy('id', 'created_at')
+        ->orderBy('created_at', 'ASC')
+        ->get();
+
+        $approveOrders = Order::Where([
+            ['status', 1], 
+            ['admin_id', $adminId]
+        ])->groupBy('id', 'created_at')
+        ->orderBy('created_at', 'ASC')
+        ->paginate(10);
 
         array_push($unapprovedOrders, $unapproveOrders);
         array_push($approvedOrders, $approveOrders);
