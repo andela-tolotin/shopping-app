@@ -47,7 +47,9 @@ div.section-headline > h2 {
     }
 
     figure > img {
-        margin-top: 40px;
+        width: 200%;
+        margin-top: 5px;
+        margin-left: -40px;
     }
 }
 

@@ -256,29 +256,11 @@
     <!-- /SVG PLUS -->
     <!-- SIDE MENU HEADER -->
     <div class="side-menu-header">
-        <!-- USER QUICKVIEW -->
-        <div class="user-quickview">
-            <!-- USER AVATAR -->
-            <a href="/">
-                <div class="outer-ring">
-                    <div class="inner-ring"></div>
-                    <figure class="user-avatar">
-                        <img src="{{ asset('images/avatars/avatar_01.jpg') }}" alt="avatar">
-                    </figure>
-                </div>
-            </a>
-            <!-- /USER AVATAR -->
-            <!-- USER INFORMATION -->
-            @if (Auth::check())
-            <p class="user-name">{{ Auth::user()->name }}</p>
-            @endif
-            <!-- /USER INFORMATION -->
-        </div>
         <!-- /USER QUICKVIEW -->
     </div>
     <!-- /SIDE MENU HEADER -->
     <!-- SIDE MENU TITLE -->
-    <p class="side-menu-title">Dashboard</p>
+    <p class="side-menu-title"></p>
     <!-- /SIDE MENU TITLE -->
     <div class="account-actions">
         @if(!Auth::check())
