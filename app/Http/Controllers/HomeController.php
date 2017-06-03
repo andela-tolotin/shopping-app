@@ -86,7 +86,7 @@ class HomeController extends Controller
             ->get()
             ->count();
 
-            $totalUnapprovedOrder =+ $unapproveOrders;
+            $totalUnapprovedOrder += $unapproveOrders;
         }
 
         $totalTransactionAmount = Transaction::get()->count();

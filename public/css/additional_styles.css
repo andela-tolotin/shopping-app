@@ -8,7 +8,7 @@ span.icon-bell {
     line-height: 18px;
 }
 
-figure > img {
+figure.logo > img {
     width: 97%;
     margin-top: -40px;
 }
@@ -46,7 +46,7 @@ div.section-headline > h2 {
         margin: auto;
     }
 
-    figure > img {
+    figure.logo > img {
         width: 200%;
         margin-top: 5px;
         margin-left: -40px;

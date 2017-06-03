@@ -33,9 +33,16 @@ class OrderController extends Controller
 
         foreach ($unapprovedOrders as $index => $order) {
             $queueNo = $index + 1;
+            $name = '';
+
+            if ($order->user->name == Auth::user()->name) {
+                $name = 'You ('.$order->user->name.')';
+            } else {
+                $name = is_null($order->user) ? 'Guest' : $order->user->name;
+            }
 
             array_push($waiters, [
-                'user' => is_null($order->user) ? 'Guest' : $order->user->name,
+                'user' => $name,
                 'queue_no' => $queueNo
             ]);
         }
