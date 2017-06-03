@@ -22,6 +22,8 @@ class HomeController extends Controller
     {
         $remainingPoints = 0;
         $queueNo = 0;
+        $good = [];
+        $excellent = [];
 
         $userPointWallet = Auth::user()->pointWallet()->first();
         $userOrders = Auth::user()->orders;
@@ -37,8 +39,6 @@ class HomeController extends Controller
         }
 
         $userOrdersCount = $userOrders->count();
-        $good = [];
-        $excellent = [];
 
         foreach ($userOrders as $key => $value) {
             if ($value->ratings === 1) {
@@ -63,7 +63,12 @@ class HomeController extends Controller
 
         if ($serviceManager->count() > 0) {
             foreach ($serviceManager as $key => $value) {
-                $unapproveOrders = Order::where([['status', 0], ['product_id', $value->product_id]])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC')->get();
+                $unapproveOrders = Order::where([
+                    ['status', 0], 
+                    ['product_id', $value->product_id]
+                ])->groupBy('id', 'created_at')
+                ->orderBy('created_at', 'DESC')
+                ->get();
 
                 array_push($unapprovedOrders, $unapproveOrders);
             }
@@ -71,8 +76,16 @@ class HomeController extends Controller
             foreach ($unapprovedOrders as $key => $value) {
                 $totalUnapprovedOrder += count($value);
             }
+
         } else {
-            $unapproveOrders = Order::Where([['status', 0], ['admin_id', Auth::user()->role_id]])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC')->get()->count();
+            $unapproveOrders = Order::Where([
+                ['status', 0], 
+                ['admin_id', Auth::user()->role_id]
+            ])->groupBy('id', 'created_at')
+            ->orderBy('created_at', 'DESC')
+            ->get()
+            ->count();
+
             $totalUnapprovedOrder =+ $unapproveOrders;
         }
 

@@ -21,6 +21,28 @@ class OrderController extends Controller
     {
         $this->mail = $mail;
     }
+
+    public function viewWaitingList()
+    {
+        $queueNo = 0;
+        $waiters = [];
+
+        $unapprovedOrders = Order::where('status', 0)
+            ->orderBy('created_at', 'DESC')
+            ->get();
+
+        foreach ($unapprovedOrders as $index => $order) {
+            $queueNo = $index + 1;
+
+            array_push($waiters, [
+                'user' => is_null($order->user) ? 'Guest' : $order->user->name,
+                'queue_no' => $queueNo
+            ]);
+        }
+
+        dd($waiters); exit;
+    }
+
     /**
      * List all Orders made by all users
      *
@@ -36,8 +58,25 @@ class OrderController extends Controller
 
         if ($serviceManager->count() > 0) {
             foreach ($serviceManager as $key => $value) {
-                $unapproveOrders = Order::where([['status', 0], ['product_id', $value->product_id]])->orWhere([['status', 0], ['admin_id', $adminId]])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC')->get();
-                $approveOrders   = Order::where([['status', 1], ['product_id', $value->product_id]])->orWhere([['status', 1], ['admin_id', $adminId]])->groupBy('id', 'created_at')->orderBy('created_at', 'DESC')->paginate(10);
+                $unapproveOrders = Order::where([
+                    ['status', 0], 
+                    ['product_id', $value->product_id]
+                ])->orWhere([
+                    ['status', 0], 
+                    ['admin_id', $adminId]
+                ])->groupBy('id', 'created_at')
+                ->orderBy('created_at', 'DESC')
+                ->get();
+
+                $approveOrders = Order::where([
+                    ['status', 1], 
+                    ['product_id', $value->product_id]
+                ])->orWhere([
+                    ['status', 1], 
+                    ['admin_id', $adminId]
+                ])->groupBy('id', 'created_at')
+                ->orderBy('created_at', 'DESC')
+                ->paginate(10);
 
                 array_push($unapprovedOrders, $unapproveOrders);
                 array_push($approvedOrders, $approveOrders);

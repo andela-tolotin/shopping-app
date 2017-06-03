@@ -10,28 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::any('captcha-test', function() {
-    if (Request::getMethod() == 'POST') {
-        $rules = ['captcha' => 'required|captcha'];
-        $validator = Validator::make(Input::all(), $rules);
-        if ($validator->fails())
-        {
-            echo '<p style="color: #ff0000;">Incorrect!</p>';
-        }
-        else
-        {
-            echo '<p style="color: #00ff30;">Matched :)</p>';
-        }
-    }
-
-    $form = '<form method="post" action="captcha-test">';
-    $form .= '<input type="hidden" name="_token" value="' . csrf_token() . '">';
-    $form .= '<p>' . captcha_img() . '</p>';
-    $form .= '<p><input type="text" name="captcha"></p>';
-    $form .= '<p><button type="submit" name="check">Check</button></p>';
-    $form .= '</form>';
-    return $form;
-});
 
 Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'localize' ]], function() {
 
@@ -58,6 +36,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', 'HomeController@index')->name('dashboard_index');
     Route::get('/profile', 'ProfileUpdateController@editprofile')->name('profile');
     Route::post('/profile/update', 'ProfileUpdateController@updateProfile')->name('profile_update');
+    Route::get('/waiters', 'OrderController@viewWaitingList')->name('waiting_list');
 
     //Payment
     Route::post('/buy/point', 'PaymentController@buyPointWithStripe')->name('buy_point_with_stripe');
