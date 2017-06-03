@@ -8,6 +8,7 @@
         "php": ">=5.6.4",
         "doctrine/dbal": "^2.5",
         "firebase/php-jwt": "^4.0",
+        "guzzlehttp/guzzle": "^6.2",
         "jenssegers/agent": "^2.5",
         "jinseokoh/sms": "^1.0",
         "jrm2k6/cloudder": "^0.2.2",

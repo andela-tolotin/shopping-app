@@ -259,7 +259,7 @@
         <!-- USER QUICKVIEW -->
         <div class="user-quickview">
             <!-- USER AVATAR -->
-            <a href="author-profile.html">
+            <a href="/">
                 <div class="outer-ring">
                     <div class="inner-ring"></div>
                     <figure class="user-avatar">
@@ -280,22 +280,15 @@
     <!-- SIDE MENU TITLE -->
     <p class="side-menu-title">Dashboard</p>
     <!-- /SIDE MENU TITLE -->
-    <!-- DROPDOWN -->
-    <ul class="dropdown dark hover-effect">
-        <!-- DROPDOWN ITEM -->
-        <li class="dropdown-item">
-            <a href="{{ route('profile') }}">Profile Page</a>
-        </li>
-        <!-- /DROPDOWN ITEM -->
-        <!-- DROPDOWN ITEM -->
-        <li class="dropdown-item">
-            <a href="{{ route('profile') }}">Account Settings</a>
-        </li>
-        <!-- /DROPDOWN ITEM -->
-    </ul>
-    <!-- /DROPDOWN -->
-    <a href="{{ route('signout') }}" class="button medium secondary">Logout</a>
-    <a href="{{ route('home') }}" class="button medium secondary">Dashboard</a>
+    <div class="account-actions">
+        @if(!Auth::check())
+        <a href="{{ route('register') }}" class="button primary">Register</a>
+        <a href="{{ route('login') }}" class="button secondary">Login</a>
+        @else
+        <a href="{{ route('signout') }}" class="button primary">Logout</a>
+        <a href="{{ route('dashboard_index') }}" class="button secondary">Dashboard</a>
+        @endif
+    </div>
 </div>
 <!-- /SIDE MENU -->
 <!-- MAIN MENU -->

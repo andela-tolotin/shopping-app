@@ -254,7 +254,7 @@
         <!-- USER QUICKVIEW -->
         <div class="user-quickview">
             <!-- USER AVATAR -->
-            <a href="author-profile.html">
+            <a href="/">
                 <div class="outer-ring">
                     <div class="inner-ring"></div>
                     <figure class="user-avatar">
@@ -275,22 +275,15 @@
     <!-- SIDE MENU TITLE -->
     <p class="side-menu-title">Dashboard</p>
     <!-- /SIDE MENU TITLE -->
-    <!-- DROPDOWN -->
-    <ul class="dropdown dark hover-effect">
-        <!-- DROPDOWN ITEM -->
-        <li class="dropdown-item">
-            <a href="<?php echo e(route('profile')); ?>">Profile Page</a>
-        </li>
-        <!-- /DROPDOWN ITEM -->
-        <!-- DROPDOWN ITEM -->
-        <li class="dropdown-item">
-            <a href="<?php echo e(route('profile')); ?>">Account Settings</a>
-        </li>
-        <!-- /DROPDOWN ITEM -->
-    </ul>
-    <!-- /DROPDOWN -->
-    <a href="<?php echo e(route('signout')); ?>" class="button medium secondary">Logout</a>
-    <a href="<?php echo e(route('home')); ?>" class="button medium secondary">Dashboard</a>
+    <div class="account-actions">
+        <?php if(!Auth::check()): ?>
+        <a href="<?php echo e(route('register')); ?>" class="button primary">Register</a>
+        <a href="<?php echo e(route('login')); ?>" class="button secondary">Login</a>
+        <?php else: ?>
+        <a href="<?php echo e(route('signout')); ?>" class="button primary">Logout</a>
+        <a href="<?php echo e(route('dashboard_index')); ?>" class="button secondary">Dashboard</a>
+        <?php endif; ?>
+    </div>
 </div>
 <!-- /SIDE MENU -->
 <!-- MAIN MENU -->
