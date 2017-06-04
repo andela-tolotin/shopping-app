@@ -5,7 +5,7 @@
     var payButton = $('button#pay_with_point_wallet');
     payButton.on('click', function() {
         var _this = $(this);
-        bootbox.confirm("Are you sure you want to proceed with the payment!", function(result) {
+        bootbox.confirm("Are you sure you want to proceed with the reservation!", function(result) {
           if (result) {
             //return window.location.href = href;
         _this
@@ -28,11 +28,10 @@
 
           if (data.message == true) {
             message.html(`<div class="alert alert-success">
-                Your Payment was successful!
+                Your Reservation was successful!
                 </div>`
               );
             return setTimeout(function() {
-              //window.location.href = '/product/'+productId+'/checkout';
               window.location.href = '/en/home';
             }, 2000);
           }

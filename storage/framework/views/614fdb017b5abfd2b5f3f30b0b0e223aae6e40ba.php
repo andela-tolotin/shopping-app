@@ -6,7 +6,7 @@
 	<div class="banner-wrap">
 		<section class="banner">
 			<h5>Welcome to</h5>
-			<h1>The Biggest <span>Marketplace</span></h1>
+			<h1>Play To <span>The Sky</span></h1>
 			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
 			<img src="<?php echo e(asset('images/top_items.png')); ?>" alt="banner-img">
 			

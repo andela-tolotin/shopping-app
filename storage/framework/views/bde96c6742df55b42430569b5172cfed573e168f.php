@@ -38,7 +38,7 @@
 				</div>
 
 				<div class="graph-stats-list-item violet line">
-					<a href="<?php echo e(route('list_user_orders')); ?>">
+					<a href="<?php echo e(route('waiting_list')); ?>">
 						<p class="text-header">Waiting Queue No</p>
 						<h2><?php echo e($queueNo); ?></h2>
 					</a>

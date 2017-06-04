@@ -24,7 +24,7 @@
                     <td><?php echo e($product->price); ?></td>
                     <td><?php echo e($product->discount); ?></td>
                     <td><?php echo e($product->tax); ?></td>
-                    <td><a href="<?php echo e(route('edit_product', ['id' => $product->id, 'locale' => App::getLocale()])); ?>" title="Edit <?php echo e($product->name); ?>"> <i class="glyphicon glyphicon-pencil"></i> Edit </a></td>
+                    <td><a href="<?php echo e(route('edit_product', ['id' => $product->id])); ?>" title="Edit <?php echo e($product->name); ?>"> <i class="glyphicon glyphicon-pencil"></i> Edit </a></td>
                     <td><a data-id="<?php echo e($product->id); ?>" class="delete-product" href="#" title="Delete <?php echo e($product->name); ?>"> <i class="glyphicon glyphicon-trash Delete"></i> Delete</a></td>
                 </tr>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>

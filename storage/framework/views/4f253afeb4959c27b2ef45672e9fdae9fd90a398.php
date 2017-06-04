@@ -49,7 +49,7 @@
 			<?php endif; ?>
 			<?php endif; ?>
 		</p>
-		<label class="rl-label">Choose your Payment Method</label>
+		<label class="rl-label" style="clear: both; width: 100%;">Choose your Payment Method</label>
 		<!-- RADIO -->
 		<?php if(Auth::check() && Auth::user()->role_id == 1): ?>
 		<?php
@@ -135,23 +135,6 @@
 	<!-- /FORM BOX ITEM -->
 </div>
 <!-- /FORM BOX ITEMS -->
-<style type="text/css">
-	.alert-success {
-		color: #3c763d;
-		background-color: #dff0d8;
-		border-color: #d6e9c6;
-	}
-	.alert {
-		padding: 15px;
-		margin-bottom: 20px;
-		border: 1px solid transparent;
-		border-radius: 4px;
-	}
-	.alert-danger {
-		color: #a94442;
-		background-color: #f2dede;
-		border-color: #ebccd1;
-	}
-</style>
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

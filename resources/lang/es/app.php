@@ -1,5 +1,5 @@
 <?php
 
 return [
- 'purchase_now' => 'Comprar ahora!',
+ 'purchase_now' => 'Reserve Ahora',
 ];

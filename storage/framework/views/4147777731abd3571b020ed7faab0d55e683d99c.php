@@ -14,7 +14,7 @@
             </ul>
         </div>
         <?php endif; ?>
-        <form id="register-form4" method="post" action=<?php echo e(route('post_product', ['locale' => App::getLocale()])); ?> enctype="multipart/form-data">
+        <form id="register-form4" method="post" action=<?php echo e(route('post_product')); ?> enctype="multipart/form-data">
             <?php echo e(csrf_field()); ?>
 
              <div class="profile-image">
@@ -29,6 +29,14 @@
             <div class="input-container">
                 <label for="name" class="rl-label required">Name</label>
                 <input type="text" id="name" name="name" placeholder="Enter name of product here..." required="required">
+            </div>
+            <div class="input-container half">
+                <label for="price" class="rl-label required">Price</label>
+                <input type="number" id="price" name="price" placeholder="Enter price of product here..." required="required">
+            </div>
+            <div class="input-container half">
+                <label for="discount" class="rl-label required">Discount</label>
+                <input type="number" id="discount" name="discount" placeholder="Enter discount here...">
             </div>
             <div class="input-container">
                 <label for="category" class = "rl-label require">Product Category</label>
@@ -50,17 +58,10 @@
                 </label>
             </div>
             <div class="input-container half">
-                <label for="price" class="rl-label required">Price</label>
-                <input type="number" id="price" name="price" placeholder="Enter price of product here..." required="required">
-            </div>
-            <div class="input-container half">
-                <label for="discount" class="rl-label required">Discount</label>
-                <input type="number" id="discount" name="discount" placeholder="Enter discount here...">
-            </div>
-            <div class="input-container">
                 <label for="tax" class="rl-label required">Tax</label>
                 <input type="number" id="tax" name="tax" placeholder="Enter tax here...">
             </div>
+
             <div class="input-container">
                 <label for="description" class="rl-label required">Description</label>
                 <textarea id="description" name="description" placeholder="Enter description of product here..."></textarea>
