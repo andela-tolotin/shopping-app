@@ -31,11 +31,9 @@ class PaymentController extends Controller
 
         if (!is_null($pointWallet)) {
             $balance = (int) ($pointWallet->point - $pointWallet->balance);
-
-            if ($userPoint != ($pointWallet->point - $pointWallet->balance)) {
-                return response()->json(['message' => 'The Point Wallet mismatch']);
-            }
-
+            // if ($userPoint != $balance) {
+            //     return response()->json(['message' => 'The Point Wallet mismatch']);
+            // }
             if ($balance < $product->price) {
                 return response()->json(['message' => 'The point you have cannot pay for this service']);
             }
