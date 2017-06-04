@@ -17,7 +17,7 @@
 <div class="sidebar right">
     <!-- SIDEBAR ITEM -->
     <div class="sidebar-item void buttons">
-    @if (is_null($product->orders) || $product->orders->count() < 5)
+    @if (is_null($unapprovedOrders) || $unapprovedOrders->count() < 5)
         <a href="{{ route('purchase_product', ['id' => $product->id ]) }}" class="button big dark purchase" data-item-name="{{ $product->name }}" data-item-price="{{ $product->price }}" data-item-category="{{ $product->category->name }}" data-item-id="{{ $product->id }}" data-item-image="{{ @$productImages[0] }}">
             <span class="currency">{{ (int) $product->price }}</span>
             <span> @lang('app.purchase_now') </span>

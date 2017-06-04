@@ -16,7 +16,7 @@
 <div class="sidebar right">
     <!-- SIDEBAR ITEM -->
     <div class="sidebar-item void buttons">
-    <?php if(is_null($product->orders) || $product->orders->count() < 5): ?>
+    <?php if(is_null($unapprovedOrders) || $unapprovedOrders->count() < 5): ?>
         <a href="<?php echo e(route('purchase_product', ['id' => $product->id ])); ?>" class="button big dark purchase" data-item-name="<?php echo e($product->name); ?>" data-item-price="<?php echo e($product->price); ?>" data-item-category="<?php echo e($product->category->name); ?>" data-item-id="<?php echo e($product->id); ?>" data-item-image="<?php echo e(@$productImages[0]); ?>">
             <span class="currency"><?php echo e((int) $product->price); ?></span>
             <span> <?php echo app('translator')->get('app.purchase_now'); ?> </span>

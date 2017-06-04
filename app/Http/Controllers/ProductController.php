@@ -184,11 +184,19 @@ class ProductController extends Controller
      */
     public function viewProduct(Request $request, $id)
     {
+        $unapprovedOrders = null;
+
         $product = Product::findOneById($id);
         $productAdvert = Advert::withProduct($product->id);
 
+        // get the orders and queue no
+        
+        if (!is_null($product->orders)) {
+            $unapprovedOrders = $product->orders->where('status', 0);
+        }
+
         if ($product instanceof Product) {
-            return view('dashboard.product.product_detail', compact('product', 'productAdvert'));
+            return view('dashboard.product.product_detail', compact('product', 'productAdvert', 'unapprovedOrders'));
         }
 
         abort(404);
