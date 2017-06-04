@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Auth;
 use App\User;
 use App\Order;
+use App\PointWallet;
 use Exception;
 use Carbon\Carbon;
 use App\Notification;
@@ -207,6 +208,21 @@ class OrderController extends Controller
             // Log the notification in the notification table
             $this->logNotification($userId, $productId);
             $this->decrementMadeOrderStatus();
+
+            // deduct money from point wallet
+            $transactions = array_pluck($order->user->transactions, 'item_price');
+            $totalTransactions = (int) array_sum($transactions);
+            // find the point wallet and update the balance
+            $pWallet = PointWallet::findOneByUser($order->user->id);
+            $pWallet->balance = $totalTransactions;
+            $pWallet->save();
+            // Save the status to 1
+            $order->status = 1;
+            $order->save();
+            // activate the transaction status
+            $transaction = $order->transaction;
+            $transaction->status = 1;
+            $transaction->save();
 
         	return redirect()->route('list_orders')
                 ->with('message', $response);

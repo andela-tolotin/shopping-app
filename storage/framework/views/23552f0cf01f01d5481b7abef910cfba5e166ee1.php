@@ -16,17 +16,32 @@
 <div class="sidebar right">
     <!-- SIDEBAR ITEM -->
     <div class="sidebar-item void buttons">
-    <?php if(is_null($unapprovedOrders) || $unapprovedOrders->count() < 5): ?>
-        <a href="<?php echo e(route('purchase_product', ['id' => $product->id ])); ?>" class="button big dark purchase" data-item-name="<?php echo e($product->name); ?>" data-item-price="<?php echo e($product->price); ?>" data-item-category="<?php echo e($product->category->name); ?>" data-item-id="<?php echo e($product->id); ?>" data-item-image="<?php echo e(@$productImages[0]); ?>">
+        <p id="status">
+            <?php if(!empty(session('status'))): ?>
+            <?php if(session('status')): ?>
+            <div class="alert alert-success">
+                Your Payment was successful!
+            </div>
+            <?php else: ?>
+            <div class="alert alert-danger">
+                Your Payment was not successful!
+            </div>
+            <?php endif; ?>
+            <?php endif; ?>
+        </p>
+        <?php if(is_null($unapprovedOrders) || $unapprovedOrders->count() < 5): ?>
+        <a href="<?php echo e(route('purchase_product', ['id' => $product->id ])); ?>" class="button big dark purchase" id="pay_with_point_wallet" data-item-name="<?php echo e($product->name); ?>" data-item-price="<?php echo e($product->price); ?>" data-item-category="<?php echo e($product->category->name); ?>" data-item-id="<?php echo e($product->id); ?>" data-item-image="<?php echo e(@$productImages[0]); ?>" data-token="<?php echo e(csrf_token()); ?>">
             <span class="currency"><?php echo e((int) $product->price); ?></span>
             <span> <?php echo app('translator')->get('app.purchase_now'); ?> </span>
         </a>
-    <?php endif; ?>
+        <?php else: ?>
+        <a href="<?php echo e(route('dashboard_index')); ?>" class="button big dark purchase">View Queue No</a>
+        <?php endif; ?>
         <?php if($productAdvert->count() > 0): ?>
         <?php $photos =  json_decode($productAdvert->advert_photos); ?>
-           <?php $__currentLoopData = $photos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $photo): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
-             <img src="<?php echo e($photo); ?>" class="img-responsive" alt="" style="width: 270px; height: auto; float: left; clear: both; margin-bottom: 20px;">
-           <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
+        <?php $__currentLoopData = $photos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $photo): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
+        <img src="<?php echo e($photo); ?>" class="img-responsive" alt="" style="width: 270px; height: auto; float: left; clear: both; margin-bottom: 20px;">
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
         <?php endif; ?>
     </div>
     <!-- /SIDEBAR ITEM -->
@@ -90,5 +105,6 @@
     <!-- /POST -->
 </div>
 <!-- CONTENT -->
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

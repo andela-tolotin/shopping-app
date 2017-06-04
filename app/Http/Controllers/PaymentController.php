@@ -23,9 +23,8 @@ class PaymentController extends Controller
 {
     public function buyProductWithPoint(Request $request, $id)
     {
-        $userPoint = $request->get('point');
-
         $balance = 0;
+        $userPoint = $request->get('point');
 
         $pointWallet = Auth::user()->pointWallet;
         $product = Product::findOneById($id);
@@ -40,6 +39,8 @@ class PaymentController extends Controller
             if ($balance < $product->price) {
                 return response()->json(['message' => 'The point you have cannot pay for this service']);
             }
+        } else {
+            return response()->json(['message' => 'You have 0 Point, Buy point']);
         }
 
         if ($product instanceof Product) {
@@ -51,7 +52,7 @@ class PaymentController extends Controller
                 'item_price' => $product->price,
                 'email' => Auth::user()->email,
                 'phone' => is_null(Auth::user()->email) ? null : Auth::user()->email,
-                'status' => 1,
+                'status' => 0,
                 'payment_gateway_id' => $pointWallet->payment_gateway_id,
                 'product_id' => $product->id,
                 'user_id' => Auth::user()->id,
@@ -72,14 +73,6 @@ class PaymentController extends Controller
             $this->logNotification($productId);
 
             if (! is_null(Auth::user())) {
-                // deduct money from point wallet
-                $transactions = array_pluck(Auth::user()->transactions, 'item_price');
-                $totalTransactions = (int) array_sum($transactions);
-                // find the point wallet and update the balance
-                $pWallet = PointWallet::findOneByUser(Auth::user()->id);
-                $pWallet->balance = $totalTransactions;
-                $pWallet->save();
-
                 return response()->json(['message' => true]);
             }
         }

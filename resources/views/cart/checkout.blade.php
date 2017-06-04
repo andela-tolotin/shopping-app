@@ -66,7 +66,7 @@
 			Point Wallet : Balance {{ $balance }} point(s)
 			<hr class="line-separator top">
 			@if ($balance <= 0 && Auth::user()->role_id == 1) 
-			<a href="{{ route('load_buy_point', ['locale' => App::getLocale()]) }}" class="button mid dark">Buy Point</a>
+			<a href="{{ route('load_buy_point') }}" class="button mid dark">Buy Point</a>
 			@else
 			<button type="button" class="button mid dark" id="pay_with_point_wallet" data-id="{{ $product->id }}" data-point="{{ $balance }}" data-token="{{ csrf_token() }}" data-locale="{{ App::getLocale() }}">Pay</button>
 			@endif

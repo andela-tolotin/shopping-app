@@ -17,17 +17,32 @@
 <div class="sidebar right">
     <!-- SIDEBAR ITEM -->
     <div class="sidebar-item void buttons">
-    @if (is_null($unapprovedOrders) || $unapprovedOrders->count() < 5)
-        <a href="{{ route('purchase_product', ['id' => $product->id ]) }}" class="button big dark purchase" data-item-name="{{ $product->name }}" data-item-price="{{ $product->price }}" data-item-category="{{ $product->category->name }}" data-item-id="{{ $product->id }}" data-item-image="{{ @$productImages[0] }}">
+        <p id="status">
+            @if (!empty(session('status')))
+            @if (session('status'))
+            <div class="alert alert-success">
+                Your Payment was successful!
+            </div>
+            @else
+            <div class="alert alert-danger">
+                Your Payment was not successful!
+            </div>
+            @endif
+            @endif
+        </p>
+        @if (is_null($unapprovedOrders) || $unapprovedOrders->count() < 5)
+        <a href="{{ route('purchase_product', ['id' => $product->id ]) }}" class="button big dark purchase" id="pay_with_point_wallet" data-item-name="{{ $product->name }}" data-item-price="{{ $product->price }}" data-item-category="{{ $product->category->name }}" data-item-id="{{ $product->id }}" data-item-image="{{ @$productImages[0] }}" data-token="{{ csrf_token() }}">
             <span class="currency">{{ (int) $product->price }}</span>
             <span> @lang('app.purchase_now') </span>
         </a>
-    @endif
+        @else
+        <a href="{{ route('dashboard_index') }}" class="button big dark purchase">View Queue No</a>
+        @endif
         @if ($productAdvert->count() > 0)
         <?php $photos =  json_decode($productAdvert->advert_photos); ?>
-           @foreach($photos as $photo)
-             <img src="{{ $photo }}" class="img-responsive" alt="" style="width: 270px; height: auto; float: left; clear: both; margin-bottom: 20px;">
-           @endforeach
+        @foreach($photos as $photo)
+        <img src="{{ $photo }}" class="img-responsive" alt="" style="width: 270px; height: auto; float: left; clear: both; margin-bottom: 20px;">
+        @endforeach
         @endif
     </div>
     <!-- /SIDEBAR ITEM -->
@@ -91,4 +106,5 @@
     <!-- /POST -->
 </div>
 <!-- CONTENT -->
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 @endsection
