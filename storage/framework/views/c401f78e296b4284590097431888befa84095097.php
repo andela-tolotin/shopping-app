@@ -1,6 +1,6 @@
-@extends('app')
-@section('title', 'User Login')
-@section('breadcrumb')
+
+<?php $__env->startSection('title', 'User Login'); ?>
+<?php $__env->startSection('breadcrumb'); ?>
 <!-- SECTION HEADLINE -->
 <div class="section-headline-wrap">
     <div class="section-headline">
@@ -9,34 +9,35 @@
     </div>
 </div>
 <!-- /SECTION HEADLINE -->
-@endsection
-@section('body')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('body'); ?>
 <div class="fix-align">
     <div class="form-popup">
         <div class="form-popup-headline secondary">
             <h2>Login to your Account</h2>
         </div>
         <div class="form-popup-content">
-            @if (count($errors) > 0)
+            <?php if(count($errors) > 0): ?>
             <div class="alert alert-danger">
                 <ul>
-                    @foreach ($errors->all() as $error)
-                    @if ($error == 'validation.captcha')
+                    <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
+                    <?php if($error == 'validation.captcha'): ?>
                     <li> Invalid Captcha </li>
-                    @else
-                    <li>{{ $error }}</li>
-                    @endif
-                    @endforeach
+                    <?php else: ?>
+                    <li><?php echo e($error); ?></li>
+                    <?php endif; ?>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
                 </ul>
             </div>
-            @endif
-            <form id="login-form" method="post" action="{{ route('login') }}">
-                {{ csrf_field() }}
+            <?php endif; ?>
+            <form id="login-form" method="post" action="<?php echo e(route('login')); ?>">
+                <?php echo e(csrf_field()); ?>
+
                 <label for="email" class="rl-label">Username</label>
                 <input type="email" id="email" name="email" placeholder="Enter your email here...">
                 <label for="password" class="rl-label">Password</label>
                 <input type="password" id="password" name="password" placeholder="Enter your password here...">
-                <p> {!! captcha_img() !!} </p>
+                <p> <?php echo captcha_img(); ?> </p>
                 <br>
                 <p><input type="text" name="captcha" required="required" placeholder="Enter your captcha here..."></p>
                 <button class="button mid dark">Login <span class="primary">Now!</span></button>
@@ -56,4 +57,6 @@
     </div>
 </div>
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

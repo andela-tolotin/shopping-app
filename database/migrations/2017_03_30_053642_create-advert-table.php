@@ -15,7 +15,7 @@ class CreateAdvertTable extends Migration
     {
         Schema::create('adverts', function (Blueprint $table) {
             $table->increments('id');
-            $table->json('advert_photos');
+            $table->text('advert_photos');
             $table->integer('user_id')
                 ->unsigned();
 
