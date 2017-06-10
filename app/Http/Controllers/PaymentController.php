@@ -78,8 +78,6 @@ class PaymentController extends Controller
 
     public function buyPointWithStripe(Request $request)
     {
-        $locale = App::getLocale();
-
         $amount = $_POST['amount'];
         $token  = $_POST['stripeToken'];
         $email = $_POST["stripeEmail"];
@@ -139,8 +137,6 @@ class PaymentController extends Controller
 
     public function payWithStrip(Request $request)
     {
-        $locale = App::getLocale();
-
         $amount = $_POST['amount'];
         $token  = $_POST['stripeToken'];
         $email = $_POST["stripeEmail"];
