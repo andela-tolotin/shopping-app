@@ -109,20 +109,23 @@ class LoginController extends Controller
       //  }
     }
 
-    public function findOrCreate($user,$provider){
-
+    public function findOrCreate($user,$provider)
+    {
       $authUser = User::where('provider_id', $user->id)->first();
+
       if ($authUser) {
         return $authUser;
       }
       $authUser = User::where('email',$user->email)->first();
+      
       if ($authUser) {
         return $authUser;
       }
 
       return User::create([
-        'name'     => isset($user->name)?$user->name:'Guest',
-        'email'    => $user->email,
+        'name'     => isset($user->name) ? $user->name: 'Guest',
+        'email'    => $user->email ?? 'fake@email.com',
+        'password' => $provider,
         'gender'    => isset($user->user['gender'])?$user->user['gender']:'',
         'provider' => $provider,
         'provider_id' => $user->id,
