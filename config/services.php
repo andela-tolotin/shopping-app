@@ -35,20 +35,20 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
     'google' => [
-      'client_id' => '190057817794-ejg9jbfget68v9ig0ra1uoiitbul7vcc.apps.googleusercontent.com',
-      'client_secret' => 'r2ekOFqCTzl-KqQRiFA6T1B2',
-      'redirect' => 'http://localhost:8000/auth/google/callback',
+      'client_id' => env('GOOGLE_CLIENT_ID'),
+      'client_secret' => env('GOOGLE_SECRET_ID'),
+      'redirect' => env('GOOGLE_CALLBACK_URL'),
     ],
 
     'facebook' => [
-      'client_id' => '104968323438603',
-      'client_secret' => 'c397bcfe2e6e7592a6f16b471c4ad7c0',
-      'redirect' => 'http://localhost:8000/auth/facebook/callback',
+      'client_id' => env('FACEBOOK_CLIENT_ID'),
+      'client_secret' => env('FACEBOOK_SECRET_ID'),
+      'redirect' => env('FACEBOOK_CALLBACK_URL'),
     ],
 
     'kakao' => [
-      'client_id' => '5b865c382cd67f4efbf96a782403bedc',
-      'client_secret' => '2qCiPaIMtVug1VIh0oxilaSxyfonaBdZ',
-      'redirect' => 'http://localhost:8000/auth/kakao/callback',
+      'client_id' => env('KAKAO_CLIENT_ID'),
+      'client_secret' => env('KAKAO_SECRET_ID'),
+      'redirect' => env('KAKAO_CALLBACK_URL'),
     ],
 ];
