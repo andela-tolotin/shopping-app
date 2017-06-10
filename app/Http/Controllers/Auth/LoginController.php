@@ -97,34 +97,38 @@ class LoginController extends Controller
       }
     }
 
-    public function handleProviderCallback($provider){
-      //try {
+    public function handleProviderCallback($provider)
+    {
         $user = Socialite::driver($provider)->user();
-        $authUser=$this->findOrCreate($user,$provider);
+        $authUser = $this->findOrCreate($user, $provider);
         Auth::login($authUser, true);
+
         return redirect('/');
-      //  } catch (\Exception $e) {
-      //    dd($e);
-      //    return redirect('/login')->with('message','Error while authentication, Try alternative method to login');
-      //  }
     }
 
-    public function findOrCreate($user,$provider)
+    public function findOrCreate($user, $provider)
     {
       $authUser = User::where('provider_id', $user->id)->first();
 
       if ($authUser) {
+        // Update the user
+        $authUser->name = $user->getNickname() ?? $user->getName();
+        $authUser->email = $user->getEmail() ?? 'fake@email.com';
+        $authUser->profile_picture = $user->getAvatar();
+        $authUser->save();
+
         return $authUser;
       }
-      $authUser = User::where('email',$user->email)->first();
+
+      $authUser = User::where('email', $user->email)->first();
 
       if ($authUser) {
         return $authUser;
       }
 
       return User::create([
-        'name'     => $user->getNickname() ?: $user->getName(),
-        'email'    => $user->email ?? 'fake@email.com',
+        'name'     => $user->getNickname() ?? $user->getName(),
+        'email'    => $user->getEmail() ?? 'fake@email.com',
         'password' => $provider,
         'gender'    => isset($user->user['gender'])?$user->user['gender']:'',
         'profile_picture' => $user->getAvatar(),
