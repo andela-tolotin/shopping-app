@@ -43,11 +43,13 @@ class ProfileUpdateController extends Controller
     			$user->profile_picture = $this->handleCloudinaryFileUpload($request);
     		}
 
-    		if ($oldPassword != '') {
-    			if (\Hash::check($oldPassword, $user->getAuthPassword())) {
+        if ($oldPassword != '') {
+          if($user->getAuthPassword()==''){
+            $user->password = bcrypt($newPassword);
+          }else if (\Hash::check($oldPassword, $user->getAuthPassword())) {
     				$user->password = bcrypt($newPassword);
     			} else {
-    				return redirect('home', ['locale' => $locale])
+    				return redirect('home')
                     ->withErrors(['Both passwords is incorrect'])
                     ->withInput();
                 }

@@ -101,4 +101,6 @@ Route::group(['middleware' => ['auth.isAdminAndManager']], function() {
     Route::get('/order/{id}/approve', 'OrderController@approveOrder')->name('approve_order');
     Route::get('/order/{id}/ratings', 'OrderController@orderRating')->name('order_rating');
 });
+Route::get('auth/{provider}', 'Auth\LoginController@redirectToProvider');
+Route::get('auth/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
 });

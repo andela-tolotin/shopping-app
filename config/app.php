@@ -167,9 +167,10 @@ return [
         Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider::class,
         Jenssegers\Agent\AgentServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
-        Toplan\PhpSms\PhpSmsServiceProvider::class, 
+        Toplan\PhpSms\PhpSmsServiceProvider::class,
         Toplan\Sms\SmsManagerServiceProvider::class,
         Mews\Captcha\CaptchaServiceProvider::class,
+        \SocialiteProviders\Manager\ServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -242,6 +243,7 @@ return [
         'PhpSms' => Toplan\PhpSms\Facades\Sms::class ,
         'SmsManager' => Toplan\Sms\Facades\SmsManager::class,
         'Captcha' => Mews\Captcha\Facades\Captcha::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 
     ],
 
