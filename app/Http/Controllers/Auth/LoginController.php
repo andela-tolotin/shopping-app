@@ -127,6 +127,7 @@ class LoginController extends Controller
         'email'    => $user->email ?? 'fake@email.com',
         'password' => $provider,
         'gender'    => isset($user->user['gender'])?$user->user['gender']:'',
+        'profile_picture' => $user->getAvatar(),
         'provider' => $provider,
         'provider_id' => $user->id,
         'role_id' => '1'
