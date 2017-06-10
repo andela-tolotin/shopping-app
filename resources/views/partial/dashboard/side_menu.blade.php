@@ -73,7 +73,7 @@
                 <div class="outer-ring">
                     <div class="inner-ring"></div>
                     <figure class="user-avatar">
-                        @if (!is_null(Auth::user()->profile_picture))
+                        @if (is_null(Auth::user()->profile_picture))
                         <img src="{{ asset('images/dashboard/profile-default-image.png') }}" alt="profile-default-image">
                         @else
                         <img src="{{ Auth::user()->profile_picture }}">
