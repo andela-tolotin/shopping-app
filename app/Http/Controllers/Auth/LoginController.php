@@ -117,13 +117,13 @@ class LoginController extends Controller
         return $authUser;
       }
       $authUser = User::where('email',$user->email)->first();
-      
+
       if ($authUser) {
         return $authUser;
       }
 
       return User::create([
-        'name'     => isset($user->name) ? $user->name: 'Guest',
+        'name'     => $user->getNickname() ?: $user->getName(),
         'email'    => $user->email ?? 'fake@email.com',
         'password' => $provider,
         'gender'    => isset($user->user['gender'])?$user->user['gender']:'',
