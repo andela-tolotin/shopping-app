@@ -113,7 +113,7 @@ class LoginController extends Controller
       if ($authUser) {
         // Update the user
         $authUser->name = $user->getNickname() ?? $user->getName();
-        $authUser->email = $user->getEmail() ?? 'fake@email.com';
+        $authUser->email = $user->getEmail() ?? '';
         $authUser->profile_picture = $user->getAvatar();
         $authUser->save();
 
