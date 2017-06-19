@@ -21,7 +21,6 @@ class UserController extends Controller
                 if (Hash::check($request->password, $user->password)) {
                     return response()->json([
                         'user' => $user,
-                        'role' => $user->role,
                     ], 200);
                 }
             }
