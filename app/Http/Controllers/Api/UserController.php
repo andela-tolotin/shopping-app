@@ -20,7 +20,8 @@ class UserController extends Controller
             if ($user instanceOf User) {
                 if (Hash::check($request->password, $user->password)) {
                     return response()->json([
-                        'user' => $user,
+                        'message' => 'Login Successful!',
+                        'data' => $user,
                     ], 200);
                 }
             }
