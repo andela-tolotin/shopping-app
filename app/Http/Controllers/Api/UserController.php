@@ -26,7 +26,7 @@ class UserController extends Controller
                 }
             }
 
-            return response()->json(['message' => 'Login Failed!'], 200);
+            return response()->json(['message' => 'Login Failed!'], 400);
         }
 
         return response()->json(['message' => 'username or password field is missing']);
