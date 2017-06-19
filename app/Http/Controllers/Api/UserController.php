@@ -2,14 +2,35 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\User;
+use Auth;
 use App\Role;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
+    public function login(Request $request)
+    {
+        if ($request->has('username') && $request->has('password')) {
+            $user = User::findOneByEmail($request->username);
+
+            if ($user instanceOf User) {
+                if (Hash::check($request->password, $user->password)) {
+                    return response()->json([
+                        'user' => $user,
+                        'role' => $user->role,
+                    ], 200);
+                }
+            }
+
+            return response()->json(['message' => 'Login Failed!'], 200);
+        }
+
+        return response()->json(['message' => 'username or password field is missing']);
+    }
+
     public function createUser(Request $request)
     {
     	if (
