@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use Hash;
 use Auth;
 use App\Role;
 use App\User;
