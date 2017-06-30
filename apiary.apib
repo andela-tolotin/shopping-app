@@ -1,0 +1,250 @@
+FORMAT: 1A
+HOST: http://shopper-hub.herokuapp.com/api/
+
+# Play to the Sky
+
+Play to the sky is a game app on the web.
+
+## User Resources [/users]
+
+### Get All Users [GET]
+
++ Response 200 (application/json)
+
+        [  
+            {  
+                "id":14,
+                "name":"Alam Kanak",
+                "email":"alam.kanak.phmgmt@gmail.com",
+                "gender":"",
+                "phone":null,
+                "address":null,
+                "created_at":"2017-06-12 17:11:05",
+                "updated_at":"2017-06-12 17:11:05",
+                "role_id":1,
+                "profile_picture":"https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg?sz=50",
+                "status":0,
+                "provider":"google",
+                "provider_id":"105060103459315383923"
+            },
+            {  
+                "id":13,
+                "name":"Asifuzzaman Asif",
+                "email":"asifbuet047@gmail.com",
+                "gender":"male",
+                "phone":null,
+                "address":null,
+                "created_at":"2017-06-12 17:08:37",
+                "updated_at":"2017-06-12 18:11:47",
+                "role_id":1,
+                "profile_picture":"https://graph.facebook.com/v2.8/10206991901354589/picture?type=normal",
+                "status":0,
+                "provider":"facebook",
+                "provider_id":"10206991901354589"
+            },
+            {  
+                "id":2,
+                "name":"Buyer Ademola",
+                "email":"buyer@gmail.com",
+                "gender":"Male",
+                "phone":"08132186996",
+                "address":"1 Coker road Off kay farm",
+                "created_at":"2017-05-25 16:22:35",
+                "updated_at":"2017-06-03 16:23:36",
+                "role_id":1,
+                "profile_picture":null,
+                "status":0,
+                "provider":null,
+                "provider_id":null
+           },
+           {  
+                "id":11,
+                "name":"Diwesh Saxena",
+                "email":"fake@email.com",
+                "gender":"",
+                "phone":null,
+                "address":null,
+                "created_at":"2017-06-10 16:21:59",
+                "updated_at":"2017-06-11 02:54:51",
+                "role_id":1,
+                "profile_picture":"http://mud-kage.kakao.co.kr/14/dn/btqgHSNWXvo/gqvBIvqjk4m589nFd6Zqgk/o.jpg",
+                "status":0,
+                "provider":"kakao",
+                "provider_id":"442890637"
+           },
+           {  
+                "id":5,
+                "name":"Diwesh Saxena",
+                "email":"diweshsaxena@gmail.com",
+                "gender":"Male",
+                "phone":"+821058450806",
+                "address":"Munmak-eup\r\nWonju-si",
+                "created_at":"2017-05-30 08:01:17",
+                "updated_at":"2017-06-12 05:33:36",
+                "role_id":1,
+                "profile_picture":null,
+                "status":0,
+                "provider":null,
+                "provider_id":null
+           },
+           {  
+                "id":3,
+                "name":"Manager Ademola",
+                "email":"manager@gmail.com",
+                "gender":"Male",
+                "phone":"07061997066",
+                "address":"1 Coker road Off kay farm",
+                "created_at":"2017-05-25 16:23:26",
+                "updated_at":"2017-05-31 16:13:18",
+                "role_id":2,
+                "profile_picture":null,
+                "status":0,
+                "provider":null,
+                "provider_id":null
+           },
+           {  
+                "id":4,
+                "name":"manager Temitope",
+                "email":"manager_2@gmail.com",
+                "gender":"Female",
+                "phone":"0906789923",
+                "address":"1 Coker road Off kay farm",
+                "created_at":"2017-05-26 14:11:02",
+                "updated_at":"2017-05-26 14:32:17",
+                "role_id":2,
+                "profile_picture":null,
+                "status":0,
+                "provider":null,
+                "provider_id":null
+           },
+           {  
+                "id":10,
+                "name":"Olotin Temitope",
+                "email":"lytopz@gmail.com",
+                "gender":"male",
+                "phone":null,
+                "address":null,
+                "created_at":"2017-06-10 16:20:29",
+                "updated_at":"2017-06-10 22:19:44",
+                "role_id":1,
+                "profile_picture":"https://lh4.googleusercontent.com/-aYlmujl9OTM/AAAAAAAAAAI/AAAAAAAABvY/xKxrWZTJS1Q/photo.jpg?sz=50",
+                "status":0,
+                "provider":"google",
+                "provider_id":"104252295628535688103"
+           },
+           {  
+                "id":1,
+                "name":"Temitope Olotin",
+                "email":"admin@gmail.com",
+                "gender":"Male",
+                "phone":"+2347033235351",
+                "address":"2/4 Funsho off Alara Street, Sabo Yaba",
+                "created_at":"2017-05-25 15:56:39",
+                "updated_at":"2017-06-03 12:29:19",
+                "role_id":3,
+                "profile_picture":"http://res.cloudinary.com/dfdws9cpx/image/upload/v1496248247/hftxojptoj6eup3vk9ld.jpg",
+                "status":0,
+                "provider":null,
+                "provider_id":null
+           },
+           {  
+                "id":12,
+                "name":"Test Test",
+                "email":"test@test.com",
+                "gender":"Male",
+                "phone":"01777777",
+                "address":"ABC Street",
+                "created_at":"2017-06-12 12:47:55",
+                "updated_at":"2017-06-12 12:47:55",
+                "role_id":1,
+                "profile_picture":null,
+                "status":0,
+                "provider":null,
+                "provider_id":null
+           }
+        ]
+
+
+### Create a New User [POST]
+
++ Request (application/json)
+
+        {
+            "name": "programming language?",
+            "email": "myemail@gmail.com",
+            "password": "mypassword",
+            "gender": "Male",
+            "phone": "07022334455",
+            "address": "27 india avenua",
+            "role_id": 1
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Bearer: jwt token
+
+    + Body
+
+            {
+                "name": "programming language?",
+                "email": "myemail@gmail.com",
+                "gender": "Male",
+                "phone": "07022334455",
+                "address": "27 india avenua",
+                "role_id": 1,
+                "updated_at": "2017-06-13 11:17:59",
+                "created_at": "2017-06-13 11:17:59",
+                "id": 15
+            }
+
+## User Login [/auth/login]
+
+### Log User In [POST]
+
++ Request (application/json)
+
+        {
+            "username": "username_2017",
+            "password": "mypassword",
+        }
+
+
++ Response 200 (application/json)
+
+        {
+            "message": "Login Successful!",
+            "data": {
+                "id": 2,
+                "name": "Buyer Ademola",
+                "email": "buyer@gmail.com",
+                "gender": "Male",
+                "phone": "08132186996",
+                "address": "1 Coker road Off kay farm",
+                "created_at": "2017-05-25 16:22:35",
+                "updated_at": "2017-06-03 16:23:36",
+                "role_id": 1,
+                "profile_picture": null,
+                "status": 0,
+                "provider": null,
+                "provider_id": null
+            }
+        }
+    
+
++ Response 400 (application/json)
+
+        {
+            "message": "Login Failed!"
+        }
+
+##  How to obtain Token [/token]
+
+### Get Token [GET]
+
++ Response 200 (application/json)
+        
+        {
+            "jwt": "eyJ0eXAiOiJFV1QiLCJhbGciOiJIUzUxMik9.eyJpYXQiOjE0OTczNTgzNDUsImp0aSI6IlhTTTlXbzg4bUFEWDdnbFJcL2xOTzVYVkNQWStOZzB6b0dEVUwwXC9lenlCaz0iLCJpc3MiOiJodHRwOlwvXC9zaG9wcGluZy1hcHAuZGV2IiwibmJmIjoxNDk3MzU4MzQ1fQ.TaSCm7Nlt63-I2LfaBkohVwZ9uFUd1QCxUrChvp9bLUTwTnLFrbB9xBRloP-YqCyl5LjCExMjXsql30JJifjvQ"
+        }
