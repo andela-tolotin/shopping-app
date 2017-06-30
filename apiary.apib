@@ -248,3 +248,28 @@ Play to the sky is a game app on the web.
         {
             "jwt": "eyJ0eXAiOiJFV1QiLCJhbGciOiJIUzUxMik9.eyJpYXQiOjE0OTczNTgzNDUsImp0aSI6IlhTTTlXbzg4bUFEWDdnbFJcL2xOTzVYVkNQWStOZzB6b0dEVUwwXC9lenlCaz0iLCJpc3MiOiJodHRwOlwvXC9zaG9wcGluZy1hcHAuZGV2IiwibmJmIjoxNDk3MzU4MzQ1fQ.TaSCm7Nlt63-I2LfaBkohVwZ9uFUd1QCxUrChvp9bLUTwTnLFrbB9xBRloP-YqCyl5LjCExMjXsql30JJifjvQ"
         }
+
+## User Role [/roles]
+### Create Role [POST]
+
++ Request (application/json)
+
+        {
+            "name": "prod_manager"
+        }
+
+
++ Response 400 (application/json)
+
+        {
+            "message": "Error Creating Role"
+        }
+
++ Response 200 (application/json)
+
+        {
+            "id": 1,
+            "name": "prod_manager",
+            "created_at": null,
+            "updated_at": null
+        }
